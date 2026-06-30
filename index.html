@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>二狗历险记 v1.0</title>
+<!-- 命名约定: 20260630_二狗历险记_v1.0 ; 上 GitHub Pages 时首页文件必须叫 index.html -->
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { height:100%; overflow:hidden; background:#0a0f1f;
+    font-family:"PingFang SC","Microsoft YaHei","Trebuchet MS",sans-serif;
+    user-select:none; -webkit-user-select:none; touch-action:none; }
+  #app { display:flex; flex-direction:column; height:100%; }
+  #hud { flex:0 0 auto; display:flex; align-items:center; gap:8px; padding:6px 12px;
+    background:#10182e; color:#eaf2ff; font-size:15px; font-weight:bold; }
+  #hud .grow { flex:1; }
+  #hud .pill { background:#1c2742; padding:3px 10px; border-radius:999px; font-size:14px; white-space:nowrap; }
+  #hud button { background:#2a3a63; color:#eaf2ff; border:none; padding:6px 12px;
+    border-radius:10px; font-size:14px; font-weight:bold; cursor:pointer; }
+  #stage { flex:1; position:relative; display:flex; align-items:center; justify-content:center; background:#cdeafa; }
+  #game { display:block; }
+  #controls { flex:0 0 auto; display:flex; justify-content:space-between; align-items:center;
+    padding:10px 16px; background:#10182e; gap:10px; }
+  .cbtn { width:70px; height:70px; border-radius:18px; border:none; color:#0a0f1f;
+    font-size:30px; font-weight:bold; cursor:pointer; touch-action:none;
+    background:#9fb3d1; display:flex; align-items:center; justify-content:center; }
+  .cbtn:active { transform:scale(.93); }
+  .cbtn.jump { background:#7ee0a0; }
+  .cbtn.fish { background:#ffd66b; font-size:24px; }
+  .grp { display:flex; gap:12px; }
+  .overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    flex-direction:column; text-align:center; padding:24px; color:#eaf2ff; background:rgba(8,12,26,.82); z-index:5; }
+  .overlay h1 { font-size:40px; margin-bottom:6px;
+    background:linear-gradient(90deg,#5ad1ff,#a78bfa,#7ee0a0);
+    -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .overlay p { font-size:17px; line-height:1.7; color:#cfe0f5; max-width:470px; margin-bottom:6px; }
+  .overlay .big { font-size:46px; }
+  .overlay button { margin-top:18px; font-size:20px; font-weight:bold; color:#0a0f1f;
+    background:linear-gradient(90deg,#5ad1ff,#7ee0a0); border:none; padding:14px 34px; border-radius:16px; cursor:pointer; }
+  .overlay input { margin-top:14px; font-size:22px; text-align:center; padding:10px 14px;
+    border-radius:12px; border:2px solid #5ad1ff; width:240px; }
+  .medal { margin-top:18px; width:150px; height:150px; border-radius:50%;
+    background:radial-gradient(circle at 38% 32%,#ffe89a,#f6c63c 60%,#d99f1f);
+    border:6px solid #c98b16; display:flex; align-items:center; justify-content:center;
+    flex-direction:column; color:#7a4d08; box-shadow:0 8px 30px rgba(246,198,60,.4); }
+  .medal .star { font-size:30px; }
+  .medal .nm { font-size:24px; font-weight:bold; max-width:130px; word-break:break-word; }
+  .hidden { display:none !important; }
+  .ver { position:absolute; bottom:8px; right:12px; font-size:12px; color:#7d8bab; z-index:6; }
+  .conf { position:absolute; top:-20px; font-size:24px; pointer-events:none; animation:cf 2.6s linear infinite; }
+  @keyframes cf { to { transform:translateY(110vh) rotate(540deg); } }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="hud">
+    <span class="pill" id="hudLevel">第1层 街道</span>
+    <span class="grow"></span>
+    <span class="pill" id="hudDeco">🎩 0/3</span>
+    <span class="pill" id="hudFish">🐟 0</span>
+    <button id="btnMap">📍 地图</button>
+    <button id="btnSound">🔊</button>
+  </div>
+  <div id="stage"><canvas id="game"></canvas></div>
+  <div id="controls">
+    <div class="grp">
+      <button class="cbtn" id="btnLeft">◀</button>
+      <button class="cbtn" id="btnRight">▶</button>
+    </div>
+    <div class="grp">
+      <button class="cbtn fish" id="btnFish">🐟扔</button>
+      <button class="cbtn jump" id="btnJump">跳</button>
+    </div>
+  </div>
+
+  <div class="overlay" id="introOv">
+    <h1>二狗历险记</h1>
+    <p class="big">🐈‍⬛</p>
+    <p>二狗是一只很精神的黑猫，从楼顶摔到了街上！<br>帮它一路爬回屋顶，主人在上面等着颁金牌呢 🏅</p>
+    <p>◀ ▶ 走路 &nbsp;·&nbsp; <b>跳</b> 跳跃<br>
+       躲开 🐶 黄狗，别碰 💧 水！<br>
+       帮路上的人做事，拿到楼梯就能上楼。<br>
+       捡到 🐟 能扔出去引开狗，踩上 🦘 能跳得超高！</p>
+    <button id="btnStart">开始游戏</button>
+  </div>
+
+  <div class="overlay hidden" id="winOv">
+    <h1>你赢啦！</h1>
+    <p class="big">🎉🐈‍⬛🏅</p>
+    <p>二狗顺利爬回了屋顶，主人给了它一块金牌！<br>给金牌刻个名字吧：</p>
+    <input id="nameInput" maxlength="10" value="二狗">
+    <button id="btnEngrave">刻上去！</button>
+  </div>
+
+  <div class="overlay hidden" id="doneOv">
+    <h1>恭喜通关！</h1>
+    <div class="medal"><div class="star">★</div><div class="nm" id="medalName">二狗</div></div>
+    <p style="margin-top:16px">二狗的冒险完成啦，做得太棒了！</p>
+    <button id="btnReplay">再玩一次</button>
+  </div>
+</div>
+<div class="ver">二狗历险记 v1.0 · 20260630</div>
+
+<script>
+(function(){
+"use strict";
+
+var W=540, H=760, GROUND_Y=660;
+var GRAV=0.62, JUMP_V=-13.6, SPRING_JUMP_V=-19.2, MOVE=3.6;
+var CW=40, CH=42, CHALF=20, VERSION="v1.0";
+
+var canvas=document.getElementById("game");
+var ctx=canvas.getContext("2d");
+var stage=document.getElementById("stage");
+var scale=1, dpr=Math.min(window.devicePixelRatio||1,2);
+
+function resize(){
+  var s=Math.min(stage.clientWidth/W, stage.clientHeight/H);
+  var cssW=Math.floor(W*s), cssH=Math.floor(H*s);
+  canvas.style.width=cssW+"px"; canvas.style.height=cssH+"px";
+  canvas.width=Math.floor(cssW*dpr); canvas.height=Math.floor(cssH*dpr);
+  scale=canvas.width/W;
+}
+window.addEventListener("resize", resize);
+window.addEventListener("orientationchange", function(){ setTimeout(resize,200); });
+
+/* ---------- sound ---------- */
+var soundOn=true, actx=null;
+function ensureAudio(){ if(actx) return; try{ actx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){ actx=null; } }
+function beep(freq,dur,type,vol,delay){
+  if(!soundOn||!actx) return;
+  try{
+    var t0=actx.currentTime+(delay||0);
+    var o=actx.createOscillator(), g=actx.createGain();
+    o.type=type||"square"; o.frequency.value=freq;
+    g.gain.setValueAtTime(vol||0.07,t0);
+    g.gain.exponentialRampToValueAtTime(0.0001,t0+dur);
+    o.connect(g); g.connect(actx.destination); o.start(t0); o.stop(t0+dur+0.02);
+  }catch(e){}
+}
+function sfx(n){
+  if(!soundOn) return; ensureAudio(); if(!actx) return;
+  if(n==="jump") beep(520,0.10,"square",0.06);
+  else if(n==="collect"){ beep(680,0.07,"triangle",0.07); beep(920,0.10,"triangle",0.07,0.07); }
+  else if(n==="deliver"){ beep(523,0.1,"triangle",0.07); beep(659,0.1,"triangle",0.07,0.1); beep(784,0.16,"triangle",0.07,0.2); }
+  else if(n==="spring"){ beep(680,0.05,"square",0.06); beep(820,0.05,"square",0.06,0.05); beep(980,0.08,"square",0.06,0.1); }
+  else if(n==="throw") beep(400,0.07,"square",0.06);
+  else if(n==="up"){ beep(440,0.08,"triangle",0.07); beep(660,0.12,"triangle",0.07,0.08); }
+  else if(n==="hit") beep(150,0.20,"sawtooth",0.08);
+  else if(n==="win"){ var ns=[523,659,784,1047,1319]; for(var i=0;i<ns.length;i++) beep(ns[i],0.18,"triangle",0.08,i*0.13); }
+}
+
+/* ---------- level templates ---------- */
+var LEVELS=[
+  { name:"街道", bg:"street", skyTop:"#bfe9fc", skyBot:"#e9f7ff", ground:"#cdbfa8",
+    platforms:[ {x:340,y:565,w:140,h:16} ],
+    water:[ {x:200,w:66} ],
+    npc:{x:110, kind:"kid", want:"ball", req:"呜呜，我的球滚走啦！能帮我找回来吗？", thanks:"谢谢二狗！去左边爬楼梯上楼吧！"},
+    items:[ {kind:"quest",type:"ball",x:410,y:565},
+            {kind:"deco",type:"glasses",x:295,y:GROUND_Y} ],
+    dog:null, stairsX:42 },
+
+  { name:"小巷", bg:"street", skyTop:"#cfe4ef", skyBot:"#eaf3f8", ground:"#bcb097",
+    platforms:[ {x:150,y:545,w:270,h:16} ],
+    water:[],
+    npc:{x:78, kind:"oldman", want:"news", req:"小猫咪，帮我把巷子那头的报纸拿来好吗？", thanks:"好孩子！去左边爬楼梯上楼吧！"},
+    items:[ {kind:"skill",type:"fish",x:150,y:GROUND_Y},
+            {kind:"deco",type:"scarf",x:300,y:545},
+            {kind:"quest",type:"news",x:495,y:GROUND_Y} ],
+    dog:{ax:300, R:80}, stairsX:30 },
+
+  { name:"高楼", bg:"high", skyTop:"#a9d8f5", skyBot:"#dcf0fb", ground:"#c2b49b",
+    platforms:[ {x:300,y:398,w:172,h:16} ],
+    water:[ {x:150,w:64} ],
+    npc:{x:78, kind:"aunt", want:"key", req:"哎呀，我的钥匙掉到上面去了！踩弹簧脚跳上去帮我拿好吗？", thanks:"太感谢啦！去左边爬楼梯上楼吧！"},
+    items:[ {kind:"skill",type:"spring",x:255,y:GROUND_Y},
+            {kind:"quest",type:"key",x:386,y:398},
+            {kind:"deco",type:"hat",x:458,y:GROUND_Y} ],
+    dog:null, stairsX:30 },
+
+  { name:"屋顶", bg:"roof", skyTop:"#9ccef2", skyBot:"#d9eefb", ground:"#b7a98f",
+    platforms:[ {x:120,y:560,w:130,h:16}, {x:312,y:460,w:130,h:16},
+                {x:140,y:360,w:140,h:16}, {x:320,y:262,w:172,h:18} ],
+    water:[ {x:252,w:58} ],
+    npc:null, items:[], dog:null, owner:{x:406,y:262}, reach:true }
+];
+
+function emojiFor(t){ return {ball:"⚽",news:"📰",key:"🔑",fish:"🐟",spring:"🦘",glasses:"🕶️",scarf:"🧣",hat:"🎩"}[t]||"❓"; }
+function nameFor(t){ return {ball:"皮球",news:"报纸",key:"钥匙",fish:"鱼干",spring:"弹簧脚",glasses:"墨镜",scarf:"围巾",hat:"礼帽"}[t]||""; }
+
+/* ---------- state ---------- */
+var S={};
+function resetAll(){
+  S.scene="intro"; S.levelIndex=0; S.worn={}; S.fish=0; S.cur=null;
+  S.cat={x:60,y:GROUND_Y,vx:0,vy:0,onGround:true,facing:1,coyote:0,jumpBuf:0,carrying:null,walk:0};
+  S.springT=0; S.lure=null; S.lureT=0; S.stairsActive=false;
+  S.msg=null; S.msgT=0; S.hurtT=0; S.transT=0; S.t=0;
+}
+function loadLevel(i){
+  S.cur=JSON.parse(JSON.stringify(LEVELS[i]));
+  if(S.cur.dog){ S.cur.dog.x=S.cur.dog.ax; S.cur.dog.dir=1; }
+  S.cat.x=60; S.cat.y=GROUND_Y; S.cat.vx=0; S.cat.vy=0; S.cat.onGround=true;
+  S.cat.facing=1; S.cat.carrying=null; S.cat.coyote=0; S.cat.jumpBuf=0;
+  S.springT=0; S.lure=null; S.lureT=0; S.stairsActive=false;
+}
+function startGame(){
+  ensureAudio(); resetAll(); S.levelIndex=0; loadLevel(0); S.scene="play";
+  document.getElementById("introOv").classList.add("hidden");
+  document.getElementById("winOv").classList.add("hidden");
+  document.getElementById("doneOv").classList.add("hidden");
+  setMsg("第1层 · 街道 出发！");
+}
+function nextLevel(){
+  S.levelIndex++;
+  if(S.levelIndex>=LEVELS.length){ doWin(); return; }
+  sfx("up"); loadLevel(S.levelIndex); S.scene="trans"; S.transT=80;
+}
+function doWin(){ S.scene="win"; sfx("win"); document.getElementById("winOv").classList.remove("hidden"); spawnConfetti(); }
+function setMsg(t){ S.msg=t; S.msgT=210; }
+
+/* ---------- input ---------- */
+var keys={left:false,right:false};
+function pressJump(){ S.cat.jumpBuf=9; }
+function bindBtn(id,name,isJump,isFish){
+  var el=document.getElementById(id);
+  function down(e){ e.preventDefault(); ensureAudio();
+    if(isFish){ throwFish(); return; }
+    if(isJump){ pressJump(); return; }
+    if(name==="left") keys.left=true; else if(name==="right") keys.right=true; }
+  function up(e){ e.preventDefault(); if(name==="left") keys.left=false; else if(name==="right") keys.right=false; }
+  el.addEventListener("touchstart",down,{passive:false});
+  el.addEventListener("touchend",up,{passive:false});
+  el.addEventListener("touchcancel",up,{passive:false});
+  el.addEventListener("mousedown",down); el.addEventListener("mouseup",up); el.addEventListener("mouseleave",up);
+}
+bindBtn("btnLeft","left",false,false);
+bindBtn("btnRight","right",false,false);
+bindBtn("btnJump","jump",true,false);
+bindBtn("btnFish","fish",false,true);
+
+document.addEventListener("keydown",function(e){
+  ensureAudio(); var k=e.key.toLowerCase();
+  if(k==="arrowleft"||k==="a") keys.left=true;
+  else if(k==="arrowright"||k==="d") keys.right=true;
+  else if(k==="arrowup"||k==="w"||k===" "){ pressJump(); e.preventDefault(); }
+  else if(k==="e"||k==="f") throwFish();
+  else if(k==="m") toggleMap();
+});
+document.addEventListener("keyup",function(e){
+  var k=e.key.toLowerCase();
+  if(k==="arrowleft"||k==="a") keys.left=false;
+  else if(k==="arrowright"||k==="d") keys.right=false;
+});
+document.getElementById("btnStart").addEventListener("click",startGame);
+document.getElementById("btnReplay").addEventListener("click",startGame);
+document.getElementById("btnMap").addEventListener("click",toggleMap);
+document.getElementById("btnSound").addEventListener("click",function(){
+  soundOn=!soundOn; document.getElementById("btnSound").textContent=soundOn?"🔊":"🔇";
+});
+document.getElementById("btnEngrave").addEventListener("click",function(){
+  var nm=(document.getElementById("nameInput").value||"二狗").trim()||"二狗";
+  document.getElementById("medalName").textContent=nm;
+  document.getElementById("winOv").classList.add("hidden");
+  document.getElementById("doneOv").classList.remove("hidden");
+});
+
+var mapOpen=false;
+function toggleMap(){ if(S.scene!=="play"&&!mapOpen) return; mapOpen=!mapOpen; }
+function throwFish(){
+  if(S.scene!=="play"||mapOpen) return;
+  if(S.fish<=0) return;
+  S.fish--;
+  var fx=Math.max(30,Math.min(W-30, S.cat.x+S.cat.facing*120));
+  S.lure={x:fx,y:GROUND_Y}; S.lureT=320; sfx("throw");
+  setMsg("扔出了鱼干！🐟 狗狗去追啦～");
+}
+
+/* ---------- logic ---------- */
+function hazard(msg){
+  if(S.hurtT>0) return;
+  sfx("hit"); S.hurtT=40;
+  S.cat.x=60; S.cat.y=GROUND_Y; S.cat.vx=0; S.cat.vy=0; S.cat.onGround=true;
+  setMsg(msg||"哎呀！再小心一点～");
+}
+function update(){
+  S.t++;
+  if(S.msgT>0) S.msgT--;
+  if(S.hurtT>0) S.hurtT--;
+  if(S.scene==="trans"){ S.transT--; if(S.transT<=0){ S.scene="play"; setMsg("第"+(S.levelIndex+1)+"层 · "+S.cur.name+" 来啦！"); } return; }
+  if(S.scene!=="play"||mapOpen) return;
+
+  var c=S.cat, lv=S.cur;
+  if(S.springT>0) S.springT--;
+  if(S.lureT>0){ S.lureT--; if(S.lureT<=0) S.lure=null; }
+
+  if(keys.left&&!keys.right){ c.vx=-MOVE; c.facing=-1; }
+  else if(keys.right&&!keys.left){ c.vx=MOVE; c.facing=1; }
+  else c.vx*=0.55;
+  if(Math.abs(c.vx)>0.3) c.walk+=0.3; else c.walk=0;
+
+  if(c.jumpBuf>0) c.jumpBuf--;
+  if(c.coyote>0) c.coyote--;
+  if(c.jumpBuf>0&&(c.onGround||c.coyote>0)){
+    c.vy=(S.springT>0)?SPRING_JUMP_V:JUMP_V;
+    c.onGround=false; c.coyote=0; c.jumpBuf=0; sfx("jump");
+  }
+
+  c.vy+=GRAV; if(c.vy>16) c.vy=16;
+  var feetPrev=c.y;
+  c.x+=c.vx; c.y+=c.vy;
+  if(c.x<CHALF) c.x=CHALF; if(c.x>W-CHALF) c.x=W-CHALF;
+
+  c.onGround=false;
+  if(c.y>=GROUND_Y){ c.y=GROUND_Y; c.vy=0; c.onGround=true; }
+  for(var p=0;p<lv.platforms.length;p++){
+    var pl=lv.platforms[p];
+    if(c.vy>=0 && feetPrev<=pl.y+2 && c.y>=pl.y && c.x+CHALF-6>pl.x && c.x-CHALF+6<pl.x+pl.w){
+      c.y=pl.y; c.vy=0; c.onGround=true;
+    }
+  }
+  if(c.onGround) c.coyote=9;
+
+  if(c.onGround&&c.y>=GROUND_Y-1){
+    for(var w2=0;w2<lv.water.length;w2++){
+      var wt=lv.water[w2];
+      if(c.x>wt.x-6&&c.x<wt.x+wt.w+6){ hazard("二狗怕水！碰到水会输哦～"); break; }
+    }
+  }
+
+  if(lv.dog){
+    var d=lv.dog, lo=d.ax-d.R, hi=d.ax+d.R, target;
+    var nearG=c.y>=GROUND_Y-26;
+    if(S.lure&&S.lure.x>=lo-30&&S.lure.x<=hi+30) target=S.lure.x;
+    else if(nearG&&c.x>=lo-14&&c.x<=hi+14) target=c.x;
+    else { if(d.x<=lo+1) d.dir=1; if(d.x>=hi-1) d.dir=-1; target=d.x+d.dir*30; }
+    var spd=(target===c.x)?2.7:1.7;
+    if(d.x<target) d.x=Math.min(target,d.x+spd); else d.x=Math.max(target,d.x-spd);
+    if(d.x<lo) d.x=lo; if(d.x>hi) d.x=hi;
+    if(nearG&&Math.abs(c.x-d.x)<34&&c.y>GROUND_Y-30) hazard("被狗狗抓到啦！下次绕开它～");
+  }
+
+  for(var it=0;it<lv.items.length;it++){
+    var item=lv.items[it]; if(item.collected) continue;
+    if(Math.abs(c.x-item.x)<30&&Math.abs(c.y-item.y)<40){
+      if(item.kind==="quest"){ c.carrying=item.type; item.collected=true; setMsg("拿到了"+nameFor(item.type)+" "+emojiFor(item.type)+"！送给需要的人吧～"); sfx("collect"); }
+      else if(item.kind==="deco"){ S.worn[item.type]=true; item.collected=true; setMsg("戴上了"+nameFor(item.type)+" "+emojiFor(item.type)+"！二狗好帅～"); sfx("collect"); }
+      else if(item.kind==="skill"&&item.type==="fish"){ S.fish++; item.collected=true; setMsg("捡到鱼干 🐟！按「🐟扔」可以引开狗"); sfx("collect"); }
+      else if(item.kind==="skill"&&item.type==="spring"){ if(S.springT<12){ sfx("spring"); setMsg("弹簧脚 🦘 启动！现在能跳得超高～"); } S.springT=360; }
+    }
+  }
+
+  if(lv.npc){
+    var n=lv.npc;
+    if(Math.abs(c.x-n.x)<42&&c.y>=GROUND_Y-20){
+      if(c.carrying===n.want&&!n.delivered){ n.delivered=true; c.carrying=null; S.stairsActive=true; setMsg(n.thanks); sfx("deliver"); }
+      else if(!n.delivered&&S.msgT<=0){ setMsg(n.req); n.talked=true; }
+    }
+  }
+
+  if(lv.reach){
+    if(Math.abs(c.x-lv.owner.x)<44&&Math.abs(c.y-lv.owner.y)<44){ doWin(); return; }
+  } else if(S.stairsActive){
+    if(Math.abs(c.x-lv.stairsX)<36&&c.y>=GROUND_Y-20){ nextLevel(); return; }
+  }
+}
+
+/* ---------- drawing ---------- */
+function rr(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+function circle(x,y,rad){ ctx.beginPath(); ctx.arc(x,y,rad,0,Math.PI*2); ctx.closePath(); }
+function ellip(x,y,rx,ry){ ctx.beginPath(); ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2); ctx.closePath(); }
+function tri(ax,ay,bx,by,cx,cy){ ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(bx,by); ctx.lineTo(cx,cy); ctx.closePath(); }
+function emojiAt(em,x,y,size){ ctx.font=(size||26)+"px 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',serif";
+  ctx.textAlign="center"; ctx.textBaseline="alphabetic"; ctx.fillText(em,x,y); }
+function bob(){ return Math.sin(S.t*0.12)*3; }
+
+function drawCloud(x,y,s){ ctx.fillStyle="#ffffff";
+  ellip(x,y,26*s,16*s); ctx.fill(); ellip(x+22*s,y-8*s,20*s,15*s); ctx.fill();
+  ellip(x-20*s,y+4*s,18*s,12*s); ctx.fill(); ellip(x+6*s,y+8*s,30*s,14*s); ctx.fill(); }
+function drawBuilding(x,w,topY,col){ ctx.fillStyle=col; ctx.fillRect(x,topY,w,GROUND_Y-topY);
+  ctx.fillStyle="rgba(255,255,255,.55)";
+  for(var ry=topY+16;ry<GROUND_Y-16;ry+=34) for(var rx=x+10;rx<x+w-14;rx+=26) ctx.fillRect(rx,ry,12,16); }
+function drawBg(lv){
+  var g=ctx.createLinearGradient(0,0,0,GROUND_Y); g.addColorStop(0,lv.skyTop); g.addColorStop(1,lv.skyBot);
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle="#fff0bf"; circle(470,86,40); ctx.fill(); ctx.fillStyle="#ffe07a"; circle(470,86,30); ctx.fill();
+  var dr=(S.t*0.15)%(W+120)-60;
+  drawCloud(120+dr,110,1); drawCloud(390+dr*0.7,70,0.8); drawCloud(260-dr*0.5,150,0.7);
+  if(lv.bg==="street"){
+    var pal=["#ef8f8f","#6cccbf","#f4c95b","#b6a3e0","#f0a868","#8fc6e8"]; var bx=0,i=0;
+    while(bx<W){ var bw=70+(i%3)*14; drawBuilding(bx,bw,200+((i*47)%120),pal[i%pal.length]); bx+=bw+6; i++; }
+  } else {
+    var pal2=["#9fb8d6","#c5a3d0","#a9c6a0","#d0b48f","#9bc2d8"]; var by=520,x2=-10,j=0;
+    while(x2<W){ var bw2=80+(j%2)*20; ctx.fillStyle=pal2[j%pal2.length]; ctx.fillRect(x2,by+(j%3)*14,bw2,200); x2+=bw2+8; j++; }
+  }
+  ctx.fillStyle=lv.ground; ctx.fillRect(0,GROUND_Y,W,H-GROUND_Y);
+  ctx.fillStyle="rgba(0,0,0,.10)"; ctx.fillRect(0,GROUND_Y,W,6);
+  ctx.strokeStyle="rgba(0,0,0,.06)"; ctx.lineWidth=2;
+  for(var lx=24;lx<W;lx+=70){ ctx.beginPath(); ctx.moveTo(lx,GROUND_Y+18); ctx.lineTo(lx,H); ctx.stroke(); }
+}
+function drawPlatform(p){ ctx.fillStyle="#7a5a3a"; rr(p.x,p.y,p.w,p.h,5); ctx.fill();
+  ctx.fillStyle="#a07a52"; ctx.fillRect(p.x+2,p.y+1,p.w-4,4); }
+function drawWater(wt){ ctx.fillStyle="#5db4e0"; ellip(wt.x+wt.w/2,GROUND_Y+8,wt.w/2,11); ctx.fill();
+  ctx.fillStyle="#a6dcf2"; ellip(wt.x+wt.w/2-6,GROUND_Y+5,wt.w/4,5); ctx.fill(); }
+function drawDangerBand(d){ ctx.fillStyle="rgba(232,60,60,.13)"; ctx.fillRect(d.ax-d.R,GROUND_Y-58,d.R*2,58+(H-GROUND_Y)); }
+
+function drawCat(cx,cy,facing){
+  var c=S.cat;
+  ctx.save(); ctx.translate(cx,cy); if(facing<0) ctx.scale(-1,1);
+  var swing=Math.sin(c.walk)*4, jumping=!c.onGround;
+  ctx.strokeStyle="#23232e"; ctx.lineWidth=9; ctx.lineCap="round";
+  ctx.beginPath(); ctx.moveTo(-15,-20);
+  ctx.quadraticCurveTo(-34,-26+Math.sin(S.t*0.1)*3,-30,-50+Math.sin(S.t*0.1)*4); ctx.stroke();
+  ctx.fillStyle="#23232e";
+  if(jumping){ rr(-10,-12,8,12,4); ctx.fill(); rr(6,-12,8,12,4); ctx.fill(); }
+  else { rr(-9,-12+(swing>0?2:0),8,14,4); ctx.fill(); rr(7,-12+(swing<0?2:0),8,14,4); ctx.fill(); }
+  ctx.fillStyle="#26262f"; ellip(0,-22,20,17); ctx.fill();
+  ctx.fillStyle="#32323e"; ellip(5,-20,11,10); ctx.fill();
+  ctx.fillStyle="#26262f"; circle(14,-40,15); ctx.fill();
+  ctx.fillStyle="#26262f"; tri(4,-50,6,-66,18,-52); ctx.fill(); tri(15,-52,26,-65,28,-50); ctx.fill();
+  if(!S.worn.glasses){
+    ctx.fillStyle="#36d77c"; ellip(19,-41,5.2,6.4); ctx.fill();
+    ctx.fillStyle="#0c2016"; ellip(19.5,-40,2.4,3.6); ctx.fill();
+    ctx.fillStyle="#ffffff"; circle(17.4,-43,1.4); ctx.fill();
+  }
+  ctx.fillStyle="#ef9bb3"; circle(28,-37,2.2); ctx.fill();
+  ctx.strokeStyle="#14141c"; ctx.lineWidth=1.4; ctx.beginPath(); ctx.moveTo(28,-35); ctx.quadraticCurveTo(25,-31,21,-33); ctx.stroke();
+  if(S.worn.scarf){ ctx.fillStyle="#e23b3b"; rr(2,-32,17,8,4); ctx.fill(); tri(4,-25,11,-25,7,-15); ctx.fill(); }
+  if(S.worn.glasses){ ctx.fillStyle="#20232a"; rr(11,-45,20,4,2); ctx.fill();
+    ctx.fillStyle="#1a1d24"; circle(16,-41,4.5); ctx.fill(); circle(26,-41,4.5); ctx.fill();
+    ctx.fillStyle="#7fd4ff"; circle(16,-41,2.6); ctx.fill(); circle(26,-41,2.6); ctx.fill(); }
+  if(S.worn.hat){ ctx.fillStyle="#33333f"; ellip(14,-55,15,4); ctx.fill();
+    ctx.fillStyle="#33333f"; rr(7,-72,15,17,3); ctx.fill(); ctx.fillStyle="#e23b3b"; rr(7,-60,15,5,2); ctx.fill(); }
+  ctx.restore();
+  if(S.springT>0){ emojiAt("✨",cx-22,cy-30,18); emojiAt("✨",cx+22,cy-50,16); }
+  if(c.carrying) emojiAt(emojiFor(c.carrying),cx,cy-70,22);
+}
+function drawDog(cx,cy,facing){
+  ctx.save(); ctx.translate(cx,cy); if(facing<0) ctx.scale(-1,1);
+  var sw=Math.sin(S.t*0.3)*3;
+  ctx.fillStyle="#e0922a"; rr(-20,-13+(sw>0?2:0),8,14,4); ctx.fill(); rr(12,-13+(sw<0?2:0),8,14,4); ctx.fill();
+  ctx.fillStyle="#f3aa3e"; rr(-8,-13+(sw<0?2:0),8,14,4); ctx.fill(); rr(22,-13+(sw>0?2:0),8,14,4); ctx.fill();
+  ctx.strokeStyle="#f3aa3e"; ctx.lineWidth=8; ctx.lineCap="round";
+  ctx.beginPath(); ctx.moveTo(-22,-18); ctx.quadraticCurveTo(-36,-28,-32,-42); ctx.stroke();
+  ctx.fillStyle="#f3aa3e"; ellip(0,-20,27,16); ctx.fill();
+  ctx.fillStyle="#f6b855"; circle(24,-26,14); ctx.fill();
+  ctx.fillStyle="#f6b855"; rr(30,-26,16,12,5); ctx.fill();
+  ctx.fillStyle="#241208"; circle(45,-21,3.4); ctx.fill();
+  ctx.fillStyle="#e0922a"; tri(18,-36,26,-50,32,-34); ctx.fill();
+  ctx.fillStyle="#6e2433"; rr(31,-18,15,8,2); ctx.fill();
+  ctx.fillStyle="#ffffff"; tri(33,-18,37,-18,35,-12); ctx.fill(); tri(39,-18,43,-18,41,-12); ctx.fill();
+  ctx.fillStyle="#ffffff"; ellip(26,-29,5,5.6); ctx.fill();
+  ctx.fillStyle="#e53935"; circle(25,-29,3.2); ctx.fill();
+  ctx.fillStyle="#2a0a0a"; circle(24.4,-29,1.5); ctx.fill();
+  ctx.fillStyle="#7a3e16"; tri(19,-35,31,-39,31,-33); ctx.fill();
+  ctx.fillStyle="#d8413a"; rr(10,-30,7,18,3); ctx.fill();
+  ctx.restore();
+}
+function drawPerson(cx,cy,kind,facing,wave){
+  var skin="#f1c79c";
+  var shirt={kid:"#5aa9e6",oldman:"#8a8f99",aunt:"#d873b0",owner:"#3fb27a",owner2:"#c0703a"}[kind]||"#888";
+  var s=(kind==="kid")?0.85:1;
+  ctx.save(); ctx.translate(cx,cy); if(facing<0) ctx.scale(-1,1); ctx.scale(s,s);
+  ctx.fillStyle="#3a4256"; rr(-8,-22,6,22,3); ctx.fill(); rr(3,-22,6,22,3); ctx.fill();
+  ctx.fillStyle=shirt; rr(-11,-50,22,30,8); ctx.fill();
+  ctx.strokeStyle=shirt; ctx.lineWidth=6; ctx.lineCap="round";
+  ctx.beginPath(); ctx.moveTo(8,-46); if(wave) ctx.lineTo(20,-60); else ctx.lineTo(16,-30); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-8,-46); ctx.lineTo(-14,-30); ctx.stroke();
+  ctx.fillStyle=skin; circle(0,-62,12); ctx.fill();
+  if(kind==="oldman"){ ctx.fillStyle="#e8e8ec"; ctx.beginPath(); ctx.arc(0,-56,11,0,Math.PI); ctx.fill();
+    ctx.strokeStyle="#7a5a3a"; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(14,-44); ctx.lineTo(18,-6); ctx.stroke(); }
+  else if(kind==="aunt"){ ctx.fillStyle="#7a4a32"; circle(0,-72,8); ctx.fill(); circle(-9,-66,5); ctx.fill(); circle(9,-66,5); ctx.fill(); }
+  else { ctx.fillStyle="#6b4a32"; ctx.beginPath(); ctx.arc(0,-66,11,Math.PI,Math.PI*2); ctx.fill(); }
+  ctx.fillStyle="#2a2a2a"; circle(-4,-63,1.4); ctx.fill(); circle(4,-63,1.4); ctx.fill();
+  ctx.restore();
+}
+function drawLeashOwner(ax,dogX){
+  drawPerson(ax,GROUND_Y,"owner2",dogX>ax?1:-1,false);
+  ctx.strokeStyle="#6b4f2a"; ctx.lineWidth=2.4; ctx.beginPath();
+  ctx.moveTo(ax+(dogX>ax?12:-12),GROUND_Y-40); ctx.lineTo(dogX+(dogX>ax?-14:14),GROUND_Y-30); ctx.stroke();
+}
+function drawStairs(x){
+  var glow=0.5+Math.sin(S.t*0.15)*0.3;
+  for(var i=0;i<4;i++){ ctx.fillStyle="#caa46a"; var sx=x-16+i*4, sy=GROUND_Y-i*22;
+    ctx.fillRect(sx,sy-22,40-i*2,22); ctx.fillStyle="#e0c089"; ctx.fillRect(sx,sy-22,40-i*2,4); }
+  ctx.globalAlpha=glow; emojiAt("⬆️",x,GROUND_Y-96,26); ctx.globalAlpha=1;
+  ctx.fillStyle="#1f7a4d"; ctx.font="bold 14px sans-serif"; ctx.textAlign="center"; ctx.fillText("上楼",x,GROUND_Y-116);
+}
+function drawMarker(x,y,em){ emojiAt(em,x,y+bob(),22); }
+
+function drawBubble(text){
+  ctx.font="16px 'PingFang SC','Microsoft YaHei',sans-serif";
+  var ch=text.split(""), lines=[], cur="", maxw=460;
+  for(var i=0;i<ch.length;i++){ if(ctx.measureText(cur+ch[i]).width>maxw){ lines.push(cur); cur=ch[i]; } else cur+=ch[i]; }
+  lines.push(cur);
+  var lh=22, bw=0; for(var l=0;l<lines.length;l++) bw=Math.max(bw,ctx.measureText(lines[l]).width);
+  bw+=28; var bh=lines.length*lh+16, bx=W/2-bw/2, by=14;
+  ctx.fillStyle="rgba(255,255,255,.95)"; rr(bx,by,bw,bh,12); ctx.fill();
+  ctx.strokeStyle="#5ad1ff"; ctx.lineWidth=2; rr(bx,by,bw,bh,12); ctx.stroke();
+  ctx.fillStyle="#1a2740"; ctx.textAlign="center"; ctx.textBaseline="alphabetic";
+  for(var k=0;k<lines.length;k++) ctx.fillText(lines[k],W/2,by+24+k*lh);
+}
+function drawWorld(){
+  var lv=S.cur; drawBg(lv);
+  if(lv.dog) drawDangerBand(lv.dog);
+  for(var w2=0;w2<lv.water.length;w2++) drawWater(lv.water[w2]);
+  for(var p=0;p<lv.platforms.length;p++) drawPlatform(lv.platforms[p]);
+  for(var it=0;it<lv.items.length;it++){ var item=lv.items[it]; if(item.collected) continue;
+    emojiAt(emojiFor(item.type),item.x,item.y-12+bob()*0.4,26);
+    if(item.kind==="quest") drawMarker(item.x,item.y-44,"❗"); }
+  if(lv.npc){ var n=lv.npc; drawPerson(n.x,GROUND_Y,n.kind,1,false);
+    if(!n.delivered) drawMarker(n.x,GROUND_Y-96,S.cat.carrying===n.want?"🎁":"💬"); }
+  if(lv.reach){ drawPerson(lv.owner.x,lv.owner.y,"owner",-1,true);
+    emojiAt("🏅",lv.owner.x+22,lv.owner.y-50,24);
+    ctx.fillStyle="#1f7a4d"; ctx.font="bold 14px sans-serif"; ctx.textAlign="center"; ctx.fillText("终点!",lv.owner.x,lv.owner.y-80); }
+  if(lv.dog){ drawLeashOwner(lv.dog.ax,lv.dog.x); drawDog(lv.dog.x,GROUND_Y,lv.dog.x>S.cat.x?-1:1); }
+  if(S.lure) emojiAt("🐟",S.lure.x,GROUND_Y-8,22);
+  if(!lv.reach&&S.stairsActive) drawStairs(lv.stairsX);
+  drawCat(S.cat.x,S.cat.y,S.cat.facing);
+  if(S.hurtT>0){ ctx.fillStyle="rgba(232,60,60,"+(S.hurtT/40*0.35)+")"; ctx.fillRect(0,0,W,H); }
+  if(S.msgT>0&&S.msg) drawBubble(S.msg);
+}
+function drawMap(){
+  ctx.fillStyle="rgba(8,12,26,.86)"; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle="#eaf2ff"; ctx.font="bold 24px sans-serif"; ctx.textAlign="center";
+  ctx.fillText("📍 地图 · 第"+(S.levelIndex+1)+"层 "+S.cur.name,W/2,60);
+  var ox=40,oy=110,mw=W-80,mh=360,sc=mw/W;
+  ctx.fillStyle="rgba(255,255,255,.08)"; rr(ox,oy,mw,mh,14); ctx.fill();
+  ctx.strokeStyle="#3a4a6a"; ctx.lineWidth=2; rr(ox,oy,mw,mh,14); ctx.stroke();
+  function mx(x){ return ox+x*sc; } function my(y){ return oy+(y/H)*mh; }
+  var lv=S.cur;
+  ctx.strokeStyle="#6b7da0"; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(ox,my(GROUND_Y)); ctx.lineTo(ox+mw,my(GROUND_Y)); ctx.stroke();
+  for(var p=0;p<lv.platforms.length;p++){ var pl=lv.platforms[p]; ctx.fillStyle="#a07a52"; ctx.fillRect(mx(pl.x),my(pl.y),pl.w*sc,5); }
+  for(var w2=0;w2<lv.water.length;w2++) emojiAt("💧",mx(lv.water[w2].x+lv.water[w2].w/2),my(GROUND_Y)+6,18);
+  if(lv.dog){ ctx.fillStyle="rgba(232,60,60,.25)"; ctx.fillRect(mx(lv.dog.ax-lv.dog.R),my(GROUND_Y)-18,lv.dog.R*2*sc,18); emojiAt("🐶",mx(lv.dog.x),my(GROUND_Y),18); }
+  for(var it=0;it<lv.items.length;it++){ var i2=lv.items[it]; if(i2.collected) continue; emojiAt(emojiFor(i2.type),mx(i2.x),my(i2.y),18); }
+  if(lv.npc) emojiAt(lv.npc.kind==="kid"?"🧒":lv.npc.kind==="oldman"?"👴":"👩",mx(lv.npc.x),my(GROUND_Y),18);
+  if(lv.reach) emojiAt("🏅",mx(lv.owner.x),my(lv.owner.y),18);
+  if(!lv.reach&&S.stairsActive) emojiAt("⬆️",mx(lv.stairsX),my(GROUND_Y)-6,18);
+  emojiAt("🐈‍⬛",mx(S.cat.x),my(S.cat.y),20);
+  ctx.fillStyle="#cfe0f5"; ctx.font="16px sans-serif"; ctx.textAlign="center";
+  ctx.fillText("🐈‍⬛你 · 💬要帮的人 · ❗要找的东西",W/2,oy+mh+36);
+  ctx.fillText("💧水(危险) · 🐶狗(危险) · ⬆️上楼",W/2,oy+mh+62);
+  ctx.fillStyle="#ffd66b"; ctx.font="bold 16px sans-serif"; ctx.fillText("再按一次「📍地图」关闭",W/2,oy+mh+96);
+}
+function drawTransition(){
+  drawBg(S.cur); ctx.fillStyle="rgba(8,12,26,.55)"; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle="#eaf2ff"; ctx.textAlign="center";
+  ctx.font="bold 22px sans-serif"; ctx.fillText("⬆️ 上楼啦！",W/2,H/2-40);
+  ctx.font="bold 40px 'PingFang SC',sans-serif"; ctx.fillText("第"+(S.levelIndex+1)+"层 · "+S.cur.name,W/2,H/2+10);
+}
+function updateHud(){
+  var dc=(S.worn.glasses?1:0)+(S.worn.scarf?1:0)+(S.worn.hat?1:0);
+  document.getElementById("hudLevel").textContent="第"+(S.levelIndex+1)+"层 "+(S.cur?S.cur.name:"");
+  document.getElementById("hudDeco").textContent="🎩 "+dc+"/3";
+  document.getElementById("hudFish").textContent="🐟 "+S.fish+(S.springT>0?"  🦘弹跳中":"");
+}
+function spawnConfetti(){
+  var ems=["🎉","⭐","🎊","🏅","✨","🎈"];
+  for(var i=0;i<16;i++){ var d=document.createElement("div"); d.className="conf"; d.textContent=ems[i%ems.length];
+    d.style.left=(Math.random()*96+2)+"%"; d.style.animationDelay=(Math.random()*2)+"s";
+    d.style.animationDuration=(2+Math.random()*1.6)+"s"; document.getElementById("winOv").appendChild(d); }
+}
+
+/* ---------- main loop (fixed timestep, handles 60/120Hz) ---------- */
+var last=performance.now(), acc=0, STEP=1000/60;
+function frame(now){
+  var dt=now-last; last=now; if(dt>100) dt=100; acc+=dt;
+  var guard=0; while(acc>=STEP&&guard<5){ update(); acc-=STEP; guard++; }
+  ctx.setTransform(scale,0,0,scale,0,0); ctx.clearRect(0,0,W,H);
+  if(S.scene==="intro"||!S.cur) drawBg(LEVELS[0]);
+  else if(S.scene==="trans") drawTransition();
+  else { drawWorld(); if(mapOpen) drawMap(); }
+  if(S.cur) updateHud();
+  requestAnimationFrame(frame);
+}
+resetAll(); resize(); requestAnimationFrame(frame);
+
+})();
+</script>
+</body>
+</html>
