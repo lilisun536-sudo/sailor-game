@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>二狗历险记 v2.5</title>
+<title>二狗历险记 v3.0</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   html,body { height:100%; overflow:hidden; background:#0a0f1f; font-family:"PingFang SC","Microsoft YaHei","Trebuchet MS",sans-serif; user-select:none; -webkit-user-select:none; touch-action:none; }
@@ -32,6 +32,27 @@
   .ver { position:absolute; bottom:8px; right:12px; font-size:12px; color:#7d8bab; z-index:6; }
   .conf { position:absolute; top:-20px; font-size:24px; pointer-events:none; animation:cf 2.6s linear infinite; }
   @keyframes cf { to { transform:translateY(110vh) rotate(540deg); } }
+  /* ---- shop ---- */
+  .shopbox { width:min(94%,470px); max-height:86%; background:#12193a; border:2px solid #2a3a63; border-radius:20px; padding:16px 16px 14px; display:flex; flex-direction:column; overflow:hidden; }
+  .shophead { font-size:22px; font-weight:bold; color:#ffe08a; text-align:center; margin-bottom:4px; }
+  .shopwallet { display:block; font-size:15px; color:#cfe0f5; margin-top:4px; font-weight:bold; }
+  .shoptabs { display:flex; gap:8px; margin:8px 0 10px; }
+  .shopbox .stab { margin:0; flex:1; background:#1c2742; color:#cfe0f5; border:none; padding:9px 6px; border-radius:12px; font-size:15px; font-weight:bold; cursor:pointer; }
+  .shopbox .stab.on { background:#3a5bd0; color:#fff; }
+  .shopgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; overflow-y:auto; padding:2px; margin-bottom:10px; }
+  .skincard { background:#1a2140; border:2px solid #2a3a63; border-radius:14px; padding:10px 8px; text-align:center; }
+  .skincard.eq { border-color:#7ee0a0; box-shadow:0 0 0 2px rgba(126,224,160,.3); }
+  .swatch { width:52px; height:52px; margin:0 auto 6px; border-radius:14px; display:flex; align-items:center; justify-content:center; position:relative; }
+  .swatch .eyed { width:8px; height:11px; border-radius:50%; position:absolute; top:18px; }
+  .swatch .e1 { left:13px; } .swatch .e2 { right:13px; }
+  .skinname { font-size:15px; font-weight:bold; color:#eaf2ff; margin-bottom:6px; }
+  .buyrow { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; }
+  .shopbox .buybtn { margin:0; border:none; border-radius:10px; padding:7px 10px; font-size:13px; font-weight:bold; cursor:pointer; color:#0a0f1f; }
+  .shopbox .buybtn.coin { background:#ffd66b; } .shopbox .buybtn.fishb { background:#7fd4ff; }
+  .shopbox .buybtn.eqbtn { background:#7ee0a0; }
+  .shopbox .buybtn.owned { background:#3a4a6a; color:#9fb3d1; }
+  .shopbox .buybtn:disabled { opacity:.4; cursor:not-allowed; }
+  #btnShopClose { margin-top:2px; font-size:19px; font-weight:bold; color:#0a0f1f; background:linear-gradient(90deg,#5ad1ff,#7ee0a0); border:none; padding:12px; border-radius:14px; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -40,7 +61,9 @@
     <span class="pill" id="hudLevel">第1层 街道</span>
     <span class="grow"></span>
     <span class="pill" id="hudPow">🎒</span>
+    <span class="pill" id="hudCoin">🪙 0</span>
     <span class="pill" id="hudFish">🐟 0</span>
+    <button id="btnShop">🛒</button>
     <button id="btnMap">📍</button>
     <button id="btnSave">💾</button>
     <button id="btnSound">🔊</button>
@@ -60,12 +83,15 @@
   <div class="overlay" id="introOv">
     <h1>二狗历险记</h1>
     <p class="big">🐈‍⬛</p>
-    <p>二狗从楼顶摔了下来！帮它一关一关<b>往上爬</b>，画面会跟着你升高。<br>爬回最高的屋顶，主人就会颁金牌 🏅</p>
-    <p>◀ ▶ 走 ·  <b>跳</b> 跳 · 🐟扔 喂狗(不咬你) · 📍 看地图<br>
-       躲开 🐶 狗、💧 水、🐛 毛毛虫 和 🐦 小鸟。碰到会回到最近的<b>存档旗</b> 🚩(不用从头来)。<br>
-       捡到 🕶️墨镜=跑更快 · 🧣围巾=挡一次 · 🎩礼帽=二段跳 · 🦘弹簧=跳超高。</p>
+    <p>二狗从楼顶摔了下来！帮它一关一关<b>往上爬</b>，爬回最高的屋顶，主人就会颁金牌 🏅</p>
+    <p>◀ ▶ 走 · <b>跳</b> 跳 · 🐟扔 喂狗 · 📍 地图 · 🛒 商店<br>
+       二狗有 <b>❤️❤️❤️ 3 颗心</b>：被 🐶狗 / 🐛虫 / 🐦鸟 碰到扣 1 颗，掉进 💧水 也扣 1 颗(会被冲回旗子 🚩)；心没了就<b>这一层重来</b>。<br>
+       打狗有两招：跳起来<b>踩狗头</b>(踩 4 下打败它，会掉 🪙金币 和 ❤️心)，或者<b>喂它 2 条鱼🐟</b>驯服它(整关不咬你)。<br>
+       捡到 🕶️墨镜=跑更快 · 🧣围巾=挡一次 · 🎩礼帽=二段跳 · 🦘弹簧=跳超高。<br>
+       用 🪙金币 或 🐟鱼 到<b>商店</b>换新皮肤(换颜色、换眼睛)！</p>
     <button id="btnContinue" class="hidden">继续</button>
     <button id="btnStart">开始游戏</button>
+    <button id="btnShopIntro" style="background:linear-gradient(90deg,#ffd66b,#ffb347)">🛒 商店</button>
   </div>
 
   <div class="overlay hidden" id="winOv">
@@ -82,8 +108,20 @@
     <p style="margin-top:14px">二狗的大冒险完成啦，太厉害了！</p>
     <button id="btnReplay">再玩一次</button>
   </div>
+
+  <div class="overlay hidden" id="shopOv">
+    <div class="shopbox">
+      <div class="shophead">🛒 二狗商店<span id="shopWallet" class="shopwallet"></span></div>
+      <div class="shoptabs">
+        <button class="stab on" id="tabBody">🎨 身体颜色</button>
+        <button class="stab" id="tabEye">👀 眼睛颜色</button>
+      </div>
+      <div class="shopgrid" id="shopGrid"></div>
+      <button id="btnShopClose">返回游戏 ▶</button>
+    </div>
+  </div>
 </div>
-<div class="ver">二狗历险记 v2.5 · 20260630</div>
+<div class="ver">二狗历险记 v3.0 · 20260701</div>
 
 <script>
 (function(){
@@ -131,8 +169,8 @@ function nameFor(t){return {ball:"皮球",news:"报纸",key:"钥匙",box:"包裹
 function decoMsg(t){return t==="glasses"?"戴上墨镜 🕶️！二狗跑得更快啦":t==="scarf"?"戴上围巾 🧣！能帮你挡一次伤害":"戴上礼帽 🎩！可以二段跳(空中再跳一下)";}
 
 var S={};
-function resetAll(){ S.scene="intro";S.levelIndex=0;S.worn={};S.fish=0;S.cur=null;
-  S.cat={x:270,y:760,vx:0,vy:0,onGround:true,facing:1,coyote:0,jumpBuf:0,jumps:0,carrying:null,walk:0};
+function resetAll(){ S.scene="intro";S.levelIndex=0;S.worn={};S.cur=null;
+  S.cat={x:270,y:760,vx:0,vy:0,onGround:true,facing:1,coyote:0,jumpBuf:0,jumps:0,carrying:null,walk:0,hp:3,maxHp:3};
   S.springT=0;S.lure=null;S.lureT=0;S.respawn={x:270,y:760};S.stairsActive=false;
   S.msg=null;S.msgT=0;S.hurtT=0;S.invulnT=0;S.shieldFlashT=0;S.transT=0;S.t=0; }
 function loadLevel(i){
@@ -140,16 +178,17 @@ function loadLevel(i){
   L.platforms=L.platforms.map(function(p){return {x:p[0],y:p[1],w:p[2],h:p[3]};});
   L.water=L.water.map(function(w){return {x:w[0],y:w[1],w:w[2]};});
   L.springs=L.springs.map(function(s){return {x:s[0],y:s[1]};});
-  L.dogs=L.dogs.map(function(d){return {hx:d[0],y:d[1],r:d[2],dx:d[0],dir:1};});
+  L.dogs=L.dogs.map(function(d){return {hx:d[0],y:d[1],r:d[2],dx:d[0],dir:1,hp:4,maxHp:4,dead:false,tamed:false,feed:0,fed:false,stun:0,flash:0};});
   L.bugs=(L.bugs||[]).map(function(b){return {hx:b[0],y:b[1],r:b[2],dx:b[0],dir:1};});
   L.birds=(L.birds||[]).map(function(b){return {hx:b[0],y:b[1],r:b[2],sp:b[3],dx:b[0],dir:1};});
   L.items=L.items.map(function(it){return {kind:it[0],type:it[1],x:it[2],y:it[3],collected:false};});
+  L.drops=[];
   L.checkpoints=L.checkpoints.map(function(c){return {x:c[0],y:c[1],reached:false};});
   L.npc=L.npc?{x:L.npc[0],y:L.npc[1],kind:L.npc[2],want:L.npc[3],req:L.npc[4],thanks:L.npc[5],delivered:false,talked:false}:null;
   L.owner=L.owner?{x:L.owner[0],y:L.owner[1]}:null;
   S.cur=L;
   S.cat.x=L.startX;S.cat.y=L.worldH;S.cat.vx=0;S.cat.vy=0;S.cat.onGround=true;S.cat.jumps=0;
-  S.cat.facing=1;S.cat.carrying=null;S.cat.coyote=0;S.cat.jumpBuf=0;
+  S.cat.facing=1;S.cat.carrying=null;S.cat.coyote=0;S.cat.jumpBuf=0;S.cat.hp=S.cat.maxHp||3;
   S.respawn={x:L.startX,y:L.worldH};S.springT=0;S.lure=null;S.lureT=0;S.stairsActive=false;
   S.invulnT=0;S.hurtT=0;S.shieldFlashT=0;
 }
@@ -162,13 +201,23 @@ function nextLevel(){ S.levelIndex++; if(S.levelIndex>=LEVELS.length){doWin();re
   sfx("up");loadLevel(S.levelIndex);saveGame(true);S.scene="trans";S.transT=80; }
 function doWin(){ S.scene="win";sfx("win");document.getElementById("winOv").classList.remove("hidden");spawnConfetti(); }
 function setMsg(t){ S.msg=t;S.msgT=210; }
-var SAVE_KEY="ergou_save_v2";
-function saveGame(silent){ try{ localStorage.setItem(SAVE_KEY,JSON.stringify({level:S.levelIndex,worn:S.worn,fish:S.fish}));
-  if(!silent)setMsg("已存档 ✅ 下次可从这一关继续"); }
+var SAVE_KEY="ergou_save_v3";
+function saveGame(silent){ try{ localStorage.setItem(SAVE_KEY,JSON.stringify({level:S.levelIndex,worn:S.worn,coins:S.coins,fish:S.fish,owned:S.owned,equip:S.equip}));
+  if(!silent)setMsg("已存档 ✅ 金币🪙、鱼🐟 和皮肤都记住啦"); }
   catch(e){ if(!silent)setMsg("(预览里存不了，下载或网页版玩就能存)"); } }
-function loadSave(){ try{ var s=localStorage.getItem(SAVE_KEY); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function loadSave(){ try{ var s=localStorage.getItem(SAVE_KEY); if(s)return JSON.parse(s);
+  var old=localStorage.getItem("ergou_save_v2"); if(old){var o=JSON.parse(old);return {level:o.level,worn:o.worn,fish:o.fish,coins:0};}
+  return null; }catch(e){ return null; } }
+function loadWallet(){ var sv=loadSave();
+  S.coins=(sv&&typeof sv.coins==="number")?sv.coins:0;
+  S.fish=(sv&&typeof sv.fish==="number")?sv.fish:0;
+  S.owned=(sv&&sv.owned)?sv.owned:{body:{black:1},eye:{green:1}};
+  S.equip=(sv&&sv.equip)?sv.equip:{body:"black",eye:"green"};
+  if(!S.owned.body)S.owned.body={}; if(!S.owned.eye)S.owned.eye={};
+  S.owned.body.black=1; S.owned.eye.green=1;
+  if(!S.equip.body)S.equip.body="black"; if(!S.equip.eye)S.equip.eye="green"; }
 function continueGame(){ var sv=loadSave(); if(!sv){startGame();return;} ensureAudio();
-  resetAll(); S.worn=sv.worn||{}; S.fish=sv.fish||0; S.levelIndex=Math.min(sv.level||0,LEVELS.length-1);
+  resetAll(); loadWallet(); S.worn=sv.worn||{}; S.levelIndex=Math.min(sv.level||0,LEVELS.length-1);
   loadLevel(S.levelIndex); S.scene="play";
   document.getElementById("introOv").classList.add("hidden");
   document.getElementById("winOv").classList.add("hidden");
@@ -213,11 +262,19 @@ function throwFish(){ if(S.scene!=="play"||mapOpen)return; if(S.fish<=0)return; 
   var fx=Math.max(30,Math.min(W-30,S.cat.x+S.cat.facing*120));
   S.lure={x:fx,y:S.cat.y};S.lureT=380;sfx("throw");setMsg("扔出鱼干！🐟 狗去吃鱼，就不咬你啦～"); }
 
-function hazard(msg){ if(S.invulnT>0)return;
-  if(S.worn.scarf){ S.worn.scarf=false;S.shieldFlashT=40;S.invulnT=45;sfx("shield");setMsg("围巾帮你挡了一下！🧣");return; }
-  meow();S.hurtT=40;S.invulnT=35;
-  S.cat.x=S.respawn.x;S.cat.y=S.respawn.y;S.cat.vx=0;S.cat.vy=0;S.cat.onGround=true;S.cat.jumps=0;
-  setMsg(msg||"哎呀！回到存档点 🚩"); }
+function hurtCat(msg,reposition){ if(S.invulnT>0)return false;
+  if(S.worn.scarf){ S.worn.scarf=false;S.shieldFlashT=40;S.invulnT=45;sfx("shield");setMsg("围巾帮你挡了一下！🧣");return false; }
+  S.cat.hp--; if(S.cat.hp<0)S.cat.hp=0; meow();S.hurtT=40;S.invulnT=42;
+  if(S.cat.hp<=0){ dieLevel(); return true; }
+  if(reposition){ S.cat.x=S.respawn.x;S.cat.y=S.respawn.y;S.cat.vx=0;S.cat.vy=0;S.cat.onGround=true;S.cat.jumps=0; }
+  else { S.cat.vy=-5; }
+  setMsg(msg||("哎呀！还剩 "+S.cat.hp+" 颗心 ❤️")); return false; }
+function dieLevel(){ sfx("hit");S.hurtT=44;S.invulnT=48; loadLevel(S.levelIndex); setMsg("二狗没力气啦…这一层重新开始！❤️❤️❤️"); }
+function defeatDog(d,lv){ d.dead=true;sfx("deliver");
+  var bx=d.dx,by=d.y-18,heart=(Math.random()<0.45);
+  for(var k=0;k<3;k++)lv.drops.push({x:bx,y:by,vx:(k-1)*2.4,vy:-6-Math.random()*2,kind:"coin",val:2,landed:false,dead:false});
+  if(heart)lv.drops.push({x:bx,y:by,vx:(Math.random()*2-1)*1.5,vy:-7,kind:"heart",val:1,landed:false,dead:false});
+  setMsg(heart?"打败狗狗啦！掉了金币🪙 和一颗心❤️":"打败狗狗啦！掉了一些金币 🪙"); }
 function camY(){ var c=S.cat.y-H*0.6,m=S.cur.worldH-H; if(c<0)c=0; if(c>m)c=m; return c; }
 
 function update(){ S.t++;
@@ -256,26 +313,39 @@ function update(){ S.t++;
     for(var ci=0;ci<lv.checkpoints.length;ci++){ var cp=lv.checkpoints[ci];
       if(Math.abs(c.x-cp.x)<46&&Math.abs(c.y-cp.y)<14){ S.respawn={x:cp.x,y:cp.y}; if(!cp.reached){cp.reached=true;sfx("ckpt");} break; } }
     for(var wi=0;wi<lv.water.length;wi++){ var wt=lv.water[wi];
-      if(Math.abs(c.y-wt.y)<3&&c.x>wt.x-4&&c.x<wt.x+wt.w+4){ hazard("二狗怕水！回到存档点 🚩"); break; } }
+      if(Math.abs(c.y-wt.y)<3&&c.x>wt.x-4&&c.x<wt.x+wt.w+4){ if(hurtCat("二狗怕水！扣一颗心 ❤️",true))return; break; } }
   }
 
-  for(var di=0;di<lv.dogs.length;di++){ var d=lv.dogs[di];
+  for(var di=0;di<lv.dogs.length;di++){ var d=lv.dogs[di]; if(d.dead)continue;
+    if(d.stun>0)d.stun--; if(d.flash>0)d.flash--;
     var lo=d.hx-d.r,hi=d.hx+d.r,nearG=Math.abs(c.y-d.y)<26,tgt;
-    var fed=(S.lure&&S.lure.x>=lo-30&&S.lure.x<=hi+30&&Math.abs(S.lure.y-d.y)<60);d.fed=fed;
+    if(S.lure&&!d.tamed&&Math.abs(d.dx-S.lure.x)<24&&Math.abs(d.y-S.lure.y)<56){
+      d.feed++;S.lure=null;S.lureT=0;
+      if(d.feed>=2){d.tamed=true;sfx("deliver");setMsg("狗狗被驯服啦！这一层它不咬你了 🐶💕");}
+      else{sfx("collect");setMsg("狗狗吃了 1 条鱼～再喂 1 条就能驯服它！");}
+    }
+    var fed=(!d.tamed&&S.lure&&S.lure.x>=lo-30&&S.lure.x<=hi+30&&Math.abs(S.lure.y-d.y)<60);d.fed=fed;
+    if(d.tamed){ if(d.dx<=lo+1)d.dir=1; if(d.dx>=hi-1)d.dir=-1; d.dx+=d.dir*0.8; if(d.dx<lo)d.dx=lo; if(d.dx>hi)d.dx=hi; continue; }
     if(fed)tgt=S.lure.x;
     else if(nearG&&c.x>=lo-14&&c.x<=hi+14)tgt=c.x;
     else{ if(d.dx<=lo+1)d.dir=1; if(d.dx>=hi-1)d.dir=-1; tgt=d.dx+d.dir*30; }
     var spd=(tgt===c.x)?2.8:1.7;
     if(d.dx<tgt)d.dx=Math.min(tgt,d.dx+spd); else d.dx=Math.max(tgt,d.dx-spd);
     if(d.dx<lo)d.dx=lo; if(d.dx>hi)d.dx=hi;
-    if(!fed&&nearG&&Math.abs(c.x-d.dx)<32&&c.y>d.y-30)hazard("被狗狗抓到啦！回到存档点 🚩");
+    var dTop=d.y-40, withinX=Math.abs(c.x-d.dx)<30, stomping=withinX&&fp<=dTop&&c.y>=dTop;
+    if(stomping&&d.stun<=0){
+      d.hp--;d.flash=10;d.stun=16;c.vy=JUMP_V*0.66;c.y=dTop-2;c.onGround=false;c.jumps=1;S.invulnT=Math.max(S.invulnT,12);sfx("spring");
+      if(d.hp<=0)defeatDog(d,lv);
+    } else if(!fed&&nearG&&withinX&&c.y>d.y-30&&!stomping){
+      if(hurtCat("被狗狗撞到啦！扣一颗心 ❤️",false))return;
+    }
   }
   for(var bi=0;bi<lv.bugs.length;bi++){ var bg=lv.bugs[bi],blo=bg.hx-bg.r,bhi=bg.hx+bg.r;
     if(bg.dx<=blo)bg.dir=1; if(bg.dx>=bhi)bg.dir=-1; bg.dx+=bg.dir*0.85;
-    if(Math.abs(c.y-bg.y)<24&&Math.abs(c.x-bg.dx)<22&&c.y>bg.y-24)hazard("被毛毛虫碰到啦！回到存档点 🚩"); }
+    if(Math.abs(c.y-bg.y)<24&&Math.abs(c.x-bg.dx)<22&&c.y>bg.y-24){ if(hurtCat("被毛毛虫碰到啦！扣一颗心 ❤️",false))return; } }
   for(var ri=0;ri<lv.birds.length;ri++){ var bd=lv.birds[ri],rlo=bd.hx-bd.r,rhi=bd.hx+bd.r;
     if(bd.dx<=rlo)bd.dir=1; if(bd.dx>=rhi)bd.dir=-1; bd.dx+=bd.dir*bd.sp;
-    if(Math.abs(c.x-bd.dx)<24&&bd.y>c.y-44&&bd.y<c.y+6)hazard("被小鸟撞到啦！回到存档点 🚩"); }
+    if(Math.abs(c.x-bd.dx)<24&&bd.y>c.y-44&&bd.y<c.y+6){ if(hurtCat("被小鸟撞到啦！扣一颗心 ❤️",false))return; } }
 
   for(var it=0;it<lv.items.length;it++){ var item=lv.items[it]; if(item.collected)continue;
     if(Math.abs(c.x-item.x)<30&&Math.abs(c.y-item.y)<42){
@@ -284,6 +354,16 @@ function update(){ S.t++;
       else if(item.kind==="skill"&&item.type==="fish"){S.fish++;item.collected=true;setMsg("捡到鱼干 🐟！扔给狗，它去吃鱼就不咬你了");sfx("collect");}
     } }
 
+  for(var dr=0;dr<lv.drops.length;dr++){ var dp=lv.drops[dr]; if(dp.dead)continue;
+    if(!dp.landed){ dp.vy+=GRAV*0.55; if(dp.vy>12)dp.vy=12; dp.x+=dp.vx; dp.vx*=0.96; dp.y+=dp.vy;
+      if(dp.x<14)dp.x=14; if(dp.x>W-14)dp.x=W-14;
+      if(dp.y>=lv.worldH){dp.y=lv.worldH-4;dp.landed=true;dp.vy=0;}
+      for(var pp=0;pp<lv.platforms.length;pp++){ var ppl=lv.platforms[pp];
+        if(dp.vy>=0&&dp.y>=ppl.y-3&&dp.y<=ppl.y+14&&dp.x>ppl.x-4&&dp.x<ppl.x+ppl.w+4){dp.y=ppl.y-4;dp.landed=true;dp.vy=0;break;} } }
+    if(Math.abs(c.x-dp.x)<28&&Math.abs(c.y-dp.y)<44){
+      if(dp.kind==="coin"){ S.coins+=dp.val;sfx("collect"); }
+      else { if(S.cat.hp<S.cat.maxHp)S.cat.hp++; sfx("up");setMsg("回复一颗心 ❤️！"); }
+      dp.dead=true; } }
   if(lv.npc){ var n=lv.npc;
     if(Math.abs(c.x-n.x)<42&&Math.abs(c.y-n.y)<28){
       if(c.carrying===n.want&&!n.delivered){n.delivered=true;c.carrying=null;S.stairsActive=true;setMsg(n.thanks);sfx("deliver");}
@@ -336,7 +416,7 @@ function drawFlag(cp){ ctx.strokeStyle="#c8b58a";ctx.lineWidth=3;ctx.beginPath()
   ctx.fillStyle=cp.reached?"#46c46f":"#bdbdbd";tri(cp.x,cp.y-34,cp.x+20,cp.y-28,cp.x,cp.y-22);ctx.fill(); }
 function drawDangerBand(d){ ctx.fillStyle="rgba(232,60,60,.14)";ctx.fillRect(d.hx-d.r-6,d.y-30,(d.r+6)*2,34); }
 
-function drawCat(cx,cy,facing){ var c=S.cat,night=S.cur&&S.cur.theme==="night",BLK="#26262f";
+function drawCat(cx,cy,facing){ var c=S.cat,night=S.cur&&S.cur.theme==="night",SK=bodySkin(),BLK=SK.main,BELLY=SK.belly,EYE=eyeSkin();
   if(night){ ctx.fillStyle="rgba(255,245,210,.14)";circle(cx,cy-28,48);ctx.fill(); }
   if(S.worn.scarf||S.shieldFlashT>0){ ctx.strokeStyle=S.shieldFlashT>0?"rgba(150,215,255,.95)":"rgba(120,200,255,.5)";ctx.lineWidth=S.shieldFlashT>0?4:2.4;circle(cx,cy-26,31);ctx.stroke(); }
   ctx.save();ctx.translate(cx,cy);if(facing<0)ctx.scale(-1,1);
@@ -345,11 +425,11 @@ function drawCat(cx,cy,facing){ var c=S.cat,night=S.cur&&S.cur.theme==="night",B
   ctx.fillStyle=BLK;
   if(jumping){rr(-10,-12,8,12,4);ctx.fill();rr(6,-12,8,12,4);ctx.fill();} else {rr(-9,-12+(swing>0?2:0),8,14,4);ctx.fill();rr(7,-12+(swing<0?2:0),8,14,4);ctx.fill();}
   ctx.fillStyle=BLK;ellip(0,-22,20,17);ctx.fill();
-  ctx.fillStyle="#34343f";ellip(5,-20,11,10);ctx.fill();
+  ctx.fillStyle=BELLY;ellip(5,-20,11,10);ctx.fill();
   ctx.fillStyle=BLK;circle(14,-40,15);ctx.fill();
   tri(4,-50,6,-66,18,-52);ctx.fill();tri(15,-52,26,-65,28,-50);ctx.fill();
   if(night){ ctx.strokeStyle="rgba(190,205,235,.5)";ctx.lineWidth=1.6;ellip(0,-22,20,17);ctx.stroke();circle(14,-40,15);ctx.stroke(); }
-  if(!S.worn.glasses){ ctx.fillStyle="#36d77c";ellip(19,-41,5.2,6.4);ctx.fill();ctx.fillStyle="#0c2016";ellip(19.5,-40,2.4,3.6);ctx.fill();ctx.fillStyle="#fff";circle(17.4,-43,1.4);ctx.fill(); }
+  if(!S.worn.glasses){ ctx.fillStyle=EYE;ellip(19,-41,5.2,6.4);ctx.fill();ctx.fillStyle="#0c2016";ellip(19.5,-40,2.4,3.6);ctx.fill();ctx.fillStyle="#fff";circle(17.4,-43,1.4);ctx.fill(); }
   ctx.fillStyle="#ef9bb3";circle(28,-37,2.2);ctx.fill();
   ctx.strokeStyle="#14141c";ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(28,-35);ctx.quadraticCurveTo(25,-31,21,-33);ctx.stroke();
   if(S.worn.scarf){ctx.fillStyle="#e23b3b";rr(2,-32,17,8,4);ctx.fill();tri(4,-25,11,-25,7,-15);ctx.fill();}
@@ -443,7 +523,16 @@ function drawWorld(){ var lv=S.cur,cam=camY(); drawSky(lv);
   for(var it=0;it<lv.items.length;it++){ var item=lv.items[it]; if(item.collected)continue;
     emojiAt(emojiFor(item.type),item.x,item.y-12+bob()*0.4,26);
     if(item.kind==="quest")drawMarker(item.x,item.y-44,"❗"); }
-  for(var di=0;di<lv.dogs.length;di++){ var d=lv.dogs[di]; drawDangerBand(d); drawDog(d.dx,d.y,d.dx>S.cat.x?-1:1); if(d.fed)emojiAt("😋",d.dx,d.y-44+bob()*0.4,18); }
+  for(var di=0;di<lv.dogs.length;di++){ var d=lv.dogs[di]; if(d.dead)continue;
+    if(!d.tamed)drawDangerBand(d);
+    drawDog(d.dx,d.y,d.dx>S.cat.x?-1:1);
+    if(d.flash>0){ctx.fillStyle="rgba(255,255,255,"+(d.flash/10*0.6)+")";ellip(d.dx+2,d.y-22,30,22);ctx.fill();}
+    if(!d.tamed){ var dbw=44,dbx=d.dx-dbw/2,dby=d.y-58,dseg=dbw/d.maxHp;
+      ctx.fillStyle="rgba(0,0,0,.35)";rr(dbx-2,dby-2,dbw+4,9,3);ctx.fill();
+      for(var hh=0;hh<d.maxHp;hh++){ctx.fillStyle=hh<d.hp?"#ff5d5d":"#5a3a3a";ctx.fillRect(dbx+hh*dseg+1,dby,dseg-2,5);} }
+    if(d.tamed)emojiAt("💕",d.dx,d.y-48+bob()*0.4,18); else if(d.fed)emojiAt("😋",d.dx,d.y-44+bob()*0.4,18);
+  }
+  for(var dr2=0;dr2<lv.drops.length;dr2++){ var dp2=lv.drops[dr2]; if(dp2.dead)continue; emojiAt(dp2.kind==="coin"?"🪙":"❤️",dp2.x,dp2.y-2+bob()*0.4,20); }
   if(lv.npc){ drawPerson(lv.npc.x,lv.npc.y,lv.npc.kind,1,false); if(!lv.npc.delivered)drawMarker(lv.npc.x,lv.npc.y-96,S.cat.carrying===lv.npc.want?"🎁":"💬"); }
   if(lv.owner){ drawPerson(lv.owner.x,lv.owner.y,"owner",-1,true);emojiAt("🏅",lv.owner.x+22,lv.owner.y-50,24);
     ctx.fillStyle="#fff";ctx.font="bold 14px sans-serif";ctx.textAlign="center";ctx.fillText("终点!",lv.owner.x,lv.owner.y-80); }
@@ -454,6 +543,8 @@ function drawWorld(){ var lv=S.cur,cam=camY(); drawSky(lv);
   ctx.restore();
   drawArrows(cam);
   if(S.hurtT>0){ctx.fillStyle="rgba(232,60,60,"+(S.hurtT/40*0.32)+")";ctx.fillRect(0,0,W,H);}
+  if(S.cat){ var hpN=S.cat.maxHp||3,hpw=hpN*28+14; ctx.fillStyle="rgba(10,15,30,.42)";rr(12,18,hpw,32,10);ctx.fill();
+    for(var hi2=0;hi2<hpN;hi2++)emojiAt(hi2<S.cat.hp?"❤️":"🖤",34+hi2*28,42,22); }
   if(S.msgT>0&&S.msg)drawBubble(S.msg); }
 
 function drawMap(){ ctx.fillStyle="rgba(8,12,26,.9)";ctx.fillRect(0,0,W,H);
@@ -485,12 +576,68 @@ function drawTransition(){ drawSky(S.cur);ctx.fillStyle="rgba(8,12,26,.5)";ctx.f
 function updateHud(){ var pw=""; if(S.worn.glasses)pw+="🕶️";if(S.worn.scarf)pw+="🛡️";if(S.worn.hat)pw+="🎩";if(S.springT>0)pw+="🦘";if(!pw)pw="🎒";
   document.getElementById("hudLevel").textContent="第"+(S.levelIndex+1)+"层 "+(S.cur?S.cur.name:"");
   document.getElementById("hudPow").textContent=pw;
+  document.getElementById("hudCoin").textContent="🪙 "+S.coins;
   document.getElementById("hudFish").textContent="🐟 "+S.fish; }
 
 function spawnConfetti(){ var ems=["🎉","⭐","🎊","🏅","✨","🎈"];
   for(var i=0;i<16;i++){var d=document.createElement("div");d.className="conf";d.textContent=ems[i%ems.length];
     d.style.left=(Math.random()*96+2)+"%";d.style.animationDelay=(Math.random()*2)+"s";d.style.animationDuration=(2+Math.random()*1.6)+"s";
     document.getElementById("winOv").appendChild(d);} }
+
+/* ===== 皮肤 & 商店 ===== */
+var SKINS={
+  body:[
+    {id:"black",name:"黑猫",main:"#26262f",belly:"#34343f",coin:0,fish:0,free:true},
+    {id:"yellow",name:"黄猫",main:"#f2c230",belly:"#ffd863",coin:25,fish:8},
+    {id:"blue",name:"蓝猫",main:"#4a78d8",belly:"#6fa0f0",coin:30,fish:10},
+    {id:"orange",name:"橘猫",main:"#f0883c",belly:"#ffab63",coin:30,fish:10},
+    {id:"pink",name:"粉猫",main:"#ef79b0",belly:"#ff9ccb",coin:45,fish:15}
+  ],
+  eye:[
+    {id:"green",name:"绿眼睛",color:"#36d77c",coin:0,fish:0,free:true},
+    {id:"blue",name:"蓝眼睛",color:"#4fc3ff",coin:20,fish:6},
+    {id:"gold",name:"金眼睛",color:"#ffcf3a",coin:35,fish:12},
+    {id:"red",name:"红眼睛",color:"#ff6b6b",coin:35,fish:12}
+  ]
+};
+function skinDef(cat,id){ var a=SKINS[cat]; for(var i=0;i<a.length;i++)if(a[i].id===id)return a[i]; return a[0]; }
+function bodySkin(){ return skinDef("body",(S.equip&&S.equip.body)||"black"); }
+function eyeSkin(){ return skinDef("eye",(S.equip&&S.equip.eye)||"green").color; }
+function owns(cat,id){ return !!(S.owned&&S.owned[cat]&&S.owned[cat][id]); }
+var shopTab="body";
+function openShop(from){ if(from==="play"){ if(mapOpen)mapOpen=false; S.scene="shop"; } S.shopFrom=from;
+  document.getElementById("introOv").classList.add("hidden");
+  document.getElementById("shopOv").classList.remove("hidden"); renderShop(); }
+function closeShop(){ document.getElementById("shopOv").classList.add("hidden");
+  if(S.shopFrom==="play"){ S.scene="play"; } else { document.getElementById("introOv").classList.remove("hidden"); } }
+function selTab(t){ shopTab=t;
+  document.getElementById("tabBody").classList.toggle("on",t==="body");
+  document.getElementById("tabEye").classList.toggle("on",t==="eye"); renderShop(); }
+function renderShop(){
+  document.getElementById("shopWallet").textContent="🪙 "+S.coins+"\u3000🐟 "+S.fish;
+  var arr=SKINS[shopTab],g=document.getElementById("shopGrid"),html="";
+  for(var i=0;i<arr.length;i++){ var it=arr[i],own=owns(shopTab,it.id),eq=(S.equip[shopTab]===it.id),sw,row;
+    if(shopTab==="body"){ sw='<div class="swatch" style="background:'+it.main+'"><span class="eyed e1" style="background:'+eyeSkin()+'"></span><span class="eyed e2" style="background:'+eyeSkin()+'"></span></div>'; }
+    else { sw='<div class="swatch" style="background:#26262f"><span class="eyed e1" style="background:'+it.color+'"></span><span class="eyed e2" style="background:'+it.color+'"></span></div>'; }
+    if(eq){ row='<button class="buybtn owned" disabled>已装备 ✓</button>'; }
+    else if(own){ row='<button class="buybtn eqbtn" onclick="equipSkin(\''+shopTab+'\',\''+it.id+'\')">使用</button>'; }
+    else { var cc=(S.coins>=it.coin),fc=(S.fish>=it.fish);
+      row='<button class="buybtn coin" '+(cc?'':'disabled')+' onclick="buySkin(\''+shopTab+'\',\''+it.id+'\',\'coin\')">🪙 '+it.coin+'</button>'+
+          '<button class="buybtn fishb" '+(fc?'':'disabled')+' onclick="buySkin(\''+shopTab+'\',\''+it.id+'\',\'fish\')">🐟 '+it.fish+'</button>'; }
+    html+='<div class="skincard'+(eq?' eq':'')+'">'+sw+'<div class="skinname">'+it.name+'</div><div class="buyrow">'+row+'</div></div>';
+  }
+  g.innerHTML=html;
+}
+function buySkin(cat,id,pay){ var it=skinDef(cat,id); if(owns(cat,id))return;
+  if(pay==="coin"){ if(S.coins<it.coin)return; S.coins-=it.coin; } else { if(S.fish<it.fish)return; S.fish-=it.fish; }
+  if(!S.owned[cat])S.owned[cat]={}; S.owned[cat][id]=1; S.equip[cat]=id; saveGame(true); renderShop(); }
+function equipSkin(cat,id){ if(!owns(cat,id))return; S.equip[cat]=id; saveGame(true); renderShop(); }
+window.buySkin=buySkin; window.equipSkin=equipSkin;
+document.getElementById("btnShop").addEventListener("click",function(){ ensureAudio(); if(S.scene==="play")openShop("play"); });
+document.getElementById("btnShopIntro").addEventListener("click",function(){ ensureAudio(); openShop("intro"); });
+document.getElementById("btnShopClose").addEventListener("click",closeShop);
+document.getElementById("tabBody").addEventListener("click",function(){selTab("body");});
+document.getElementById("tabEye").addEventListener("click",function(){selTab("eye");});
 
 var last=performance.now(),acc=0,STEP=1000/60;
 function frame(now){ var dt=now-last;last=now;if(dt>100)dt=100;acc+=dt;var g=0;
@@ -501,7 +648,7 @@ function frame(now){ var dt=now-last;last=now;if(dt>100)dt=100;acc+=dt;var g=0;
   else { drawWorld(); if(mapOpen)drawMap(); }
   if(S.cur)updateHud();
   requestAnimationFrame(frame); }
-resetAll();resize();requestAnimationFrame(frame);
+loadWallet();resetAll();resize();requestAnimationFrame(frame);
 setupIntro();
 })();
 </script>
