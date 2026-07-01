@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sailor 的小天地</title>
+<style>
+  :root{
+    --night-top:#171033;
+    --night-mid:#241646;
+    --night-low:#33205c;
+    --dawn:#5a3b8c;
+    --ink:#f4efe6;
+    --muted:#bcaceb;
+    --gold:#f6c453;
+    --gold-deep:#e0a23a;
+    --teal:#54d2c6;
+    --teal-deep:#2aa79b;
+    --eye:#56e08a;
+    --card:#2a1c52;
+    --line:rgba(255,255,255,.12);
+    --rsans:"Segoe UI Rounded","SF Pro Rounded",ui-rounded,"Hiragino Maru Gothic ProN","PingFang SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    min-height:100vh;
+    font-family:var(--sans);
+    color:var(--ink);
+    background:
+      radial-gradient(130% 80% at 50% 118%, var(--dawn) 0%, transparent 56%),
+      linear-gradient(180deg, var(--night-top) 0%, var(--night-mid) 55%, var(--night-low) 100%);
+    background-attachment:fixed;
+    overflow-x:hidden;
+  }
+
+  /* ---- ambient starfield ---- */
+  .stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.5;
+    box-shadow:0 0 6px 1px rgba(255,255,255,.6);animation:tw 4s ease-in-out infinite}
+  @keyframes tw{0%,100%{opacity:.18;transform:scale(.7)}50%{opacity:.85;transform:scale(1)}}
+
+  /* ---- the moon ---- */
+  .moon{position:absolute;top:18px;right:26px;width:54px;height:54px;border-radius:50%;
+    background:radial-gradient(circle at 38% 35%,#fff7e4,#f4e3b4 60%,#e9d39a);
+    box-shadow:0 0 32px 6px rgba(246,227,168,.32);z-index:1}
+
+  .wrap{position:relative;z-index:2;max-width:760px;margin:0 auto;
+    padding:30px 22px 40px;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+
+  .ver{position:absolute;top:18px;left:22px;font-family:var(--rsans);font-weight:800;
+    font-size:12px;letter-spacing:.04em;color:var(--muted);
+    background:rgba(255,255,255,.07);border:1px solid var(--line);
+    padding:4px 11px;border-radius:999px}
+
+  /* ---- hero ---- */
+  .hero{text-align:center;margin-top:30px;animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .cat{position:relative;width:150px;height:150px;margin:0 auto 6px}
+  .cat::before{content:"";position:absolute;inset:-14% -14% 4% -14%;border-radius:50%;
+    background:radial-gradient(circle,rgba(188,172,235,.22),transparent 66%);z-index:-1}
+  .cat svg{width:100%;height:100%;display:block}
+  .eye{fill:var(--eye);animation:glow 3.4s ease-in-out infinite;transform-origin:center}
+  @keyframes glow{0%,100%{opacity:.82;filter:drop-shadow(0 0 3px var(--eye))}
+    50%{opacity:1;filter:drop-shadow(0 0 8px var(--eye))}}
+
+  .eyebrow{font-family:var(--rsans);font-weight:800;font-size:13px;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--teal);margin:4px 0 6px;padding-left:.42em}
+  .title{font-family:var(--rsans);font-weight:900;font-size:clamp(38px,8.5vw,60px);
+    line-height:1.02;margin:0;letter-spacing:.01em;
+    text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .hi{margin:16px 0 0;color:var(--muted);font-size:16px;line-height:1.5}
+  .hi span{display:block;font-size:13px;opacity:.72;margin-top:3px}
+
+  /* ---- choice cards ---- */
+  .choices{width:100%;display:flex;gap:18px;margin-top:38px}
+  .card{flex:1;position:relative;display:flex;flex-direction:column;align-items:flex-start;
+    text-decoration:none;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:24px;padding:26px 24px 22px;overflow:hidden;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px}
+  .card.game{animation-delay:.12s}
+  .card.study{animation-delay:.22s}
+  .card.game::before{background:linear-gradient(90deg,var(--gold),var(--gold-deep))}
+  .card.study::before{background:linear-gradient(90deg,var(--teal),var(--teal-deep))}
+  .card:hover,.card:focus-visible{transform:translateY(-6px);outline:none}
+  .card.game:hover,.card.game:focus-visible{border-color:var(--gold);
+    box-shadow:0 16px 40px -14px rgba(246,196,83,.55)}
+  .card.study:hover,.card.study:focus-visible{border-color:var(--teal);
+    box-shadow:0 16px 40px -14px rgba(84,210,198,.55)}
+  .emoji{font-size:42px;line-height:1;margin-bottom:14px}
+  .ctitle{font-family:var(--rsans);font-weight:900;font-size:24px;letter-spacing:.01em}
+  .csub{font-family:var(--rsans);font-weight:700;font-size:13px;letter-spacing:.16em;
+    text-transform:uppercase;margin-top:3px}
+  .card.game .csub{color:var(--gold)}
+  .card.study .csub{color:var(--teal)}
+  .cdesc{color:var(--muted);font-size:14px;line-height:1.5;margin-top:12px;min-height:42px}
+  .cgo{margin-top:16px;font-family:var(--rsans);font-weight:800;font-size:15px;
+    padding:10px 18px;border-radius:999px;color:#1b1238}
+  .card.game .cgo{background:linear-gradient(135deg,var(--gold),var(--gold-deep))}
+  .card.study .cgo{background:linear-gradient(135deg,var(--teal),var(--teal-deep))}
+
+  /* ---- footer ---- */
+  .foot{margin-top:auto;padding-top:34px;text-align:center;color:var(--muted);font-size:12.5px;line-height:1.8}
+  .foot .made{display:block;opacity:.66}
+
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+  @media (max-width:560px){
+    .choices{flex-direction:column}
+    .cdesc{min-height:0}
+    .hero{margin-top:18px}
+    .moon{width:44px;height:44px;top:14px;right:18px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true">
+    <i style="top:12%;left:8%;animation-delay:0s"></i>
+    <i style="top:22%;left:78%;animation-delay:.9s"></i>
+    <i style="top:9%;left:54%;animation-delay:1.7s"></i>
+    <i style="top:34%;left:18%;animation-delay:.4s"></i>
+    <i style="top:16%;left:33%;animation-delay:2.3s"></i>
+    <i style="top:41%;left:88%;animation-delay:1.2s"></i>
+    <i style="top:6%;left:88%;animation-delay:.6s"></i>
+    <i style="top:48%;left:6%;animation-delay:2.8s"></i>
+    <i style="top:28%;left:64%;animation-delay:3.4s"></i>
+    <i style="top:55%;left:72%;animation-delay:1.9s"></i>
+    <i style="top:62%;left:22%;animation-delay:.2s"></i>
+    <i style="top:38%;left:44%;animation-delay:3.0s"></i>
+  </div>
+
+  <main class="wrap">
+    <span class="ver">v1.0</span>
+    <div class="moon" aria-hidden="true"></div>
+
+    <header class="hero">
+      <div class="cat">
+        <svg viewBox="0 0 220 220" role="img" aria-label="一只绿眼睛的小黑猫，二狗">
+          <!-- ears -->
+          <path d="M80 74 L72 32 L108 58 Z" fill="#0c0a1a" stroke="rgba(188,172,235,.22)" stroke-width="1.4"/>
+          <path d="M140 74 L148 32 L112 58 Z" fill="#0c0a1a" stroke="rgba(188,172,235,.22)" stroke-width="1.4"/>
+          <!-- body -->
+          <path d="M58 208 C55 150 78 122 110 122 C142 122 165 150 162 208 Z"
+                fill="#0c0a1a" stroke="rgba(188,172,235,.22)" stroke-width="1.4"/>
+          <!-- tail -->
+          <path d="M150 198 C198 202 202 158 170 149 C183 166 177 191 140 196 Z"
+                fill="#0c0a1a" stroke="rgba(188,172,235,.22)" stroke-width="1.4"/>
+          <!-- head -->
+          <circle cx="110" cy="95" r="41" fill="#0c0a1a" stroke="rgba(188,172,235,.22)" stroke-width="1.4"/>
+          <!-- whiskers -->
+          <g stroke="rgba(255,255,255,.32)" stroke-width="1.3" stroke-linecap="round">
+            <line x1="104" y1="106" x2="70" y2="100"/>
+            <line x1="104" y1="110" x2="72" y2="114"/>
+            <line x1="116" y1="106" x2="150" y2="100"/>
+            <line x1="116" y1="110" x2="148" y2="114"/>
+          </g>
+          <!-- eyes -->
+          <ellipse class="eye" cx="95" cy="92" rx="7.4" ry="11"/>
+          <ellipse class="eye" cx="125" cy="92" rx="7.4" ry="11"/>
+          <!-- nose -->
+          <path d="M110 110 l-5 -5 h10 Z" fill="#d98a9a"/>
+        </svg>
+      </div>
+
+      <p class="eyebrow">SAILOR'S WORLD</p>
+      <h1 class="title">Sailor 的小天地</h1>
+      <p class="hi">嗨，Sailor！今天想做点什么？<span>Hi Sailor! What do you feel like today?</span></p>
+    </header>
+
+    <nav class="choices">
+      <a class="card game" href="game.html">
+        <span class="emoji">🎮</span>
+        <span class="ctitle">二狗历险记</span>
+        <span class="csub">Er Gou's Adventure</span>
+        <span class="cdesc">陪二狗一起闯关、躲水坑、救小朋友。</span>
+        <span class="cgo">开始玩 Play ›</span>
+      </a>
+      <a class="card study" href="study.html">
+        <span class="emoji">📚</span>
+        <span class="ctitle">Sailor 学习包</span>
+        <span class="csub">Learning Hub</span>
+        <span class="cdesc">做题、升段位、攒经验值，越来越强。</span>
+        <span class="cgo">去学习 Learn ›</span>
+      </a>
+    </nav>
+
+    <footer class="foot">
+      <span>v1.0 · 离线也能打开 · 2026</span>
+      <span class="made">为 Sailor 而做 · Made for Sailor 🐾</span>
+    </footer>
+  </main>
+</body>
+</html>
