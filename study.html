@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Sailor 航海学堂 · v12.1</title>
+<style>
+  :root{
+    --bg1:#06192e; --bg2:#0b3a4f; --bg3:#0f5163;
+    --ink:#0c1230; --paper:#ffffff; --paper2:#f4f7ff; --muted:#6b7396; --line:#e3e9f7;
+    --cn:#ff5d5d; --math:#23a7ff; --sci:#a855f7; --en:#22c55e; --fr:#14b8a6;
+    --cn-d:#e23c3c; --math-d:#0d86df;
+    --xp:#ffb020; --xp-d:#f59e0b; --gold:#ffd24a;
+    --ok:#16a34a; --okbg:#e7f9ee; --no:#e23c3c; --nobg:#fdecec;
+    --t1:#22c55e; --t2:#23a7ff; --t3:#a855f7;
+    --r:22px; --r2:16px;
+    --shadow:0 12px 34px rgba(8,12,40,.2); --shadow2:0 6px 18px rgba(8,12,40,.12);
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,sans-serif;
+    --cjk:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+    --fs:20px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--font);color:var(--ink);font-size:var(--fs);
+    background:radial-gradient(1200px 600px at 80% -10%,#0e6178 0%,transparent 55%),radial-gradient(900px 500px at -10% 10%,#0a4a60 0%,transparent 50%),linear-gradient(160deg,var(--bg1),var(--bg2) 60%,var(--bg3));
+    background-attachment:fixed;min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:800px;margin:0 auto;padding:18px 16px 64px}
+
+  .hero{background:linear-gradient(135deg,#171f48,#202c63);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:20px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(255,178,32,.28),transparent 70%)}
+  .hero-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:54px;height:54px;border-radius:50%;padding:2.5px;background:linear-gradient(135deg,#d8a93a,#b8860b);box-shadow:0 6px 16px rgba(184,134,11,.45);flex:0 0 auto;box-sizing:border-box}.logo img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:2px solid #0b3a52}
+  .brand h1{font-size:22px;margin:0;font-weight:800;letter-spacing:.3px}
+  .brand .sub{font-size:13px;color:#aeb6e0;margin-top:1px}
+  .ver{font-size:13px;font-weight:800;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);padding:6px 13px;border-radius:999px;white-space:nowrap}
+  .belt-row{display:flex;align-items:center;gap:15px;margin-top:18px;position:relative;z-index:1}
+  .belt-emblem{flex:none;width:70px;height:70px;border-radius:17px;display:grid;place-items:center;position:relative;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+  .belt-bar{width:46px;height:15px;border-radius:3px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.25)}
+  .belt-knot{position:absolute;width:10px;height:21px;border-radius:2px;transform:rotate(18deg);right:13px;bottom:15px}
+  .belt-info{flex:1;min-width:0}
+  .belt-name{font-size:17px;font-weight:800}
+  .belt-name .next{font-weight:600;color:#aeb6e0;font-size:13px;margin-left:6px}
+  .xpbar{height:15px;background:rgba(255,255,255,.12);border-radius:999px;margin-top:9px;overflow:hidden}
+  .xpfill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--xp),var(--gold));width:0;transition:width 1.1s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 12px rgba(255,178,32,.6)}
+  .xpline{display:flex;justify-content:space-between;font-size:13px;color:#c7cdf0;margin-top:6px}
+  .xpnow{font-weight:800;color:#ffd86b}
+
+  .box-card{margin-top:16px;width:100%;border:none;border-radius:var(--r2);padding:15px 18px;font-family:inherit;cursor:pointer;
+    display:flex;align-items:center;gap:13px;box-shadow:var(--shadow2);color:#fff;background:linear-gradient(135deg,#ff7a59,#ff5d5d)}
+  .box-card.empty{background:rgba(255,255,255,.08);color:#c7cdf0;border:1px solid rgba(255,255,255,.14)}
+  .box-card:active{transform:scale(.99)}
+  .box-card .bi{font-size:26px}
+  .box-card .bt{font-weight:800;font-size:16px} .box-card .bs{font-size:12.5px;opacity:.92;margin-top:1px}
+  .box-card .bn{margin-left:auto;font-weight:900;font-size:20px;background:rgba(255,255,255,.22);border-radius:999px;padding:4px 13px}
+  .box-card.empty .bn{background:rgba(255,255,255,.12)}
+
+  .sec{margin-top:24px}
+  .sec-h{display:flex;align-items:center;gap:9px;margin:0 4px 13px}
+  .dot{width:12px;height:12px;border-radius:3px}
+  .sec-h h2{font-size:17.5px;margin:0;color:#fff;font-weight:800}
+  .sec-h .pct{margin-left:auto;font-size:13px;color:#aeb6e0;font-weight:700}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:520px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--paper);border-radius:var(--r2);padding:15px;cursor:pointer;box-shadow:var(--shadow2);border:1px solid var(--line);transition:transform .12s ease;display:flex;flex-direction:column;gap:9px;position:relative;overflow:hidden}
+  .card:active{transform:scale(.975)}
+  .card .stripe{position:absolute;left:0;top:0;bottom:0;width:6px}
+  .card-top{display:flex;align-items:center;gap:11px;padding-left:5px}
+  .card .ic{font-size:28px;flex:none}
+  .card .t{font-weight:800;font-size:15.5px;line-height:1.25}
+  .card .en{font-size:12px;color:var(--muted);font-weight:600}
+  .card-bot{display:flex;align-items:center;gap:8px;padding-left:5px;flex-wrap:wrap}
+  .tag{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px}
+  .tag.fix{background:#fff0e6;color:#d2691e} .tag.level{background:#e7f3ff;color:#0d86df}
+  .tag.trip{background:#f0e9ff;color:#7c3aed} .tag.core{background:#eef1ff;color:#4f5bd5}
+  .tag.new{background:#ecfeff;color:#0891b2}
+  .best{margin-left:auto;font-size:12.5px;font-weight:800;color:var(--muted)} .best.done{color:var(--ok)}
+
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+  .abtn{border:none;border-radius:var(--r2);padding:15px;font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow2)}
+  .abtn:active{transform:scale(.97)}
+  .abtn.report{background:linear-gradient(135deg,#5b67e8,#7c3aed)} .abtn.export{background:linear-gradient(135deg,#0d86df,#23a7ff)}
+  .reset{grid-column:1/-1;background:rgba(255,255,255,.08);color:#c7cdf0;border:1px solid rgba(255,255,255,.14);border-radius:var(--r2);padding:12px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+  .foot-note{text-align:center;color:#7782b8;font-size:12px;margin-top:20px}
+
+  .stage{background:var(--paper);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);min-height:62vh;display:flex;flex-direction:column}
+  .st-head{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+  .st-back{background:var(--paper2);border:1px solid var(--line);border-radius:11px;width:42px;height:42px;font-size:20px;cursor:pointer;flex:none}
+  .st-title{font-weight:800;font-size:16px;line-height:1.2}
+  .st-title .en{font-size:12px;color:var(--muted);font-weight:600;display:block}
+  .phase-pill{margin-left:auto;font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px}
+  .phase-pill.learn{background:#eef1ff;color:#4f5bd5} .phase-pill.box{background:#fff0e6;color:#d2691e}
+
+  .concept{background:linear-gradient(135deg,var(--paper2),#eaf0ff);border:1px solid #d4ddf6;border-radius:var(--r2);padding:18px;margin-bottom:14px}
+  .concept .ch{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;color:#2a3360;margin-bottom:9px}
+  .concept .cb{font-size:18.5px;line-height:1.85;color:#2a3360;white-space:pre-line}
+  .spk{flex:none;border:none;background:#fff;border:1px solid var(--line);border-radius:10px;width:40px;height:40px;font-size:19px;cursor:pointer;color:var(--math-d);box-shadow:var(--shadow2)}
+  .spk:active{transform:scale(.92)} .spk.sm{width:34px;height:34px;font-size:16px;border-radius:9px}
+
+  .example{background:#fffdf5;border:1px dashed #f0d28a;border-radius:var(--r2);padding:18px;margin-bottom:14px}
+  .example .eh{font-weight:800;font-size:17px;color:#9a6b00;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .example .prob{font-size:18px;font-weight:700;color:#2a3360;background:#fff;border:1px solid #f0e6c8;border-radius:12px;padding:12px 14px;margin-bottom:12px}
+  .steps{display:flex;flex-direction:column;gap:10px}
+  .step{background:#fff;border:1px solid #f0e6c8;border-radius:12px;padding:13px 15px;font-size:17px;line-height:1.7;color:#2a3360;display:flex;gap:11px;align-items:flex-start;animation:slidein .35s ease}
+  @keyframes slidein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .step .sn{flex:none;width:28px;height:28px;border-radius:8px;background:var(--xp);color:#fff;font-weight:800;display:grid;place-items:center;font-size:14px}
+  .reveal-btn{margin-top:12px;width:100%;border:none;border-radius:12px;padding:13px;font-family:inherit;font-size:16px;font-weight:800;color:#9a6b00;background:#fdeec2;cursor:pointer}
+  .reveal-btn:active{transform:scale(.98)}
+
+  /* 多媒体交互组件 */
+  .media-wrap{background:linear-gradient(135deg,#f4f7ff,#eef2ff);border:1px solid #d4ddf6;border-radius:var(--r2);padding:16px;margin-bottom:14px}
+  .media-h{font-weight:800;font-size:16.5px;color:#2a3360;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .media-cap{font-size:14px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.5}
+  .open-ta{width:100%;min-height:130px;border:2px solid var(--line);border-radius:14px;padding:13px;font-family:inherit;font-size:17px;line-height:1.6;color:var(--ink);background:#fbfcff;resize:vertical;margin:6px 0}
+  .open-ta:focus{outline:none;border-color:var(--math)}
+  .chain-row{display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap;margin:6px 0}
+  .chain-card{background:#fff;border:2px solid var(--line);border-radius:12px;padding:8px 6px;text-align:center;min-width:62px;transition:all .15s}
+  .chain-card.on{border-color:var(--sci);background:#faf5ff;transform:translateY(-3px);box-shadow:0 6px 14px rgba(168,85,247,.25)}
+  .chain-card .ce{font-size:28px} .chain-card .cn{font-size:11.5px;font-weight:800;color:#2a3360;margin-top:2px}
+  .chain-arrow{font-size:14px;opacity:.65}
+  .mreadout{text-align:center;font-weight:800;font-size:19px;color:#2a3360;margin-top:10px}
+  .mctrl{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:11px;flex-wrap:wrap}
+  .mbtn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:9px 15px;font-family:inherit;font-size:14.5px;font-weight:700;cursor:pointer;color:#2a3360}
+  .mbtn.on{background:var(--math);color:#fff;border-color:var(--math)}
+  .mbtn:active{transform:scale(.96)}
+  input[type=range]{width:200px;accent-color:var(--math)}
+  .fbar{display:flex;gap:4px;height:66px;margin:12px 0}
+  .fseg{flex:1;border:2px solid #c9d4f0;border-radius:9px;background:#fff;cursor:pointer;transition:background .1s}
+  .fseg.on{background:var(--math);border-color:var(--math)}
+  .dgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;max-width:230px;margin:10px auto}
+  .dcell{aspect-ratio:1;border:1px solid #d4ddf6;background:#fff;cursor:pointer;border-radius:2px}
+  .dcell.on{background:var(--math);border-color:var(--math)}
+  .fpics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+  @media(max-width:420px){.fpics{grid-template-columns:repeat(2,1fr)}}
+  .fpic{background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center;cursor:pointer}
+  .fpic:active{transform:scale(.97)} .fpic.on{border-color:var(--fr);background:#effdfa}
+  .fpic .e{font-size:36px} .fpic .w{font-weight:800;color:var(--fr);margin-top:4px;font-size:15px} .fpic .m{font-size:12px;color:var(--muted)}
+  .msvg{display:block;margin:4px auto;max-width:100%}
+  .gear{transform-box:fill-box;transform-origin:center}
+  .gear.spin1{animation:gspin 3.2s linear infinite} .gear.spin2{animation:gspinr 3.2s linear infinite}
+  @keyframes gspin{to{transform:rotate(360deg)}} @keyframes gspinr{to{transform:rotate(-360deg)}}
+
+  .checkblock{background:#fff;border:2px solid var(--line);border-radius:var(--r2);padding:16px;margin-bottom:13px}
+  .checkblock .cl{font-size:13px;font-weight:800;color:var(--xp-d);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+
+  .qwrap{flex:1;display:flex;flex-direction:column}
+  .tierbadge{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:800;padding:4px 11px;border-radius:999px;margin-bottom:8px;width:fit-content}
+  .tierbadge.t1{background:#e7f9ee;color:var(--t1)} .tierbadge.t2{background:#e7f3ff;color:var(--t2)} .tierbadge.t3{background:#f6edff;color:var(--t3)}
+  .qrow{display:flex;align-items:flex-start;gap:10px;margin:6px 0 4px}
+  .q-prompt{font-size:23px;font-weight:800;line-height:1.45;color:var(--ink);flex:1}
+  .q-prompt.big{font-size:50px;text-align:center;margin:8px 0;font-family:var(--cjk)}
+  .passage{background:var(--paper2);border:1px solid var(--line);border-radius:var(--r2);padding:16px;font-size:17px;line-height:1.8;margin-bottom:14px;color:#2a3360;position:relative}
+  .passage .pspk{position:absolute;right:12px;top:12px}
+  .audio-row{display:flex;flex-direction:column;align-items:center;gap:9px;margin:8px 0 14px}
+  .play{background:linear-gradient(135deg,#23a7ff,#5b67e8);color:#fff;border:none;border-radius:999px;padding:16px 30px;font-size:19px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 8px 20px rgba(35,167,255,.4);display:flex;align-items:center;gap:10px}
+  .play:active{transform:scale(.96)}
+  .pinyin{font-size:14px;color:var(--muted);font-weight:700;letter-spacing:.5px}
+  .opts{display:flex;flex-direction:column;gap:11px;margin-top:10px}
+  .opt{background:var(--paper);border:2px solid var(--line);border-radius:var(--r2);padding:16px 17px;font-size:19px;font-weight:700;cursor:pointer;text-align:left;font-family:inherit;color:var(--ink);transition:border-color .12s,background .12s,transform .08s;display:flex;align-items:center;gap:12px}
+  .opt:active{transform:scale(.99)}
+  .opt .k{width:28px;height:28px;border-radius:9px;background:var(--paper2);display:grid;place-items:center;font-size:14px;font-weight:800;color:var(--muted);flex:none;border:1px solid var(--line)}
+  .opt .otext{flex:1}
+  .opt .ospk{flex:none;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:#fff;font-size:15px;color:var(--math-d);cursor:pointer;display:grid;place-items:center}
+  .opt.ok{border-color:var(--ok);background:var(--okbg)} .opt.ok .k{background:var(--ok);color:#fff;border-color:var(--ok)}
+  .opt.no{border-color:var(--no);background:var(--nobg)} .opt.no .k{background:var(--no);color:#fff;border-color:var(--no)}
+  .opt.dim{opacity:.55} .opt[disabled]{cursor:default}
+  .explain{margin-top:14px;background:var(--paper2);border-left:5px solid var(--math);border-radius:11px;padding:13px 15px;font-size:16px;line-height:1.65;color:#2a3360}
+  .explain.ok{border-left-color:var(--ok)} .explain.no{border-left-color:var(--no)} .explain b{color:var(--ink)}
+  .dots{display:flex;gap:5px;flex-wrap:wrap;max-width:150px;justify-content:flex-end}
+  .pd{width:9px;height:9px;border-radius:999px;background:var(--line)}
+  .pd.on{background:var(--xp)} .pd.ok{background:var(--ok)} .pd.no{background:var(--no)}
+  .st-foot{margin-top:16px}
+  .bigbtn{width:100%;border:none;border-radius:var(--r2);padding:16px;font-family:inherit;font-size:16.5px;font-weight:800;color:#fff;cursor:pointer}
+  .bigbtn:active{transform:scale(.98)}
+  .bigbtn.next{background:linear-gradient(135deg,var(--xp),var(--xp-d));box-shadow:0 8px 20px rgba(245,158,11,.35)}
+  .bigbtn.go{background:linear-gradient(135deg,var(--ok),var(--en-d,#16a34a));box-shadow:0 8px 20px rgba(22,163,74,.35)}
+  .bigbtn.train{background:linear-gradient(135deg,#ff7a59,#ff5d5d);box-shadow:0 8px 20px rgba(255,93,93,.35)}
+  .bigbtn.retry{background:linear-gradient(135deg,#8b93f0,#5b67e8);box-shadow:0 8px 20px rgba(91,103,232,.3)}
+  .foot2{display:flex;gap:10px} .foot2 .bigbtn{flex:1}
+
+  .trace-wrap{background:var(--paper2);border:1px solid var(--line);border-radius:var(--r2);padding:16px;margin-bottom:14px;text-align:center}
+  .trace-h{font-weight:800;font-size:16px;color:#2a3360;margin-bottom:10px;display:flex;align-items:center;gap:8px;justify-content:center}
+  .trace-chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+  .tchip{width:48px;height:48px;border-radius:11px;border:2px solid var(--line);background:#fff;font-size:25px;font-weight:700;cursor:pointer;color:var(--ink);font-family:var(--cjk)}
+  .tchip.on{border-color:var(--cn);background:#fff0f0;color:var(--cn-d)}
+  #traceCanvas{border-radius:14px;background:#fff;border:2px solid var(--line);touch-action:none;display:block;margin:0 auto;max-width:88%}
+  .trace-tools{display:flex;gap:10px;justify-content:center;margin-top:11px}
+  .ttbtn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 16px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;color:#2a3360}
+  .ttbtn.hear{color:var(--math-d)}
+
+  .result{background:var(--paper);border-radius:var(--r);padding:28px 20px;box-shadow:var(--shadow);text-align:center}
+  .result .emoji{font-size:72px;animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+  @keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+  .result h2{margin:10px 0 4px;font-size:25px}
+  .result .score{font-size:52px;font-weight:900;color:var(--math);margin:6px 0}
+  .tierline{display:flex;gap:8px;justify-content:center;margin:6px 0 12px;flex-wrap:wrap}
+  .tierscore{font-size:13px;font-weight:800;padding:5px 12px;border-radius:999px}
+  .ts1{background:#e7f9ee;color:var(--t1)} .ts2{background:#e7f3ff;color:var(--t2)} .ts3{background:#f6edff;color:var(--t3)}
+  .result .xpgain{display:inline-flex;align-items:center;gap:8px;background:var(--paper2);border:1px solid var(--line);border-radius:999px;padding:10px 20px;font-weight:800;font-size:17px;color:var(--xp-d);margin:6px 0 18px}
+  .result .home-btn{width:100%;border:none;border-radius:var(--r2);padding:16px;font-family:inherit;font-size:16.5px;font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(135deg,#5b67e8,#7c3aed)}
+  .redo-btn{background:linear-gradient(135deg,#ff7a59,#ff5d5d)!important;margin-bottom:11px}
+
+  .panel{background:var(--paper);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .panel-h{display:flex;align-items:center;gap:11px;margin-bottom:6px}
+  .panel-h h2{margin:0;font-size:19px;font-weight:800}
+  .rep-ver{display:inline-block;font-size:13px;font-weight:800;color:#fff;background:linear-gradient(135deg,#5b67e8,#7c3aed);padding:5px 12px;border-radius:999px;margin:2px 0 14px}
+  .rep-meta{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;margin-bottom:18px}
+  .stat{background:var(--paper2);border:1px solid var(--line);border-radius:var(--r2);padding:14px;text-align:center}
+  .stat .n{font-size:25px;font-weight:900} .stat .l{font-size:12px;color:var(--muted);font-weight:700;margin-top:2px}
+  .rep-sec{margin-top:18px}
+  .rep-sec h3{font-size:15px;margin:0 0 9px;font-weight:800;display:flex;align-items:center;gap:7px}
+  .row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  .row:last-child{border-bottom:none} .row .name{flex:1;font-weight:700}
+  .row .mini-en{color:var(--muted);font-weight:600;font-size:12px}
+  .scorepill{font-weight:800;font-size:13px;padding:3px 10px;border-radius:999px}
+  .sp-hi{background:var(--okbg);color:var(--ok)} .sp-mid{background:#fff6e6;color:#d2691e} .sp-lo{background:var(--nobg);color:var(--no)}
+  .weak-chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{background:var(--nobg);color:var(--no);border:1px solid #f6caca;border-radius:11px;padding:7px 12px;font-size:16px;font-weight:800;font-family:var(--cjk)}
+  .chip .c{font-size:20px;margin-right:3px}
+  .rec{background:var(--paper2);border-left:5px solid var(--xp);border-radius:11px;padding:14px 16px;font-size:14.5px;line-height:1.7;color:#2a3360;margin-top:8px} .rec b{color:var(--ink)}
+  .exp-note{font-size:14px;color:#2a3360;background:var(--paper2);border:1px solid var(--line);border-radius:13px;padding:13px 15px;line-height:1.6;margin-bottom:12px}
+  .exp-ta{width:100%;height:210px;border:2px solid var(--line);border-radius:13px;padding:13px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;line-height:1.5;color:#2a3360;background:#fbfcff;resize:vertical}
+  .copy-btn{width:100%;border:none;border-radius:var(--r2);padding:15px;font-family:inherit;font-size:15.5px;font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(135deg,#0d86df,#23a7ff);margin-top:11px}
+  .copy-btn.done{background:linear-gradient(135deg,var(--ok),#16a34a)}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);opacity:0;background:#11183a;color:#fff;padding:13px 22px;border-radius:999px;font-size:14px;font-weight:700;box-shadow:var(--shadow);transition:all .3s;z-index:50;pointer-events:none;border:1px solid rgba(255,255,255,.12)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .conf{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:40}
+  .conf i{position:absolute;top:-12px;width:10px;height:15px;border-radius:2px;animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(106vh) rotate(540deg);opacity:.9}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+  /* ===== v11 整体字号放大 + 新题型(多选/填空)样式 ===== */
+  .q-prompt{font-size:26px} .q-prompt.big{font-size:56px}
+  .opt{font-size:22px} .opt .k{width:30px;height:30px;font-size:15px}
+  .opt.sel{border-color:var(--math);background:#eaf6ff;box-shadow:inset 0 0 0 2px rgba(35,167,255,.30)}
+  .concept .cb{font-size:21px;line-height:1.9} .concept .ch{font-size:18.5px}
+  .example .prob{font-size:20px} .example .eh{font-size:18px} .step{font-size:19px}
+  .passage{font-size:19px;line-height:1.85} .explain{font-size:18px;line-height:1.7}
+  .open-ta{font-size:19px} .tchip{font-size:28px} .mreadout{font-size:21px}
+  .media-cap{font-size:15.5px} .media-h{font-size:18px} .pinyin{font-size:15.5px}
+  .checkblock .cl{font-size:14.5px} .tierbadge{font-size:14px}
+  .card .t{font-size:16.5px} .card .en{font-size:13px}
+  .sec-h h2{font-size:19px} .belt-name{font-size:18.5px} .bigbtn{font-size:18px}
+  .reveal-btn{font-size:17px} .result h2{font-size:27px}
+  .fpic .e{font-size:40px} .fpic .w{font-size:16.5px} .st-title{font-size:17.5px}
+  .trace-h{font-size:17px}
+  .fillrow{display:flex;gap:10px;margin:6px 0 2px;align-items:stretch}
+  .fill-in{flex:1;border:2px solid var(--line);border-radius:14px;padding:14px 16px;font-family:inherit;font-size:21px;font-weight:700;color:var(--ink);background:#fbfcff;min-width:0}
+  .fill-in:focus{outline:none;border-color:var(--math)}
+  .fill-in.ok{border-color:var(--ok);background:var(--okbg)} .fill-in.no{border-color:var(--no);background:var(--nobg)}
+  .fill-go{border:none;border-radius:14px;padding:14px 22px;font-family:inherit;font-size:18px;font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(135deg,#23a7ff,#5b67e8);white-space:nowrap}
+  .fill-go:active{transform:scale(.96)}
+  .multi-go-row{display:flex;align-items:center;gap:12px;margin:12px 0 2px;flex-wrap:wrap}
+  .multi-tip{font-size:14px;color:var(--muted);font-weight:700}
+
+/* ====== v12 航海主题 + 数字键盘 ====== */
+.belt-bar{border-radius:4px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
+.belt-knot{box-shadow:0 2px 6px rgba(0,0,0,.35),inset 0 0 0 2px rgba(255,255,255,.3)}
+.belt-emblem::after{content:"⚓";position:absolute;right:-2px;top:-10px;font-size:13px;opacity:.55}
+.belt-emblem{position:relative}
+.numfield{display:block;width:100%;max-width:320px;text-align:center;font-size:30px;font-weight:800;letter-spacing:1px;
+  padding:14px 12px;border:2px solid var(--math);border-radius:14px;background:#06243a;color:#eaf6ff;margin:6px 0 12px;
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.35);min-height:30px;caret-color:transparent}
+.numfield::placeholder{color:#5b86a6}
+.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:320px;margin:0 0 6px}
+.npk{font-size:24px;font-weight:800;padding:16px 0;border-radius:14px;border:1.5px solid var(--line);
+  background:linear-gradient(180deg,#ffffff,#eef3fb);color:#0c1230;cursor:pointer;box-shadow:0 2px 0 #c9d4ea;
+  -webkit-tap-highlight-color:transparent;user-select:none;transition:transform .05s}
+.npk:active{transform:translateY(2px);box-shadow:none}
+.npk.npfn{background:linear-gradient(180deg,#dceaff,#c4dbff);box-shadow:0 2px 0 #9bbdf0}
+.npk.npgo{grid-column:span 3;background:linear-gradient(180deg,#1fae7a,#159563);color:#fff;
+  box-shadow:0 3px 0 #0d6e48;font-size:21px}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   Sailor 航海学堂 v12.1 · 离线单文件 · 20260630
+   配比 中文25/数学25/科学20/英文20/法语10
+   三段式 + 多媒体交互教学 + 独立错题本 · 除中文外全英文授课
+   ============================================================ */
+
+/* ---- v11 收尾基线（家长回传数据包 v11.0 / 2026-06-25） ---- */
+const SEED = {
+  xp: 20190,
+  diag: {"chinese": {"score": 14, "total": 25, "pct": 56}, "english": {"score": 7, "total": 8, "pct": 88}, "math": {"score": 8, "total": 10, "pct": 80}},
+  lessonsDone: ["e1", "e5", "e3", "m7", "m1", "c5", "c6", "m8", "m3", "m4", "c1", "c2", "C1", "C2", "C3", "C4", "C5", "C6", "M1", "M2", "M3", "M4", "E1", "E2", "E3", "ZH1", "ZH2", "ZH3", "ZH4", "MA1", "MA2", "MA3", "MA4", "SC1", "SC2", "EN1", "EN2", "EN3", "FR1", "FR2", "ZH5", "ZH6", "ZH7", "ZH8", "MA5", "MA6", "MA7", "MA8", "SC3", "SC4", "EN4", "EN5", "EN6", "EN7", "FR3", "FR4", "SC6", "ZH9", "ZH10", "ZH11", "ZH12", "MA9", "MA10", "MA11", "MA12", "SC5", "EN8", "EN9", "EN11", "EN10", "FR6", "ZH13", "SC7", "ZH15", "MA16", "FR7", "FR8", "SC8", "EN12", "EN13", "EN14", "EN15", "ZH14", "ZH16", "MA13", "MA14", "MA15"],
+  unitBest: {"C1": "8/10", "C2": "10/10", "C3": "9/10", "C4": "8/10", "C5": "7/8", "C6": "10/10", "M1": "5/10", "M2": "9/10", "M3": "9/12", "M4": "8/12", "E1": "8/8", "E2": "10/10", "E3": "10/10", "ZH1": "9/10", "ZH2": "10/10", "ZH3": "6/8", "ZH4": "10/10", "MA1": "9/12", "MA2": "9/12", "MA3": "8/8", "MA4": "8/8", "SC1": "15/15", "SC2": "11/15", "EN1": "7/8", "EN2": "10/10", "EN3": "8/10", "FR1": "7/9", "FR2": "8/9", "SC6": "14/14", "ZH9": "12/12", "ZH10": "12/12", "ZH11": "11/11", "ZH12": "12/12", "MA9": "11/11", "MA10": "11/11", "MA11": "10/10", "MA12": "10/10", "SC5": "14/14", "EN8": "10/10", "EN9": "10/10", "EN11": "5/5", "EN10": "12/12", "FR6": "10/10", "ZH13": "12/12", "SC7": "13/13", "ZH15": "11/11", "MA16": "10/10", "FR7": "8/10", "FR8": "8/10", "SC8": "11/13", "EN12": "11/12", "EN13": "12/12", "EN14": "7/8", "EN15": "5/5", "ZH14": "9/12", "ZH16": "10/12", "MA13": "11/11", "MA14": "11/11", "MA15": "10/10"},
+  ziDaysDone: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  ziLearned: 124,
+  ziChars: "读写听想说看她它我你他们哥妈弟妹姐爸书学班校老课时天月日年候后外前里下上石山田水土火树鸟虫花林草跳跑去飞走来小多短大长少肉吃喝鱼饭菜怕哭气笑好爱朋友同高兴远近海河江湖雨雪风节龙舟粽划赛香因为所以但虽然即使无论宁仅应该必须已经却竟居般确实越够始终由各",
+  ziWeak: ["般:1", "竟:1", "始:1"]
+};
+
+const BELTS = [
+  {cn:"实习水手",en:"Cadet",color:"#7c8aa5",min:0},{cn:"水手",en:"Seaman",color:"#22c55e",min:1000},
+  {cn:"老练水手",en:"Able Seaman",color:"#14b8a6",min:3000},{cn:"舵手",en:"Helmsman",color:"#3b82f6",min:6000},
+  {cn:"三副",en:"Third Mate",color:"#6366f1",min:10000},{cn:"大副",en:"First Mate",color:"#a855f7",min:15000},
+  {cn:"船长",en:"Captain",color:"#f59e0b",min:19000},{cn:"船队长",en:"Commodore",color:"#ef4444",min:25000},
+  {cn:"海军上将",en:"Admiral",color:"#d4a01a",min:32000}
+];
+const SUBJ = {
+  cn:{name:"中文",color:"var(--cn)"}, math:{name:"数学 Math",color:"var(--math)"},
+  sci:{name:"科学 Science",color:"var(--sci)"}, en:{name:"英文 English",color:"var(--en)"}, fr:{name:"法语 Français",color:"var(--fr)"}
+};
+const TAGS = {fix:"补洞 Fix",level:"进阶 Level-up",trip:"旅行 Trip",core:"重点 Core",new:"预习 New"};
+const ORDER = ["cn","math","sci","en","fr"];
+
+/* ====== v11 课程内容（全新·G5数学科学 / G4下英文 / 进阶中文 · 新增多选·填空·应用题） ======
+   题型约定：
+   - 单选: {q, o:[...], a:索引, tier, e}
+   - 多选: {q, t:"multi", o:[...], a:[索引...], tier, e}   全对才得分
+   - 填空: {q, t:"fill", a:"答案" 或 ["答案","变体"], tier, e, hint?}  规范化判分(数值/分数等价)
+   - 写作: {q, t:"open", min, hint?}
+   答案位置由引擎按题面做确定性洗牌(稳定·每题不同·错题本一致)，故源文件位置不代表最终显示位置。 */
+/* ====== v12 课程内容 · 航海主题 · 数学/科学/英文/法语=英文优先；中文保持中文 ======
+   题型：单选 {q,o,a,tier,e} | 多选 {q,t:"multi",o,a:[...],tier,e} |
+        填空(中文,文本框) {q,t:"fill",a,tier,e,hint} | 填空(数字,屏内键盘) {q,t:"fill",kind:"num",a,tier,e,hint} |
+        写作 {q,t:"open",min,hint}
+   答案位置由引擎按题面确定性洗牌。难度较 v11 适当上推(安省 G5→触及早 G6)。 */
+const P_HUASHE = "古时候，几个人得到一壶酒，大家说：「酒不够分，谁先把蛇画好，就归谁喝。」一个人很快画完了蛇，端起酒得意地说：「我还能给蛇添上脚呢！」他左手拿酒，右手又给蛇画起脚来。还没画完，另一个人也画好了，一把夺过酒壶说：「蛇本来就没有脚，你怎么能给它添脚？」说完，把酒喝了。那个给蛇画脚的人，到头来一口酒也没喝到。";
+const P_LIGHT = "Mara lived in a white lighthouse at the edge of the rocky coast, where the wind never seemed to rest. Every evening she climbed the spiral stairs to light the great lamp, so that ships far out in the dark could find their way home. One stormy night the power failed and the lamp went black. Without a moment's hesitation, Mara lit every candle and lantern she owned and held them to the window. It was not as bright as the lamp, but it was enough — and at dawn a grateful fishing boat sailed safely into the harbour. The captain said her small lights had been like a single brave star in a sea of darkness.";
+const P_CORAL = "A coral reef may look like a colourful underwater garden, but it is actually built by millions of tiny living animals called coral polyps. Each polyp has a soft body and builds a hard cup of limestone around itself for protection. Over hundreds of years, these stony cups pile up to form the giant reef. Reefs are important because they shelter about a quarter of all ocean species, giving fish and other creatures places to hide, feed, and raise their young. Sadly, when the ocean gets too warm, the coral turns white and weak — a problem called bleaching. Protecting reefs matters, because so much ocean life depends on them.";
+
+const UNITS = [
+/* ========================= 中文 (全新·进阶) ========================= */
+{id:"ZH17", subj:"cn", icon:"⚓", title:"成语·新典故", en:"More Idioms", tag:"level",
+ lesson:{ cards:[
+   {t:"再学新成语", b:"自相矛盾：一个人卖矛又卖盾，话前后打架——比喻说话做事前后冲突。\n画蛇添足：多做了不必要的事，反而坏事。\n一举两得：做一件事得到两样好处。\n全神贯注：注意力完全集中。"},
+   {t:"形容认真投入", b:"目不转睛：眼睛一动不动地看，形容专注。\n津津有味：兴趣浓厚（读得津津有味）。\n兴高采烈：非常高兴。\n千方百计：想尽一切办法。"}],
+  example:{t:"选最合适的成语", prob:"「他一边说要省钱，一边又买了最贵的，真是________。」", steps:[
+   "第一步 —— 话和做法前后冲突。","第二步 —— 这正是「自相矛盾」。","第三步 —— 答案：自相矛盾。"]},
+  check:[{q:"「全神贯注」是说——", o:["注意力完全集中","三心二意","非常生气","速度很快"], a:0, e:"专注。"}] },
+ training:[
+  {q:"「画蛇添足」批评的是——", o:["多此一举、反而坏事","画得太慢","蛇太长","脚太多"], a:0, tier:2, e:"多余的动作坏了事。"},
+  {q:"「一举两得」的意思是——", o:["做一件事得到两种好处","一次失败两次","举不起来","两个人"], a:0, tier:1, e:"一事两利。"},
+  {q:"形容看得「眼睛一动不动、非常专注」，用——", o:["目不转睛","三心二意","自相矛盾","画蛇添足"], a:0, tier:2, e:"目不转睛=专注地看。"},
+  {q:"下面哪些成语是「褒义（正面）」的？", t:"multi", o:["全神贯注","兴高采烈","自相矛盾","画蛇添足"], a:[0,1], tier:3, e:"后两个是批评。"},
+  {q:"「他做事前后冲突、说法打架」，这叫——", o:["自相矛盾","一举两得","津津有味","千方百计"], a:0, tier:2, e:"自相矛盾。"},
+  {q:"选出可以形容「读书读得很有兴趣」的成语。", t:"multi", o:["津津有味","目不转睛","全神贯注","画蛇添足"], a:[0,1,2], tier:3, e:"前三个都可形容专注/有兴趣；画蛇添足不行。"},
+  {q:"填成语：为了完成任务，他________，想尽了所有办法。", t:"fill", a:["千方百计"], tier:3, e:"想尽办法。", hint:"四字成语"},
+  {q:"填成语：这个办法既省钱又省时，真是________。", t:"fill", a:["一举两得"], tier:3, e:"一事两利。", hint:"四字成语"},
+  {q:"「锦上添花」和「画蛇添足」相比，前者是——", o:["好上加好（褒义）","多余坏事（贬义）","完全一样","都贬义"], a:0, tier:3, e:"锦上添花褒义，画蛇添足贬义。"},
+  {q:"填成语：听到要去春游，全班同学都________。", t:"fill", a:["兴高采烈"], tier:2, e:"非常高兴。", hint:"四字成语"},
+  {q:"「他听课时________，连老师的每句话都记下了。」最适合填——", o:["全神贯注","自相矛盾","画蛇添足","千方百计"], a:0, tier:2, e:"专注。"},
+  {q:"下面哪句成语用错了？", o:["他本来已经讲清楚了，又补了一堆话，画蛇添足。","他自相矛盾，前后说法一致。","这个主意一举两得。","大家兴高采烈地出发了。"], a:1, tier:3, e:"自相矛盾指前后冲突，不能说「一致」。"},
+  {q:"填成语：弟弟________地盯着屏幕，连饭都忘了吃。", t:"fill", a:["目不转睛","全神贯注"], tier:3, e:"专注地看。", hint:"四字成语"}
+ ]},
+
+{id:"ZH18", subj:"cn", icon:"🧭", title:"复句进阶 II + 识字 Day 21", en:"Complex Sentences II", tag:"level",
+ traceDay:21, trace:["直","接","受","完","教","室"],
+ lesson:{ cards:[
+   {t:"更复杂的关联", b:"不是…就是…（二者必居其一）\n要不是…就…（假设＋结果）\n一…就…（紧接发生）\n不管…总…（无条件）\n除非…才…（唯一条件）"},
+   {t:"多重复句辨析", b:"一句话常含两层关系：\n「他竟然一声不响地走了，因为他知道说了也没用。」前半「竟然」（出乎意料），后半「因为」（原因）。读时先拆成小句。"},
+   {t:"今天的新字", b:"直 接 受 完 教 室——「直接、接受、完成、教室」常用。下面描一描。"}],
+  example:{t:"选关联词", prob:"「________听到铃声，他________冲出了教室。」", steps:[
+   "第一步 —— 两件事紧接着发生。","第二步 —— 用「一…就…」。","第三步 —— 一听到铃声，他就冲出了教室。"]},
+  check:[{q:"「除非…才…」表示——", o:["唯一的条件","时间很早","转折","并列"], a:0, e:"唯一条件。"}] },
+ training:[
+  {q:"「他________一回家________打开电视。」横线处填——", o:["一…就…","虽然…但是…","因为…所以…","不但…而且…"], a:0, tier:2, e:"紧接发生：一…就…。"},
+  {q:"「明天放假，我们________去公园________去图书馆，还没定。」", o:["不是…就是…","因为…所以…","即使…也…","只有…才…"], a:0, tier:2, e:"二者必居其一。"},
+  {q:"「________你怎么劝，他________不肯改。」表示无条件，填——", o:["不管…总…","既然…就…","与其…不如…","不是…而是…"], a:0, tier:3, e:"不管…总…。"},
+  {q:"下面哪些关联词表示「条件」关系？", t:"multi", o:["只有…才…","除非…才…","不管…都…","因为…所以…"], a:[0,1,2], tier:3, e:"前三个是条件；最后是因果。"},
+  {q:"「他竟然忘了今天有考试。」「竟然」表达——", o:["很意外","很高兴","很早","一定"], a:0, tier:1, e:"竟然=出乎意料。"},
+  {q:"填字：请把作业________交给老师。（不要经过别人）", t:"fill", a:["直接"], tier:3, e:"直接=不经中间。", hint:"两个字"},
+  {q:"选出关联词搭配正确的句子。", t:"multi", o:["要不是你提醒，我就忘了。","一下课，同学们就跑出去了。","除非努力，所以会成功。","不管多难，他都坚持。"], a:[0,1,3], tier:3, e:"第三句「除非…所以…」搭配错误。"},
+  {q:"「这件事看起来一________简单，做起来却很难。」填一个字（表示「像那样」）。", t:"fill", a:["般"], tier:3, e:"一般=像那样；本题复习「般」。", hint:"一个字"},
+  {q:"「他从________到现在都没变过。」横线处填一个字（表示「开头」）。", t:"fill", a:["始"], tier:3, e:"从始至今；复习「始」。", hint:"一个字"},
+  {q:"「老师在________里给我们上课。」横线填两个字。", t:"fill", a:["教室"], tier:2, e:"教室。", hint:"两个字"},
+  {q:"「我们应该虚心________别人的批评。」横线填两个字。", t:"fill", a:["接受"], tier:3, e:"接受批评。", hint:"两个字"},
+  {q:"「________天气多坏，邮递员________按时送信。」", o:["不管…都…","如果…就…","虽然…可是…","不是…就是…"], a:0, tier:2, e:"无条件：不管…都…。"},
+  {q:"判断：「只要肯下功夫，就一定能学好。」这句关联词——", o:["正确（条件→结果）","错误，缺主语","错误，搭配不当","错误，标点错"], a:0, tier:2, e:"只要…就…，正确。"}
+ ]},
+
+{id:"ZH19", subj:"cn", icon:"📜", title:"阅读理解·画蛇添足", en:"Reading: Fable II", tag:"core",
+ lesson:{ cards:[
+   {t:"抓住关键转折", b:"读故事注意「结果的转折」：本来要赢的人，因为做了多余的事，最后输了。问自己：他为什么输？"},
+   {t:"体会人物心理", b:"「得意」「夸口」这些词透露人物自满的心理；自满往往是失败的开始。"}],
+  example:{t:"做推断", prob:"画脚的人「左手拿酒、右手画脚」，说明他当时——", steps:[
+   "第一步 —— 他以为自己稳赢了。","第二步 —— 所以分心去画脚、还拿着酒。","第三步 —— 推断：他骄傲自满、掉以轻心。"]},
+  check:[{q:"读寓言时最该想清楚的是——", o:["它要告诉的道理","人物叫什么","酒有多少","谁的字好看"], a:0, e:"寓言重道理。"}] },
+ training:[
+  {q:"几个人比赛画什么来决定谁喝酒？", passage:P_HUASHE, o:["蛇","马","船","龙"], a:0, tier:1, e:"画蛇。"},
+  {q:"那个先画完的人为什么最后没喝到酒？", passage:P_HUASHE, o:["他多此一举去给蛇添脚，被别人赶上","他不爱喝酒","酒洒了","蛇跑了"], a:0, tier:2, e:"添足耽误，被超过。"},
+  {q:"「他左手拿酒，右手又画起脚来」表现他——", passage:P_HUASHE, o:["骄傲自满、掉以轻心","非常紧张","很有礼貌","画得很慢"], a:0, tier:3, e:"自满轻敌。"},
+  {q:"另一个人夺酒时说的理由是——", passage:P_HUASHE, o:["蛇本来就没有脚","酒是我的","你画得不好","时间到了"], a:0, tier:2, e:"蛇无脚，添足多余。"},
+  {q:"这个故事告诉我们——", passage:P_HUASHE, o:["做事不要多此一举，恰到好处就行","画画要快","蛇会咬人","喝酒不好"], a:0, tier:2, e:"勿画蛇添足。"},
+  {q:"下面哪些词能形容那个画脚的人？", passage:P_HUASHE, t:"multi", o:["自作聪明","骄傲","谦虚","谨慎"], a:[0,1], tier:3, e:"他自作聪明又骄傲。"},
+  {q:"「到头来一口酒也没喝到」中「到头来」的意思是——", passage:P_HUASHE, o:["最后、结果","在路上","一开始","非常"], a:0, tier:2, e:"到头来=结果。"},
+  {q:"如果用一个成语概括这个故事，最合适的是——", passage:P_HUASHE, o:["画蛇添足","守株待兔","亡羊补牢","熟能生巧"], a:0, tier:2, e:"本故事=画蛇添足出处。"},
+  {q:"作者写「他得意地说」，是为了——", passage:P_HUASHE, o:["突出他的自满，为后面失败作铺垫","说明他很善良","表示天气好","凑字数"], a:0, tier:3, e:"铺垫失败。"},
+  {q:"填空：蛇本来就没有________，所以不该添。", passage:P_HUASHE, t:"fill", a:["脚"], tier:2, e:"蛇无脚。", hint:"一个字"},
+  {q:"从这个故事，我们可以推断作者更欣赏——", passage:P_HUASHE, o:["做事恰到好处的人","动作最快的人","话最多的人","拿酒的人"], a:0, tier:3, e:"恰到好处、不画蛇添足。"},
+  {q:"「谁先把蛇画好，就归谁喝」这句话的作用是——", passage:P_HUASHE, o:["定下比赛规则，引出后面的故事","描写风景","介绍人物长相","抒发感情"], a:0, tier:2, e:"立规则、起情节。"},
+  {q:"这个寓言和「自相矛盾」相比，共同点是——", passage:P_HUASHE, o:["都讽刺人做事不合情理","都讲打仗","都讲动物","都讲天气"], a:0, tier:3, e:"都讽刺不合理的言行。"}
+ ]},
+
+{id:"ZH20", subj:"cn", icon:"🩺", title:"病句·近义词·标点 + 识字 Day 22", en:"Editing II", tag:"fix",
+ traceDay:22, trace:["象","像","等","觉","错","题"],
+ lesson:{ cards:[
+   {t:"更多病句类型", b:"①语序不当：「我们讨论并听取了报告」（应先听取再讨论）。\n②否定不当：「难道我们不应该不努力吗？」（多重否定绕晕）。\n③不合逻辑：「他是全校唯一的几个尖子生之一」（唯一与几个矛盾）。"},
+   {t:"近义词辨析", b:"「常常」≈经常；「连忙」≈赶紧（动作快）；「居然/竟然」≈出乎意料。\n选词要看语境的轻重和搭配。"},
+   {t:"今天的新字", b:"象 像 等 觉 错 题——「大象、好像、等于、觉得、错题」常用。下面描一描。"}],
+  example:{t:"改病句", prob:"「我们班取得好成绩的原因是大家努力造成的。」哪里错？", steps:[
+   "第一步 —— 「原因是…造成的」句式杂糅。","第二步 —— 删「造成的」或删「原因是」。","第三步 —— 改：…是因为大家努力。"]},
+  check:[{q:"「连忙」最接近——", o:["赶紧","慢慢","也许","一直"], a:0, e:"连忙=赶紧。"}] },
+ training:[
+  {q:"下面哪一句语序不当（顺序错了）？", o:["他打开书包，拿出课本。","会上，我们讨论并听取了这份报告。","春天来了，花开了。","他认真地做作业。"], a:1, tier:3, e:"应「听取并讨论」——先听取后讨论，原句顺序颠倒。"},
+  {q:"选出所有的病句。", t:"multi", o:["他是全班唯一的几个高个子之一。","难道我们不应该爱护环境吗？","经过努力，他的成绩提高了。","树上有许多只小鸟。"], a:[0], tier:3, e:"①「唯一」与「几个」矛盾；其余通顺。"},
+  {q:"「妈妈连忙跑过来扶住我。」「连忙」表示——", o:["动作很快、赶紧","很慢","偶尔","故意"], a:0, tier:1, e:"连忙=赶紧。"},
+  {q:"「他________得这道题很难。」横线填两个字（表示心里认为）。", t:"fill", a:["觉"], tier:3, e:"觉得；本题填「觉」。", hint:"一个字"},
+  {q:"「大________的鼻子很长。」横线填一个字。", t:"fill", a:["象"], tier:2, e:"大象。", hint:"一个字"},
+  {q:"「这朵云________一只小兔子。」横线填一个字（表示相似）。", t:"fill", a:["像"], tier:3, e:"好像、像。", hint:"一个字"},
+  {q:"下面哪些句子有语病或标点错误？", t:"multi", o:["你吃饭了吗。","他高兴地说：太好了！","这本书很有意思、很好看。","我们要保护小动物。"], a:[0,2], tier:3, e:"①疑问句用问号；③顿号误用（应用「，」连接两个分句）。"},
+  {q:"「3 加 4 ________ 7。」横线填一个字（表示「相同」）。", t:"fill", a:["等"], tier:2, e:"等于。", hint:"一个字"},
+  {q:"把病句改对：「为了防止溺水事故不再发生，学校加强了教育。」应——", o:["删掉「不再」（否定不当）","加逗号","换问号","没有错"], a:0, tier:3, e:"「防止…不再发生」=否定不当。"},
+  {q:"「他做完了所有的________，没有一道做错。」横线填一个字。", t:"fill", a:["题"], tier:2, e:"题目；填「题」。", hint:"一个字"},
+  {q:"「常常」和「连忙」的区别是——", o:["「常常」指经常，「连忙」指动作快","完全一样","都表示慢","都表示频率"], a:0, tier:2, e:"频率 vs 速度。"},
+  {q:"「这次他________考了满分，太让人意外了！」横线填两个字。", t:"fill", a:["竟然","居然"], tier:3, e:"出乎意料；复习「竟」。", hint:"两个字"},
+  {q:"选出用词重复啰嗦的句子。", t:"multi", o:["他大约估计有五十人。","我看完了这本书。","他们彼此互相帮助。","操场上很热闹。"], a:[0,2], tier:3, e:"①「大约」「估计」重复；③「彼此」「互相」重复。"}
+ ]},
+
+/* ========================= 数学 Math (English-first · 安省 G5→早G6) ========================= */
+{id:"MA17", subj:"math", icon:"⛵", title:"Fractions III", en:"加减·比较·整体的几分之几", tag:"level",
+ lesson:{ media:[{type:"fractionbar", title:"Fraction bars", cap:"Make equal parts and compare fractions."}],
+  cards:[
+   {t:"Add with unlike denominators", b:"Find a common denominator first.\n2/3 + 1/4 → 8/12 + 3/12 = 11/12.\nSubtract the same way: 5/6 − 1/3 = 5/6 − 2/6 = 3/6 = 1/2."},
+   {t:"Fraction OF a quantity", b:"'3/4 of 20' means 20 ÷ 4 × 3 = 15.\nMultiply a fraction by a whole number: 3/8 × 4 = 12/8 = 3/2 = 1 1/2."}],
+  example:{t:"Find the larger fraction", prob:"Which is larger, 5/8 or 2/3?", steps:[
+   "Step 1 — Common denominator 24: 5/8 = 15/24.","Step 2 — 2/3 = 16/24.","Step 3 — 16/24 > 15/24, so 2/3 is larger."]},
+  check:[{q:"5/6 − 1/3 = ?", o:["1/2","4/3","6/9","2/3"], a:0, e:"5/6 − 2/6 = 3/6 = 1/2."}] },
+ training:[
+  {q:"1/2 + 1/4 = ? (simplest form)", t:"fill", kind:"num", a:["3/4"], tier:3, e:"2/4 + 1/4 = 3/4.", hint:"like a/b"},
+  {q:"2/3 + 1/4 = ? (simplest form)", t:"fill", kind:"num", a:["11/12"], tier:3, e:"8/12 + 3/12.", hint:"common denominator 12"},
+  {q:"5/6 − 1/2 = ? (simplest form)", t:"fill", kind:"num", a:["1/3"], tier:3, e:"5/6 − 3/6 = 2/6 = 1/3.", hint:"common denominator 6"},
+  {q:"What is 3/4 of 20?", t:"fill", kind:"num", a:["15"], tier:3, e:"20 ÷ 4 × 3 = 15."},
+  {q:"What is 2/5 of 30?", t:"fill", kind:"num", a:["12"], tier:3, e:"30 ÷ 5 × 2 = 12."},
+  {q:"Which fraction is the LARGEST?", o:["3/4","2/3","5/8","7/12"], a:0, tier:3, e:"3/4 = 0.75 is largest."},
+  {q:"Which is larger: 5/8 or 2/3?", o:["2/3","5/8","they are equal","cannot tell"], a:0, tier:3, e:"2/3≈0.667 > 5/8=0.625."},
+  {q:"Write 7/3 as a mixed number.", o:["2 1/3","3 1/2","2 1/2","1 1/3"], a:0, tier:2, e:"7÷3 = 2 remainder 1."},
+  {q:"1 1/2 + 3/4 = ?", o:["2 1/4","1 3/4","2 1/2","1 1/4"], a:0, tier:3, e:"6/4 + 3/4 = 9/4 = 2 1/4."},
+  {q:"3/4 = ?/12. The missing number is —", t:"fill", kind:"num", a:["9"], tier:3, e:"×3 top and bottom."},
+  {q:"3/8 × 4 = ? (you may write a fraction or decimal)", t:"fill", kind:"num", a:["3/2","1.5"], tier:3, e:"12/8 = 3/2 = 1.5.", hint:"3/2 or 1.5"},
+  {q:"Which fractions are EQUAL to 3/4? (select all)", t:"multi", o:["6/8","9/12","12/16","2/3"], a:[0,1,2], tier:3, e:"First three equal 3/4."},
+  {q:"Which fractions are GREATER than 1/2? (select all)", t:"multi", o:["3/4","5/8","2/5","7/12"], a:[0,1,3], tier:3, e:"2/5 < 1/2; the rest are larger."}
+ ]},
+
+{id:"MA18", subj:"math", icon:"💰", title:"Decimals & Percent II", en:"小数借位·四舍五入·折扣", tag:"level",
+ lesson:{ media:[{type:"decimalgrid", title:"Hundredths grid", cap:"Shade squares to see decimals and percents."}],
+  cards:[
+   {t:"Subtract with borrowing", b:"Line up the decimal points; add zeros to help.\n5.3 − 2.85 → 5.30 − 2.85 = 2.45.\nMultiply/divide: 0.25 × 8 = 2;  6.4 ÷ 8 = 0.8."},
+   {t:"Rounding & percent", b:"Round 4.86 to the nearest TENTH → look at hundredths (6) → 4.9.\n3/4 = 0.75 = 75%.\n'15% of 60' = 60 × 0.15 = 9.  A 25%-off discount on $80 saves $20."}],
+  example:{t:"Two-step discount", prob:"A $80 jacket is 25% off. What is the SALE price?", steps:[
+   "Step 1 — Discount = 80 × 0.25 = 20.","Step 2 — Sale price = 80 − 20.","Step 3 — = $60."]},
+  check:[{q:"Round 4.86 to the nearest tenth.", o:["4.9","4.8","5.0","4.86"], a:0, e:"Hundredths digit 6 rounds up."}] },
+ training:[
+  {q:"5.3 − 2.85 = ?", t:"fill", kind:"num", a:["2.45"], tier:3, e:"5.30 − 2.85 = 2.45.", hint:"line up decimals"},
+  {q:"4.06 + 1.7 = ?", t:"fill", kind:"num", a:["5.76"], tier:3, e:"4.06 + 1.70 = 5.76."},
+  {q:"0.25 × 8 = ?", t:"fill", kind:"num", a:["2"], tier:3, e:"0.25 × 8 = 2."},
+  {q:"6.4 ÷ 8 = ?", t:"fill", kind:"num", a:["0.8"], tier:3, e:"64 ÷ 8 = 8 → 0.8."},
+  {q:"Round 4.86 to the nearest tenth.", t:"fill", kind:"num", a:["4.9"], tier:3, e:"Look at hundredths (6) → round up.", hint:"one decimal place"},
+  {q:"Round 3.142 to the nearest hundredth.", t:"fill", kind:"num", a:["3.14"], tier:3, e:"Thousandths digit 2 → round down.", hint:"two decimal places"},
+  {q:"Write 3/4 as a percent. (number only)", t:"fill", kind:"num", a:["75"], tier:3, e:"3/4 = 0.75 = 75%."},
+  {q:"What is 15% of 60?", t:"fill", kind:"num", a:["9"], tier:3, e:"60 × 0.15 = 9."},
+  {q:"A $80 jacket is 25% off. How much do you SAVE?", t:"fill", kind:"num", a:["20"], tier:3, e:"80 × 0.25 = 20."},
+  {q:"A $80 jacket is 25% off. What is the SALE price?", t:"fill", kind:"num", a:["60"], tier:3, e:"80 − 20 = 60."},
+  {q:"Which values EQUAL 0.75? (select all)", t:"multi", o:["3/4","75%","6/8","0.075"], a:[0,1,2], tier:3, e:"0.075 is not 0.75."},
+  {q:"0.5 × 0.4 = ?", t:"fill", kind:"num", a:["0.2"], tier:3, e:"5×4=20 → two decimal places → 0.20.", hint:"decimal × decimal"},
+  {q:"Which number is the LARGEST?", o:["0.605","0.6","0.59","0.5"], a:0, tier:2, e:"0.605 > 0.6 > 0.59 > 0.5."}
+ ]},
+
+{id:"MA19", subj:"math", icon:"📐", title:"Geometry & Measurement II", en:"面积·周长·体积·三角形", tag:"core",
+ lesson:{ media:[{type:"angleline", title:"Angles on a line", cap:"Angles on a straight line add to 180°."}],
+  cards:[
+   {t:"Perimeter vs Area vs Volume", b:"Perimeter = distance around (add all sides).\nArea of a rectangle = length × width.\nArea of a TRIANGLE = (base × height) ÷ 2.\nVolume of a box = length × width × height."},
+   {t:"Angles", b:"A right angle = 90°; a straight angle = 180°.\nAngles in a triangle add to 180°.\nComplementary angles add to 90°."}],
+  example:{t:"Area of a triangle", prob:"A triangle has base 6 and height 4. What is its area?", steps:[
+   "Step 1 — Area = (base × height) ÷ 2.","Step 2 — (6 × 4) ÷ 2 = 24 ÷ 2.","Step 3 — = 12."]},
+  check:[{q:"Area of a rectangle =", o:["length × width","add all sides","l × w × h","(b × h) ÷ 2"], a:0, e:"length × width."}] },
+ training:[
+  {q:"A rectangle is 8 by 5. What is its AREA?", t:"fill", kind:"num", a:["40"], tier:2, e:"8 × 5 = 40."},
+  {q:"A rectangle is 8 by 5. What is its PERIMETER?", t:"fill", kind:"num", a:["26"], tier:3, e:"(8+5)×2 = 26."},
+  {q:"A box is 3 by 4 by 5. What is its VOLUME?", t:"fill", kind:"num", a:["60"], tier:3, e:"3 × 4 × 5 = 60."},
+  {q:"A square has area 49. What is its side length?", t:"fill", kind:"num", a:["7"], tier:3, e:"7 × 7 = 49."},
+  {q:"A triangle has base 6 and height 4. What is its AREA?", t:"fill", kind:"num", a:["12"], tier:3, e:"(6×4)÷2 = 12."},
+  {q:"Two angles of a triangle are 60° and 70°. The third angle is —", t:"fill", kind:"num", a:["50"], tier:3, e:"180 − 60 − 70 = 50."},
+  {q:"What angle is COMPLEMENTARY to 25°? (number only)", t:"fill", kind:"num", a:["65"], tier:3, e:"90 − 25 = 65."},
+  {q:"A cube has side 4. What is its VOLUME?", t:"fill", kind:"num", a:["64"], tier:3, e:"4 × 4 × 4 = 64."},
+  {q:"Which shapes are QUADRILATERALS (4 sides)? (select all)", t:"multi", o:["trapezoid","parallelogram","pentagon","square"], a:[0,1,3], tier:3, e:"A pentagon has 5 sides."},
+  {q:"The point (2, 5) means —", o:["right 2, up 5","up 2, right 5","right 2, right 5","up 7"], a:0, tier:2, e:"(x, y) = right x, up y."},
+  {q:"A square has side 9. What is its PERIMETER?", t:"fill", kind:"num", a:["36"], tier:3, e:"9 × 4 = 36."},
+  {q:"Angles on a STRAIGHT line add up to —", o:["180°","90°","360°","100°"], a:0, tier:1, e:"A straight angle = 180°."}
+ ]},
+
+{id:"MA20", subj:"math", icon:"🧮", title:"Order of Ops · Equations · Word Problems", en:"运算顺序·方程·应用题", tag:"core",
+ lesson:{ cards:[
+   {t:"Order of operations", b:"Brackets first, then exponents (squares), then × and ÷, then + and −.\n5 + 6 × 3 = 5 + 18 = 23.  (5 + 6) × 3 = 33.  3² + 4 = 9 + 4 = 13."},
+   {t:"Simple equations", b:"Find the unknown.\nx + 7 = 15 → x = 15 − 7 = 8.\n3x = 21 → x = 21 ÷ 3 = 7."}],
+  example:{t:"Multi-step word problem", prob:"Tickets cost $12 each. You buy 4 and pay with $60. How much change?", steps:[
+   "Step 1 — Cost = 4 × 12 = 48.","Step 2 — Change = 60 − 48.","Step 3 — = $12."]},
+  check:[{q:"In 5 + 6 × 3, what do you do FIRST?", o:["6 × 3","5 + 6","left to right","5 × 3"], a:0, e:"× before +."}] },
+ training:[
+  {q:"5 + 6 × 3 = ?", t:"fill", kind:"num", a:["23"], tier:3, e:"6×3=18, +5 = 23."},
+  {q:"(5 + 6) × 3 = ?", t:"fill", kind:"num", a:["33"], tier:3, e:"Brackets first: 11 × 3."},
+  {q:"20 − 8 ÷ 2 + 1 = ?", t:"fill", kind:"num", a:["17"], tier:3, e:"8÷2=4 → 20−4+1 = 17."},
+  {q:"3² + 4 = ?", t:"fill", kind:"num", a:["13"], tier:3, e:"3² = 9, + 4 = 13.", hint:"3² = 9"},
+  {q:"4 × 5 − 6 ÷ 3 = ?", t:"fill", kind:"num", a:["18"], tier:3, e:"20 − 2 = 18."},
+  {q:"Solve: x + 7 = 15. x = ?", t:"fill", kind:"num", a:["8"], tier:3, e:"15 − 7 = 8."},
+  {q:"Solve: 3x = 21. x = ?", t:"fill", kind:"num", a:["7"], tier:3, e:"21 ÷ 3 = 7."},
+  {q:"6 boxes hold 8 books each. After 5 are damaged, how many books are left?", t:"fill", kind:"num", a:["43"], tier:3, e:"6×8=48, −5 = 43."},
+  {q:"A pizza has 8 slices. 3 kids each eat 2 slices. How many slices are LEFT?", t:"fill", kind:"num", a:["2"], tier:3, e:"3×2=6, 8−6 = 2."},
+  {q:"Which expressions EQUAL 24? (select all)", t:"multi", o:["4 × (2 + 4)","3 × 8","30 − 6","20 + 2"], a:[0,1,2], tier:3, e:"4×6=24, 3×8=24, 30−6=24; 20+2=22."},
+  {q:"48 candies are shared equally among 6 kids. Then each kid eats 3. How many does each kid have left?", t:"fill", kind:"num", a:["5"], tier:3, e:"48÷6=8, 8−3 = 5."},
+  {q:"Solve: x − 9 = 6. x = ?", t:"fill", kind:"num", a:["15"], tier:3, e:"6 + 9 = 15."}
+ ]},
+
+/* ========================= 科学 Science (English-first · 安省 G5) ========================= */
+{id:"SC9", subj:"sci", icon:"🪐", title:"The Solar System", en:"太阳系", tag:"new",
+ lesson:{ media:[{type:"lightray", title:"The Sun's light", cap:"The Sun gives light and heat to the planets."}],
+  cards:[
+   {t:"The Sun and eight planets", b:"The Sun is a STAR at the centre. Eight planets ORBIT (travel around) it: Mercury, Venus, Earth, Mars (small and rocky), then Jupiter, Saturn, Uranus, Neptune (large gas giants). Jupiter is the largest planet."},
+   {t:"Spin and orbit", b:"Earth SPINS on its axis once a day — that gives us day and night. Earth ORBITS the Sun once a year. GRAVITY is the force that keeps planets moving around the Sun and the Moon around Earth."},
+   {t:"The Moon", b:"The Moon orbits Earth. It does not make its own light — it reflects sunlight. As it moves, we see different phases (new, crescent, full)."}],
+  example:{t:"Why day and night?", prob:"What causes day and night on Earth?", steps:[
+   "Step 1 — Day/night is NOT caused by the Sun moving.","Step 2 — Earth spins (rotates) on its axis.","Step 3 — The side facing the Sun has day; the other has night."]},
+  check:[{q:"The Sun is a —", o:["star","planet","moon","comet"], a:0, e:"The Sun is a star."}] },
+ training:[
+  {q:"What is at the CENTRE of the solar system?", o:["the Sun","Earth","the Moon","Jupiter"], a:0, tier:1, e:"The Sun is at the centre."},
+  {q:"What causes day and night on Earth?", o:["Earth spinning on its axis","the Sun orbiting Earth","the Moon's light","clouds"], a:0, tier:2, e:"Earth's rotation."},
+  {q:"Which is the LARGEST planet?", o:["Jupiter","Earth","Mars","Mercury"], a:0, tier:2, e:"Jupiter is largest."},
+  {q:"The force that keeps planets orbiting the Sun is —", o:["gravity","magnetism","wind","light"], a:0, tier:2, e:"Gravity."},
+  {q:"Which planets are the small, ROCKY (inner) planets? (select all)", t:"multi", o:["Mercury","Venus","Earth","Jupiter"], a:[0,1,2], tier:3, e:"Jupiter is a gas giant."},
+  {q:"The Moon shines because it —", o:["reflects sunlight","burns like the Sun","is made of light","has lamps"], a:0, tier:2, e:"It reflects the Sun's light."},
+  {q:"Earth takes about ONE YEAR to —", o:["orbit the Sun once","spin once","reach the Moon","cross a country"], a:0, tier:2, e:"One revolution = one year."},
+  {q:"Which statements about the Sun are TRUE? (select all)", t:"multi", o:["It gives light and heat.","It is a star.","It is the centre of the solar system.","It orbits the Earth."], a:[0,1,2], tier:3, e:"Planets orbit the Sun, not the reverse."},
+  {q:"Which is the correct order STARTING from the Sun?", o:["Mercury, Venus, Earth, Mars","Earth, Mercury, Mars, Venus","Mars, Earth, Venus, Mercury","Venus, Earth, Mercury, Mars"], a:0, tier:3, e:"Mercury is closest."},
+  {q:"A 'gas giant' is a planet that is —", o:["very large and made mostly of gas","small and rocky","made of water only","a kind of star"], a:0, tier:2, e:"E.g. Jupiter, Saturn."},
+  {q:"Earth spinning once takes about —", o:["one day","one year","one month","one hour"], a:0, tier:1, e:"One rotation = one day."},
+  {q:"Which of these ORBIT something? (select all)", t:"multi", o:["Earth orbits the Sun","the Moon orbits Earth","planets orbit the Sun","the Sun orbits Earth"], a:[0,1,2], tier:3, e:"The Sun does not orbit Earth."},
+  {q:"Besides planets, the solar system also contains —", o:["asteroids and comets","oceans of air","other suns nearby","clouds of rain"], a:0, tier:2, e:"Asteroids, comets, moons."},
+  {q:"The Moon's changing shapes in the sky are called its —", o:["phases","seasons","orbits","stars"], a:0, tier:2, e:"Moon phases."},
+  {q:"Why is Mercury hotter on its Sun side than Neptune?", o:["it is much closer to the Sun","it is larger","it spins faster","it has more moons"], a:0, tier:3, e:"Closer to the Sun = more heat."},
+  {q:"Which sentence is TRUE?", o:["The Sun is much bigger than Earth.","Earth is bigger than the Sun.","The Moon is bigger than the Sun.","All planets are the same size."], a:0, tier:1, e:"The Sun is far bigger than Earth."}
+ ]},
+
+{id:"SC10", subj:"sci", icon:"🌧️", title:"Weather & the Water Cycle", en:"天气与水循环", tag:"new",
+ lesson:{ cards:[
+   {t:"The water cycle", b:"Water moves in a never-ending cycle, powered by the SUN.\n1) EVAPORATION: the Sun heats water in oceans/lakes; it turns into invisible water vapour (gas) and rises.\n2) CONDENSATION: high up it cools and turns back into tiny droplets that form CLOUDS.\n3) PRECIPITATION: droplets join, get heavy, and fall as rain or snow.\n4) COLLECTION: water gathers in rivers, lakes, and oceans — and it starts again."},
+   {t:"Three states of water", b:"In the cycle water changes state: liquid (water), gas (vapour), and solid (ice/snow)."},
+   {t:"Weather vs climate", b:"WEATHER is what it's like today (sunny, rainy). CLIMATE is the usual weather of a place over many years."}],
+  example:{t:"Where do puddles go?", prob:"After rain, a puddle slowly disappears on a sunny day. Why?", steps:[
+   "Step 1 — The Sun heats the water.","Step 2 — The water evaporates into vapour.","Step 3 — So the puddle dries up."]},
+  check:[{q:"What POWERS the water cycle?", o:["the Sun","the Moon","wind only","ice"], a:0, e:"The Sun's heat drives it."}] },
+ training:[
+  {q:"When the Sun heats water and it turns into vapour, this is —", o:["evaporation","condensation","precipitation","collection"], a:0, tier:1, e:"Evaporation."},
+  {q:"When water vapour cools and forms clouds, this is —", o:["condensation","evaporation","precipitation","freezing"], a:0, tier:2, e:"Condensation."},
+  {q:"Rain and snow falling from clouds is called —", o:["precipitation","evaporation","condensation","collection"], a:0, tier:2, e:"Precipitation."},
+  {q:"What powers the whole water cycle?", o:["the Sun","the Moon","electricity","gravity only"], a:0, tier:1, e:"The Sun."},
+  {q:"Put the water cycle in ORDER (which comes first)?", o:["evaporation → condensation → precipitation","precipitation → evaporation → condensation","condensation → precipitation → evaporation","collection → condensation → evaporation"], a:0, tier:3, e:"Evaporation first."},
+  {q:"Which are forms of PRECIPITATION? (select all)", t:"multi", o:["rain","snow","hail","clouds"], a:[0,1,2], tier:3, e:"Clouds form by condensation, not precipitation."},
+  {q:"Clouds are made of —", o:["tiny water droplets","smoke","cotton","dust only"], a:0, tier:2, e:"Condensed water droplets."},
+  {q:"Which describes WEATHER (not climate)?", o:["It is raining right now.","Egypt is usually hot and dry.","This region has cold winters every year.","The desert gets little rain over many years."], a:0, tier:3, e:"Weather = today; climate = long-term."},
+  {q:"In the water cycle, water can be in which states? (select all)", t:"multi", o:["liquid","gas (vapour)","solid (ice/snow)","plasma"], a:[0,1,2], tier:3, e:"Liquid, gas, solid."},
+  {q:"Why does a wet towel dry in the sun?", o:["water evaporates","water condenses","it rains","it freezes"], a:0, tier:2, e:"Evaporation."},
+  {q:"Water vapour is —", o:["water as a gas","water as ice","a kind of cloud you can hold","liquid rain"], a:0, tier:2, e:"Gas state of water."},
+  {q:"Which statements about the water cycle are TRUE? (select all)", t:"multi", o:["It has no real end — it repeats.","The Sun drives it.","Water changes state during it.","Water is destroyed at the end."], a:[0,1,2], tier:3, e:"Water is recycled, never destroyed."},
+  {q:"Most evaporation on Earth happens from the —", o:["oceans","deserts","mountains","caves"], a:0, tier:2, e:"Oceans hold most water."},
+  {q:"Climate is —", o:["the usual weather over many years","today's weather","a single storm","a type of cloud"], a:0, tier:2, e:"Long-term pattern."},
+  {q:"Dew forms on grass in the morning because water vapour —", o:["condenses as it cools","evaporates","freezes into hail","disappears"], a:0, tier:3, e:"Cooling → condensation."},
+  {q:"When it gets cold enough, precipitation may fall as —", o:["snow","steam","vapour","wind"], a:0, tier:1, e:"Snow (solid)."}
+ ]},
+
+/* ========================= 英文 English (G5→早G6) ========================= */
+{id:"EN16", subj:"en", icon:"🗼", title:"Reading: Literary II", en:"文学阅读·灯塔", tag:"core",
+ lesson:{ cards:[
+   {t:"Inference & character", b:"Work out what the author hints. A character's CHOICES show who they are — someone who helps others at once is brave and caring."},
+   {t:"Simile vs metaphor", b:"A SIMILE compares using 'like' or 'as' ('like a brave star').\nA METAPHOR says one thing IS another, with no 'like/as' ('a sea of darkness')."}],
+  example:{t:"Spot the simile", prob:"'Her lights were like a single brave star.' This is a —", steps:[
+   "Step 1 — It compares the lights to a star.","Step 2 — It uses the word 'like'.","Step 3 — So it is a simile."]},
+  check:[{q:"A comparison using 'like' or 'as' is a —", o:["simile","metaphor","verb","question"], a:0, e:"Simile uses like/as."}] },
+ training:[
+  {q:"Why did Mara light the great lamp every evening?", passage:P_LIGHT, o:["so ships in the dark could find their way","to keep warm","to read books","to scare birds"], a:0, tier:1, e:"To guide ships home."},
+  {q:"What problem happened on the stormy night?", passage:P_LIGHT, o:["the power failed and the lamp went black","the lighthouse fell","Mara got lost","the ships sank"], a:0, tier:2, e:"Power failed; lamp went dark."},
+  {q:"What did Mara do about it?", passage:P_LIGHT, o:["she lit candles and lanterns at the window","she went to sleep","she called for help and waited","she left the lighthouse"], a:0, tier:2, e:"She lit every candle/lantern."},
+  {q:"'Without a moment's hesitation' shows that Mara was —", passage:P_LIGHT, o:["quick and brave","slow and unsure","scared and frozen","lazy"], a:0, tier:3, e:"She acted at once."},
+  {q:"Which words best describe Mara? (select all)", passage:P_LIGHT, t:"multi", o:["brave","caring","selfish","gives up easily"], a:[0,1], tier:3, e:"Brave and caring."},
+  {q:"'a sea of darkness' is an example of a —", passage:P_LIGHT, o:["metaphor","simile","question","list"], a:0, tier:3, e:"Says darkness IS a sea (no like/as) → metaphor."},
+  {q:"What was the EFFECT of Mara's small lights?", passage:P_LIGHT, o:["a fishing boat sailed safely into harbour","the storm stopped","the lamp came back on","nothing changed"], a:0, tier:2, e:"The boat got in safely."},
+  {q:"'Grateful' in the passage most nearly means —", passage:P_LIGHT, o:["thankful","angry","tired","afraid"], a:0, tier:2, e:"Grateful = thankful."},
+  {q:"Why does the writer say her lights were 'not as bright as the lamp, but enough'?", passage:P_LIGHT, o:["to show even a small effort can help a lot","to say she failed","to describe the weather","to end the story quickly"], a:0, tier:3, e:"Small effort, big difference."},
+  {q:"The lighthouse stands where 'the wind never seemed to rest.' This suggests the place is —", passage:P_LIGHT, o:["windy and harsh","calm and warm","crowded with people","silent"], a:0, tier:2, e:"Constant wind = harsh coast."},
+  {q:"Which phrase from the story is a SIMILE?", o:["like a single brave star","the spiral stairs","every evening","the rocky coast"], a:0, tier:2, e:"'like a...' = simile."},
+  {q:"The BEST theme (message) of this story is —", passage:P_LIGHT, o:["one caring person can make a big difference","lighthouses are tall","storms are scary","fishing is hard"], a:0, tier:3, e:"Theme: caring action matters."},
+  {q:"What is the mood at the END of the story?", passage:P_LIGHT, o:["hopeful and warm","frightening","sad","angry"], a:0, tier:3, e:"Safe arrival at dawn = hopeful."},
+  {q:"Which sentence is an INFERENCE (not stated directly)?", passage:P_LIGHT, o:["Mara cares deeply about the sailors' safety.","Mara lives in a lighthouse.","The lamp went black.","A boat reached the harbour."], a:0, tier:3, e:"Her caring is inferred from actions."}
+ ]},
+
+{id:"EN17", subj:"en", icon:"🐠", title:"Reading: Informational II", en:"说明文·珊瑚礁", tag:"core",
+ lesson:{ cards:[
+   {t:"Main idea & details", b:"The MAIN IDEA is the one big point of the whole text; details and facts support it. Ask: 'What is this mostly about?'"},
+   {t:"Cause & effect, vocabulary", b:"Look for what makes something happen ('warm water → bleaching'). Use nearby words to figure out hard words."}],
+  example:{t:"Main idea", prob:"A text explains what coral reefs are, how they form, and why they matter. The main idea is —", steps:[
+   "Step 1 — Every part is about coral reefs.","Step 2 — It explains what they are and why they're important.","Step 3 — Main idea: coral reefs and why they matter."]},
+  check:[{q:"The main idea is —", o:["the one big point of the whole text","a tiny detail","the title only","a hard word"], a:0, e:"The big overall point."}] },
+ training:[
+  {q:"What is the MAIN idea of the passage?", passage:P_CORAL, o:["what coral reefs are, how they form, and why they matter","that fish are colourful","how to swim in the ocean","why the ocean is warm"], a:0, tier:2, e:"Whole text = about reefs."},
+  {q:"Coral reefs are built by —", passage:P_CORAL, o:["tiny animals called coral polyps","large fish","plants only","ocean waves"], a:0, tier:1, e:"Coral polyps."},
+  {q:"Each polyp builds a hard cup out of —", passage:P_CORAL, o:["limestone","wood","plastic","sand grains glued together"], a:0, tier:2, e:"Limestone cup."},
+  {q:"About how much ocean life do reefs shelter?", passage:P_CORAL, o:["about a quarter of all ocean species","none","all of it","two species"], a:0, tier:2, e:"~1/4 of ocean species."},
+  {q:"What CAUSES coral bleaching?", passage:P_CORAL, o:["the ocean getting too warm","too many fish","bright sunlight at night","cold rain"], a:0, tier:3, e:"Too-warm water."},
+  {q:"Which are TRUE about coral reefs? (select all)", passage:P_CORAL, t:"multi", o:["they are built by living animals","they shelter many species","they can bleach when water is too warm","they are made of plastic"], a:[0,1,2], tier:3, e:"Not plastic."},
+  {q:"In the passage, 'shelter' most nearly means —", passage:P_CORAL, o:["give protection / a safe place","destroy","colour","melt"], a:0, tier:2, e:"Shelter = protect."},
+  {q:"The author's main purpose is to —", passage:P_CORAL, o:["inform readers about coral reefs","tell a funny story","sell a fish tank","scare readers"], a:0, tier:2, e:"Informational."},
+  {q:"How does a reef get so BIG over time?", passage:P_CORAL, o:["stony cups pile up over hundreds of years","one polyp grows huge","waves push sand into a pile","fish build it"], a:0, tier:3, e:"Cups accumulate over centuries."},
+  {q:"'Bleaching' in the text refers to coral turning —", passage:P_CORAL, o:["white and weak","bright and strong","green","into rock"], a:0, tier:2, e:"White and weak."},
+  {q:"Why does the author say protecting reefs matters?", passage:P_CORAL, o:["so much ocean life depends on them","they are pretty","they are easy to build","they make the water warm"], a:0, tier:3, e:"Many species depend on reefs."},
+  {q:"The hard cup around a polyp is mainly for —", passage:P_CORAL, o:["protection","decoration","swimming","food"], a:0, tier:2, e:"Protection."},
+  {q:"The BEST one-sentence summary is —", passage:P_CORAL, o:["Reefs are built by tiny animals and shelter much ocean life, so they need protecting.","Coral is colourful.","Fish like to hide.","The ocean is large."], a:0, tier:3, e:"Captures the whole text."},
+  {q:"Which is a DETAIL, not the main idea?", passage:P_CORAL, o:["Each polyp builds a limestone cup.","Coral reefs are important and built by living animals.","The text is about coral reefs.","Reefs matter to ocean life."], a:0, tier:3, e:"The limestone cup is a supporting detail."}
+ ]},
+
+{id:"EN18", subj:"en", icon:"✒️", title:"Grammar & Conventions III", en:"句型·术语·治流水句", tag:"fix",
+ lesson:{ cards:[
+   {t:"Four sentence types", b:"DECLARATIVE states (.). INTERROGATIVE asks a question (?). IMPERATIVE gives a command (.). EXCLAMATORY shows strong feeling (!).\nTip: only an INTERROGATIVE asks something and ends with '?'."},
+   {t:"Know your terms", b:"A CONJUNCTION joins ideas: and, but, so, because.\nA SIMILE compares with like/as. A METAPHOR says one thing IS another.\nThese are different — don't mix them up!"},
+   {t:"Fix run-ons", b:"Run-on: 'It was dark we went home.' Fix with a period or a comma + conjunction: 'It was dark, so we went home.'"}],
+  example:{t:"Which type?", prob:"'Where are my shoes?' is which type of sentence?", steps:[
+   "Step 1 — It asks something.","Step 2 — It ends with a question mark.","Step 3 — So it is interrogative."]},
+  check:[{q:"A word like 'and', 'but', 'so' is a —", o:["conjunction","simile","noun","question"], a:0, e:"Conjunction joins ideas."}] },
+ training:[
+  {q:"Which sentence is INTERROGATIVE (a question)?", o:["When does the bus arrive?","I am hungry.","What a goal!","Please sit down."], a:0, tier:1, e:"Only this one asks something."},
+  {q:"Which sentence is EXCLAMATORY (strong feeling)?", o:["What an amazing view!","Where is the dog?","Close the door.","The sky is grey."], a:0, tier:1, e:"Strong feeling + '!'."},
+  {q:"'Please pass the salt.' is which type?", o:["imperative (a command/request)","interrogative","exclamatory","a question"], a:0, tier:2, e:"It gives a request → imperative."},
+  {q:"A word like 'and', 'but', 'because' is called a —", o:["conjunction","simile","metaphor","adverb"], a:0, tier:2, e:"Conjunction (NOT a simile)."},
+  {q:"'as busy as a bee' is a —", o:["simile","metaphor","conjunction","question"], a:0, tier:2, e:"'as...as' = simile."},
+  {q:"'The classroom was a zoo' is a —", o:["metaphor","simile","conjunction","command"], a:0, tier:3, e:"Says it IS a zoo (no like/as) → metaphor."},
+  {q:"Choose the BEST fix for the run-on: 'The rain stopped we went outside.'", o:["The rain stopped, so we went outside.","The rain stopped we, went outside.","The rain, stopped we went outside.","The rain stopped went we outside."], a:0, tier:2, e:"Comma + 'so' joins the two ideas."},
+  {q:"Select ALL the COMPLETE sentences.", t:"multi", o:["The team practised hard.","Birds fly south in winter.","Running across the field quickly.","We scored a goal!"], a:[0,1,3], tier:3, e:"'Running across the field quickly.' is a fragment."},
+  {q:"Which words need a CAPITAL letter? (select all)", t:"multi", o:["paris","friday","table","mara"], a:[0,1,3], tier:3, e:"Place, day, name need capitals; 'table' is common."},
+  {q:"Which punctuation ends a QUESTION?", o:["?",".","!",","], a:0, tier:1, e:"Question mark."},
+  {q:"Which sentences are CORRECTLY punctuated? (select all)", t:"multi", o:["After dinner, we walked home.","Do you like apples?","i went to school monday","Wow, that was fast!"], a:[0,1,3], tier:3, e:"'i went to school monday' needs capitals."},
+  {q:"'She sang, and the crowd cheered.' The word 'and' is a —", o:["conjunction","simile","noun","verb"], a:0, tier:2, e:"It joins two ideas → conjunction."},
+  {q:"Which is a DECLARATIVE sentence?", o:["The library opens at nine.","Are you ready?","What a day!","Sit down, please."], a:0, tier:2, e:"It states a fact (.)."},
+  {q:"Best way to fix: 'I like tea I do not like coffee.'", o:["I like tea, but I do not like coffee.","I like tea but I do not, like coffee.","I like, tea I do not like coffee.","I like tea I do not like, coffee."], a:0, tier:3, e:"Comma + 'but' joins the two ideas."}
+ ]},
+
+{id:"EN19", subj:"en", icon:"🖋️", title:"Writing Studio IV", en:"写作工坊·更强脚手架 (English only)", tag:"level",
+ lesson:{ cards:[
+   {t:"Write in English only ✍️", b:"This unit is in ENGLISH ONLY. Plan first. Each sentence = ONE idea. Begin with a CAPITAL letter. End with '.', '?', or '!'. Re-read aloud: if you run out of breath, split it into two sentences."},
+   {t:"Use a simple plan", b:"Follow the frame given in each task (the words in quotes). Use linking words: First, Next, Then, Finally. Join two ideas with a comma + and / but / so."}],
+  example:{t:"Plan a sentence", prob:"How do you keep a sentence from becoming a run-on?", steps:[
+   "Step 1 — Put ONE idea in each sentence.","Step 2 — End it with '.', '?', or '!'.","Step 3 — Or join two ideas with a comma + and/but/so."]},
+  check:[{q:"In this unit you must write in —", o:["English only","Chinese","any language","numbers"], a:0, e:"English only."}] },
+ training:[
+  {q:"✍️ Narrative (English only). Write 4 sentences. Use this frame:\n1) 'One morning, I found a ____.'\n2) 'It could ____.'\n3) 'So I ____.'\n4) 'In the end, ____.'\nEach sentence must start with a CAPITAL and end with a period.", t:"open", min:90, hint:"Fill each blank, one idea per sentence. End every sentence with '.'"},
+  {q:"✍️ Descriptive (English only). Describe the beach in 4 sentences. Sentence 1 = what you SEE. Sentence 2 = what you HEAR. Sentence 3 = what you SMELL. Sentence 4 = MUST include a simile using 'as ... as' or 'like'.", t:"open", min:90, hint:"Example simile: 'the sand was as warm as toast'. One idea per sentence."},
+  {q:"✍️ Opinion (English only). Should children have a pet? Use this frame:\n'I think children ____ have a pet.'\n'First, ____.'\n'Second, ____.'\n'That is why ____.'", t:"open", min:90, hint:"Give your opinion, then two reasons in their own sentences."},
+  {q:"✍️ How-to (English only). Explain how to plant a seed in 4 sentences. Start them with: 'First,' / 'Next,' / 'Then,' / 'Finally,'. One step per sentence.", t:"open", min:90, hint:"Use First / Next / Then / Finally. End each with a period."},
+  {q:"✍️ Compound sentences (English only). Write 3 sentences about a school trip. At least ONE sentence must join two ideas with a comma + 'and', 'but', or 'so'.", t:"open", min:80, hint:"Example: 'We saw the boats, and then we ate lunch.'"}
+ ]},
+
+/* ========================= 法语 French (English-first 指令 · 进阶) ========================= */
+{id:"FR9", subj:"fr", icon:"🐚", title:"Être / Avoir Review · Pluriel", en:"是/有·复数·数字", tag:"fix",
+ lesson:{ media:[{type:"frenchpics", title:"Écoute! Listen", items:[
+     {fr:"je suis",en:"I am",emoji:"🙋"},{fr:"j'ai",en:"I have",emoji:"✋"},{fr:"nous sommes",en:"we are",emoji:"👥"},{fr:"six",en:"six",emoji:"6️⃣"}]}],
+  cards:[
+   {t:"ÊTRE = to be · AVOIR = to have", b:"ÊTRE: je suis (I am), tu es (you are), il/elle est (he/she is), nous sommes (we are).\nAVOIR: j'ai (I have), tu as (you have), il/elle a (he/she has).\nUse AVOIR for what you HAVE: 'J'ai un chien' = I have a dog (NOT 'Je suis')."},
+   {t:"Plural & numbers", b:"Add -s for most plurals: un livre → deux livres.\nNumbers: six (6), sept (7), huit (8), neuf (9), dix (10)."}],
+  example:{t:"Être or Avoir?", prob:"How do you say 'I have two cats'?", steps:[
+   "Step 1 — 'have' = avoir → j'ai.","Step 2 — plural cats = chats (add -s).","Step 3 — 'J'ai deux chats.'"]},
+  check:[{q:"'j'ai' means —", o:["I have","I am","you are","he is"], a:0, e:"avoir: j'ai = I have."}] },
+ training:[
+  {q:"Which is correct for 'I have a dog'?", o:["J'ai un chien.","Je suis un chien.","J'ai un chein.","Je es un chien."], a:0, tier:2, e:"avoir + correct spelling 'chien'."},
+  {q:"'je suis' means —", o:["I am","I have","you are","we are"], a:0, tier:1, e:"être: je suis = I am."},
+  {q:"To say 'he is tall', you use —", o:["il est","il a","je suis","tu es"], a:0, tier:2, e:"être: il est."},
+  {q:"The plural of 'un livre' is —", o:["deux livres","deux livre","un livres","livre deux"], a:0, tier:2, e:"Add -s → livres."},
+  {q:"Which matches are CORRECT? (select all)", t:"multi", o:["je suis = I am","j'ai = I have","nous sommes = we are","il a = he is"], a:[0,1,2], tier:3, e:"'il a' = he HAS, not 'he is'."},
+  {q:"'elle est gentille' means —", o:["she is kind","she has a cat","you are kind","I am kind"], a:0, tier:2, e:"être: elle est = she is."},
+  {q:"Which sentences use ÊTRE/AVOIR correctly? (select all)", t:"multi", o:["J'ai deux chats.","Tu es mon ami.","Je suis trois livres.","Nous sommes contents."], a:[0,1,3], tier:3, e:"'Je suis trois livres' should be 'J'ai'."},
+  {q:"The French word for 'eight' is —", o:["huit","six","dix","sept"], a:0, tier:1, e:"huit = 8."},
+  {q:"'nous sommes' means —", o:["we are","we have","they are","you are"], a:0, tier:2, e:"être: nous sommes = we are."},
+  {q:"Which is the correct spelling for 'a dog'?", o:["un chien","un chein","un chian","un shien"], a:0, tier:2, e:"chien (target prior spelling slip)."}
+ ]},
+
+{id:"FR10", subj:"fr", icon:"⛵", title:"Verbes · Lecture II", en:"动词·阅读", tag:"level",
+ lesson:{ media:[{type:"frenchpics", title:"Écoute! Listen", items:[
+     {fr:"je nage",en:"I swim",emoji:"🏊"},{fr:"je vais",en:"I go",emoji:"🚶"},{fr:"la mer",en:"the sea",emoji:"🌊"},{fr:"le bateau",en:"the boat",emoji:"⛵"}]}],
+  cards:[
+   {t:"Useful verbs", b:"je nage = I swim; je vais = I go; je mange = I eat; je bois = I drink; j'aime = I like."},
+   {t:"Read about Luc", b:"Read the short passage, then answer. Key words: la plage (the beach), la mer (the sea), le bateau (the boat), le dimanche (on Sundays)."}],
+  example:{t:"Find the verb", prob:"'je nage dans la mer' means —", steps:[
+   "Step 1 — 'je nage' = I swim.","Step 2 — 'dans la mer' = in the sea.","Step 3 — 'I swim in the sea.'"]},
+  check:[{q:"'la mer' means —", o:["the sea","the beach","the boat","the morning"], a:0, e:"la mer = the sea."}] },
+ training:[
+  {q:"How old is Luc?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["eleven","ten","nine","twelve"], a:0, tier:1, e:"J'ai onze ans = I am eleven."},
+  {q:"Where does Luc go on Sundays?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["to the beach","to school","to the park","to the shop"], a:0, tier:2, e:"je vais à la plage."},
+  {q:"Who goes with Luc?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["his brother (mon frère)","his sister","his dog","his friend"], a:0, tier:2, e:"avec mon frère."},
+  {q:"What colour is Luc's boat?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["red (rouge)","blue","green","white"], a:0, tier:2, e:"un bateau rouge."},
+  {q:"'je nage' means —", o:["I swim","I eat","I go","I read"], a:0, tier:1, e:"nager = to swim."},
+  {q:"'je bois' means —", o:["I drink","I eat","I swim","I go"], a:0, tier:1, e:"boire = to drink."},
+  {q:"Which verb meanings are CORRECT? (select all)", t:"multi", o:["je vais = I go","je mange = I eat","j'aime = I like","je nage = I drink"], a:[0,1,2], tier:3, e:"'je nage' = I SWIM."},
+  {q:"What does Luc's brother drink?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["juice (du jus)","water","milk","tea"], a:0, tier:2, e:"mon frère boit du jus."},
+  {q:"'le bateau' means —", o:["the boat","the sea","the beach","the fish"], a:0, tier:1, e:"le bateau = the boat."},
+  {q:"What does Luc eat at the beach?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["an ice cream (une glace)","a sandwich","an apple","bread"], a:0, tier:2, e:"je mange une glace."}
+ ]}
+];
+
+
+/* ---- 状态与存储 ---- */
+const KEY="sailor_pack_v12", PASS=0.6;
+function fresh(){ return {xp:SEED.xp, v12Best:{}, v12Done:[], mistakes:[], box:[], writing:{}, traceDays:[], started:SEED.xp}; }
+let state=load()||fresh();
+if(!state.box) state.box=[];
+if(!state.writing) state.writing={};
+if(!state.traceDays) state.traceDays=[];
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
+
+function beltFor(xp){ let b=BELTS[0]; for(const x of BELTS){ if(xp>=x.min) b=x; } return b; }
+function nextBelt(xp){ return BELTS.find(x=>x.min>xp)||null; }
+function trainCount(u){ return (u.training||[]).length; }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function jsq(s){ return String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\r?\n/g," "); }
+function lang(s){ return s==="cn"?"zh-CN":s==="fr"?"fr-FR":"en-US"; }
+function qByRef(ref){ const p=ref.split("#"); const u=UNITS.find(x=>x.id===p[0]); return u?{unit:u,item:u.training[+p[1]]}:null; }
+function boxAdd(ref){ if(state.box.indexOf(ref)<0) state.box.push(ref); }
+function boxDel(ref){ const i=state.box.indexOf(ref); if(i>=0) state.box.splice(i,1); }
+
+/* ---- 多语朗读（离线优先） ---- */
+let VOICES=[];
+function loadVoices(){ try{ VOICES=window.speechSynthesis?window.speechSynthesis.getVoices():[]; }catch(e){ VOICES=[]; } }
+if(window.speechSynthesis){ loadVoices(); window.speechSynthesis.onvoiceschanged=loadVoices; }
+function spk(text, lg){
+  lg=lg||"zh-CN";
+  try{
+    if(!('speechSynthesis' in window)){ toast("此设备无语音，看文字也可以"); return; }
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lg; u.rate=lg.indexOf("zh")===0?0.82:lg.indexOf("fr")===0?0.85:0.9; u.pitch=1.04;
+    const re=lg.indexOf("zh")===0?/zh|chinese|中文|普通话|mandarin/i:lg.indexOf("fr")===0?/fr|french|français/i:/en|english/i;
+    const v=VOICES.find(x=>re.test((x.lang||"")+(x.name||""))); if(v) u.voice=v;
+    window.speechSynthesis.speak(u);
+  }catch(e){ toast("看文字也可以哦"); }
+}
+function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2300); }
+
+/* =================== 主页 =================== */
+function renderHome(){
+  const app=document.getElementById("app");
+  const belt=beltFor(state.xp), nb=nextBelt(state.xp);
+  let pct,label;
+  if(nb){ pct=Math.round((state.xp-belt.min)/(nb.min-belt.min)*100); label="距 "+nb.cn+" 还差 "+(nb.min-state.xp)+" XP"; }
+  else { pct=100; label="已达最高军衔 🏆"; }
+  const bn=state.box.length;
+  let html=`
+  <div class="hero">
+    <div class="hero-top"><div class="brand"><div class="logo"><img src="data:image/jpeg;base64,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" alt="Sailor 头像"></div>
+      <div><h1>Sailor 航海学堂</h1><div class="sub">五科 · 预习课→训练→晋升</div></div></div>
+      <div class="ver">v12.1</div></div>
+    <div class="belt-row"><div class="belt-emblem"><div class="belt-bar" style="background:${belt.color}"></div><div class="belt-knot" style="background:${belt.color}"></div></div>
+      <div class="belt-info"><div class="belt-name">${belt.cn} <span style="color:#aeb6e0;font-weight:600">${belt.en}</span><span class="next">${label}</span></div>
+        <div class="xpbar"><div class="xpfill" id="xpfill"></div></div>
+        <div class="xpline"><span>XP <span class="xpnow">${state.xp.toLocaleString()}</span></span><span>${nb?nb.cn+" "+nb.min.toLocaleString():"MAX"}</span></div></div></div>
+    <button class="box-card ${bn?'':'empty'}" onclick="renderBox()">
+      <span class="bi">📕</span><span><span class="bt">错题本 Mistake Box</span><span class="bs">${bn?'把做错的题再练一遍，做对就清掉':'还没有错题，继续加油！'}</span></span>
+      <span class="bn">${bn}</span></button>
+  </div>`;
+  for(const key of ORDER){
+    const units=UNITS.filter(u=>u.subj===key); if(!units.length) continue;
+    const done=units.filter(u=>state.v12Done.includes(u.id)).length;
+    html+=`<div class="sec"><div class="sec-h"><span class="dot" style="background:${SUBJ[key].color}"></span><h2>${SUBJ[key].name}</h2><span class="pct">${done}/${units.length} 完成</span></div><div class="grid">`;
+    for(const u of units){
+      const best=state.v12Best[u.id], isDone=state.v12Done.includes(u.id);
+      html+=`<div class="card" onclick="startUnit('${u.id}')"><div class="stripe" style="background:${SUBJ[key].color}"></div>
+        <div class="card-top"><div class="ic">${u.icon}</div><div><div class="t">${esc(u.title)}</div><div class="en">${esc(u.en)}</div></div></div>
+        <div class="card-bot"><span class="tag ${u.tag}">${TAGS[u.tag]}</span><span class="best ${isDone?'done':''}">${isDone?'✓ '+best:'开始 Start ›'}</span></div></div>`;
+    }
+    html+=`</div></div>`;
+  }
+  html+=`<div class="actions">
+    <button class="abtn report" onclick="renderReport()">📊 家长报告</button>
+    <button class="abtn export" onclick="renderExport()">📤 导出数据包</button>
+    <button class="reset" onclick="resetAll()">↺ 重置本机进度（XP 回到 ${SEED.xp.toLocaleString()}）</button>
+  </div>
+  <div class="foot-note">20260630_Sailor学习包_v12.1 · 离线可用 · 进度保存在本设备 · 点 🔊 可朗读</div>`;
+  app.innerHTML=html;
+  requestAnimationFrame(()=>{ const f=document.getElementById("xpfill"); if(f) f.style.width=Math.max(4,Math.min(100,pct))+"%"; });
+  window.scrollTo(0,0);
+}
+
+/* =================== 预习课 =================== */
+let st=null;
+function startUnit(id){
+  const u=UNITS.find(x=>x.id===id);
+  st={unit:u, phase:"lesson", order:[], pos:0, qstate:new Array(trainCount(u)).fill("u"),
+      tier:{1:[0,0],2:[0,0],3:[0,0]}, answered:false, revealed:0, checkState:{}, redoRound:false, bonusGiven:false, clearBonus:false};
+  renderLesson();
+}
+function renderLesson(){
+  const app=document.getElementById("app"); const u=st.unit, L=u.lesson||{};
+  const lg=lang(u.subj); let body=""; const inits=[];
+  (L.cards||[]).forEach((c)=>{
+    body+=`<div class="concept"><div class="ch"><button class="spk" onclick="spk('${jsq(c.b)}','${lg}')">🔊</button><span>${esc(c.t)}</span></div><div class="cb">${esc(c.b)}</div></div>`;
+  });
+  (L.media||[]).forEach((m,mi)=>{
+    const cid="media"+mi;
+    body+=`<div class="media-wrap"><div class="media-h">🎬 ${esc(m.title||"动手试试")}</div><div id="${cid}"></div>${m.cap?`<div class="media-cap">${esc(m.cap)}</div>`:""}</div>`;
+    inits.push(()=>buildMedia(m,cid));
+  });
+  if(u.trace && u.trace.length){
+    body+=`<div class="trace-wrap"><div class="trace-h">✍️ 米字格描红：先听读，再用手指描写</div>
+      <div class="trace-chips" id="traceChips">${u.trace.map((ch,i)=>`<button class="tchip ${i===0?'on':''}" onclick="selTrace(${i})">${ch}</button>`).join("")}</div>
+      <canvas id="traceCanvas" width="260" height="260"></canvas>
+      <div class="trace-tools"><button class="ttbtn hear" onclick="spk(TRACE.cur)">🔊 读一读</button><button class="ttbtn" onclick="clearTrace()">🧽 清除重写</button></div></div>`;
+    inits.push(()=>initTrace(u.trace));
+  }
+  if(L.example){ const e=L.example;
+    body+=`<div class="example"><div class="eh">📝 例题：${esc(e.t)}</div><div class="prob">${esc(e.prob)}</div><div class="steps" id="steps"></div>
+      <button class="reveal-btn" id="revealBtn" onclick="revealStep()">▶ 展开第一步</button></div>`;
+  }
+  (L.check||[]).forEach((c,i)=>{ body+=`<div class="checkblock"><div class="cl">✅ 课中小测 ${i+1}</div>${qInner(c,"chk"+i,u.subj)}</div>`; });
+  app.innerHTML=`<div class="stage">
+    <div class="st-head"><button class="st-back" onclick="renderHome()">‹</button>
+      <div class="st-title">${esc(u.title)}<span class="en">${esc(u.en)}</span></div><div class="phase-pill learn">📘 预习课</div></div>
+    <div style="flex:1">${body}</div>
+    <div class="st-foot"><button class="bigbtn train" onclick="enterTraining()">⚓ 进入训练 ${trainCount(u)} 题 ›</button></div>
+  </div>`;
+  inits.forEach(fn=>{ try{ fn(); }catch(e){} });
+  window.scrollTo(0,0);
+}
+function revealStep(){
+  const e=st.unit.lesson.example; st.revealed++;
+  const box=document.getElementById("steps"); const n=st.revealed;
+  const div=document.createElement("div"); div.className="step"; div.innerHTML=`<span class="sn">${n}</span><span>${esc(e.steps[n-1])}</span>`; box.appendChild(div);
+  const btn=document.getElementById("revealBtn");
+  if(n>=e.steps.length){ btn.style.display="none"; } else { btn.textContent="▶ 展开第 "+(n+1)+" 步"; }
+}
+
+/* ----- 题目内层（小测/训练/错题本共用） ----- */
+function qInner(item, qid, subj){
+  const lg=lang(subj); let h="";
+  if(item.t==="open"){
+    h+=`<div class="qrow"><div class="q-prompt" style="font-size:21px;line-height:1.5">${esc(item.q)}</div></div>`;
+    if(item.hint) h+=`<div style="font-size:14.5px;color:var(--muted);margin:-2px 0 8px">💡 ${esc(item.hint)}</div>`;
+    h+=`<textarea class="open-ta" id="open_${qid}" placeholder="在这里写… write here…"></textarea>`;
+    h+=`<div id="exp_${qid}"></div>`;
+    return h;
+  }
+  if(item.passage){ h+=`<div class="passage"><button class="spk sm pspk" onclick="spk('${jsq(item.passage)}','${lg}')">🔊</button>${esc(item.passage)}</div>`; }
+  if(item.audio){ h+=`<div class="audio-row"><button class="play" onclick="spk('${jsq(item.audio)}','${lg}')">🔊 播放 Listen</button>${item.py?`<div class="pinyin">提示：${esc(item.py)}</div>`:""}</div>`; }
+  const big = item.q && [...item.q].length<=6 && /[\u4e00-\u9fa5]/.test(item.q) && item.q.indexOf("　")<0 && !item.audio && !item.passage && item.t!=="fill";
+  const readBtn = (subj==="cn" && !item.audio) ? `<button class="spk sm" onclick="spk('${jsq(item.q)}','zh-CN')">🔊</button>` : "";
+  h+=`<div class="qrow">${readBtn}<div class="q-prompt ${big?'big':''}">${esc(item.q)}</div></div>`;
+  /* ----- 填空题 ----- */
+  if(item.t==="fill"){
+    if(item.hint) h+=`<div style="font-size:14.5px;color:var(--muted);margin:2px 0 8px">💡 ${esc(item.hint)}</div>`;
+    if(item.kind==="num"){
+      h+=`<input class="fill-in numfield" id="fill_${qid}" readonly placeholder="0" inputmode="none">`;
+      const keys=["1","2","3","4","5","6","7","8","9",".","0","/"];
+      h+=`<div class="numpad">`+keys.map(c=>`<button type="button" class="npk" onclick="npKey('${qid}','${c}')">${c}</button>`).join("")+`<button type="button" class="npk npfn" onclick="npKey('${qid}','-')">−</button>`+`<button type="button" class="npk npfn" onclick="npKey('${qid}','back')">⌫</button>`+`<button type="button" class="npk npgo" onclick="submitFill('${qid}')">✓ 提交</button>`+`</div>`;
+    } else {
+      h+=`<div class="fillrow"><input class="fill-in" id="fill_${qid}" type="text" autocomplete="off" spellcheck="false" placeholder="输入答案 type answer" onkeydown="if(event.key==='Enter'){event.preventDefault();submitFill('${qid}');}"><button class="fill-go" onclick="submitFill('${qid}')">提交 ✓</button></div>`;
+    }
+    h+=`<div id="exp_${qid}"></div>`;
+    return h;
+  }
+  /* ----- 单选 / 多选（确定性洗牌） ----- */
+  const LET=["A","B","C","D","E"];
+  const n=item.o.length, perm=permFor((item.q||"")+"|v11", n);
+  const optSpk=(subj==="cn"||subj==="fr");
+  const multi=(item.t==="multi");
+  h+=`<div class="opts" id="opts_${qid}">`;
+  perm.forEach((oi,disp)=>{
+    const op=item.o[oi];
+    const a = optSpk ? `<span class="ospk" onclick="event.stopPropagation();spk('${jsq(op)}','${lg}')">🔊</span>` : "";
+    const click = multi ? `toggleMulti('${qid}',${oi},this)` : `pick('${qid}',${oi})`;
+    h+=`<button class="opt" data-i="${oi}" onclick="${click}"><span class="k">${LET[disp]}</span><span class="otext">${esc(op)}</span>${a}</button>`;
+  });
+  h+=`</div>`;
+  if(multi){ h+=`<div class="multi-go-row"><button class="fill-go" id="mgo_${qid}" onclick="submitMulti('${qid}')">提交多选 ✓</button><span class="multi-tip">可选多个 · 全对才得分</span></div>`; }
+  h+=`<div id="exp_${qid}"></div>`;
+  return h;
+}
+/* ----- 确定性洗牌：按题面，稳定；训练/重做/错题本一致 ----- */
+function hashStr(s){ let h=2166136261>>>0; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; }
+function permFor(key,n){ const a=[]; for(let i=0;i<n;i++) a.push(i); let h=hashStr(key)||1; for(let i=n-1;i>0;i--){ h=(Math.imul(h,9301)+49297)>>>0; const j=h%(i+1); const t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function markOpts(qid, chosen, correct){
+  document.querySelectorAll("#opts_"+qid+" .opt").forEach(o=>{ o.setAttribute("disabled",""); const idx=+o.getAttribute("data-i");
+    if(idx===correct) o.classList.add("ok"); else if(idx===chosen) o.classList.add("no"); else o.classList.add("dim"); });
+}
+/* ----- 多选 ----- */
+function toggleMulti(qid,oi,btn){
+  if(qid==="bx"){ if(bx&&bx.answered) return; } else if(st&&st.answered) return;
+  btn.classList.toggle("sel");
+}
+function selectedSet(qid){ const s=[]; document.querySelectorAll("#opts_"+qid+" .opt.sel").forEach(o=>s.push(+o.getAttribute("data-i"))); return s; }
+function setEq(a,b){ if(a.length!==b.length) return false; const s=new Set(a); for(const x of b){ if(!s.has(x)) return false; } return true; }
+function markMulti(qid, chosen, correct){
+  const cset=new Set(correct), chset=new Set(chosen);
+  document.querySelectorAll("#opts_"+qid+" .opt").forEach(o=>{ o.setAttribute("disabled",""); const idx=+o.getAttribute("data-i"); o.classList.remove("sel");
+    if(cset.has(idx)) o.classList.add("ok"); else if(chset.has(idx)) o.classList.add("no"); else o.classList.add("dim"); });
+}
+function submitMulti(qid){
+  const item = (qid==="bx") ? qByRef(bx.queue[bx.pos]).item : st.unit.training[st.order[st.pos]];
+  if(qid==="bx"){ if(bx.answered) return; } else if(st.answered) return;
+  const chosen=selectedSet(qid);
+  if(chosen.length===0){ toast("请至少选一个 ✦"); return; }
+  const ok = setEq(chosen, item.a);
+  const go=document.getElementById("mgo_"+qid); if(go) go.style.display="none";
+  markMulti(qid, chosen, item.a);
+  finishQ(qid, ok, item, chosen.map(i=>item.o[i]).join("、"), item.a.map(i=>item.o[i]).join("、"));
+}
+/* ----- 填空判分（规范化：大小写/空格/句号；数值与分数等价） ----- */
+function normAns(s){ return (""+s).trim().toLowerCase().replace(/\s+/g,"").replace(/[。．.]+$/,""); }
+function asNum(s){ if(/^-?(\d+(\.\d+)?|\.\d+)$/.test(s)) return parseFloat(s); const m=s.match(/^(-?\d+)\/(\d+)$/); if(m){ const dd=+m[2]; if(dd!==0) return (+m[1])/dd; } return null; }
+function fillOk(input, ans){
+  const accepts = Array.isArray(ans)?ans:[ans];
+  const ni=normAns(input), vi=asNum(ni);
+  for(const a of accepts){ const na=normAns(a); if(ni===na) return true; const va=asNum(na); if(vi!==null && va!==null && Math.abs(vi-va)<1e-9) return true; }
+  return false;
+}
+function npKey(qid,ch){ const inp=document.getElementById("fill_"+qid); if(!inp||inp.disabled)return; if(ch==="back"){ inp.value=inp.value.slice(0,-1); } else { if(inp.value.length<12) inp.value+=ch; } }
+function submitFill(qid){
+  const item = (qid==="bx") ? qByRef(bx.queue[bx.pos]).item : st.unit.training[st.order[st.pos]];
+  if(qid==="bx"){ if(bx.answered) return; } else if(st.answered) return;
+  const inp=document.getElementById("fill_"+qid); const val=inp?inp.value:"";
+  if(!val.trim()){ toast("请先输入答案 ✍️"); return; }
+  const ok = fillOk(val, item.a);
+  if(inp){ inp.setAttribute("disabled",""); inp.classList.add(ok?"ok":"no"); }
+  const go=inp&&inp.parentNode?inp.parentNode.querySelector(".fill-go"):null; if(go) go.style.display="none";
+  finishQ(qid, ok, item, val.trim(), Array.isArray(item.a)?item.a[0]:(""+item.a));
+}
+/* ----- 多选/填空 统一评分（训练 + 错题本，复用真实路径） ----- */
+function finishQ(qid, ok, item, xLabel, rLabel){
+  const expEl=document.getElementById("exp_"+qid);
+  if(qid==="bx"){
+    bx.answered=true; const ref=bx.queue[bx.pos];
+    if(ok){ boxDel(ref); bx.fixed++; state.xp+=5; } save();
+    if(expEl) expEl.innerHTML=`<div class="explain ${ok?'ok':'no'}">${ok?'<b>答对了！✅ 从错题本清掉</b><br>':'<b>再想想 ❌ 仍留在错题本</b><br>'}${esc(item.e||"")}</div>`;
+    const last=(bx.pos>=bx.queue.length-1), foot=document.getElementById("boxFoot");
+    if(ok){ foot.innerHTML=`<button class="bigbtn next" onclick="boxNext()">${last?'完成 Finish ›':'下一题 Next ›'}</button>`; }
+    else { foot.innerHTML=`<div class="foot2"><button class="bigbtn retry" onclick="boxRetry()">🔁 再试一次</button><button class="bigbtn next" onclick="boxNext()">${last?'完成 ›':'跳过 ›'}</button></div>`; }
+    return;
+  }
+  st.answered=true;
+  const qi=st.order[st.pos], ref=st.unit.id+"#"+qi, tier=item.tier||1, first=(st.qstate[qi]==="u");
+  if(first) st.tier[tier][1]++;
+  if(ok){ if(st.qstate[qi]!=="c"){ st.tier[tier][0]++; state.xp+=(tier===3?20:tier===2?14:10); } st.qstate[qi]="c"; boxDel(ref); }
+  else { st.qstate[qi]="w"; boxAdd(ref); if(first){ state.xp+=3; state.mistakes.push({u:st.unit.title,q:(item.q||"").replace(/　/g,"__"),x:xLabel,r:rLabel,tier:tier}); } }
+  save();
+  if(expEl) expEl.innerHTML=`<div class="explain ${ok?'ok':'no'}">${ok?'<b>答对了！✅ Correct</b><br>':'<b>再想想 ❌ Not quite</b><br>'}${esc(item.e||"")}</div>`;
+  const last=(st.pos>=st.order.length-1), foot=document.getElementById("trainFoot");
+  if(ok){ foot.innerHTML=`<button class="bigbtn next" onclick="advance()">${last?'完成 Finish ›':'下一题 Next ›'}</button>`; }
+  else { foot.innerHTML=`<div class="foot2"><button class="bigbtn retry" onclick="retry()">🔁 再试一次</button><button class="bigbtn next" onclick="advance()">${last?'完成 ›':'跳过 Skip ›'}</button></div>`; }
+}
+
+/* ----- 作答 ----- */
+function pick(qid, i){
+  if(qid==="bx"){ return boxAnswer(qid, i); }   // 错题本走专用处理
+  if(qid.indexOf("chk")===0){
+    if(st.checkState[qid]) return; st.checkState[qid]=true;
+    const item=st.unit.lesson.check[parseInt(qid.slice(3))];
+    markOpts(qid,i,item.a); const ok=(i===item.a); if(ok){ state.xp+=6; } save();
+    document.getElementById("exp_"+qid).innerHTML=`<div class="explain ${ok?'ok':'no'}">${ok?'<b>答对了！✅</b><br>':'<b>再看看 ❌</b><br>'}${esc(item.e||"")}</div>`;
+    return;
+  }
+  if(st.answered) return; st.answered=true;
+  const qi=st.order[st.pos], item=st.unit.training[qi], ref=st.unit.id+"#"+qi;
+  markOpts(qid,i,item.a);
+  const ok=(i===item.a), tier=item.tier||1, first=(st.qstate[qi]==="u");
+  if(first) st.tier[tier][1]++;
+  if(ok){ if(st.qstate[qi]!=="c"){ st.tier[tier][0]++; state.xp+=(tier===3?20:tier===2?14:10); } st.qstate[qi]="c"; boxDel(ref); }
+  else { st.qstate[qi]="w"; boxAdd(ref); if(first){ state.xp+=3; state.mistakes.push({u:st.unit.title,q:item.q.replace(/　/g,"__"),x:item.o[i],r:item.o[item.a],tier:tier}); } }
+  save();
+  document.getElementById("exp_"+qid).innerHTML=`<div class="explain ${ok?'ok':'no'}">${ok?'<b>答对了！✅ Correct</b><br>':'<b>再想想 ❌ Not quite</b><br>'}${esc(item.e||"")}</div>`;
+  const last=(st.pos>=st.order.length-1), foot=document.getElementById("trainFoot");
+  if(ok){ foot.innerHTML=`<button class="bigbtn next" onclick="advance()">${last?'完成 Finish ›':'下一题 Next ›'}</button>`; }
+  else { foot.innerHTML=`<div class="foot2"><button class="bigbtn retry" onclick="retry()">🔁 再试一次</button><button class="bigbtn next" onclick="advance()">${last?'完成 ›':'跳过 Skip ›'}</button></div>`; }
+}
+function retry(){ st.answered=false; renderTraining(); }
+function enterTraining(){ st.phase="train"; st.redoRound=false; st.order=st.qstate.map((_,i)=>i); st.pos=0; st.answered=false; renderTraining(); }
+function renderTraining(){
+  const app=document.getElementById("app"); const u=st.unit, qi=st.order[st.pos], item=u.training[qi], tier=item.tier||1;
+  let dots=""; for(let k=0;k<st.order.length;k++){ const ii=st.order[k]; let c="pd"; if(k<st.pos) c+=(st.qstate[ii]==="c")?" ok":" no"; else if(k===st.pos) c+=" on"; dots+=`<span class="${c}"></span>`; }
+  const isOpen=item.t==="open";
+  const badge=isOpen?`<span class="tierbadge t2">✍️ 写作 Writing</span>`:`<span class="tierbadge t${tier}">${"★".repeat(tier)} ${tier===3?"挑战":tier===2?"标准":"基础"}</span>`;
+  const label=st.redoRound?`🔁 重做错题 ${st.pos+1}/${st.order.length}`:`训练 ${st.pos+1}/${st.order.length}`;
+  app.innerHTML=`<div class="stage">
+    <div class="st-head"><button class="st-back" onclick="renderHome()">‹</button><div class="st-title">${esc(u.title)}<span class="en">${label}</span></div><div class="dots">${dots}</div></div>
+    <div class="qwrap">${badge}${qInner(item,"t",u.subj)}</div>
+    <div class="st-foot" id="trainFoot"></div></div>`;
+  if(isOpen){ const f=document.getElementById("trainFoot"); if(f) f.innerHTML=`<button class="bigbtn go" onclick="openSubmit()">完成 Done ✓</button>`; }
+  window.scrollTo(0,0);
+}
+function openSubmit(){
+  const qi=st.order[st.pos], item=st.unit.training[qi];
+  const ta=document.getElementById("open_t"); const txt=ta?ta.value.trim():"";
+  const min=item.min||12;
+  if(txt.length<min){ toast("再多写几句吧 ✍️ (write a bit more)"); return; }
+  if(st.qstate[qi]!=="c"){ state.xp+=12; }
+  st.qstate[qi]="c";
+  state.writing[st.unit.id+"#"+qi]={unit:st.unit.title, q:item.q, text:txt};
+  save();
+  document.getElementById("exp_t").innerHTML=`<div class="explain ok"><b>写得好！✅ 已保存，家长可在报告里看到</b></div>`;
+  const f=document.getElementById("trainFoot"); const last=(st.pos>=st.order.length-1);
+  f.innerHTML=`<button class="bigbtn next" onclick="advance()">${last?'完成 Finish ›':'下一题 Next ›'}</button>`;
+}
+function advance(){ st.answered=false; st.pos++; if(st.pos>=st.order.length){ showResult(); return; } renderTraining(); }
+function showResult(){
+  const u=st.unit; const correct=st.qstate.filter(s=>s==="c").length, total=st.qstate.length;
+  const wrong=st.qstate.map((s,i)=>s==="w"?i:-1).filter(i=>i>=0); const scoreStr=correct+"/"+total;
+  const prev=state.v12Best[u.id], pc=prev?parseInt(prev.split("/")[0]):-1;
+  if(correct>=pc) state.v12Best[u.id]=scoreStr;
+  if(!state.v12Done.includes(u.id)) state.v12Done.push(u.id);
+  if(u.trace && u.traceDay && state.traceDays.indexOf(u.traceDay)<0){ state.traceDays.push(u.traceDay); }
+  let bonus=0; if(!st.bonusGiven){ st.bonusGiven=true; bonus+=25; } if(wrong.length===0 && !st.clearBonus){ st.clearBonus=true; bonus+=25; }
+  state.xp+=bonus; save();
+  const ratio=total?correct/total:1; let emoji,head;
+  if(wrong.length===0 && ratio>=1){emoji="🏆";head="全部答对！Perfect!";}
+  else if(ratio>=0.8){emoji="🌟";head="太棒了！Great job!";}
+  else if(ratio>=PASS){emoji="⚓";head="晋升成功！Promoted!";}
+  else {emoji="💪";head="继续加油！Keep going!";}
+  const belt=beltFor(state.xp);
+  const tl=[1,2,3].map(t=>st.tier[t][1]?`<span class="tierscore ts${t}">${"★".repeat(t)} ${st.tier[t][0]}/${st.tier[t][1]}</span>`:"").join("");
+  const redoBtn=wrong.length>0?`<button class="home-btn redo-btn" onclick="startRedo()">🔁 重做错题（${wrong.length} 题）</button>`:"";
+  document.getElementById("app").innerHTML=`<div class="result"><div class="emoji">${emoji}</div><h2>${head}</h2>
+    <div class="score">${scoreStr}</div><div class="tierline">${tl}</div>
+    <div class="xpgain">⚡ XP ${state.xp.toLocaleString()}${bonus?'（+'+bonus+'）':''}　·　${belt.cn} ${belt.en}</div>
+    ${wrong.length>0?`<div style="font-size:13.5px;color:var(--muted);margin:-4px 0 14px">做错的题已进错题本，可在这里或主页错题本重做 ✨</div>`:""}
+    ${redoBtn}<button class="home-btn" onclick="renderHome()">回到主页 Home ›</button></div>`;
+  if(wrong.length===0 && ratio>=0.8) confetti();
+  window.scrollTo(0,0);
+}
+function startRedo(){
+  const wrong=st.qstate.map((s,i)=>s==="w"?i:-1).filter(i=>i>=0);
+  if(!wrong.length){ renderHome(); return; }
+  st.order=wrong; st.pos=0; st.answered=false; st.redoRound=true; st.phase="train"; renderTraining();
+}
+function confetti(){
+  const c=document.createElement("div"); c.className="conf"; const cols=["#ff5d5d","#23a7ff","#22c55e","#ffb020","#a855f7","#14b8a6","#ffd24a"];
+  for(let i=0;i<46;i++){ const s=document.createElement("i"); s.style.left=Math.random()*100+"%"; s.style.background=cols[i%cols.length]; s.style.animationDuration=(1.6+Math.random()*1.4)+"s"; s.style.animationDelay=(Math.random()*0.4)+"s"; c.appendChild(s); }
+  document.body.appendChild(c); setTimeout(()=>c.remove(),3500);
+}
+
+/* =================== 错题本（独立界面） =================== */
+let bx=null;
+function renderBox(){
+  if(!state.box.length){ document.getElementById("app").innerHTML=`<div class="result"><div class="emoji">🎉</div><h2>错题本是空的！</h2>
+    <div style="font-size:15px;color:var(--muted);margin:8px 0 18px">太棒了，所有题都掌握啦。</div>
+    <button class="home-btn" onclick="renderHome()">回到主页 Home ›</button></div>`; window.scrollTo(0,0); return; }
+  bx={queue:state.box.slice(), pos:0, answered:false, fixed:0}; renderBoxQ();
+}
+function renderBoxQ(){
+  const ref=bx.queue[bx.pos], pair=qByRef(ref);
+  if(!pair){ bx.pos++; if(bx.pos>=bx.queue.length){ boxDone(); return; } return renderBoxQ(); }
+  const u=pair.unit, item=pair.item, tier=item.tier||1, stars="★".repeat(tier);
+  let dots=""; for(let k=0;k<bx.queue.length;k++){ let c="pd"; if(k<bx.pos) c+=" ok"; else if(k===bx.pos) c+=" on"; dots+=`<span class="${c}"></span>`; }
+  document.getElementById("app").innerHTML=`<div class="stage">
+    <div class="st-head"><button class="st-back" onclick="renderHome()">‹</button><div class="st-title">📕 错题本 Mistake Box<span class="en">${esc(u.title)} · ${bx.pos+1}/${bx.queue.length}</span></div><div class="dots">${dots}</div></div>
+    <div class="qwrap"><span class="tierbadge t${tier}">${stars} 强化重做</span>${qInner(item,"bx",u.subj)}</div>
+    <div class="st-foot" id="boxFoot"></div></div>`;
+  window.scrollTo(0,0);
+}
+function boxAnswer(qid,i){
+  if(bx.answered) return; bx.answered=true;
+  const ref=bx.queue[bx.pos], pair=qByRef(ref), item=pair.item;
+  markOpts(qid,i,item.a); const ok=(i===item.a);
+  if(ok){ boxDel(ref); bx.fixed++; state.xp+=5; } save();
+  document.getElementById("exp_"+qid).innerHTML=`<div class="explain ${ok?'ok':'no'}">${ok?'<b>答对了！✅ 从错题本清掉</b><br>':'<b>再想想 ❌ 仍留在错题本</b><br>'}${esc(item.e||"")}</div>`;
+  const last=(bx.pos>=bx.queue.length-1), foot=document.getElementById("boxFoot");
+  if(ok){ foot.innerHTML=`<button class="bigbtn next" onclick="boxNext()">${last?'完成 Finish ›':'下一题 Next ›'}</button>`; }
+  else { foot.innerHTML=`<div class="foot2"><button class="bigbtn retry" onclick="boxRetry()">🔁 再试一次</button><button class="bigbtn next" onclick="boxNext()">${last?'完成 ›':'跳过 ›'}</button></div>`; }
+}
+function boxRetry(){ bx.answered=false; renderBoxQ(); }
+function boxNext(){ bx.answered=false; bx.pos++; if(bx.pos>=bx.queue.length){ boxDone(); return; } renderBoxQ(); }
+function boxDone(){
+  const left=state.box.length;
+  document.getElementById("app").innerHTML=`<div class="result"><div class="emoji">${left?'💪':'🎉'}</div>
+    <h2>${left?'这一轮完成！':'错题全部攻克！'}</h2>
+    <div class="score" style="font-size:40px">清掉 ${bx.fixed} 题</div>
+    <div style="font-size:14px;color:var(--muted);margin:6px 0 18px">${left?('错题本还剩 '+left+' 题，可以再练一轮。'):'错题本清空啦，太厉害了！'}</div>
+    ${left?`<button class="home-btn redo-btn" onclick="renderBox()">🔁 再练一轮（${left} 题）</button>`:""}
+    <button class="home-btn" onclick="renderHome()">回到主页 Home ›</button></div>`;
+  if(!left) confetti(); window.scrollTo(0,0);
+}
+
+/* =================== 多媒体交互组件 =================== */
+function buildMedia(m, cid){
+  const el=document.getElementById(cid); if(!el) return;
+  if(m.type==="fractionbar") return mFractionBar(el);
+  if(m.type==="decimalgrid") return mDecimalGrid(el);
+  if(m.type==="angleline") return mAngleLine(el);
+  if(m.type==="gears") return mGears(el);
+  if(m.type==="lightray") return mLightRay(el);
+  if(m.type==="soundwave") return mSoundWave(el);
+  if(m.type==="frenchpics") return mFrenchPics(el, m.items||[]);
+  if(m.type==="foodchain") return mFoodChain(el);
+  if(m.type==="rockcycle") return mRockCycle(el);
+  if(m.type==="statesmatter") return mStatesMatter(el);
+}
+function mFoodChain(el){
+  el._items=[{e:"☀️",n:"Sun",cap:"The Sun gives the energy that starts every food chain."},{e:"🌱",n:"Grass",cap:"Grass is a PRODUCER — it makes its own food using sunlight."},{e:"🦗",n:"Grasshopper",cap:"The grasshopper eats grass (a herbivore / first consumer)."},{e:"🐸",n:"Frog",cap:"The frog eats the grasshopper (a second consumer)."},{e:"🦅",n:"Hawk",cap:"The hawk eats the frog — a predator at the top."}]; el._i=0;
+  el._draw=function(){ const it=el._items; const row=it.map((x,i)=>`<div class="chain-card ${i===el._i?'on':''}"><div class="ce">${x.e}</div><div class="cn">${x.n}</div></div>`).join('<span class="chain-arrow">➡️</span>');
+    el.innerHTML=`<div class="chain-row">${row}</div><div class="mreadout" id="fcCap">${it[el._i].cap}</div><div class="mctrl"><button class="mbtn on" onclick="mFCstep(this)">▶ 能量流动 Energy ›</button></div>`; };
+  el._draw();
+}
+function mFCstep(b){ const r=b.closest("[id^=media]"); r._i=(r._i+1)%r._items.length; r._draw(); }
+function mRockCycle(el){
+  el._items=[{e:"🌋",n:"Igneous",cap:"Hot magma cools and hardens into IGNEOUS rock."},{e:"🏖️",n:"Sedimentary",cap:"Weathering breaks rock into bits that press together into SEDIMENTARY rock."},{e:"💎",n:"Metamorphic",cap:"Heat and pressure underground change rock into METAMORPHIC rock — which can melt back into magma."}]; el._i=0;
+  el._draw=function(){ const it=el._items; const row=it.map((x,i)=>`<div class="chain-card ${i===el._i?'on':''}"><div class="ce">${x.e}</div><div class="cn">${x.n}</div></div>`).join('<span class="chain-arrow">🔁</span>');
+    el.innerHTML=`<div class="chain-row">${row}</div><div class="mreadout" id="rcCap">${it[el._i].cap}</div><div class="mctrl"><button class="mbtn on" onclick="mRCstep(this)">▶ 岩石循环 Rock cycle ›</button></div>`; };
+  el._draw();
+}
+function mRCstep(b){ const r=b.closest("[id^=media]"); r._i=(r._i+1)%r._items.length; r._draw(); }
+function mStatesMatter(el){
+  el._items=[{e:"🧊",n:"Solid",cap:"In a SOLID (ice), particles are packed tightly and only vibrate in place — it keeps its own shape."},{e:"💧",n:"Liquid",cap:"Add heat and the solid MELTS into a LIQUID (water) — particles slide past each other and take the shape of the container."},{e:"☁️",n:"Gas",cap:"Add more heat and the liquid BOILS into a GAS (water vapour) — particles spread far apart and fill all the space."}]; el._i=0;
+  el._draw=function(){ const it=el._items; const row=it.map((x,i)=>`<div class="chain-card ${i===el._i?'on':''}"><div class="ce">${x.e}</div><div class="cn">${x.n}</div></div>`).join('<span class="chain-arrow">🔥</span>');
+    el.innerHTML=`<div class="chain-row">${row}</div><div class="mreadout" id="smCap">${it[el._i].cap}</div><div class="mctrl"><button class="mbtn on" onclick="mSMstep(this)">▶ Add heat 加热 ›</button></div>`; };
+  el._draw();
+}
+function mSMstep(b){ const r=b.closest("[id^=media]"); r._i=(r._i+1)%r._items.length; r._draw(); }
+function mFractionBar(el){
+  let N=4;
+  function draw(){
+    let segs=""; for(let i=0;i<N;i++) segs+=`<div class="fseg" onclick="this.classList.toggle('on');mFBupdate(this)"></div>`;
+    let btns=""; for(let d=2;d<=8;d++) btns+=`<button class="mbtn ${d===N?'on':''}" onclick="mFBset(${d})">${d}份</button>`;
+    el.innerHTML=`<div class="mctrl">切成几份：${btns}</div><div class="fbar" id="fbarSegs">${segs}</div><div class="mreadout" id="fbarOut">涂色：0/${N} = 0</div>`;
+  }
+  el._set=(d)=>{ N=d; draw(); };
+  draw();
+}
+function mFBset(d){ const root=[].slice.call(document.querySelectorAll("[id^=media]")).find(r=>r.querySelector("#fbarSegs")); if(root&&root._set) root._set(d); }
+function mFBupdate(seg){ const root=seg.closest("[id^=media]"); const on=root.querySelectorAll(".fseg.on").length; const N=root.querySelectorAll(".fseg").length; root.querySelector("#fbarOut").textContent="涂色："+on+"/"+N+" = "+(Math.round(on/N*100)/100); }
+function mDecimalGrid(el){
+  let cells=""; for(let i=0;i<100;i++) cells+=`<div class="dcell" onclick="this.classList.toggle('on');mDGupdate(this)"></div>`;
+  el.innerHTML=`<div class="dgrid">${cells}</div><div class="mreadout" id="dgOut">涂色：0/100 = 0.00 = 0%</div><div class="mctrl"><button class="mbtn" onclick="mDGclear(this)">🧽 清除</button></div>`;
+}
+function mDGupdate(c){ const root=c.closest("[id^=media]"); const on=root.querySelectorAll(".dcell.on").length; root.querySelector("#dgOut").textContent="涂色："+on+"/100 = "+(on/100).toFixed(2)+" = "+on+"%"; }
+function mDGclear(b){ const root=b.closest("[id^=media]"); root.querySelectorAll(".dcell.on").forEach(c=>c.classList.remove("on")); root.querySelector("#dgOut").textContent="涂色：0/100 = 0.00 = 0%"; }
+function mAngleLine(el){
+  el.innerHTML=`<svg class="msvg" viewBox="0 0 300 160" width="300" height="160">
+    <line x1="20" y1="120" x2="280" y2="120" stroke="#9aa1c4" stroke-width="3"/>
+    <line id="alRay" x1="150" y1="120" x2="270" y2="120" stroke="#23a7ff" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="150" cy="120" r="5" fill="#11183a"/>
+    <text id="alL" x="95" y="105" font-size="15" font-weight="800" fill="#a855f7">110°</text>
+    <text id="alR" x="200" y="110" font-size="15" font-weight="800" fill="#23a7ff">70°</text>
+  </svg><div class="mctrl">调整角度 <input type="range" min="20" max="160" value="70" oninput="mALupd(this)"></div>
+  <div class="mreadout" id="alOut">两个角加起来 = 180°</div>`;
+}
+function mALupd(r){ const A=+r.value, root=r.closest("[id^=media]"); const rad=A*Math.PI/180;
+  const x=150+120*Math.cos(rad), y=120-120*Math.sin(rad);
+  root.querySelector("#alRay").setAttribute("x2",x.toFixed(1)); root.querySelector("#alRay").setAttribute("y2",y.toFixed(1));
+  root.querySelector("#alR").textContent=A+"°"; root.querySelector("#alL").textContent=(180-A)+"°";
+  root.querySelector("#alOut").textContent=A+"° + "+(180-A)+"° = 180°  （直线上两角之和永远是 180°）"; }
+function mGears(el){
+  function gear(cx,cy,r,col,dir){ let teeth=""; const n=12; for(let i=0;i<n;i++){ const a=i*2*Math.PI/n; const x=cx+Math.cos(a)*r, y=cy+Math.sin(a)*r; teeth+=`<rect x="${(x-5).toFixed(1)}" y="${(y-5).toFixed(1)}" width="10" height="10" rx="2" fill="${col}" transform="rotate(${(i*30).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`; }
+    return `<g class="gear ${dir}"><circle cx="${cx}" cy="${cy}" r="${r}" fill="${col}"/>${teeth}<circle cx="${cx}" cy="${cy}" r="${r*0.45}" fill="#fff"/><circle cx="${cx}" cy="${cy}" r="6" fill="${col}"/></g>`; }
+  el.innerHTML=`<svg class="msvg" viewBox="0 0 300 150" width="300" height="150">${gear(108,75,42,"#23a7ff","spin1")}${gear(196,75,42,"#a855f7","spin2")}</svg>
+    <div class="mctrl"><button class="mbtn on" id="gBtn" onclick="mGearToggle(this)">⏸ 暂停</button></div>
+    <div class="mreadout">两个齿轮咬在一起，会朝<b>相反方向</b>转动 🔵➡️ 🟣⬅️</div>`;
+}
+function mGearToggle(b){ const root=b.closest("[id^=media]"); const gs=root.querySelectorAll(".gear");
+  const running=b.classList.contains("on");
+  gs.forEach(g=>g.style.animationPlayState=running?"paused":"running"); b.classList.toggle("on"); b.textContent=running?"▶ 转动":"⏸ 暂停"; }
+function mLightRay(el){
+  el.innerHTML=`<svg class="msvg" viewBox="0 0 300 170" width="300" height="170">
+    <rect x="20" y="150" width="260" height="10" fill="#9aa1c4"/>
+    <line x1="150" y1="150" x2="150" y2="40" stroke="#c9d4f0" stroke-width="2" stroke-dasharray="6 5"/>
+    <line id="lrIn" x1="60" y1="55" x2="150" y2="150" stroke="#ffb020" stroke-width="4" stroke-linecap="round"/>
+    <line id="lrOut" x1="150" y1="150" x2="240" y2="55" stroke="#ff5d5d" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="150" cy="150" r="4" fill="#11183a"/>
+    <text x="150" y="34" font-size="12" fill="#6b7396" text-anchor="middle">法线 normal</text></svg>
+    <div class="mctrl">入射角 <input type="range" min="15" max="75" value="35" oninput="mLRupd(this)"></div>
+    <div class="mreadout" id="lrOutT">入射角 = 反射角 = 35°</div>`;
+}
+function mLRupd(r){ const t=+r.value, root=r.closest("[id^=media]"), rad=t*Math.PI/180, L=120;
+  const ix=150-L*Math.sin(rad), iy=150-L*Math.cos(rad), ox=150+L*Math.sin(rad), oy=150-L*Math.cos(rad);
+  root.querySelector("#lrIn").setAttribute("x1",ix.toFixed(1)); root.querySelector("#lrIn").setAttribute("y1",iy.toFixed(1));
+  root.querySelector("#lrOut").setAttribute("x2",ox.toFixed(1)); root.querySelector("#lrOut").setAttribute("y2",oy.toFixed(1));
+  root.querySelector("#lrOutT").textContent="入射角 = 反射角 = "+t+"°  （光反射时，两个角永远相等）"; }
+function mSoundWave(el){
+  el._A=22; el._f=2;
+  el.innerHTML=`<svg class="msvg" viewBox="0 0 300 110" width="300" height="110"><path id="swPath" fill="none" stroke="#23a7ff" stroke-width="4"/></svg>
+    <div class="mctrl"><button class="mbtn" id="swVol" onclick="mSWvol(this)">🔊 音量：小</button><button class="mbtn" id="swPit" onclick="mSWpit(this)">🎵 音高：低</button></div>
+    <div class="mreadout">波越<b>大</b>=越响亮；波越<b>密</b>=音越高</div>`;
+  mSWdraw(el);
+}
+function mSWdraw(root){ const A=root._A, f=root._f; let d=""; for(let x=0;x<=300;x+=3){ const y=55-A*Math.sin(x/300*f*2*Math.PI); d+=(x===0?"M":"L")+x+" "+y.toFixed(1)+" "; } root.querySelector("#swPath").setAttribute("d",d); }
+function mSWvol(b){ const root=b.closest("[id^=media]"); root._A = root._A>30?22:40; b.textContent="🔊 音量："+(root._A>30?"大":"小"); mSWdraw(root); }
+function mSWpit(b){ const root=b.closest("[id^=media]"); root._f = root._f>=4?2:4; b.textContent="🎵 音高："+(root._f>=4?"高":"低"); mSWdraw(root); }
+function mFrenchPics(el, items){
+  el.innerHTML=`<div class="fpics">${items.map((it,i)=>`<div class="fpic" onclick="mFP(this,'${jsq(it.fr)}')"><div class="e">${it.emoji}</div><div class="w">${esc(it.fr)}</div><div class="m">${esc(it.en)}</div></div>`).join("")}</div><div class="media-cap">点图片听法语发音 🔊</div>`;
+}
+function mFP(card, fr){ card.closest(".fpics").querySelectorAll(".fpic").forEach(c=>c.classList.remove("on")); card.classList.add("on"); spk(fr,"fr-FR"); }
+
+/* =================== 描红板 =================== */
+const TRACE={chars:[],cur:"",draw:false,ctx:null,last:null};
+function initTrace(chars){
+  TRACE.chars=chars; TRACE.cur=chars[0];
+  const cv=document.getElementById("traceCanvas"); if(!cv) return;
+  cv.style.touchAction="none"; TRACE.ctx=cv.getContext("2d"); drawTrace();
+  const pos=(e)=>{ const r=cv.getBoundingClientRect(); return {x:(e.clientX-r.left)*(cv.width/r.width), y:(e.clientY-r.top)*(cv.height/r.height)}; };
+  const dot=(p)=>{ const c=TRACE.ctx; c.fillStyle="#ff5d5d"; c.beginPath(); c.arc(p.x,p.y,6,0,Math.PI*2); c.fill(); };
+  const line=(p)=>{ const c=TRACE.ctx; c.strokeStyle="#ff5d5d"; c.lineWidth=13; c.lineCap="round"; c.lineJoin="round"; c.beginPath(); c.moveTo(TRACE.last.x,TRACE.last.y); c.lineTo(p.x,p.y); c.stroke(); TRACE.last=p; };
+  if('PointerEvent' in window){
+    cv.onpointerdown=(e)=>{ e.preventDefault(); try{cv.setPointerCapture(e.pointerId);}catch(_){} TRACE.draw=true; TRACE.last=pos(e); dot(TRACE.last); };
+    cv.onpointermove=(e)=>{ if(!TRACE.draw) return; e.preventDefault(); line(pos(e)); };
+    const stop=(e)=>{ if(TRACE.draw){ TRACE.draw=false; try{cv.releasePointerCapture(e.pointerId);}catch(_){} } };
+    cv.onpointerup=stop; cv.onpointercancel=stop; cv.onpointerleave=stop;
+  } else {
+    cv.onmousedown=(e)=>{ TRACE.draw=true; TRACE.last=pos(e); dot(TRACE.last); };
+    cv.onmousemove=(e)=>{ if(!TRACE.draw) return; line(pos(e)); };
+    window.addEventListener("mouseup",()=>{ TRACE.draw=false; });
+    cv.ontouchstart=(e)=>{ e.preventDefault(); TRACE.draw=true; TRACE.last=pos(e.touches[0]); dot(TRACE.last); };
+    cv.ontouchmove=(e)=>{ e.preventDefault(); if(!TRACE.draw) return; line(pos(e.touches[0])); };
+    cv.ontouchend=()=>{ TRACE.draw=false; };
+  }
+}
+function drawTrace(){
+  const c=TRACE.ctx; if(!c) return; const W=260;
+  c.clearRect(0,0,W,W); c.fillStyle="#fff"; c.fillRect(0,0,W,W);
+  c.strokeStyle="#f0c8c8"; c.lineWidth=1; c.setLineDash([6,5]);
+  c.beginPath(); c.moveTo(W/2,0); c.lineTo(W/2,W); c.moveTo(0,W/2); c.lineTo(W,W/2); c.moveTo(0,0); c.lineTo(W,W); c.moveTo(W,0); c.lineTo(0,W); c.stroke(); c.setLineDash([]);
+  c.strokeStyle="#e3a9a9"; c.strokeRect(4,4,W-8,W-8);
+  c.fillStyle="rgba(40,50,90,.16)"; c.textAlign="center"; c.textBaseline="middle";
+  c.font='190px "PingFang SC","Hiragino Sans GB","Microsoft YaHei","Heiti SC","WenQuanYi Micro Hei",sans-serif';
+  c.fillText(TRACE.cur, W/2, W/2+8);
+}
+function selTrace(i){ TRACE.cur=TRACE.chars[i]; document.querySelectorAll("#traceChips .tchip").forEach((b,idx)=>b.classList.toggle("on",idx===i)); drawTrace(); spk(TRACE.cur); }
+function clearTrace(){ drawTrace(); }
+
+/* =================== 家长报告 =================== */
+function weakChars(){
+  const cn=new Set(UNITS.filter(u=>u.subj==="cn").map(u=>u.title)); const cnt={};
+  for(const m of state.mistakes){ if(cn.has(m.u)&&m.r&&[...m.r].length===1&&/[\u4e00-\u9fa5]/.test(m.r)) cnt[m.r]=(cnt[m.r]||0)+1; }
+  return Object.entries(cnt).sort((a,b)=>b[1]-a[1]);
+}
+function renderReport(){
+  const app=document.getElementById("app"); const belt=beltFor(state.xp), totalUnits=UNITS.length, doneUnits=state.v12Done.length; const weak=weakChars();
+  function rows(key){ let r=""; for(const u of UNITS.filter(x=>x.subj===key)){ const best=state.v12Best[u.id];
+      let pill='<span class="scorepill" style="background:#eef1ff;color:#7782b8">未做</span>';
+      if(best){ const [c,t]=best.split("/").map(Number); const ra=t?c/t:1; const cls=ra>=0.8?"sp-hi":ra>=PASS?"sp-mid":"sp-lo"; pill=`<span class="scorepill ${cls}">${best}</span>`; }
+      r+=`<div class="row"><span style="font-size:20px">${u.icon}</span><span class="name">${esc(u.title)} <span class="mini-en">${esc(u.en)}</span></span>${pill}</div>`; } return r; }
+  const byUnit={}; for(const m of state.mistakes){ (byUnit[m.u]=byUnit[m.u]||[]).push(m); }
+  let mh=""; if(!state.mistakes.length){ mh=`<div class="rec" style="border-left-color:var(--ok)">本轮还没有记录到错题。</div>`; }
+  else { for(const [unit,list] of Object.entries(byUnit)){ mh+=`<div style="font-weight:800;font-size:14px;margin:12px 0 6px;color:#2a3360">${esc(unit)}</div>`;
+      for(const m of list){ mh+=`<div class="row"><span class="name" style="font-weight:600">${m.tier?"★".repeat(m.tier)+" ":""}${esc(m.q)}</span></div>
+        <div style="font-size:13px;color:var(--muted);padding:0 0 8px;border-bottom:1px solid var(--line)">选了 <b style="color:var(--no)">${esc(m.x)}</b> · 正确 <b style="color:var(--ok)">${esc(m.r)}</b></div>`; } } }
+  let wh=""; const wks=Object.keys(state.writing);
+  if(wks.length){ for(const k of wks){ const w=state.writing[k]; wh+=`<div style="margin-top:10px"><div style="font-weight:800;font-size:13.5px;color:#2a3360">${esc(w.unit)} — ${esc(w.q)}</div><div style="white-space:pre-wrap;background:var(--paper2);border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:14.5px;line-height:1.6;color:#2a3360;margin-top:5px">${esc(w.text)}</div></div>`; } } else { wh=`<div style="color:var(--muted)">还没有写作作答。</div>`; }
+  app.innerHTML=`<div class="panel">
+    <div class="panel-h"><button class="st-back" onclick="renderHome()">‹</button><h2>家长报告</h2></div>
+    <span class="rep-ver">课件版本 v12.1</span>
+    <div class="rep-meta">学生：Sailor（9岁，升 Grade 4）· <b>航海主题</b> · <b>数学/科学/英文/法语＝英文优先</b>，中文保持中文 · 配比 中文/数学/科学/英文/法语 · 英文指令 · 结构：预习课(含多媒体)→训练★/★★/★★★→晋升 ；题型 单选·多选·填空(数字题用<b>屏内数字键盘</b>)·✍️写作 · 对标安省 G5→早G6/Northmount · 共 200 题 · 生成于 2026-06-30<br>错题本当前 ${state.box.length} 题待强化。</div>
+    <div class="stat-grid">
+      <div class="stat"><div class="n" style="color:var(--xp-d)">${state.xp.toLocaleString()}</div><div class="l">总 XP</div></div>
+      <div class="stat"><div class="n" style="color:var(--math)">${doneUnits}/${totalUnits}</div><div class="l">单元完成</div></div>
+      <div class="stat"><div class="n" style="color:${belt.color==='#eef0f6'?'#9aa1c4':belt.color}">${belt.cn}</div><div class="l">当前军衔</div></div></div>
+    <div class="rep-sec"><h3><span class="dot" style="background:var(--cn)"></span>中文 · 成语新典故·复句进阶II·病句近义词·识字Day21-22</h3>${rows("cn")}</div>
+    <div class="rep-sec"><h3><span class="dot" style="background:var(--math)"></span>数学 · 英文授课 · 安省G5→早G6（分数加减与整体的几分之几·小数借位与折扣·三角形面积·运算顺序与简单方程·多步应用题）</h3>${rows("math")}</div>
+    <div class="rep-sec"><h3><span class="dot" style="background:var(--sci)"></span>科学 · 英文授课 · 安省G5（太阳系·天气与水循环）</h3>${rows("sci")}</div>
+    <div class="rep-sec"><h3><span class="dot" style="background:var(--en)"></span>英文 · 英文授课 · 文学+说明文阅读·语法治流水句·写作工坊</h3>${rows("en")}</div>
+    <div class="rep-sec"><h3><span class="dot" style="background:var(--fr)"></span>法语 · être/avoir·复数·阅读（补FR5）</h3>${rows("fr")}</div>
+    <div class="rep-sec"><h3>⚠️ 本轮易错字</h3>${weak.length?`<div class="weak-chips">${weak.map(([c,n])=>`<span class="chip"><span class="c">${c}</span>×${n}</span>`).join("")}</div>`:`<div style="color:var(--muted)">暂无重复出错的汉字。</div>`}</div>
+    <div class="rep-sec"><h3>📝 本轮错题清单（首次答错记录）</h3>${mh}</div>
+    <div class="rep-sec"><h3>💡 给家长的建议（基于 v11.0 回传数据）</h3><div class="rec">
+      <b>🧭 本版概览（v12）：</b>应 Sailor 要求，界面改为<b>航海主题</b>，进度体系由腰带改为<b>航海军衔</b>（实习水手→…→海军上将，沿用相同 XP 阈值；Sailor 当前 XP 20,190，已晋<b>船长</b>）。除中文外，<b>数学/科学/英文/法语全部改为英文为第一语言</b>。<br><br>
+<b>⌨️ 输入法发现（重要）：</b>v11 回传显示，许多数字/英文填空被记录成中文标点或乱码（如把 open 打成「平【平【」、把 1/2+1/3 打成「e」），这是<b>设备处于中文输入法</b>所致，制造了大量「假错误」，写作中也混入了中文。v12 已对症：<b>所有数字填空改用屏内数字键盘</b>（彻底绕开输入法），英文单词类填空改为选择题。<b>建议家长：让 Sailor 在做英文/写作时把系统键盘切换为英文</b>（数字题已无需切换）。<br><br>
+<b>🔢 数学是真实最弱项：</b>剔除乱码后，数学仍有稳定的概念性错误——异分母分数相加（把 1/2+1/3 算成 2/5，即分子分母分别相加）、分数比较未通分、小数借位减（3.2−1.75）、四舍五入舍到整数、百分数与折扣混淆、运算顺序（3+4×2 从左算到右）、周长/面积/体积混淆。v12 用全新题对这些点逐一强化，并适当上推难度（★★★ 占 53%）。<br><br>
+<b>✍️ 写作进步与新问题：</b>流水句明显改善（句号、句首大写到位、句子变短）；但出现<b>中英混写、连贯性偏弱、拼写</b>问题。v12 写作工坊全程 English only，并提供<b>更强的句子脚手架</b>（每题给出可直接套用的句框）。<br><br>
+<b>📈 难度校准：</b>v11 是修复后首份「干净」读数，错题集中、重做回升，落在有效困难区，证实难度方向正确。<br><br><b>⚙️ 本版关键修正：</b>v10 单选题正确答案有 97.6% 落在选项 A（孩子可能靠「一律选 A」刷高分，掌握度被高估）。v11 已根治：所有选项按题面做<b>确定性洗牌</b>（每题位置不同、训练与错题本一致），各位置占比已压到 ≤35%。因此 v11 是首份「干净」的难度读数。<br><br>
+      <b>中文（最高优先）：</b>v10 回传错题集中在「理解语义/语境」的抽象层——成语运用、关联词复句、病句辨析。v11 全部为新题：成语<b>历史典故</b>（守株待兔／井底之蛙／亡羊补牢／对牛弹琴／掩耳盗铃／举一反三，含褒贬辨析）、<b>复句进阶</b>（不但…反而／与其…宁可／既然…就／之所以…是因为）、《愚公移山》<b>推断阅读</b>、<b>病句·多音字·标点</b>综合；续识字 Day 19（却竟居般确实）＋ Day 20（越够始终由各），累计 112→124 字。新增多选与填空，强迫主动产出而非识别。<br><br>
+      <b>数学（重点 · 难度上推安省 G5）：</b>对标 Northmount「数学领先一级」。本版主攻<b>异分母分数</b>加减/约分通分/带分数、<b>小数与百分数</b>（数位对齐·×÷10·折扣税）、<b>几何与体积</b>（面积/周长/长方体体积/角/坐标）与<b>四则混合·多步应用题</b>（先括号后乘除·真实情境）。大量改为<b>填空与应用题</b>，要求孩子真正动笔计算；建议每天清错题本 3–5 题。<br><br>
+      <b>英文（写作结构为靶心）：</b>v10 写作样本显示创意与投入度好，但句子边界仍几乎失控（通篇流水句、句末缺标点、句首不大写），且疑似语音转文字。v11 以 <b>Grammar &amp; Conventions Pro</b>（四类句型·标点·大写·<b>治流水句</b>：合并/拆分）＋ <b>Writing Studio III</b>（5 道写作工坊，每题给「一句一意·句末标点·一处合并句」脚手架）双管齐下；另配两篇全新阅读（文学《图书馆》推断＋说明文《火山》主旨/因果/词汇）。建议家长重点看下方写作作答的句号与大写。<br><br>
+      <b>科学（强项 · 保持挑战）：</b>进阶到两个安省 G5 新主题——<b>人体与器官系统</b>（消化/呼吸/循环及其协作）与<b>电与能量</b>（完整电路·导体绝缘体·能量转换·可再生能源）；以多选与因果题维持难度。<br><br>
+      <b>法语（补 v10 未完成的 FR5）：</b>v10 中 Sailor 跳过了一个法语单元，本版 FR7 专门补上：<b>être / avoir</b>、名词复数、高频词与数字；FR8 以动词（manger／boire／lire／aller／habiter）与一篇全新阅读（Emma 的一天）巩固，非照搬旧题。
+    </div></div>
+    <div class="rep-sec"><h3>✍️ 写作练习（孩子的作答，供家长批阅）</h3>${wh}</div>
+    <div class="actions"><button class="abtn export" style="grid-column:1/-1" onclick="renderExport()">📤 导出数据包（回传生成 v13）</button></div>
+  </div>`;
+  window.scrollTo(0,0);
+}
+
+/* =================== 导出数据包 =================== */
+function buildPacket(){
+  const lessonsDone=SEED.lessonsDone.concat(state.v12Done.filter(id=>SEED.lessonsDone.indexOf(id)<0));
+  const unitBest=Object.assign({}, SEED.unitBest, state.v12Best);
+  let ziDaysDone=SEED.ziDaysDone.slice(), ziLearned=SEED.ziLearned, ziChars=SEED.ziChars;
+  for(const u of UNITS){ if(u.trace && u.traceDay && state.traceDays.indexOf(u.traceDay)>=0){ if(ziDaysDone.indexOf(u.traceDay)<0) ziDaysDone.push(u.traceDay); ziLearned+=[...u.trace].length; ziChars+=u.trace.join(""); } }
+  const w=weakChars(); const ziWeak=w.length?w.map(([c,n])=>c+":"+n):SEED.ziWeak;
+  return {ver:"12.1", date:"2026-06-30", xp:state.xp, diag:SEED.diag, lessonsDone, unitBest, ziDaysDone, ziLearned, ziChars, ziWeak, boxRemaining:state.box.length, writingCount:Object.keys(state.writing).length, writing:state.writing, mistakes:state.mistakes};
+}
+function renderExport(){
+  const json=JSON.stringify(buildPacket());
+  document.getElementById("app").innerHTML=`<div class="panel">
+    <div class="panel-h"><button class="st-back" onclick="renderHome()">‹</button><h2>导出学习数据包</h2></div>
+    <div class="exp-note">把下面整段文字<b>全部复制</b>，发给 Claude，就能生成下一版（v13）。<br>含：XP、各单元成绩、生字进度、错题（带难度档）、错题本剩余数。</div>
+    <textarea class="exp-ta" id="expTA" readonly onclick="this.select()">====== Sailor 学习数据包（整段复制，发给 Claude）======
+${json}
+====== 数据包结束 · 生成于 2026-06-25 ======</textarea>
+    <button class="copy-btn" id="copyBtn" onclick="copyPacket()">📋 复制数据包 Copy</button></div>`;
+  window.scrollTo(0,0);
+}
+function copyPacket(){
+  const ta=document.getElementById("expTA"); ta.select(); ta.setSelectionRange(0,ta.value.length);
+  let ok=false; try{ ok=document.execCommand("copy"); }catch(e){}
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(ta.value).then(()=>{},()=>{}); ok=true; }
+  const b=document.getElementById("copyBtn"); if(ok){ b.textContent="✓ 已复制 Copied"; b.classList.add("done"); toast("已复制，去粘贴给 Claude 吧"); } else { toast("请长按文本框手动复制"); }
+}
+function resetAll(){ if(confirm("确定重置本机进度吗？\nXP 会回到 "+SEED.xp.toLocaleString()+"，本轮成绩、错题、错题本清空。")){ state=fresh(); save(); renderHome(); toast("已重置"); } }
+
+renderHome();
+</script>
+</body>
+</html>
