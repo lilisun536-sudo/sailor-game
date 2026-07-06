@@ -2,197 +2,299 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sailor 的小天地</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simon · 学习中心</title>
 <style>
-  :root{
-    --night-top:#171033;
-    --night-mid:#241646;
-    --night-low:#33205c;
-    --dawn:#5a3b8c;
-    --ink:#f4efe6;
-    --muted:#bcaceb;
-    --gold:#f6c453;
-    --gold-deep:#e0a23a;
-    --teal:#54d2c6;
-    --teal-deep:#2aa79b;
-    --eye:#56e08a;
-    --card:#2a1c52;
-    --line:rgba(255,255,255,.12);
-    --rsans:"Segoe UI Rounded","SF Pro Rounded",ui-rounded,"Hiragino Maru Gothic ProN","PingFang SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    --sans:system-ui,-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    min-height:100vh;
-    font-family:var(--sans);
-    color:var(--ink);
-    background:
-      radial-gradient(130% 80% at 50% 118%, var(--dawn) 0%, transparent 56%),
-      linear-gradient(180deg, var(--night-top) 0%, var(--night-mid) 55%, var(--night-low) 100%);
-    background-attachment:fixed;
-    overflow-x:hidden;
-  }
-
-  /* ---- ambient starfield ---- */
-  .stars{position:fixed;inset:0;pointer-events:none;z-index:0}
-  .stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.5;
-    box-shadow:0 0 6px 1px rgba(255,255,255,.6);animation:tw 4s ease-in-out infinite}
-  @keyframes tw{0%,100%{opacity:.18;transform:scale(.7)}50%{opacity:.85;transform:scale(1)}}
-
-  /* ---- the moon ---- */
-  .moon{position:absolute;top:18px;right:26px;width:54px;height:54px;border-radius:50%;
-    background:radial-gradient(circle at 38% 35%,#fff7e4,#f4e3b4 60%,#e9d39a);
-    box-shadow:0 0 32px 6px rgba(246,227,168,.32);z-index:1}
-
-  .wrap{position:relative;z-index:2;max-width:760px;margin:0 auto;
-    padding:30px 22px 40px;display:flex;flex-direction:column;align-items:center;min-height:100vh}
-
-  .ver{position:absolute;top:18px;left:22px;font-family:var(--rsans);font-weight:800;
-    font-size:12px;letter-spacing:.04em;color:var(--muted);
-    background:rgba(255,255,255,.07);border:1px solid var(--line);
-    padding:4px 11px;border-radius:999px}
-
-  /* ---- hero ---- */
-  .hero{text-align:center;margin-top:30px;animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
-  .cat{position:relative;width:150px;height:150px;margin:0 auto 6px}
-  .cat::before{content:"";position:absolute;inset:-14% -14% 4% -14%;border-radius:50%;
-    background:radial-gradient(circle,rgba(188,172,235,.22),transparent 66%);z-index:-1}
-  .cat svg{width:100%;height:100%;display:block}
-  .eye{fill:var(--eye);animation:glow 3.4s ease-in-out infinite;transform-origin:center}
-  @keyframes glow{0%,100%{opacity:.82;filter:drop-shadow(0 0 3px var(--eye))}
-    50%{opacity:1;filter:drop-shadow(0 0 8px var(--eye))}}
-
-  .eyebrow{font-family:var(--rsans);font-weight:800;font-size:13px;letter-spacing:.42em;
-    text-transform:uppercase;color:var(--teal);margin:4px 0 6px;padding-left:.42em}
-  .title{font-family:var(--rsans);font-weight:900;font-size:clamp(38px,8.5vw,60px);
-    line-height:1.02;margin:0;letter-spacing:.01em;
-    text-shadow:0 2px 18px rgba(0,0,0,.35)}
-  .hi{margin:16px 0 0;color:var(--muted);font-size:16px;line-height:1.5}
-  .hi span{display:block;font-size:13px;opacity:.72;margin-top:3px}
-
-  /* ---- choice cards ---- */
-  .choices{width:100%;display:flex;gap:18px;margin-top:38px}
-  .card{flex:1;position:relative;display:flex;flex-direction:column;align-items:flex-start;
-    text-decoration:none;color:var(--ink);background:var(--card);
-    border:1px solid var(--line);border-radius:24px;padding:26px 24px 22px;overflow:hidden;
-    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
-  .card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px}
-  .card.game{animation-delay:.12s}
-  .card.study{animation-delay:.22s}
-  .card.game::before{background:linear-gradient(90deg,var(--gold),var(--gold-deep))}
-  .card.study::before{background:linear-gradient(90deg,var(--teal),var(--teal-deep))}
-  .card:hover,.card:focus-visible{transform:translateY(-6px);outline:none}
-  .card.game:hover,.card.game:focus-visible{border-color:var(--gold);
-    box-shadow:0 16px 40px -14px rgba(246,196,83,.55)}
-  .card.study:hover,.card.study:focus-visible{border-color:var(--teal);
-    box-shadow:0 16px 40px -14px rgba(84,210,198,.55)}
-  .emoji{font-size:42px;line-height:1;margin-bottom:14px}
-  .ctitle{font-family:var(--rsans);font-weight:900;font-size:24px;letter-spacing:.01em}
-  .csub{font-family:var(--rsans);font-weight:700;font-size:13px;letter-spacing:.16em;
-    text-transform:uppercase;margin-top:3px}
-  .card.game .csub{color:var(--gold)}
-  .card.study .csub{color:var(--teal)}
-  .cdesc{color:var(--muted);font-size:14px;line-height:1.5;margin-top:12px;min-height:42px}
-  .cgo{margin-top:16px;font-family:var(--rsans);font-weight:800;font-size:15px;
-    padding:10px 18px;border-radius:999px;color:#1b1238}
-  .card.game .cgo{background:linear-gradient(135deg,var(--gold),var(--gold-deep))}
-  .card.study .cgo{background:linear-gradient(135deg,var(--teal),var(--teal-deep))}
-
-  /* ---- footer ---- */
-  .foot{margin-top:auto;padding-top:34px;text-align:center;color:var(--muted);font-size:12.5px;line-height:1.8}
-  .foot .made{display:block;opacity:.66}
-
-  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-
-  @media (max-width:560px){
-    .choices{flex-direction:column}
-    .cdesc{min-height:0}
-    .hero{margin-top:18px}
-    .moon{width:44px;height:44px;top:14px;right:18px}
-  }
-  @media (prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important}
-  }
+:root{
+  --bg:#F5F5F7; --card:#FFFFFF; --ink:#1D1D1F; --sub:#6E6E73;
+  --hair:#D2D2D7; --blue:#0071E3; --green:#30D158; --amber:#C56A00;
+  --track:#E8E8ED;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:17px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+/* 顶栏 */
+.top{border-bottom:1px solid var(--hair);background:rgba(245,245,247,.85);backdrop-filter:saturate(180%) blur(20px);position:sticky;top:0;z-index:10}
+.top-in{display:flex;align-items:baseline;justify-content:space-between;padding:14px 0}
+.brand{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.today{font-size:13px;color:var(--sub)}
+/* 主标 */
+.hero{padding:64px 0 40px}
+.hero h1{font-size:clamp(32px,6vw,52px);font-weight:600;letter-spacing:-.022em;line-height:1.12}
+.hero p{margin-top:10px;font-size:19px;color:var(--sub);letter-spacing:-.01em}
+/* 卡片 */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-bottom:72px}
+.card{
+  grid-column:span 1; background:var(--card); border-radius:20px;
+  padding:28px; text-decoration:none; color:inherit; display:block;
+  box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 28px rgba(0,0,0,.05);
+  transition:transform .28s cubic-bezier(.2,.6,.2,1),box-shadow .28s;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(0,0,0,.05),0 16px 40px rgba(0,0,0,.09)}
+.card:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.card-main{grid-column:1 / -1;display:flex;align-items:center;gap:28px;padding:32px}
+.eyebrow{font-size:13px;font-weight:600;color:var(--sub);letter-spacing:.02em;margin-bottom:6px}
+.card h2{font-size:24px;font-weight:600;letter-spacing:-.015em}
+.card-main h2{font-size:28px}
+.desc{margin-top:8px;font-size:15px;color:var(--sub)}
+.status{margin-top:14px;font-size:14px;color:var(--ink);font-weight:500}
+.go{margin-top:16px;font-size:15px;font-weight:500;color:var(--blue)}
+.go::after{content:" ›"}
+.chip{display:inline-block;font-size:12px;font-weight:600;color:var(--amber);background:#FFF4E3;border-radius:99px;padding:3px 10px;margin-left:8px;vertical-align:2px}
+/* 进度环（签名元素） */
+.ring-box{flex:0 0 auto;position:relative;width:96px;height:96px}
+.ring-box svg{width:96px;height:96px;transform:rotate(-90deg)}
+.ring-track{fill:none;stroke:var(--track);stroke-width:7}
+.ring-bar{fill:none;stroke:var(--green);stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset 1s cubic-bezier(.2,.6,.2,1)}
+.ring-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;letter-spacing:-.02em}
+.card-body{flex:1 1 auto;min-width:0}
+/* 页脚 */
+.foot{border-top:1px solid var(--hair);padding:22px 0 44px;font-size:13px;color:var(--sub)}
+/* 入场动画 */
+.rise{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.6,.2,1) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.32s}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .rise{animation:none;opacity:1;transform:none}
+  .card,.ring-bar{transition:none}
+}
+@media (max-width:640px){
+  .grid{grid-template-columns:1fr}
+  .card-main{flex-direction:column;align-items:flex-start;gap:20px}
+  .hero{padding:44px 0 30px}
+}
 </style>
 </head>
 <body>
-  <div class="stars" aria-hidden="true">
-    <i style="top:12%;left:8%;animation-delay:0s"></i>
-    <i style="top:22%;left:78%;animation-delay:.9s"></i>
-    <i style="top:9%;left:54%;animation-delay:1.7s"></i>
-    <i style="top:34%;left:18%;animation-delay:.4s"></i>
-    <i style="top:16%;left:33%;animation-delay:2.3s"></i>
-    <i style="top:41%;left:88%;animation-delay:1.2s"></i>
-    <i style="top:6%;left:88%;animation-delay:.6s"></i>
-    <i style="top:48%;left:6%;animation-delay:2.8s"></i>
-    <i style="top:28%;left:64%;animation-delay:3.4s"></i>
-    <i style="top:55%;left:72%;animation-delay:1.9s"></i>
-    <i style="top:62%;left:22%;animation-delay:.2s"></i>
-    <i style="top:38%;left:44%;animation-delay:3.0s"></i>
-  </div>
+<header class="top"><div class="wrap top-in">
+  <span class="brand">Simon · 学习中心</span>
+  <span class="today" id="today"></span>
+</div></header>
 
-  <main class="wrap">
-    <span class="ver">v1.0</span>
-    <div class="moon" aria-hidden="true"></div>
+<main class="wrap">
+  <section class="hero rise d1">
+    <h1 id="greet">你好，Simon。</h1>
+    <p>今天从哪一块开始？</p>
+  </section>
 
-    <header class="hero">
-      <div class="cat">
-        <svg viewBox="0 0 220 220" role="img" aria-label="一只绿眼睛的小黑猫，二狗">
-          <!-- ears -->
-          <path d="M80 74 L72 32 L108 58 Z" fill="#0c0a1a" stroke="rgba(188,172,235,.22)" stroke-width="1.4"/>
-          <path d="M140 74 L148 32 L112 58 Z" fill="#0c0a1a" stroke="rgba(188,172,235,.22)" stroke-width="1.4"/>
-          <!-- body -->
-          <path d="M58 208 C55 150 78 122 110 122 C142 122 165 150 162 208 Z"
-                fill="#0c0a1a" stroke="rgba(188,172,235,.22)" stroke-width="1.4"/>
-          <!-- tail -->
-          <path d="M150 198 C198 202 202 158 170 149 C183 166 177 191 140 196 Z"
-                fill="#0c0a1a" stroke="rgba(188,172,235,.22)" stroke-width="1.4"/>
-          <!-- head -->
-          <circle cx="110" cy="95" r="41" fill="#0c0a1a" stroke="rgba(188,172,235,.22)" stroke-width="1.4"/>
-          <!-- whiskers -->
-          <g stroke="rgba(255,255,255,.32)" stroke-width="1.3" stroke-linecap="round">
-            <line x1="104" y1="106" x2="70" y2="100"/>
-            <line x1="104" y1="110" x2="72" y2="114"/>
-            <line x1="116" y1="106" x2="150" y2="100"/>
-            <line x1="116" y1="110" x2="148" y2="114"/>
-          </g>
-          <!-- eyes -->
-          <ellipse class="eye" cx="95" cy="92" rx="7.4" ry="11"/>
-          <ellipse class="eye" cx="125" cy="92" rx="7.4" ry="11"/>
-          <!-- nose -->
-          <path d="M110 110 l-5 -5 h10 Z" fill="#d98a9a"/>
+  <section class="grid">
+    <a class="card card-main rise d2" href="study/">
+      <div class="ring-box" aria-hidden="true">
+        <svg viewBox="0 0 96 96">
+          <circle class="ring-track" cx="48" cy="48" r="41"></circle>
+          <circle class="ring-bar" id="ringBar" cx="48" cy="48" r="41"></circle>
         </svg>
+        <div class="ring-label" id="ringPct">—</div>
       </div>
+      <div class="card-body">
+        <div class="eyebrow">暑期自学系统 · v1.2</div>
+        <h2>六科自学课件</h2>
+        <p class="desc">心理学 · Java · 英文写作 · 数学 · 经济 · 理化 —— 202 个可追踪练习点，进度自动保存。</p>
+        <p class="status" id="studyStatus">读取进度中…</p>
+        <p class="go">进入学习</p>
+      </div>
+    </a>
 
-      <p class="eyebrow">SAILOR'S WORLD</p>
-      <h1 class="title">Sailor 的小天地</h1>
-      <p class="hi">嗨，Sailor！今天想做点什么？<span>Hi Sailor! What do you feel like today?</span></p>
-    </header>
+    <a class="card rise d3" href="school/">
+      <div class="eyebrow">学校课件</div>
+      <h2>数学 · 同步校内<span class="chip" id="schoolChip">四卷齐备</span></h2>
+      <p class="desc">IGCSE 0580 真题四层精练：原题 · 作答 · 讲解 · 变式。四卷齐备：P2 两卷（各 70 分）+ P4 两卷（各 130 分）。</p>
+      <p class="go">查看</p>
+    </a>
 
-    <nav class="choices">
-      <a class="card game" href="game.html">
-        <span class="emoji">🎮</span>
-        <span class="ctitle">二狗历险记</span>
-        <span class="csub">Er Gou's Adventure</span>
-        <span class="cdesc">陪二狗一起闯关、躲水坑、救小朋友。</span>
-        <span class="cgo">开始玩 Play ›</span>
-      </a>
-      <a class="card study" href="study.html">
-        <span class="emoji">📚</span>
-        <span class="ctitle">Sailor 学习包</span>
-        <span class="csub">Learning Hub</span>
-        <span class="cdesc">做题、升段位、攒经验值，越来越强。</span>
-        <span class="cgo">去学习 Learn ›</span>
-      </a>
-    </nav>
+    <a class="card rise d4" href="game/">
+      <div class="eyebrow">编程实验室</div>
+      <h2>写代码 · 做游戏</h2>
+      <p class="desc">反应时测验示例 + 代码游乐场。你的 Java 期末项目，从这里找感觉。</p>
+      <p class="go">打开实验室</p>
+    </a>
+  </section>
+</main>
 
-    <footer class="foot">
-      <span>v1.0 · 离线也能打开 · 2026</span>
-      <span class="made">为 Sailor 而做 · Made for Sailor 🐾</span>
-    </footer>
-  </main>
-</body>
+<footer class="foot"><div class="wrap">Simon 学习门户 · 2026 夏 · <b>v2 · 漫游同步</b> &nbsp;·&nbsp; 进度保存在本机；配置云同步后自动上传，家长可远程查看。&nbsp;<a href="report/" style="color:var(--blue);text-decoration:none">家长看板 ›</a>&nbsp;<a href="#" id="syncSetup" style="color:var(--sub);text-decoration:none">⚙ 同步设置</a></div></footer>
+
+<script>
+(function(){
+  var KEY='simon_summer_v1', TOTAL=202;
+  var STORES=['answers','clsf','traces','ords','essays','rubrics','checks','dict','vocab','reviews'];
+
+  function greet(){
+    var h=new Date().getHours();
+    if(h<5)return '夜深了，Simon。';
+    if(h<12)return '早上好，Simon。';
+    if(h<18)return '下午好，Simon。';
+    return '晚上好，Simon。';
+  }
+
+  function boot(){
+    document.getElementById('greet').textContent=greet();
+    try{
+      document.getElementById('today').textContent=new Date().toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'long'});
+    }catch(e){}
+
+    try{
+      var SM=JSON.parse(localStorage.getItem('simon_school_math_v1'));
+      if(SM&&SM.it){var ns=0;for(var kk in SM.it){if(SM.it[kk].a>0)ns++}
+        if(ns>0)document.getElementById('schoolChip').textContent='已作答 '+ns+' 项';
+      }
+    }catch(e){}
+    var S=null;
+    try{S=JSON.parse(localStorage.getItem(KEY));}catch(e){S=null;}
+
+    var bar=document.getElementById('ringBar');
+    var pctEl=document.getElementById('ringPct');
+    var stEl=document.getElementById('studyStatus');
+    var C=2*Math.PI*41;
+    bar.setAttribute('stroke-dasharray',C);
+
+    if(!S||typeof S!=='object'){
+      bar.setAttribute('stroke-dashoffset',C);
+      pctEl.textContent='—';
+      stEl.textContent='尚未开始 · 第一次打开会自动建立你的学习档案';
+      return;
+    }
+    var n=0;
+    for(var i=0;i<STORES.length;i++){
+      var o=S[STORES[i]];
+      if(o&&typeof o==='object')n+=Object.keys(o).length;
+    }
+    if(n>TOTAL)n=TOTAL;
+    var pct=Math.round(n/TOTAL*100);
+    var last='';
+    try{
+      if(S.activity&&typeof S.activity==='object'){
+        var ds=Object.keys(S.activity).sort();
+        if(ds.length)last=ds[ds.length-1];
+      }
+    }catch(e){}
+    bar.setAttribute('stroke-dashoffset',String(C*(1-pct/100)));
+    pctEl.textContent=pct+'%';
+    stEl.textContent='已覆盖 '+n+' / '+TOTAL+' 个练习点'+(last?(' · 最近学习 '+last):'');
+  }
+
+  window.__hubBoot=boot;
+  boot();
+})();
+</script>
+
+<script>
+'use strict';
+/* ===== 云同步 v2 · 漫游版：云为主档案，本机为缓存 ===== */
+(function(){
+var REPO='lilisun536-sudo/simon-study',PATH='data/progress.json';
+var MODE={name:'hub',math:false,summer:true}; /* {name, math:bool, summer:bool} */
+var K1='simon_summer_v1',K2='simon_school_math_v1';
+var REMOTE={mathSummary:null,summerSummary:null,sha:null};
+var lastSig='',timer=null,dirty=false;
+function tk(){try{return localStorage.getItem('simon_sync_token')||''}catch(e){return ''}}
+function b64e(s){return btoa(unescape(encodeURIComponent(s)))}
+function b64d(s){return decodeURIComponent(escape(atob(String(s).replace(/\n/g,''))))}
+function lsGet(k){try{var v=localStorage.getItem(k);return v?JSON.parse(v):null}catch(e){return null}}
+function lsSet(k,o){try{localStorage.setItem(k,JSON.stringify(o))}catch(e){}}
+function rich(k,o){if(!o)return 0;var n=0;
+ if(k===K2){if(o.it)for(var i in o.it){n+=(o.it[i].a||0)+(o.it[i].ok?1:0)}if(o.qv)for(var q in o.qv)n+=(o.qv[q]||0)*2;return n}
+ ['answers','clsf','traces','ords','essays','rubrics','checks','dict','vocab','reviews'].forEach(function(s){if(o[s])n+=Object.keys(o[s]).length});return n}
+function mergeMath(a,b){if(!a)return b;if(!b)return a;
+ var out={meta:{},it:{},qv:{}},k;
+ var ids={};[a.it||{},b.it||{}].forEach(function(o){for(k in o)ids[k]=1});
+ for(k in ids){var x=(a.it||{})[k],y=(b.it||{})[k];
+   if(!x){out.it[k]=y}else if(!y){out.it[k]=x}
+   else{out.it[k]={a:Math.max(x.a||0,y.a||0),w:(x.w||y.w)?1:0,ok:(((x.a||0)>=(y.a||0))?x.ok:y.ok)?1:0}}}
+ var qs={};[a.qv||{},b.qv||{}].forEach(function(o){for(k in o)qs[k]=1});
+ for(k in qs)out.qv[k]=Math.max((a.qv||{})[k]||0,(b.qv||{})[k]||0);
+ var ma=a.meta||{},mb=b.meta||{};
+ out.meta={created:ma.created||mb.created,opened:Math.max(ma.opened||0,mb.opened||0),tab:(ma.tab!=null?ma.tab:mb.tab)};
+ return out}
+function summerSummary(){var S=lsGet(K1);if(!S)return null;var n=0;
+ ['answers','clsf','traces','ords','essays','rubrics','checks','dict','vocab','reviews'].forEach(function(s){if(S[s])n+=Object.keys(S[s]).length});
+ var last='';if(S.activity){var d=Object.keys(S.activity).sort();last=d[d.length-1]||''}
+ return{covered:Math.min(n,202),total:202,last:last}}
+function mathSummary(){try{return PAPERS.map(function(P){var a=0,r=0,m=0,rev=0;
+ P.qs.forEach(function(q){q.parts.forEach(function(p){var t=IT(p.id);if(t.a)a++;if(t.ok)r++});
+   var c=stChip(q);if(c[1]==='已掌握')m++;if(c[1]==='需复习')rev++});
+ return{key:P.key,name:P.name,code:P.code,answered:a,of:P.items,right:r,mastered:m,ofQ:P.qs.length,review:rev}})}catch(e){return null}}
+function fetchRemote(){var api='https://api.github.com/repos/'+REPO+'/contents/'+PATH+'?ref=main';
+ var H={'Accept':'application/vnd.github+json'};var t=tk();if(t)H['Authorization']='Bearer '+t;
+ return window.fetch(api,{headers:H,cache:'no-store'}).then(function(r){
+   if(r.status===404)return null;if(!r.ok)throw 'HTTP '+r.status;return r.json()})
+ .then(function(j){if(!j)return null;REMOTE.sha=j.sha||null;
+   var p=null;try{p=JSON.parse(b64d(j.content))}catch(e){}
+   if(p){REMOTE.mathSummary=p.mathSummary||REMOTE.mathSummary;REMOTE.summerSummary=p.summerSummary||REMOTE.summerSummary}
+   return p})
+ .catch(function(e){
+   return window.fetch('https://raw.githubusercontent.com/'+REPO+'/main/'+PATH+'?_='+Date.now(),{cache:'no-store'})
+   .then(function(r){if(!r.ok)return null;return r.text()})
+   .then(function(t2){if(!t2)return null;var p=null;try{p=JSON.parse(t2)}catch(e2){}
+     if(p){REMOTE.mathSummary=p.mathSummary||null;REMOTE.summerSummary=p.summerSummary||null}
+     return p}).catch(function(){return null})})}
+function pull(done){
+ if(!window.fetch){done&&done(false);return}
+ fetchRemote().then(function(p){
+   if(!p||!p.keys){done&&done(false);return}
+   var changed=false;
+   /* 数学：逐题合并 */
+   var lm=lsGet(K2),cm=p.keys[K2];
+   if(cm){var mm=mergeMath(lm,cm);
+     if(JSON.stringify(mm)!==JSON.stringify(lm)){lsSet(K2,mm);changed=true}
+     if(lm&&JSON.stringify(mm)!==JSON.stringify(cm))dirty=true}
+   /* 暑期：择富采用 */
+   var ls=lsGet(K1),cs=p.keys[K1];
+   if(cs&&rich(K1,cs)>rich(K1,ls)){lsSet(K1,cs);changed=true}
+   else if(ls&&rich(K1,ls)>rich(K1,cs||null))dirty=true;
+   if(changed){
+     var g='sy2r_'+MODE.name;
+     try{if(!sessionStorage.getItem(g)){sessionStorage.setItem(g,'1');location.reload();return}}catch(e){}
+   }
+   done&&done(changed);
+ }).catch(function(){done&&done(false)})}
+function collect(){var keys={};var v1=lsGet(K1),v2=lsGet(K2);if(v1)keys[K1]=v1;if(v2)keys[K2]=v2;
+ return{v:2,ts:new Date().toISOString(),from:MODE.name,keys:keys,
+   mathSummary:MODE.math?mathSummary():(REMOTE.mathSummary||null),
+   summerSummary:MODE.summer?summerSummary():(REMOTE.summerSummary||null)}}
+function sig(s){return s.replace(/"ts":\s*"[^"]*"/,'')}
+function paint(st,t0){var e=document.getElementById('syncPill');if(!e)return;
+ var m={off:'',busy:'同步中…',ok:'已同步 '+(t0?t0.toTimeString().slice(0,5):''),err:'同步失败·稍后自动重试'}[st]||'';
+ e.textContent=m;e.style.display=m?'inline-block':'none'}
+function push(done,keepalive){
+ var t=tk();if(!t){paint('off');done&&done(false,'未配置令牌');return}
+ if(!window.fetch){done&&done(false,'环境不支持');return}
+ var body=JSON.stringify(collect(),null,1);
+ if(sig(body)===lastSig){dirty=false;paint('ok',push._t0);done&&done(true,'无变化');return}
+ paint('busy');
+ var api='https://api.github.com/repos/'+REPO+'/contents/'+PATH;
+ var H={'Authorization':'Bearer '+t,'Accept':'application/vnd.github+json'};
+ fetchRemote().then(function(){
+   /* 拉最新 sha 与对端摘要后再写，最大限度保全 */
+   var body2=JSON.stringify(collect(),null,1);
+   var payload={message:'sync('+MODE.name+') '+new Date().toISOString().slice(0,16),content:b64e(body2)};
+   if(REMOTE.sha)payload.sha=REMOTE.sha;
+   var opt={method:'PUT',headers:H,body:JSON.stringify(payload)};
+   if(keepalive&&opt.body.length<58000)opt.keepalive=true;
+   return window.fetch(api,opt).then(function(r){
+     if(r&&r.ok){lastSig=sig(body2);dirty=false;push._t0=new Date();paint('ok',push._t0);done&&done(true,'ok')}
+     else{paint('err');done&&done(false,'HTTP '+(r&&r.status))}})
+ }).catch(function(e){paint('err');done&&done(false,String(e))})}
+function schedule(){dirty=true;if(!tk())return;clearTimeout(timer);timer=setTimeout(function(){push()},90000)}
+function flush(){if(dirty&&tk())push(null,true)}
+window.addEventListener('pagehide',flush);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush()});
+window.__SY2={pull:pull,push:push,schedule:schedule,collect:collect,mergeMath:mergeMath,rich:rich,REMOTE:REMOTE,flush:flush};
+window.__hubSync=function(cb){push(cb)};
+pull(function(changed){if(!changed){try{window.__hubBoot&&window.__hubBoot()}catch(e){}}if(tk())setTimeout(function(){push()},2000)});
+var lk=document.getElementById('syncSetup');
+if(lk)lk.onclick=function(ev){ev.preventDefault();
+ var v=window.prompt('云同步设置\n\n粘贴 GitHub 细粒度令牌（仅授权 simon-study 仓库、Contents 读写）。\n本设备贴上令牌即获得"学习并上传"能力；纯查看无需令牌。\n留空并确定 = 关闭本设备的上传。',tk());
+ if(v===null)return;v=v.trim();
+ try{if(v){localStorage.setItem('simon_sync_token',v)}else{localStorage.removeItem('simon_sync_token')}}catch(e){}
+ if(v){push(function(ok,st){alert(ok?'令牌有效，本设备已接入同步 ✓':'同步失败（'+st+'）——检查令牌权限或网络。')})}
+ else alert('已关闭本设备上传（仍会拉取云端进度）。');
+};
+})();
+</script>\n</body>
 </html>
