@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sailor 家长看板 · Parent Dashboard</title>
+<style>
+  :root{
+    --bg1:#06192e; --bg2:#0b3a4f; --bg3:#0f5163;
+    --ink:#0c1230; --paper:#ffffff; --paper2:#f4f7ff; --muted:#6b7396; --line:#e6ebf7;
+    --cn:#ff5d5d; --math:#23a7ff; --sci:#a855f7; --en:#22c55e; --fr:#14b8a6;
+    --xp:#ffb020; --xp-d:#f59e0b; --ok:#16a34a; --no:#e23c3c; --grey:#7782b8;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,sans-serif;
+    --shadow:0 12px 34px rgba(8,12,40,.2);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--font);color:var(--ink);line-height:1.55;min-height:100vh;
+    background:radial-gradient(1200px 600px at 80% -10%,#0e6178 0%,transparent 55%),radial-gradient(900px 500px at -10% 10%,#0a4a60 0%,transparent 50%),linear-gradient(160deg,var(--bg1),var(--bg2) 60%,var(--bg3));
+    background-attachment:fixed;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:20px 16px 48px}
+  .top{display:flex;align-items:center;gap:12px;color:#eaf2ff;margin:6px 2px 16px}
+  .top .anchor{font-size:34px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.35))}
+  .top h1{margin:0;font-size:24px;font-weight:900;letter-spacing:.01em}
+  .top .sub{font-size:13px;color:#b8c6e8;margin-top:2px}
+  .bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 2px 14px}
+  .btn{border:none;border-radius:12px;padding:10px 16px;font-size:15px;font-weight:800;cursor:pointer;color:#08243a;
+    background:linear-gradient(135deg,#7fd4ff,#43b0e6)}
+  .btn.ghost{background:rgba(255,255,255,.12);color:#eaf2ff;border:1px solid rgba(255,255,255,.2)}
+  .synced{font-size:13px;color:#cfe0f5}
+  .card{background:var(--paper);border-radius:20px;box-shadow:var(--shadow);padding:18px 18px 16px;margin-bottom:16px}
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .stat{background:var(--paper2);border-radius:14px;padding:14px 10px;text-align:center}
+  .stat .n{font-size:26px;font-weight:900;line-height:1.1}
+  .stat .l{font-size:12.5px;color:var(--muted);margin-top:4px;font-weight:700}
+  h2.sec{display:flex;align-items:center;gap:9px;font-size:17px;margin:2px 0 12px;color:#101a3c}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+  .row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:none}
+  .row .ic{font-size:20px;width:24px;text-align:center}
+  .row .name{flex:1;font-size:15px;font-weight:600;color:#22305a}
+  .row .en{font-size:12px;color:var(--muted);font-weight:500}
+  .chip{font-size:12.5px;font-weight:800;padding:5px 11px;border-radius:999px;white-space:nowrap}
+  .c-mastered{background:#e7f9ee;color:#12864b}
+  .c-pass{background:#fff5e2;color:#b9791a}
+  .c-review{background:#fdecec;color:#d02f2f}
+  .c-todo{background:#eef1ff;color:#7782b8}
+  .queue{display:flex;flex-wrap:wrap;gap:8px}
+  .qchip{background:#fdecec;border:1px solid #f6cccc;border-radius:12px;padding:6px 11px;font-size:15px;font-weight:800;color:#c0392b}
+  .qchip small{color:#8a5;color:#b56;font-weight:700;font-size:12px}
+  .muted{color:var(--muted);font-size:14px}
+  .mgroup{font-weight:800;font-size:14px;margin:12px 0 4px;color:#2a3360}
+  .mq{font-size:14px;font-weight:600;color:#22305a;padding:6px 0 0}
+  .ma{font-size:13px;color:var(--muted);padding:2px 0 8px;border-bottom:1px solid var(--line)}
+  .wblock{margin-top:10px}
+  .wq{font-weight:800;font-size:13.5px;color:#2a3360}
+  .wt{white-space:pre-wrap;background:var(--paper2);border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:14.5px;line-height:1.6;color:#2a3360;margin-top:5px}
+  .empty{background:var(--paper);border-radius:20px;box-shadow:var(--shadow);padding:26px 20px;text-align:center}
+  .empty .big{font-size:40px}
+  .empty h3{margin:10px 0 6px;color:#101a3c}
+  .empty p{color:var(--muted);font-size:14.5px;max-width:520px;margin:6px auto}
+  .note{font-size:12.5px;color:#9fb0d6;text-align:center;margin-top:10px;line-height:1.7}
+  .note b{color:#cfe0f5}
+  input[type=file]{display:none}
+  .foot{color:#8fa2cc;font-size:12px;text-align:center;margin-top:20px}
+  @media(max-width:520px){ .stat .n{font-size:22px} .top h1{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="anchor">⚓</span>
+    <div><h1>Sailor 家长看板</h1><div class="sub">Parent Dashboard · 数据来自云端仓库，刷新即最新</div></div>
+  </div>
+  <div class="bar">
+    <button class="btn" id="btnRefresh">🔄 刷新</button>
+    <button class="btn ghost" id="btnImport">📂 导入本地报告</button>
+    <input type="file" id="fileIn" accept=".json,application/json">
+    <span class="synced" id="synced"></span>
+  </div>
+  <div id="body"></div>
+  <div class="note">数据源：<b id="srcUrl"></b><br>网络不稳时，让 Sailor 在学习页「导出数据包」，把文件发来点「导入本地报告」也能看全量。</div>
+  <div class="foot">Sailor 航海学堂 · 云同步看板 v1.0</div>
+</div>
+
+<script>
+"use strict";
+var OWNER="lilisun535", REPO="sailor-game", BRANCH="main", DPATH="data/progress.json";
+var SUBJ={ cn:{name:"中文",color:"#ff5d5d"}, math:{name:"数学 Math",color:"#23a7ff"},
+  sci:{name:"科学 Science",color:"#a855f7"}, en:{name:"英文 English",color:"#22c55e"}, fr:{name:"法语 Français",color:"#14b8a6"} };
+var ORDER=["cn","math","sci","en","fr"];
+var STATUS={ mastered:["已掌握","c-mastered"], pass:["及格","c-pass"], review:["待复习","c-review"], todo:["未做","c-todo"] };
+
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function hhmm(iso){ try{ var d=new Date(iso); return d.toLocaleString(); }catch(e){ return String(iso||""); } }
+function setSynced(t){ document.getElementById("synced").textContent=t||""; }
+
+async function fetchProgress(){
+  var bust="?t="+Date.now();
+  var urls=[
+    "https://raw.githubusercontent.com/"+OWNER+"/"+REPO+"/"+BRANCH+"/"+DPATH+bust,
+    "../"+DPATH+bust
+  ];
+  document.getElementById("srcUrl").textContent = "…github.io/"+REPO+"/"+DPATH;
+  for(var i=0;i<urls.length;i++){
+    try{ var r=await fetch(urls[i],{cache:"no-store"}); if(r.ok){ return await r.json(); } }catch(e){}
+  }
+  return null;
+}
+
+function render(full){
+  var body=document.getElementById("body");
+  var d = full && full.study;
+  if(!d || !d.units){
+    body.innerHTML='<div class="empty"><div class="big">📭</div><h3>还没有收到 Sailor 的同步数据</h3>'+
+      '<p>请确认：① 已在学习页底部「⚙ 同步设置」里粘贴令牌并保存；② Sailor 那台设备<b>联网</b>并至少做过一次题（约 1 分半后自动上传）。</p>'+
+      '<p>或点上方「📂 导入本地报告」，用 Sailor 导出的数据包直接查看。</p></div>';
+    setSynced("");
+    return;
+  }
+  setSynced("最后同步：" + hhmm(d.syncedAt));
+  var rk=d.rank||{}, cov=d.coverage||{done:0,total:0};
+  var pk=d.packet||{};
+  var html="";
+
+  html+='<div class="card"><div class="stat-grid">'+
+    '<div class="stat"><div class="n" style="color:var(--xp-d)">'+(d.xp!=null?d.xp.toLocaleString():"—")+'</div><div class="l">总 XP</div></div>'+
+    '<div class="stat"><div class="n" style="color:'+(rk.color||"#333")+'">'+esc(rk.cn||"—")+'</div><div class="l">当前军衔'+(rk.en?" · "+esc(rk.en):"")+'</div></div>'+
+    '<div class="stat"><div class="n" style="color:var(--math)">'+cov.done+'/'+cov.total+'</div><div class="l">单元完成</div></div>'+
+    '</div>';
+  if(pk.ziLearned!=null){
+    html+='<div class="muted" style="margin-top:12px">识字累计 <b style="color:#c0392b">'+pk.ziLearned+'</b> 字'+
+      (pk.ziDaysDone&&pk.ziDaysDone.length?(' · 已完成 Day '+pk.ziDaysDone.join("/")):"")+
+      (d.boxRemaining!=null?(' · 错题本待强化 <b>'+d.boxRemaining+'</b> 题'):"")+'</div>';
+  }
+  html+='</div>';
+
+  // per subject
+  for(var s=0;s<ORDER.length;s++){
+    var key=ORDER[s], us=d.units.filter(function(u){return u.subj===key;});
+    if(!us.length) continue;
+    var done=us.filter(function(u){return u.status&&u.status!=="todo"&&u.status!=="review"?true:false;}).length;
+    html+='<div class="card"><h2 class="sec"><span class="dot" style="background:'+SUBJ[key].color+'"></span>'+SUBJ[key].name+'</h2>';
+    for(var i=0;i<us.length;i++){ var u=us[i];
+      var st=STATUS[u.status]||STATUS.todo;
+      var lbl = u.best ? (u.best) : st[0];
+      html+='<div class="row"><span class="ic">'+esc(u.icon||"•")+'</span>'+
+        '<span class="name">'+esc(u.title)+' <span class="en">'+esc(u.en||"")+'</span></span>'+
+        '<span class="chip '+st[1]+'">'+(u.best?esc(u.best)+" · ":"")+st[0]+'</span></div>';
+    }
+    html+='</div>';
+  }
+
+  // review queue
+  var q=d.reviewQueue||[];
+  html+='<div class="card"><h2 class="sec"><span class="dot" style="background:#ff5d5d"></span>复习队列 · 易错字</h2>';
+  if(q.length){ html+='<div class="queue">'+q.map(function(e){return '<span class="qchip">'+esc(e.c)+' <small>×'+e.n+'</small></span>';}).join("")+'</div>'; }
+  else { html+='<div class="muted">暂无重复出错的汉字，很好！</div>'; }
+  html+='</div>';
+
+  // mistakes
+  var mb=d.mistakesByUnit||{}, keys=Object.keys(mb);
+  html+='<div class="card"><h2 class="sec"><span class="dot" style="background:#f59e0b"></span>错题清单（首次答错）</h2>';
+  if(!keys.length){ html+='<div class="muted">本轮还没有记录到错题。</div>'; }
+  else { for(var k=0;k<keys.length;k++){ var list=mb[keys[k]];
+    html+='<div class="mgroup">'+esc(keys[k])+'</div>';
+    for(var j=0;j<list.length;j++){ var m=list[j];
+      html+='<div class="mq">'+(m.tier?"★".repeat(m.tier)+" ":"")+esc(m.q)+'</div>'+
+        '<div class="ma">选了 <b style="color:var(--no)">'+esc(m.x)+'</b> · 正确 <b style="color:var(--ok)">'+esc(m.r)+'</b></div>';
+    } } }
+  html+='</div>';
+
+  // writing
+  var w=d.writing||{}, wks=Object.keys(w);
+  html+='<div class="card"><h2 class="sec"><span class="dot" style="background:#22c55e"></span>写作作答（供批阅）</h2>';
+  if(wks.length){ for(var wi=0;wi<wks.length;wi++){ var ww=w[wks[wi]];
+    html+='<div class="wblock"><div class="wq">'+esc(ww.unit)+' — '+esc(ww.q)+'</div><div class="wt">'+esc(ww.text)+'</div></div>'; } }
+  else { html+='<div class="muted">还没有写作作答。</div>'; }
+  html+='</div>';
+
+  // game section (if present later)
+  if(full.game){ var g=full.game;
+    html+='<div class="card"><h2 class="sec"><span class="dot" style="background:#ffb020"></span>游戏进度</h2>'+
+      '<div class="muted">'+(g.xp!=null?("XP "+g.xp+" · "):"")+(g.coins!=null?("金币 "+g.coins+" · "):"")+(g.fish!=null?("鱼 "+g.fish):"")+
+      (g.level!=null?(" · 第 "+(g.level+1)+" 关"):"")+'</div></div>';
+  }
+
+  body.innerHTML=html;
+}
+
+async function refresh(){
+  var b=document.getElementById("btnRefresh"); b.textContent="🔄 刷新中…"; b.disabled=true;
+  var full=await fetchProgress();
+  render(full);
+  b.textContent="🔄 刷新"; b.disabled=false;
+  if(!full) setSynced("（未取到云端数据）");
+}
+
+document.getElementById("btnRefresh").addEventListener("click",refresh);
+document.getElementById("btnImport").addEventListener("click",function(){ document.getElementById("fileIn").click(); });
+document.getElementById("fileIn").addEventListener("change",function(e){
+  var f=e.target.files[0]; if(!f) return; var rd=new FileReader();
+  rd.onload=function(){ try{ var j=JSON.parse(rd.result);
+      // accept either a full progress.json ({study:...}) or a bare study payload / exported packet
+      var full = j.study ? j : (j.units ? {study:j} : (j.packet ? {study:j} : {study:{units:[], packet:j, xp:j.xp, syncedAt:new Date().toISOString(), coverage:{done:(j.lessonsDone||[]).length,total:0}, rank:{}, reviewQueue:[], mistakesByUnit:{}, writing:j.writing||{}}}));
+      render(full); setSynced("已导入本地文件"); toastLike("已载入本地报告");
+    }catch(err){ toastLike("文件解析失败，请确认是导出的 JSON"); } };
+  rd.readAsText(f);
+});
+function toastLike(m){ setSynced(m); }
+
+refresh();
+</script>
+</body>
+</html>

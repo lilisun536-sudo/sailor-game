@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Sailor 航海学堂 · v12.1</title>
+<title>Sailor 航海学堂 · v13.1</title>
 <style>
   :root{
     --bg1:#06192e; --bg2:#0b3a4f; --bg3:#0f5163;
@@ -272,6 +272,16 @@
 .npk.npfn{background:linear-gradient(180deg,#dceaff,#c4dbff);box-shadow:0 2px 0 #9bbdf0}
 .npk.npgo{grid-column:span 3;background:linear-gradient(180deg,#1fae7a,#159563);color:#fff;
   box-shadow:0 3px 0 #0d6e48;font-size:21px}
+/* ====== v13 字块选择 + 键盘回显/空值拦截 ====== */
+.zifield{font-size:34px;letter-spacing:8px}
+.zipad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:320px;margin:0 0 6px}
+.zpk{font-size:29px;padding:13px 0;font-family:inherit}
+.zipad.zctl{grid-template-columns:1fr 1.6fr}
+.npk.npgo.zgo{grid-column:auto}
+@keyframes npPop{0%{transform:scale(1)}45%{transform:scale(1.08)}100%{transform:scale(1)}}
+.fill-in.npin{animation:npPop .18s ease}
+@keyframes shakeX{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}55%{transform:translateX(7px)}80%{transform:translateX(-4px)}}
+.fill-in.shake{animation:shakeX .3s ease;border-color:var(--no)!important;background:var(--nobg)!important}
 </style>
 </head>
 <body>
@@ -280,21 +290,21 @@
 
 <script>
 /* ============================================================
-   Sailor 航海学堂 v12.1 · 离线单文件 · 20260630
+   Sailor 航海学堂 v13.1 · 离线单文件 · 20260708
    配比 中文25/数学25/科学20/英文20/法语10
    三段式 + 多媒体交互教学 + 独立错题本 · 除中文外全英文授课
    ============================================================ */
 
-/* ---- v11 收尾基线（家长回传数据包 v11.0 / 2026-06-25） ---- */
+/* ---- v12.1 收尾基线（家长回传数据包 v12.1 / 2026-06-30） ---- */
 const SEED = {
-  xp: 20190,
+  xp: 24413,
   diag: {"chinese": {"score": 14, "total": 25, "pct": 56}, "english": {"score": 7, "total": 8, "pct": 88}, "math": {"score": 8, "total": 10, "pct": 80}},
-  lessonsDone: ["e1", "e5", "e3", "m7", "m1", "c5", "c6", "m8", "m3", "m4", "c1", "c2", "C1", "C2", "C3", "C4", "C5", "C6", "M1", "M2", "M3", "M4", "E1", "E2", "E3", "ZH1", "ZH2", "ZH3", "ZH4", "MA1", "MA2", "MA3", "MA4", "SC1", "SC2", "EN1", "EN2", "EN3", "FR1", "FR2", "ZH5", "ZH6", "ZH7", "ZH8", "MA5", "MA6", "MA7", "MA8", "SC3", "SC4", "EN4", "EN5", "EN6", "EN7", "FR3", "FR4", "SC6", "ZH9", "ZH10", "ZH11", "ZH12", "MA9", "MA10", "MA11", "MA12", "SC5", "EN8", "EN9", "EN11", "EN10", "FR6", "ZH13", "SC7", "ZH15", "MA16", "FR7", "FR8", "SC8", "EN12", "EN13", "EN14", "EN15", "ZH14", "ZH16", "MA13", "MA14", "MA15"],
-  unitBest: {"C1": "8/10", "C2": "10/10", "C3": "9/10", "C4": "8/10", "C5": "7/8", "C6": "10/10", "M1": "5/10", "M2": "9/10", "M3": "9/12", "M4": "8/12", "E1": "8/8", "E2": "10/10", "E3": "10/10", "ZH1": "9/10", "ZH2": "10/10", "ZH3": "6/8", "ZH4": "10/10", "MA1": "9/12", "MA2": "9/12", "MA3": "8/8", "MA4": "8/8", "SC1": "15/15", "SC2": "11/15", "EN1": "7/8", "EN2": "10/10", "EN3": "8/10", "FR1": "7/9", "FR2": "8/9", "SC6": "14/14", "ZH9": "12/12", "ZH10": "12/12", "ZH11": "11/11", "ZH12": "12/12", "MA9": "11/11", "MA10": "11/11", "MA11": "10/10", "MA12": "10/10", "SC5": "14/14", "EN8": "10/10", "EN9": "10/10", "EN11": "5/5", "EN10": "12/12", "FR6": "10/10", "ZH13": "12/12", "SC7": "13/13", "ZH15": "11/11", "MA16": "10/10", "FR7": "8/10", "FR8": "8/10", "SC8": "11/13", "EN12": "11/12", "EN13": "12/12", "EN14": "7/8", "EN15": "5/5", "ZH14": "9/12", "ZH16": "10/12", "MA13": "11/11", "MA14": "11/11", "MA15": "10/10"},
-  ziDaysDone: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-  ziLearned: 124,
-  ziChars: "读写听想说看她它我你他们哥妈弟妹姐爸书学班校老课时天月日年候后外前里下上石山田水土火树鸟虫花林草跳跑去飞走来小多短大长少肉吃喝鱼饭菜怕哭气笑好爱朋友同高兴远近海河江湖雨雪风节龙舟粽划赛香因为所以但虽然即使无论宁仅应该必须已经却竟居般确实越够始终由各",
-  ziWeak: ["般:1", "竟:1", "始:1"]
+  lessonsDone: ["e1", "e5", "e3", "m7", "m1", "c5", "c6", "m8", "m3", "m4", "c1", "c2", "C1", "C2", "C3", "C4", "C5", "C6", "M1", "M2", "M3", "M4", "E1", "E2", "E3", "ZH1", "ZH2", "ZH3", "ZH4", "MA1", "MA2", "MA3", "MA4", "SC1", "SC2", "EN1", "EN2", "EN3", "FR1", "FR2", "ZH5", "ZH6", "ZH7", "ZH8", "MA5", "MA6", "MA7", "MA8", "SC3", "SC4", "EN4", "EN5", "EN6", "EN7", "FR3", "FR4", "SC6", "ZH9", "ZH10", "ZH11", "ZH12", "MA9", "MA10", "MA11", "MA12", "SC5", "EN8", "EN9", "EN11", "EN10", "FR6", "ZH13", "SC7", "ZH15", "MA16", "FR7", "FR8", "SC8", "EN12", "EN13", "EN14", "EN15", "ZH14", "ZH16", "MA13", "MA14", "MA15", "SC9", "EN16", "FR9", "ZH17", "ZH19", "ZH18", "MA20", "EN17", "EN19", "EN18", "MA18", "MA17", "MA19", "FR10", "ZH20", "SC10"],
+  unitBest: {"C1": "8/10", "C2": "10/10", "C3": "9/10", "C4": "8/10", "C5": "7/8", "C6": "10/10", "M1": "5/10", "M2": "9/10", "M3": "9/12", "M4": "8/12", "E1": "8/8", "E2": "10/10", "E3": "10/10", "ZH1": "9/10", "ZH2": "10/10", "ZH3": "6/8", "ZH4": "10/10", "MA1": "9/12", "MA2": "9/12", "MA3": "8/8", "MA4": "8/8", "SC1": "15/15", "SC2": "11/15", "EN1": "7/8", "EN2": "10/10", "EN3": "8/10", "FR1": "7/9", "FR2": "8/9", "SC6": "14/14", "ZH9": "12/12", "ZH10": "12/12", "ZH11": "11/11", "ZH12": "12/12", "MA9": "11/11", "MA10": "11/11", "MA11": "10/10", "MA12": "10/10", "SC5": "14/14", "EN8": "10/10", "EN9": "10/10", "EN11": "5/5", "EN10": "12/12", "FR6": "10/10", "ZH13": "12/12", "SC7": "13/13", "ZH15": "11/11", "MA16": "10/10", "FR7": "8/10", "FR8": "8/10", "SC8": "11/13", "EN12": "11/12", "EN13": "12/12", "EN14": "7/8", "EN15": "5/5", "ZH14": "9/12", "ZH16": "10/12", "MA13": "11/11", "MA14": "11/11", "MA15": "10/10", "SC9": "16/16", "EN16": "14/14", "FR9": "10/10", "ZH17": "10/13", "ZH19": "13/13", "ZH18": "9/13", "MA20": "12/12", "EN17": "14/14", "EN19": "5/5", "EN18": "14/14", "MA18": "12/13", "MA17": "13/13", "MA19": "12/12", "FR10": "10/10", "ZH20": "7/13", "SC10": "16/16"},
+  ziDaysDone: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+  ziLearned: 136,
+  ziChars: "读写听想说看她它我你他们哥妈弟妹姐爸书学班校老课时天月日年候后外前里下上石山田水土火树鸟虫花林草跳跑去飞走来小多短大长少肉吃喝鱼饭菜怕哭气笑好爱朋友同高兴远近海河江湖雨雪风节龙舟粽划赛香因为所以但虽然即使无论宁仅应该必须已经却竟居般确实越够始终由各直接受完教室象像等觉错题",
+  ziWeak: ["般:1", "始:1", "觉:1", "象:1", "像:1", "等:1", "题:1"]
 };
 
 const BELTS = [
@@ -311,415 +321,437 @@ const SUBJ = {
 const TAGS = {fix:"补洞 Fix",level:"进阶 Level-up",trip:"旅行 Trip",core:"重点 Core",new:"预习 New"};
 const ORDER = ["cn","math","sci","en","fr"];
 
-/* ====== v11 课程内容（全新·G5数学科学 / G4下英文 / 进阶中文 · 新增多选·填空·应用题） ======
-   题型约定：
-   - 单选: {q, o:[...], a:索引, tier, e}
-   - 多选: {q, t:"multi", o:[...], a:[索引...], tier, e}   全对才得分
-   - 填空: {q, t:"fill", a:"答案" 或 ["答案","变体"], tier, e, hint?}  规范化判分(数值/分数等价)
-   - 写作: {q, t:"open", min, hint?}
-   答案位置由引擎按题面做确定性洗牌(稳定·每题不同·错题本一致)，故源文件位置不代表最终显示位置。 */
-/* ====== v12 课程内容 · 航海主题 · 数学/科学/英文/法语=英文优先；中文保持中文 ======
+/* ====== v13 课程内容 · 航海主题 · 数学/科学/英文/法语=英文优先；中文保持中文 ======
    题型：单选 {q,o,a,tier,e} | 多选 {q,t:"multi",o,a:[...],tier,e} |
-        填空(中文,文本框) {q,t:"fill",a,tier,e,hint} | 填空(数字,屏内键盘) {q,t:"fill",kind:"num",a,tier,e,hint} |
-        写作 {q,t:"open",min,hint}
-   答案位置由引擎按题面确定性洗牌。难度较 v11 适当上推(安省 G5→触及早 G6)。 */
-const P_HUASHE = "古时候，几个人得到一壶酒，大家说：「酒不够分，谁先把蛇画好，就归谁喝。」一个人很快画完了蛇，端起酒得意地说：「我还能给蛇添上脚呢！」他左手拿酒，右手又给蛇画起脚来。还没画完，另一个人也画好了，一把夺过酒壶说：「蛇本来就没有脚，你怎么能给它添脚？」说完，把酒喝了。那个给蛇画脚的人，到头来一口酒也没喝到。";
-const P_LIGHT = "Mara lived in a white lighthouse at the edge of the rocky coast, where the wind never seemed to rest. Every evening she climbed the spiral stairs to light the great lamp, so that ships far out in the dark could find their way home. One stormy night the power failed and the lamp went black. Without a moment's hesitation, Mara lit every candle and lantern she owned and held them to the window. It was not as bright as the lamp, but it was enough — and at dawn a grateful fishing boat sailed safely into the harbour. The captain said her small lights had been like a single brave star in a sea of darkness.";
-const P_CORAL = "A coral reef may look like a colourful underwater garden, but it is actually built by millions of tiny living animals called coral polyps. Each polyp has a soft body and builds a hard cup of limestone around itself for protection. Over hundreds of years, these stony cups pile up to form the giant reef. Reefs are important because they shelter about a quarter of all ocean species, giving fish and other creatures places to hide, feed, and raise their young. Sadly, when the ocean gets too warm, the coral turns white and weak — a problem called bleaching. Protecting reefs matters, because so much ocean life depends on them.";
+        填空(数字,屏内键盘) {q,t:"fill",kind:"num",a,tier,e,hint} |
+        填空(汉字,屏内字块) {q,t:"fill",kind:"zi",a,tiles,tier,e,hint}  ← v13 新增：点选候选字，不再用系统键盘 |
+        写作 {q,t:"open",min,hint}  ← v13 加词库+守题规则
+   答案位置由引擎按题面确定性洗牌。难度维持 G5–早G6，本版以巩固 v12 持续弱点为主。 */
+const P_YANER = "从前，有个人看见邻居家门口挂着一口漂亮的大钟，就想把它偷走。可是钟又大又重，怎么也背不动。他想了个办法：把钟敲碎，再一块一块地搬回家。他刚敲了一下，钟就「当——」的一声响了起来。他吓了一跳，心想：这声音会把大家引来的！于是他捂住自己的耳朵，心想：我听不见，别人一定也听不见。他就这样捂着耳朵，放心地砸起钟来。可是钟声早就传遍了整条街，人们跑了过来，当场抓住了他。";
+const P_BOTTLE = "On a quiet grey morning, Kai walked along the beach looking for shells. The sea was as flat as glass. Near the rocks, something green glinted in the sand — an old bottle with a rolled-up note inside. The paper was soft and yellow with age. It said: 'My family is moving far away today. Under the big pine tree behind the school there is a bird nest I have watched all spring. Whoever finds this, please make sure the birds are safe. — Lena.' Kai looked at the date. The note was ten years old! He ran to the school anyway. The old pine was still there, and in its branches sat a new nest with three noisy chicks. Kai smiled. He could not help Lena's birds from long ago, but he could watch over these. Some promises, he thought, are passed on like the tide.";
+const P_TURTLE = "Sea turtles are some of the greatest travellers in the ocean. A green sea turtle may swim thousands of kilometres between the beach where it hatched and the waters where it feeds. Scientists believe turtles find their way by sensing Earth's magnetic field, like a built-in compass. When a female is ready to lay eggs, she returns — often to the very same beach where she was born. She digs a nest in the sand at night, lays about a hundred eggs, and covers them with sand before crawling back to the sea. The tiny hatchlings face many dangers: hungry birds, crabs, and bright city lights that can lead them the wrong way. Today, many people help by keeping nesting beaches dark and clean. Protecting these ancient travellers matters, because sea turtles have been crossing the oceans since the time of the dinosaurs.";
+const P_MARCHE = "Je m'appelle Chloé. J'ai neuf ans. Samedi matin, je vais au marché avec ma mère. Au marché, j'achète du pain et trois pommes rouges. Ma mère achète du fromage. Mon petit frère mange une banane et il boit de l'eau. Moi, je bois du lait. J'aime le marché !";
 
 const UNITS = [
-/* ========================= 中文 (全新·进阶) ========================= */
-{id:"ZH17", subj:"cn", icon:"⚓", title:"成语·新典故", en:"More Idioms", tag:"level",
+/* ========================= 中文 (全新·进阶 III) ========================= */
+{id:"ZH21", subj:"cn", icon:"🏮", title:"成语·新典故 III", en:"Idioms III", tag:"level",
  lesson:{ cards:[
-   {t:"再学新成语", b:"自相矛盾：一个人卖矛又卖盾，话前后打架——比喻说话做事前后冲突。\n画蛇添足：多做了不必要的事，反而坏事。\n一举两得：做一件事得到两样好处。\n全神贯注：注意力完全集中。"},
-   {t:"形容认真投入", b:"目不转睛：眼睛一动不动地看，形容专注。\n津津有味：兴趣浓厚（读得津津有味）。\n兴高采烈：非常高兴。\n千方百计：想尽一切办法。"}],
-  example:{t:"选最合适的成语", prob:"「他一边说要省钱，一边又买了最贵的，真是________。」", steps:[
-   "第一步 —— 话和做法前后冲突。","第二步 —— 这正是「自相矛盾」。","第三步 —— 答案：自相矛盾。"]},
-  check:[{q:"「全神贯注」是说——", o:["注意力完全集中","三心二意","非常生气","速度很快"], a:0, e:"专注。"}] },
+   {t:"这批新成语", b:"半途而废：事情做到一半就放弃。\n聚精会神：注意力高度集中（≈全神贯注）。\n恍然大悟：一下子明白过来。\n迫不及待：急得不能再等。"},
+   {t:"还有四个", b:"异口同声：大家说的完全一样。\n名列前茅：成绩排在最前面。\n井井有条：整理得很有条理。\n川流不息：车马行人像河水一样连续不断。"}],
+  example:{t:"选最合适的成语", prob:"「听了老师的讲解，他________，原来这道题要先通分！」", steps:[
+   "「一下子明白过来」——对应的成语是「恍然大悟」。",
+   "「聚精会神」是形容专注，「迫不及待」是形容着急，都不合适。",
+   "所以填「恍然大悟」。"]},
+  check:[{q:"「他做事总是________，从来没有一件做到底。」填——", o:["半途而废","名列前茅","川流不息","异口同声"], a:0, e:"做到一半放弃＝半途而废。"}] },
  training:[
-  {q:"「画蛇添足」批评的是——", o:["多此一举、反而坏事","画得太慢","蛇太长","脚太多"], a:0, tier:2, e:"多余的动作坏了事。"},
-  {q:"「一举两得」的意思是——", o:["做一件事得到两种好处","一次失败两次","举不起来","两个人"], a:0, tier:1, e:"一事两利。"},
-  {q:"形容看得「眼睛一动不动、非常专注」，用——", o:["目不转睛","三心二意","自相矛盾","画蛇添足"], a:0, tier:2, e:"目不转睛=专注地看。"},
-  {q:"下面哪些成语是「褒义（正面）」的？", t:"multi", o:["全神贯注","兴高采烈","自相矛盾","画蛇添足"], a:[0,1], tier:3, e:"后两个是批评。"},
-  {q:"「他做事前后冲突、说法打架」，这叫——", o:["自相矛盾","一举两得","津津有味","千方百计"], a:0, tier:2, e:"自相矛盾。"},
-  {q:"选出可以形容「读书读得很有兴趣」的成语。", t:"multi", o:["津津有味","目不转睛","全神贯注","画蛇添足"], a:[0,1,2], tier:3, e:"前三个都可形容专注/有兴趣；画蛇添足不行。"},
-  {q:"填成语：为了完成任务，他________，想尽了所有办法。", t:"fill", a:["千方百计"], tier:3, e:"想尽办法。", hint:"四字成语"},
-  {q:"填成语：这个办法既省钱又省时，真是________。", t:"fill", a:["一举两得"], tier:3, e:"一事两利。", hint:"四字成语"},
-  {q:"「锦上添花」和「画蛇添足」相比，前者是——", o:["好上加好（褒义）","多余坏事（贬义）","完全一样","都贬义"], a:0, tier:3, e:"锦上添花褒义，画蛇添足贬义。"},
-  {q:"填成语：听到要去春游，全班同学都________。", t:"fill", a:["兴高采烈"], tier:2, e:"非常高兴。", hint:"四字成语"},
-  {q:"「他听课时________，连老师的每句话都记下了。」最适合填——", o:["全神贯注","自相矛盾","画蛇添足","千方百计"], a:0, tier:2, e:"专注。"},
-  {q:"下面哪句成语用错了？", o:["他本来已经讲清楚了，又补了一堆话，画蛇添足。","他自相矛盾，前后说法一致。","这个主意一举两得。","大家兴高采烈地出发了。"], a:1, tier:3, e:"自相矛盾指前后冲突，不能说「一致」。"},
-  {q:"填成语：弟弟________地盯着屏幕，连饭都忘了吃。", t:"fill", a:["目不转睛","全神贯注"], tier:3, e:"专注地看。", hint:"四字成语"}
+  {q:"「同学们________地回答：对！」填最合适的成语。", o:["异口同声","井井有条","半途而废","恍然大悟"], a:0, tier:2, e:"大家说的一样＝异口同声。"},
+  {q:"「他把书桌整理得________。」填——", o:["井井有条","川流不息","迫不及待","聚精会神"], a:0, tier:2, e:"有条理＝井井有条。"},
+  {q:"「街上车辆________，十分热闹。」填——", o:["川流不息","异口同声","恍然大悟","名列前茅"], a:0, tier:2, e:"像河水一样连续不断＝川流不息。"},
+  {q:"「一放学，他就________地跑向球场。」哪个成语最合适？", o:["迫不及待","井井有条","异口同声","半途而废"], a:0, tier:2, e:"急得不能等＝迫不及待。"},
+  {q:"「这次考试他________，全班第二名。」填——", o:["名列前茅","川流不息","半途而废","迫不及待"], a:0, tier:2, e:"成绩排前＝名列前茅。"},
+  {q:"「他为了找到丢失的小狗，________，问遍了整条街。」填——", o:["千方百计","全神贯注","目不转睛","兴高采烈"], a:0, tier:3, e:"想尽一切办法＝千方百计；「全神贯注」是形容专注，不是想办法。"},
+  {q:"「弟弟________地听故事，一动也不动。」填——", o:["全神贯注","千方百计","半途而废","川流不息"], a:0, tier:3, e:"注意力集中＝全神贯注。上一题「想尽办法」才用千方百计。"},
+  {q:"下面哪句成语用错了？", o:["他恍然大悟，原来钥匙一直在口袋里。","马路上行人川流不息。","他半途而废，坚持跑完了全程。","大家异口同声地说好。"], a:2, tier:3, e:"「半途而废」是中途放弃，和「坚持跑完」矛盾。"},
+  {q:"哪些成语可以形容「注意力集中」？（多选）", t:"multi", o:["聚精会神","全神贯注","目不转睛","川流不息"], a:[0,1,2], tier:3, e:"前三个都形容专注；川流不息形容连续不断。"},
+  {q:"哪些搭配是正确的？（多选）", t:"multi", o:["成绩名列前茅","做事半途而废","房间收拾得井井有条","说话川流不息"], a:[0,1,2], tier:3, e:"「川流不息」用于车流人流，不用于说话。"},
+  {q:"「听了他的解释，我恍然大________。」点选正确的字。", t:"fill", kind:"zi", a:"悟", tiles:"悟误物午语晤", tier:3, e:"恍然大悟——「悟」是明白的意思。", hint:"点下面的字块作答"},
+  {q:"「都等不及了」——「迫不________待」。点选正确的字。", t:"fill", kind:"zi", a:"及", tiles:"及级极急吉几", tier:3, e:"迫不及待——「及」是来得及的及。"},
+  {q:"「做到一半就放弃」——「半途而________」。点选正确的字。", t:"fill", kind:"zi", a:"废", tiles:"废费非飞发反", tier:3, e:"半途而废——「废」是停止、放弃。"}
  ]},
 
-{id:"ZH18", subj:"cn", icon:"🧭", title:"复句进阶 II + 识字 Day 21", en:"Complex Sentences II", tag:"level",
- traceDay:21, trace:["直","接","受","完","教","室"],
+{id:"ZH22", subj:"cn", icon:"🪢", title:"复句进阶 III + 识字 Day 23", en:"Complex Sentences III", tag:"level",
+ traceDay:23, trace:["房","间","门","窗","床","桌"],
  lesson:{ cards:[
-   {t:"更复杂的关联", b:"不是…就是…（二者必居其一）\n要不是…就…（假设＋结果）\n一…就…（紧接发生）\n不管…总…（无条件）\n除非…才…（唯一条件）"},
-   {t:"多重复句辨析", b:"一句话常含两层关系：\n「他竟然一声不响地走了，因为他知道说了也没用。」前半「竟然」（出乎意料），后半「因为」（原因）。读时先拆成小句。"},
-   {t:"今天的新字", b:"直 接 受 完 教 室——「直接、接受、完成、教室」常用。下面描一描。"}],
-  example:{t:"选关联词", prob:"「________听到铃声，他________冲出了教室。」", steps:[
-   "第一步 —— 两件事紧接着发生。","第二步 —— 用「一…就…」。","第三步 —— 一听到铃声，他就冲出了教室。"]},
-  check:[{q:"「除非…才…」表示——", o:["唯一的条件","时间很早","转折","并列"], a:0, e:"唯一条件。"}] },
+   {t:"重点关联词（上次错的）", b:"一…就…（前一件事刚发生，后一件马上发生）\n不是…就是…（二选一）\n只有…才…／除非…才…（唯一条件）\n不管…都…（任何条件下都一样）"},
+   {t:"再加两组", b:"不但…而且…（递进：更进一步）\n尽管…还是…（转折：虽然这样，结果没变）\n例：他不但会游泳，而且游得很快。\n例：尽管下着雨，他还是准时到了。"}],
+  example:{t:"选关联词", prob:"「________刮风下雨，轮船________按时出港。」", steps:[
+   "意思是：任何天气条件下结果都一样。",
+   "「无条件都成立」用「不管…都…」。",
+   "「虽然…但是…」只针对一种情况，不合适。"]},
+  check:[{q:"「他________看完动画片，________去写作业。」填——", o:["一…就…","只有…才…","不是…就是…","尽管…还是…"], a:0, e:"前后紧接着发生＝一…就…。"}] },
  training:[
-  {q:"「他________一回家________打开电视。」横线处填——", o:["一…就…","虽然…但是…","因为…所以…","不但…而且…"], a:0, tier:2, e:"紧接发生：一…就…。"},
-  {q:"「明天放假，我们________去公园________去图书馆，还没定。」", o:["不是…就是…","因为…所以…","即使…也…","只有…才…"], a:0, tier:2, e:"二者必居其一。"},
-  {q:"「________你怎么劝，他________不肯改。」表示无条件，填——", o:["不管…总…","既然…就…","与其…不如…","不是…而是…"], a:0, tier:3, e:"不管…总…。"},
-  {q:"下面哪些关联词表示「条件」关系？", t:"multi", o:["只有…才…","除非…才…","不管…都…","因为…所以…"], a:[0,1,2], tier:3, e:"前三个是条件；最后是因果。"},
-  {q:"「他竟然忘了今天有考试。」「竟然」表达——", o:["很意外","很高兴","很早","一定"], a:0, tier:1, e:"竟然=出乎意料。"},
-  {q:"填字：请把作业________交给老师。（不要经过别人）", t:"fill", a:["直接"], tier:3, e:"直接=不经中间。", hint:"两个字"},
-  {q:"选出关联词搭配正确的句子。", t:"multi", o:["要不是你提醒，我就忘了。","一下课，同学们就跑出去了。","除非努力，所以会成功。","不管多难，他都坚持。"], a:[0,1,3], tier:3, e:"第三句「除非…所以…」搭配错误。"},
-  {q:"「这件事看起来一________简单，做起来却很难。」填一个字（表示「像那样」）。", t:"fill", a:["般"], tier:3, e:"一般=像那样；本题复习「般」。", hint:"一个字"},
-  {q:"「他从________到现在都没变过。」横线处填一个字（表示「开头」）。", t:"fill", a:["始"], tier:3, e:"从始至今；复习「始」。", hint:"一个字"},
-  {q:"「老师在________里给我们上课。」横线填两个字。", t:"fill", a:["教室"], tier:2, e:"教室。", hint:"两个字"},
-  {q:"「我们应该虚心________别人的批评。」横线填两个字。", t:"fill", a:["接受"], tier:3, e:"接受批评。", hint:"两个字"},
-  {q:"「________天气多坏，邮递员________按时送信。」", o:["不管…都…","如果…就…","虽然…可是…","不是…就是…"], a:0, tier:2, e:"无条件：不管…都…。"},
-  {q:"判断：「只要肯下功夫，就一定能学好。」这句关联词——", o:["正确（条件→结果）","错误，缺主语","错误，搭配不当","错误，标点错"], a:0, tier:2, e:"只要…就…，正确。"}
+  {q:"「周末我们________去爬山，________去海边，两个选一个。」填——", o:["不是…就是…","一…就…","只有…才…","不但…而且…"], a:0, tier:2, e:"二选一＝不是…就是…。"},
+  {q:"「________完成作业，________能出去玩。」填——", o:["只有…才…","不管…都…","一…就…","不是…就是…"], a:0, tier:2, e:"唯一条件＝只有…才…。"},
+  {q:"「________你答不答应，我________要去试一试。」填——", o:["不管…都…","只有…才…","因为…所以…","不是…就是…"], a:0, tier:2, e:"任何条件下都一样＝不管…都…。"},
+  {q:"「他________会拉小提琴，________拉得非常好。」填——", o:["不但…而且…","尽管…还是…","不是…就是…","除非…才…"], a:0, tier:2, e:"更进一步＝不但…而且…（递进）。"},
+  {q:"「________风浪很大，渔船________平安回到了港口。」填——", o:["尽管…还是…","不但…而且…","一…就…","不是…就是…"], a:0, tier:3, e:"转折：条件不利，结果没变＝尽管…还是…。"},
+  {q:"下面哪些关联词表示「递进」关系？（多选）", t:"multi", o:["不但…而且…","不仅…还…","尽管…还是…","不是…就是…"], a:[0,1], tier:3, e:"「不但/不仅」都是递进；「尽管…还是」是转折，「不是…就是」是选择。"},
+  {q:"「铃声________响，同学们________跑出了教室。」哪组最通顺？", o:["一…就…","只有…才…","不管…都…","不但…而且…"], a:0, tier:3, e:"铃声刚响、马上跑出＝一…就…。"},
+  {q:"「我的________里有一张床和一张桌子。」点选两个字。", t:"fill", kind:"zi", a:"房间", tiles:"房间门问闻访", tier:2, e:"睡觉的屋子叫「房间」。", hint:"按顺序点两个字"},
+  {q:"「出门的时候请随手关________。」点选一个字。", t:"fill", kind:"zi", a:"门", tiles:"门间问们闷闻", tier:2, e:"关门的「门」。"},
+  {q:"「打开________，让新鲜空气进来。」点选一个字。", t:"fill", kind:"zi", a:"窗", tiles:"窗床穿创闯冲", tier:2, e:"通风的是「窗」。"},
+  {q:"「该睡觉了，快上________吧。」点选一个字。", t:"fill", kind:"zi", a:"床", tiles:"床窗庄装桌壮", tier:2, e:"睡觉用「床」。"},
+  {q:"「把书和铅笔放在________子上。」点选一个字。", t:"fill", kind:"zi", a:"桌", tiles:"桌卓早床椅桥", tier:2, e:"放东西用「桌子」。"},
+  {q:"「像往常一________，他六点就起床了。」点选一个字。", t:"fill", kind:"zi", a:"般", tiles:"般船搬班半盘", tier:3, e:"「一般」＝像那样、平常。这是上次的易错字！"},
+  {q:"「电影马上就要开________了！」点选一个字。", t:"fill", kind:"zi", a:"始", tiles:"始试台抬治使", tier:3, e:"「开始」的始——上次的易错字，记住它！"}
  ]},
 
-{id:"ZH19", subj:"cn", icon:"📜", title:"阅读理解·画蛇添足", en:"Reading: Fable II", tag:"core",
+{id:"ZH23", subj:"cn", icon:"🔔", title:"阅读理解·掩耳盗铃", en:"Reading: Fable", tag:"core",
  lesson:{ cards:[
-   {t:"抓住关键转折", b:"读故事注意「结果的转折」：本来要赢的人，因为做了多余的事，最后输了。问自己：他为什么输？"},
-   {t:"体会人物心理", b:"「得意」「夸口」这些词透露人物自满的心理；自满往往是失败的开始。"}],
-  example:{t:"做推断", prob:"画脚的人「左手拿酒、右手画脚」，说明他当时——", steps:[
-   "第一步 —— 他以为自己稳赢了。","第二步 —— 所以分心去画脚、还拿着酒。","第三步 —— 推断：他骄傲自满、掉以轻心。"]},
-  check:[{q:"读寓言时最该想清楚的是——", o:["它要告诉的道理","人物叫什么","酒有多少","谁的字好看"], a:0, e:"寓言重道理。"}] },
+   {t:"读故事的三步", b:"① 谁？做了什么？\n② 他心里是怎么想的？（找「心想」）\n③ 结果怎样？说明了什么道理？"},
+   {t:"什么叫「自欺欺人」", b:"明明骗不了别人，只能骗自己，还以为别人也被骗了。\n读完故事想一想：捂住耳朵，钟声就消失了吗？"}],
+  example:{t:"抓住人物想法", prob:"故事里的人捂住耳朵时，心里是怎么想的？", steps:[
+   "回到原文找「心想」：「我听不见，别人一定也听不见。」",
+   "这就是他的想法——也是全文最可笑、最关键的一句。"]},
+  check:[{q:"这个人想偷的是——", o:["一口大钟","一袋米","一匹马","一幅画"], a:0, e:"开头写「看见……一口漂亮的大钟」。"}] },
  training:[
-  {q:"几个人比赛画什么来决定谁喝酒？", passage:P_HUASHE, o:["蛇","马","船","龙"], a:0, tier:1, e:"画蛇。"},
-  {q:"那个先画完的人为什么最后没喝到酒？", passage:P_HUASHE, o:["他多此一举去给蛇添脚，被别人赶上","他不爱喝酒","酒洒了","蛇跑了"], a:0, tier:2, e:"添足耽误，被超过。"},
-  {q:"「他左手拿酒，右手又画起脚来」表现他——", passage:P_HUASHE, o:["骄傲自满、掉以轻心","非常紧张","很有礼貌","画得很慢"], a:0, tier:3, e:"自满轻敌。"},
-  {q:"另一个人夺酒时说的理由是——", passage:P_HUASHE, o:["蛇本来就没有脚","酒是我的","你画得不好","时间到了"], a:0, tier:2, e:"蛇无脚，添足多余。"},
-  {q:"这个故事告诉我们——", passage:P_HUASHE, o:["做事不要多此一举，恰到好处就行","画画要快","蛇会咬人","喝酒不好"], a:0, tier:2, e:"勿画蛇添足。"},
-  {q:"下面哪些词能形容那个画脚的人？", passage:P_HUASHE, t:"multi", o:["自作聪明","骄傲","谦虚","谨慎"], a:[0,1], tier:3, e:"他自作聪明又骄傲。"},
-  {q:"「到头来一口酒也没喝到」中「到头来」的意思是——", passage:P_HUASHE, o:["最后、结果","在路上","一开始","非常"], a:0, tier:2, e:"到头来=结果。"},
-  {q:"如果用一个成语概括这个故事，最合适的是——", passage:P_HUASHE, o:["画蛇添足","守株待兔","亡羊补牢","熟能生巧"], a:0, tier:2, e:"本故事=画蛇添足出处。"},
-  {q:"作者写「他得意地说」，是为了——", passage:P_HUASHE, o:["突出他的自满，为后面失败作铺垫","说明他很善良","表示天气好","凑字数"], a:0, tier:3, e:"铺垫失败。"},
-  {q:"填空：蛇本来就没有________，所以不该添。", passage:P_HUASHE, t:"fill", a:["脚"], tier:2, e:"蛇无脚。", hint:"一个字"},
-  {q:"从这个故事，我们可以推断作者更欣赏——", passage:P_HUASHE, o:["做事恰到好处的人","动作最快的人","话最多的人","拿酒的人"], a:0, tier:3, e:"恰到好处、不画蛇添足。"},
-  {q:"「谁先把蛇画好，就归谁喝」这句话的作用是——", passage:P_HUASHE, o:["定下比赛规则，引出后面的故事","描写风景","介绍人物长相","抒发感情"], a:0, tier:2, e:"立规则、起情节。"},
-  {q:"这个寓言和「自相矛盾」相比，共同点是——", passage:P_HUASHE, o:["都讽刺人做事不合情理","都讲打仗","都讲动物","都讲天气"], a:0, tier:3, e:"都讽刺不合理的言行。"}
+  {q:"他为什么要把钟敲碎？", o:["钟又大又重，背不动","钟是坏的","他讨厌这口钟","想听钟声"], a:0, tier:1, e:"原文：「钟又大又重，怎么也背不动。」", passage:P_YANER},
+  {q:"他刚敲了一下，发生了什么？", o:["钟「当」的一声响了","钟碎成了两半","邻居开门了","下起了大雨"], a:0, tier:1, e:"钟马上响了起来，把他吓了一跳。", passage:P_YANER},
+  {q:"他捂住耳朵时心里想——", o:["我听不见，别人一定也听不见","钟声真好听","我力气真大","别人不会来的"], a:0, tier:2, e:"原文「心想」后面的那句话。", passage:P_YANER},
+  {q:"他的这个想法错在哪里？", o:["捂住自己的耳朵，挡不住钟声传出去","钟其实不会响","别人都睡着了","耳朵捂不严"], a:0, tier:3, e:"他只骗过了自己——钟声照样传遍整条街。", passage:P_YANER},
+  {q:"故事的结局是——", o:["人们跑来，当场抓住了他","他把钟搬回了家","钟不响了","他把耳朵捂得更紧"], a:0, tier:1, e:"结尾：「人们跑了过来，当场抓住了他。」", passage:P_YANER},
+  {q:"「当场」的意思是——", o:["就在那个地方、那个时候","第二天","在广场上","当着钟的面"], a:0, tier:2, e:"当场＝就在现场、立刻。", passage:P_YANER},
+  {q:"下面哪件事最先发生？", o:["他发现背不动钟","他捂住耳朵","钟响了起来","人们抓住了他"], a:0, tier:2, e:"顺序：背不动→敲钟→钟响→捂耳→被抓。", passage:P_YANER},
+  {q:"他为什么能「放心地」砸钟？", o:["他以为捂住耳朵别人就听不见了","钟真的不响了","邻居出远门了","他跑得很快"], a:0, tier:3, e:"这是推断题：「放心」来自他那个自欺欺人的想法。", passage:P_YANER},
+  {q:"「掩耳盗铃」这个成语比喻——", o:["自己骗自己","偷东西很难","铃铛声音大","做事要小心"], a:0, tier:3, e:"掩＝捂住；明明瞒不住，偏要自己骗自己。", passage:P_YANER},
+  {q:"如果给这个故事换个题目，最合适的是——", o:["《骗得了自己，骗不了别人》","《一口漂亮的大钟》","《聪明的邻居》","《搬家的办法》"], a:0, tier:3, e:"题目要点出道理，而不是只说事物。", passage:P_YANER},
+  {q:"下面哪些说法与故事相符？（多选）", t:"multi", o:["他嫌钟太重才想敲碎","钟声传遍了整条街","捂住耳朵后别人真的听不见了","他最后被人们抓住了"], a:[0,1,3], tier:3, e:"第三项正是他错误的想法。", passage:P_YANER},
+  {q:"这个故事告诉我们——（多选）", t:"multi", o:["骗自己解决不了问题","事实不会因为你不看不听就消失","偷东西只要够快就行","做错事早晚会被发现"], a:[0,1,3], tier:3, e:"第三项与故事道理相反。", passage:P_YANER},
+  {q:"文中「当——」的破折号，作用是——", o:["表示钟声拖得很长","表示说话被打断","表示解释说明","表示列举"], a:0, tier:3, e:"破折号在拟声词后，表示声音延长。", passage:P_YANER}
  ]},
 
-{id:"ZH20", subj:"cn", icon:"🩺", title:"病句·近义词·标点 + 识字 Day 22", en:"Editing II", tag:"fix",
- traceDay:22, trace:["象","像","等","觉","错","题"],
+{id:"ZH24", subj:"cn", icon:"🖌️", title:"病句·近义词 II + 识字 Day 24", en:"Sentence Clinic II", tag:"level",
+ traceDay:24, trace:["椅","灯","纸","笔","画","字"],
  lesson:{ cards:[
-   {t:"更多病句类型", b:"①语序不当：「我们讨论并听取了报告」（应先听取再讨论）。\n②否定不当：「难道我们不应该不努力吗？」（多重否定绕晕）。\n③不合逻辑：「他是全校唯一的几个尖子生之一」（唯一与几个矛盾）。"},
-   {t:"近义词辨析", b:"「常常」≈经常；「连忙」≈赶紧（动作快）；「居然/竟然」≈出乎意料。\n选词要看语境的轻重和搭配。"},
-   {t:"今天的新字", b:"象 像 等 觉 错 题——「大象、好像、等于、觉得、错题」常用。下面描一描。"}],
-  example:{t:"改病句", prob:"「我们班取得好成绩的原因是大家努力造成的。」哪里错？", steps:[
-   "第一步 —— 「原因是…造成的」句式杂糅。","第二步 —— 删「造成的」或删「原因是」。","第三步 —— 改：…是因为大家努力。"]},
-  check:[{q:"「连忙」最接近——", o:["赶紧","慢慢","也许","一直"], a:0, e:"连忙=赶紧。"}] },
+   {t:"病句三种老毛病", b:"重复啰嗦：他大约估计有五十人。（「大约」和「估计」留一个）\n搭配不当：他的写字水平很美丽。（水平→高；字→漂亮）\n前后矛盾：我肯定他大概会来。（「肯定」和「大概」打架）"},
+   {t:"多音字两组", b:"乐：快乐 lè ／ 音乐 yuè\n行：行走 xíng ／ 银行 háng\n先想词的意思，再定读音。"}],
+  example:{t:"找出病因", prob:"「教室里安静得一点儿声音都没有，只听见翻书的沙沙声。」病在哪？", steps:[
+   "前半句说「一点儿声音都没有」，后半句又说「听见沙沙声」。",
+   "前后矛盾——把「一点儿声音都没有」改成「非常安静」就通了。"]},
+  check:[{q:"「他快乐地听着音乐。」两个「乐」的读音是——", o:["lè、yuè","yuè、lè","都读 lè","都读 yuè"], a:0, e:"快乐 lè；音乐 yuè。"}] },
  training:[
-  {q:"下面哪一句语序不当（顺序错了）？", o:["他打开书包，拿出课本。","会上，我们讨论并听取了这份报告。","春天来了，花开了。","他认真地做作业。"], a:1, tier:3, e:"应「听取并讨论」——先听取后讨论，原句顺序颠倒。"},
-  {q:"选出所有的病句。", t:"multi", o:["他是全班唯一的几个高个子之一。","难道我们不应该爱护环境吗？","经过努力，他的成绩提高了。","树上有许多只小鸟。"], a:[0], tier:3, e:"①「唯一」与「几个」矛盾；其余通顺。"},
-  {q:"「妈妈连忙跑过来扶住我。」「连忙」表示——", o:["动作很快、赶紧","很慢","偶尔","故意"], a:0, tier:1, e:"连忙=赶紧。"},
-  {q:"「他________得这道题很难。」横线填两个字（表示心里认为）。", t:"fill", a:["觉"], tier:3, e:"觉得；本题填「觉」。", hint:"一个字"},
-  {q:"「大________的鼻子很长。」横线填一个字。", t:"fill", a:["象"], tier:2, e:"大象。", hint:"一个字"},
-  {q:"「这朵云________一只小兔子。」横线填一个字（表示相似）。", t:"fill", a:["像"], tier:3, e:"好像、像。", hint:"一个字"},
-  {q:"下面哪些句子有语病或标点错误？", t:"multi", o:["你吃饭了吗。","他高兴地说：太好了！","这本书很有意思、很好看。","我们要保护小动物。"], a:[0,2], tier:3, e:"①疑问句用问号；③顿号误用（应用「，」连接两个分句）。"},
-  {q:"「3 加 4 ________ 7。」横线填一个字（表示「相同」）。", t:"fill", a:["等"], tier:2, e:"等于。", hint:"一个字"},
-  {q:"把病句改对：「为了防止溺水事故不再发生，学校加强了教育。」应——", o:["删掉「不再」（否定不当）","加逗号","换问号","没有错"], a:0, tier:3, e:"「防止…不再发生」=否定不当。"},
-  {q:"「他做完了所有的________，没有一道做错。」横线填一个字。", t:"fill", a:["题"], tier:2, e:"题目；填「题」。", hint:"一个字"},
-  {q:"「常常」和「连忙」的区别是——", o:["「常常」指经常，「连忙」指动作快","完全一样","都表示慢","都表示频率"], a:0, tier:2, e:"频率 vs 速度。"},
-  {q:"「这次他________考了满分，太让人意外了！」横线填两个字。", t:"fill", a:["竟然","居然"], tier:3, e:"出乎意料；复习「竟」。", hint:"两个字"},
-  {q:"选出用词重复啰嗦的句子。", t:"multi", o:["他大约估计有五十人。","我看完了这本书。","他们彼此互相帮助。","操场上很热闹。"], a:[0,2], tier:3, e:"①「大约」「估计」重复；③「彼此」「互相」重复。"}
+  {q:"下面哪句是病句？", o:["我肯定他大概会来参加比赛。","窗外下着小雨。","他把教室打扫得干干净净。","我们一起去图书馆看书。"], a:0, tier:3, e:"「肯定」和「大概」前后矛盾，删掉一个。"},
+  {q:"选出所有的病句。（多选）", t:"multi", o:["他大约估计有五十人。","这道题的难度水平很高又很难。","轮船慢慢驶出了港口。","我的家乡是广东人。"], a:[0,1,3], tier:3, e:"①重复啰嗦②「难度水平…又很难」啰嗦③正确④「家乡」不能「是…人」，搭配不当。"},
+  {q:"「银行门口的自行车排成了一行。」两个「行」读——", o:["háng、xíng… 不对，是 háng、háng","háng、xíng","xíng、háng","都读 xíng"], a:1, tier:3, e:"银行 háng；自行车 xíng。注意最后「一行」也读 háng，但题目问的是前两个。"},
+  {q:"下面哪些句子的标点使用正确？（多选）", t:"multi", o:["今天星期几？","轮船、帆船和渔船都停在港口。","他说：「我们出发吧。」","你去过大海吗。"], a:[0,1,2], tier:3, e:"问句要用问号，第四句错。"},
+  {q:"「我用铅________写字。」点选一个字。", t:"fill", kind:"zi", a:"笔", tiles:"笔比必币毕鼻", tier:2, e:"写字的工具是「笔」。", hint:"点字块作答"},
+  {q:"「他在________上画了一只猫。」点选一个字。", t:"fill", kind:"zi", a:"纸", tiles:"纸低底指织只", tier:2, e:"画画用「纸」。"},
+  {q:"「天黑了，把________打开吧。」点选一个字。", t:"fill", kind:"zi", a:"灯", tiles:"灯等登打订丁", tier:2, e:"照明用「灯」。注意别选「等」——它是等待的等。"},
+  {q:"「请坐在自己的________子上。」点选一个字。", t:"fill", kind:"zi", a:"椅", tiles:"椅奇骑倚寄其", tier:2, e:"坐的是「椅子」。"},
+  {q:"「弟弟画了一幅________，画的是大海。」点选一个字。", t:"fill", kind:"zi", a:"画", tiles:"画图书写话田", tier:2, e:"一幅画的「画」。"},
+  {q:"「这个________怎么念？」点选一个字。", t:"fill", kind:"zi", a:"字", tiles:"字子学写安定", tier:2, e:"汉字的「字」。"},
+  {q:"「我________得这个办法很好。」点选一个字。", t:"fill", kind:"zi", a:"觉", tiles:"觉学见常赏堂", tier:3, e:"「觉得」＝心里认为。上次的易错字！"},
+  {q:"「天上的云很________一条大鱼。」点选一个字（表示相似）。", t:"fill", kind:"zi", a:"像", tiles:"像象相想向橡", tier:3, e:"表示「相似」用单人旁的「像」；大象才用「象」。"},
+  {q:"「大________的鼻子像水管一样长。」点选一个字。", t:"fill", kind:"zi", a:"象", tiles:"象像相香乡想", tier:3, e:"动物「大象」用没有单人旁的「象」。和上一题对比记忆！"}
  ]},
 
-/* ========================= 数学 Math (English-first · 安省 G5→早G6) ========================= */
-{id:"MA17", subj:"math", icon:"⛵", title:"Fractions III", en:"加减·比较·整体的几分之几", tag:"level",
- lesson:{ media:[{type:"fractionbar", title:"Fraction bars", cap:"Make equal parts and compare fractions."}],
+/* ========================= 数学 Math (English-first · v12 弱点巩固) ========================= */
+{id:"MA21", subj:"math", icon:"🧩", title:"Fractions IV", en:"分数再巩固", tag:"core",
+ lesson:{ media:[{type:"fractionbar", title:"Fraction bars", cap:"Same-size wholes make fractions easy to compare."}],
   cards:[
-   {t:"Add with unlike denominators", b:"Find a common denominator first.\n2/3 + 1/4 → 8/12 + 3/12 = 11/12.\nSubtract the same way: 5/6 − 1/3 = 5/6 − 2/6 = 3/6 = 1/2."},
-   {t:"Fraction OF a quantity", b:"'3/4 of 20' means 20 ÷ 4 × 3 = 15.\nMultiply a fraction by a whole number: 3/8 × 4 = 12/8 = 3/2 = 1 1/2."}],
-  example:{t:"Find the larger fraction", prob:"Which is larger, 5/8 or 2/3?", steps:[
-   "Step 1 — Common denominator 24: 5/8 = 15/24.","Step 2 — 2/3 = 16/24.","Step 3 — 16/24 > 15/24, so 2/3 is larger."]},
-  check:[{q:"5/6 − 1/3 = ?", o:["1/2","4/3","6/9","2/3"], a:0, e:"5/6 − 2/6 = 3/6 = 1/2."}] },
+   {t:"Unlike denominators", b:"Find a common denominator FIRST.\n1/3 + 1/6 → 2/6 + 1/6 = 3/6 = 1/2.\n3/4 − 1/8 → 6/8 − 1/8 = 5/8."},
+   {t:"Fraction OF a number", b:"'2/3 of 18' → 18 ÷ 3 × 2 = 12.\nDivide by the bottom, multiply by the top.\nFraction × whole: 2/7 × 3 = 6/7."}],
+  example:{t:"Fraction of a quantity", prob:"What is 3/5 of 25?", steps:[
+   "Step 1 — Divide by the bottom: 25 ÷ 5 = 5.",
+   "Step 2 — Multiply by the top: 5 × 3 = 15.",
+   "So 3/5 of 25 = 15."]},
+  check:[{q:"1/3 + 1/6 = ?", o:["1/2","2/9","1/9","2/6 exactly"], a:0, e:"2/6 + 1/6 = 3/6 = 1/2."}] },
  training:[
-  {q:"1/2 + 1/4 = ? (simplest form)", t:"fill", kind:"num", a:["3/4"], tier:3, e:"2/4 + 1/4 = 3/4.", hint:"like a/b"},
-  {q:"2/3 + 1/4 = ? (simplest form)", t:"fill", kind:"num", a:["11/12"], tier:3, e:"8/12 + 3/12.", hint:"common denominator 12"},
-  {q:"5/6 − 1/2 = ? (simplest form)", t:"fill", kind:"num", a:["1/3"], tier:3, e:"5/6 − 3/6 = 2/6 = 1/3.", hint:"common denominator 6"},
-  {q:"What is 3/4 of 20?", t:"fill", kind:"num", a:["15"], tier:3, e:"20 ÷ 4 × 3 = 15."},
-  {q:"What is 2/5 of 30?", t:"fill", kind:"num", a:["12"], tier:3, e:"30 ÷ 5 × 2 = 12."},
-  {q:"Which fraction is the LARGEST?", o:["3/4","2/3","5/8","7/12"], a:0, tier:3, e:"3/4 = 0.75 is largest."},
-  {q:"Which is larger: 5/8 or 2/3?", o:["2/3","5/8","they are equal","cannot tell"], a:0, tier:3, e:"2/3≈0.667 > 5/8=0.625."},
-  {q:"Write 7/3 as a mixed number.", o:["2 1/3","3 1/2","2 1/2","1 1/3"], a:0, tier:2, e:"7÷3 = 2 remainder 1."},
-  {q:"1 1/2 + 3/4 = ?", o:["2 1/4","1 3/4","2 1/2","1 1/4"], a:0, tier:3, e:"6/4 + 3/4 = 9/4 = 2 1/4."},
-  {q:"3/4 = ?/12. The missing number is —", t:"fill", kind:"num", a:["9"], tier:3, e:"×3 top and bottom."},
-  {q:"3/8 × 4 = ? (you may write a fraction or decimal)", t:"fill", kind:"num", a:["3/2","1.5"], tier:3, e:"12/8 = 3/2 = 1.5.", hint:"3/2 or 1.5"},
-  {q:"Which fractions are EQUAL to 3/4? (select all)", t:"multi", o:["6/8","9/12","12/16","2/3"], a:[0,1,2], tier:3, e:"First three equal 3/4."},
-  {q:"Which fractions are GREATER than 1/2? (select all)", t:"multi", o:["3/4","5/8","2/5","7/12"], a:[0,1,3], tier:3, e:"2/5 < 1/2; the rest are larger."}
+  {q:"1/4 + 1/2 = ? (simplest form)", t:"fill", kind:"num", a:["3/4"], tier:3, e:"1/4 + 2/4 = 3/4.", hint:"type like a/b"},
+  {q:"3/4 − 1/8 = ? (simplest form)", t:"fill", kind:"num", a:["5/8"], tier:3, e:"6/8 − 1/8 = 5/8.", hint:"common denominator 8"},
+  {q:"2/5 + 1/2 = ? (simplest form)", t:"fill", kind:"num", a:["9/10"], tier:3, e:"4/10 + 5/10 = 9/10."},
+  {q:"What is 2/3 of 18?", t:"fill", kind:"num", a:["12"], tier:3, e:"18 ÷ 3 × 2 = 12."},
+  {q:"What is 3/5 of 35?", t:"fill", kind:"num", a:["21"], tier:3, e:"35 ÷ 5 × 3 = 21."},
+  {q:"What is 5/6 of 12?", t:"fill", kind:"num", a:["10"], tier:3, e:"12 ÷ 6 × 5 = 10."},
+  {q:"2/7 × 3 = ? (fraction)", t:"fill", kind:"num", a:["6/7"], tier:3, e:"Multiply the top: 2×3 = 6. Bottom stays 7.", hint:"like a/b"},
+  {q:"Which is larger: 7/10 or 3/4?", o:["3/4","7/10","they are equal","cannot tell"], a:0, tier:3, e:"3/4 = 15/20, 7/10 = 14/20."},
+  {q:"Write 11/4 as a mixed number.", o:["2 3/4","2 1/4","3 1/4","1 3/4"], a:0, tier:2, e:"11 ÷ 4 = 2 remainder 3."},
+  {q:"1 2/3 + 1/3 = ?", o:["2","1 3/6","2 1/3","1 1/3"], a:0, tier:3, e:"2/3 + 1/3 makes one more whole."},
+  {q:"A pizza is cut into 8 slices. Ben eats 3/8 and Mia eats 2/8. What fraction is EATEN?", o:["5/8","1/8","6/8","5/16"], a:0, tier:2, e:"3/8 + 2/8 = 5/8. Same denominator — just add tops."},
+  {q:"Which fractions are EQUAL to 2/3? (select all)", t:"multi", o:["4/6","6/9","8/12","3/5"], a:[0,1,2], tier:3, e:"Multiply top and bottom by the same number."},
+  {q:"Which fractions are LESS than 1/2? (select all)", t:"multi", o:["2/5","3/8","5/8","4/10"], a:[0,1,3], tier:3, e:"Compare with 0.5: 0.4, 0.375, 0.625, 0.4."}
  ]},
 
-{id:"MA18", subj:"math", icon:"💰", title:"Decimals & Percent II", en:"小数借位·四舍五入·折扣", tag:"level",
- lesson:{ media:[{type:"decimalgrid", title:"Hundredths grid", cap:"Shade squares to see decimals and percents."}],
+{id:"MA22", subj:"math", icon:"🪙", title:"Decimals & Percent III", en:"小数·百分数再巩固", tag:"core",
+ lesson:{ media:[{type:"decimalgrid", title:"Hundred grid", cap:"One small square = 0.01 = 1%."}],
   cards:[
-   {t:"Subtract with borrowing", b:"Line up the decimal points; add zeros to help.\n5.3 − 2.85 → 5.30 − 2.85 = 2.45.\nMultiply/divide: 0.25 × 8 = 2;  6.4 ÷ 8 = 0.8."},
-   {t:"Rounding & percent", b:"Round 4.86 to the nearest TENTH → look at hundredths (6) → 4.9.\n3/4 = 0.75 = 75%.\n'15% of 60' = 60 × 0.15 = 9.  A 25%-off discount on $80 saves $20."}],
-  example:{t:"Two-step discount", prob:"A $80 jacket is 25% off. What is the SALE price?", steps:[
-   "Step 1 — Discount = 80 × 0.25 = 20.","Step 2 — Sale price = 80 − 20.","Step 3 — = $60."]},
-  check:[{q:"Round 4.86 to the nearest tenth.", o:["4.9","4.8","5.0","4.86"], a:0, e:"Hundredths digit 6 rounds up."}] },
+   {t:"Line up the decimal point", b:"6.2 − 3.45 → write 6.20 − 3.45.\nBorrow just like whole numbers: 6.20 − 3.45 = 2.75.\nAdding: 3.08 + 2.9 = 3.08 + 2.90 = 5.98."},
+   {t:"Percent of a number", b:"30% of 90 → 90 × 30 ÷ 100 = 27.\nDiscount: SAVE = the % part. SALE price = price − save.\n$60 at 20% off → save $12, pay $48."}],
+  example:{t:"Save vs Sale price", prob:"A $60 book is 20% off. How much do you SAVE, and what do you PAY?", steps:[
+   "Save = 60 × 20 ÷ 100 = 12 dollars.",
+   "Sale price = 60 − 12 = 48 dollars.",
+   "Two different questions — read carefully which one is asked!"]},
+  check:[{q:"5.0 − 1.25 = ?", o:["3.75","4.25","3.25","4.75"], a:0, e:"5.00 − 1.25 = 3.75."}] },
  training:[
-  {q:"5.3 − 2.85 = ?", t:"fill", kind:"num", a:["2.45"], tier:3, e:"5.30 − 2.85 = 2.45.", hint:"line up decimals"},
-  {q:"4.06 + 1.7 = ?", t:"fill", kind:"num", a:["5.76"], tier:3, e:"4.06 + 1.70 = 5.76."},
-  {q:"0.25 × 8 = ?", t:"fill", kind:"num", a:["2"], tier:3, e:"0.25 × 8 = 2."},
-  {q:"6.4 ÷ 8 = ?", t:"fill", kind:"num", a:["0.8"], tier:3, e:"64 ÷ 8 = 8 → 0.8."},
-  {q:"Round 4.86 to the nearest tenth.", t:"fill", kind:"num", a:["4.9"], tier:3, e:"Look at hundredths (6) → round up.", hint:"one decimal place"},
-  {q:"Round 3.142 to the nearest hundredth.", t:"fill", kind:"num", a:["3.14"], tier:3, e:"Thousandths digit 2 → round down.", hint:"two decimal places"},
-  {q:"Write 3/4 as a percent. (number only)", t:"fill", kind:"num", a:["75"], tier:3, e:"3/4 = 0.75 = 75%."},
-  {q:"What is 15% of 60?", t:"fill", kind:"num", a:["9"], tier:3, e:"60 × 0.15 = 9."},
-  {q:"A $80 jacket is 25% off. How much do you SAVE?", t:"fill", kind:"num", a:["20"], tier:3, e:"80 × 0.25 = 20."},
-  {q:"A $80 jacket is 25% off. What is the SALE price?", t:"fill", kind:"num", a:["60"], tier:3, e:"80 − 20 = 60."},
-  {q:"Which values EQUAL 0.75? (select all)", t:"multi", o:["3/4","75%","6/8","0.075"], a:[0,1,2], tier:3, e:"0.075 is not 0.75."},
-  {q:"0.5 × 0.4 = ?", t:"fill", kind:"num", a:["0.2"], tier:3, e:"5×4=20 → two decimal places → 0.20.", hint:"decimal × decimal"},
-  {q:"Which number is the LARGEST?", o:["0.605","0.6","0.59","0.5"], a:0, tier:2, e:"0.605 > 0.6 > 0.59 > 0.5."}
+  {q:"6.2 − 3.45 = ?", t:"fill", kind:"num", a:["2.75"], tier:3, e:"6.20 − 3.45 = 2.75. Borrow across the decimal point.", hint:"line up the points"},
+  {q:"3.08 + 2.9 = ?", t:"fill", kind:"num", a:["5.98"], tier:3, e:"3.08 + 2.90 = 5.98."},
+  {q:"0.6 × 0.3 = ?", t:"fill", kind:"num", a:["0.18"], tier:3, e:"6×3=18, two decimal places → 0.18."},
+  {q:"7.2 ÷ 9 = ?", t:"fill", kind:"num", a:["0.8"], tier:3, e:"72 ÷ 9 = 8, so 7.2 ÷ 9 = 0.8."},
+  {q:"4.35 × 10 = ?", t:"fill", kind:"num", a:["43.5"], tier:2, e:"×10 moves the point one place right."},
+  {q:"Round 6.278 to the nearest hundredth.", t:"fill", kind:"num", a:["6.28"], tier:3, e:"Look at the thousandths digit (8) → round up.", hint:"two decimal places"},
+  {q:"Write 2/5 as a percent. (number only)", t:"fill", kind:"num", a:["40"], tier:3, e:"2/5 = 0.4 = 40%."},
+  {q:"What is 30% of 90?", t:"fill", kind:"num", a:["27"], tier:3, e:"90 × 30 ÷ 100 = 27."},
+  {q:"A $60 book is 20% off. How much do you SAVE?", o:["$12","$48","$20","$40"], a:0, tier:3, e:"Save = 20% of 60 = 12."},
+  {q:"The same $60 book, 20% off. What is the SALE price?", o:["$48","$12","$40","$58"], a:0, tier:3, e:"60 − 12 = 48. Compare with the last question!"},
+  {q:"Which number is the LARGEST?", o:["0.9","0.72","0.185","0.58"], a:0, tier:2, e:"Compare tenths first: 9 beats 7, 5, 1."},
+  {q:"Which values EQUAL 0.25? (select all)", t:"multi", o:["1/4","25%","2/8","0.205"], a:[0,1,2], tier:3, e:"1/4 = 2/8 = 25% = 0.25; 0.205 is different."},
+  {q:"0.07 × 100 = ?", o:["7","0.7","70","0.007"], a:0, tier:2, e:"×100 moves the point two places right."}
  ]},
 
-{id:"MA19", subj:"math", icon:"📐", title:"Geometry & Measurement II", en:"面积·周长·体积·三角形", tag:"core",
- lesson:{ media:[{type:"angleline", title:"Angles on a line", cap:"Angles on a straight line add to 180°."}],
+{id:"MA23", subj:"math", icon:"📏", title:"Geometry & Measurement III", en:"周长·面积·体积分清楚", tag:"core",
+ lesson:{ media:[{type:"angleline", title:"Angles", cap:"Complementary = 90° together. Supplementary = 180° together."}],
   cards:[
-   {t:"Perimeter vs Area vs Volume", b:"Perimeter = distance around (add all sides).\nArea of a rectangle = length × width.\nArea of a TRIANGLE = (base × height) ÷ 2.\nVolume of a box = length × width × height."},
-   {t:"Angles", b:"A right angle = 90°; a straight angle = 180°.\nAngles in a triangle add to 180°.\nComplementary angles add to 90°."}],
-  example:{t:"Area of a triangle", prob:"A triangle has base 6 and height 4. What is its area?", steps:[
-   "Step 1 — Area = (base × height) ÷ 2.","Step 2 — (6 × 4) ÷ 2 = 24 ÷ 2.","Step 3 — = 12."]},
-  check:[{q:"Area of a rectangle =", o:["length × width","add all sides","l × w × h","(b × h) ÷ 2"], a:0, e:"length × width."}] },
+   {t:"Three different questions!", b:"PERIMETER = distance AROUND = add all sides.\nAREA = space INSIDE = length × width.\nVOLUME = space it HOLDS = length × width × height.\nRectangle 9 by 4 → P = 26, A = 36. Not the same!"},
+   {t:"Triangles & angles", b:"Triangle area = base × height ÷ 2.\nAngles inside a triangle add to 180°.\nComplementary pair → 90°. Supplementary pair → 180°."}],
+  example:{t:"Perimeter vs Area", prob:"A rectangle is 9 by 4. Find its PERIMETER and its AREA.", steps:[
+   "Perimeter = around the edge: (9 + 4) × 2 = 26.",
+   "Area = inside: 9 × 4 = 36.",
+   "Different formulas, different meanings — check which word the question uses."]},
+  check:[{q:"A triangle has base 8 and height 5. Its AREA is —", o:["20","40","13","80"], a:0, e:"8 × 5 ÷ 2 = 20."}] },
  training:[
-  {q:"A rectangle is 8 by 5. What is its AREA?", t:"fill", kind:"num", a:["40"], tier:2, e:"8 × 5 = 40."},
-  {q:"A rectangle is 8 by 5. What is its PERIMETER?", t:"fill", kind:"num", a:["26"], tier:3, e:"(8+5)×2 = 26."},
-  {q:"A box is 3 by 4 by 5. What is its VOLUME?", t:"fill", kind:"num", a:["60"], tier:3, e:"3 × 4 × 5 = 60."},
-  {q:"A square has area 49. What is its side length?", t:"fill", kind:"num", a:["7"], tier:3, e:"7 × 7 = 49."},
-  {q:"A triangle has base 6 and height 4. What is its AREA?", t:"fill", kind:"num", a:["12"], tier:3, e:"(6×4)÷2 = 12."},
-  {q:"Two angles of a triangle are 60° and 70°. The third angle is —", t:"fill", kind:"num", a:["50"], tier:3, e:"180 − 60 − 70 = 50."},
-  {q:"What angle is COMPLEMENTARY to 25°? (number only)", t:"fill", kind:"num", a:["65"], tier:3, e:"90 − 25 = 65."},
-  {q:"A cube has side 4. What is its VOLUME?", t:"fill", kind:"num", a:["64"], tier:3, e:"4 × 4 × 4 = 64."},
-  {q:"Which shapes are QUADRILATERALS (4 sides)? (select all)", t:"multi", o:["trapezoid","parallelogram","pentagon","square"], a:[0,1,3], tier:3, e:"A pentagon has 5 sides."},
-  {q:"The point (2, 5) means —", o:["right 2, up 5","up 2, right 5","right 2, right 5","up 7"], a:0, tier:2, e:"(x, y) = right x, up y."},
-  {q:"A square has side 9. What is its PERIMETER?", t:"fill", kind:"num", a:["36"], tier:3, e:"9 × 4 = 36."},
-  {q:"Angles on a STRAIGHT line add up to —", o:["180°","90°","360°","100°"], a:0, tier:1, e:"A straight angle = 180°."}
+  {q:"A rectangle is 9 by 4. What is its AREA?", t:"fill", kind:"num", a:["36"], tier:2, e:"9 × 4 = 36."},
+  {q:"The SAME rectangle, 9 by 4. What is its PERIMETER?", t:"fill", kind:"num", a:["26"], tier:3, e:"(9+4) × 2 = 26. Around, not inside!", hint:"add all four sides"},
+  {q:"A square has side 7. What is its PERIMETER?", t:"fill", kind:"num", a:["28"], tier:2, e:"7 × 4 = 28."},
+  {q:"A square has AREA 64. What is its side length?", t:"fill", kind:"num", a:["8"], tier:3, e:"8 × 8 = 64."},
+  {q:"A triangle has base 10 and height 6. What is its AREA?", t:"fill", kind:"num", a:["30"], tier:3, e:"10 × 6 ÷ 2 = 30. Don't forget ÷ 2."},
+  {q:"A cube has side 5. What is its VOLUME?", t:"fill", kind:"num", a:["125"], tier:3, e:"5 × 5 × 5 = 125."},
+  {q:"A box is 2 by 5 by 6. What is its VOLUME?", t:"fill", kind:"num", a:["60"], tier:3, e:"2 × 5 × 6 = 60."},
+  {q:"Two angles of a triangle are 45° and 65°. The third angle is — (number only)", t:"fill", kind:"num", a:["70"], tier:3, e:"180 − 45 − 65 = 70."},
+  {q:"What angle is COMPLEMENTARY to 35°? (number only)", t:"fill", kind:"num", a:["55"], tier:3, e:"90 − 35 = 55."},
+  {q:"What angle is SUPPLEMENTARY to 120°?", o:["60°","240°","30°","80°"], a:0, tier:3, e:"180 − 120 = 60. Supplementary = 180° together."},
+  {q:"The point (3, 6) on a grid means —", o:["right 3, up 6","up 3, right 6","right 3, right 6","left 3, up 6"], a:0, tier:2, e:"Across first, then up: (x, y)."},
+  {q:"Which jobs need AREA? (select all)", t:"multi", o:["covering a floor with tiles","building a fence around a yard","painting a wall","filling a pool with water"], a:[0,2], tier:3, e:"Fence = perimeter. Filling a pool = volume. Tiles and paint cover a SURFACE = area."},
+  {q:"Which units measure VOLUME? (select all)", t:"multi", o:["cm³","m³","cm²","km"], a:[0,1], tier:3, e:"Cubed units (³) are volume; cm² is area; km is length."}
  ]},
 
-{id:"MA20", subj:"math", icon:"🧮", title:"Order of Ops · Equations · Word Problems", en:"运算顺序·方程·应用题", tag:"core",
+{id:"MA24", subj:"math", icon:"🎯", title:"Order of Ops II · Equations II", en:"运算顺序·方程·应用题 II", tag:"core",
  lesson:{ cards:[
-   {t:"Order of operations", b:"Brackets first, then exponents (squares), then × and ÷, then + and −.\n5 + 6 × 3 = 5 + 18 = 23.  (5 + 6) × 3 = 33.  3² + 4 = 9 + 4 = 13."},
-   {t:"Simple equations", b:"Find the unknown.\nx + 7 = 15 → x = 15 − 7 = 8.\n3x = 21 → x = 21 ÷ 3 = 7."}],
-  example:{t:"Multi-step word problem", prob:"Tickets cost $12 each. You buy 4 and pay with $60. How much change?", steps:[
-   "Step 1 — Cost = 4 × 12 = 48.","Step 2 — Change = 60 − 48.","Step 3 — = $12."]},
-  check:[{q:"In 5 + 6 × 3, what do you do FIRST?", o:["6 × 3","5 + 6","left to right","5 × 3"], a:0, e:"× before +."}] },
+   {t:"BEDMAS order", b:"Brackets → Exponents → ×÷ → +−.\n3² means 3 × 3 = 9 (not 3 × 2!).\n5 + 3 × 4 = 5 + 12 = 17. Multiply FIRST."},
+   {t:"Solve for x, step by step", b:"2x + 3 = 11 → take away 3: 2x = 8 → divide by 2: x = 4.\nWord problems: read → write the number sentence → solve → CHECK 'what is asked'."}],
+  example:{t:"Two-step word problem", prob:"5 boxes hold 6 books each. 7 books get damaged. How many good books are left?", steps:[
+   "Step 1 — Total: 5 × 6 = 30 books.",
+   "Step 2 — Take away damaged: 30 − 7 = 23.",
+   "Answer the question asked: 23 good books."]},
+  check:[{q:"4 + 2 × 5 = ?", o:["14","30","11","40"], a:0, e:"Multiply first: 4 + 10 = 14."}] },
  training:[
-  {q:"5 + 6 × 3 = ?", t:"fill", kind:"num", a:["23"], tier:3, e:"6×3=18, +5 = 23."},
-  {q:"(5 + 6) × 3 = ?", t:"fill", kind:"num", a:["33"], tier:3, e:"Brackets first: 11 × 3."},
-  {q:"20 − 8 ÷ 2 + 1 = ?", t:"fill", kind:"num", a:["17"], tier:3, e:"8÷2=4 → 20−4+1 = 17."},
-  {q:"3² + 4 = ?", t:"fill", kind:"num", a:["13"], tier:3, e:"3² = 9, + 4 = 13.", hint:"3² = 9"},
-  {q:"4 × 5 − 6 ÷ 3 = ?", t:"fill", kind:"num", a:["18"], tier:3, e:"20 − 2 = 18."},
-  {q:"Solve: x + 7 = 15. x = ?", t:"fill", kind:"num", a:["8"], tier:3, e:"15 − 7 = 8."},
-  {q:"Solve: 3x = 21. x = ?", t:"fill", kind:"num", a:["7"], tier:3, e:"21 ÷ 3 = 7."},
-  {q:"6 boxes hold 8 books each. After 5 are damaged, how many books are left?", t:"fill", kind:"num", a:["43"], tier:3, e:"6×8=48, −5 = 43."},
-  {q:"A pizza has 8 slices. 3 kids each eat 2 slices. How many slices are LEFT?", t:"fill", kind:"num", a:["2"], tier:3, e:"3×2=6, 8−6 = 2."},
-  {q:"Which expressions EQUAL 24? (select all)", t:"multi", o:["4 × (2 + 4)","3 × 8","30 − 6","20 + 2"], a:[0,1,2], tier:3, e:"4×6=24, 3×8=24, 30−6=24; 20+2=22."},
-  {q:"48 candies are shared equally among 6 kids. Then each kid eats 3. How many does each kid have left?", t:"fill", kind:"num", a:["5"], tier:3, e:"48÷6=8, 8−3 = 5."},
-  {q:"Solve: x − 9 = 6. x = ?", t:"fill", kind:"num", a:["15"], tier:3, e:"6 + 9 = 15."}
+  {q:"2³ = ?", t:"fill", kind:"num", a:["8"], tier:3, e:"2 × 2 × 2 = 8. The small 3 means multiply three times.", hint:"not 2 × 3"},
+  {q:"4² − 6 = ?", t:"fill", kind:"num", a:["10"], tier:3, e:"16 − 6 = 10."},
+  {q:"5 + 3 × 4 = ?", t:"fill", kind:"num", a:["17"], tier:2, e:"Multiply first: 5 + 12 = 17."},
+  {q:"20 − 12 ÷ 4 = ?", t:"fill", kind:"num", a:["17"], tier:3, e:"Divide first: 20 − 3 = 17."},
+  {q:"(6 + 2) × 3 = ?", t:"fill", kind:"num", a:["24"], tier:2, e:"Brackets first: 8 × 3 = 24."},
+  {q:"Solve: 2x + 3 = 11. x = ?", t:"fill", kind:"num", a:["4"], tier:3, e:"2x = 8, so x = 4.", hint:"undo +3 first"},
+  {q:"Solve: x − 9 = 16. x = ?", t:"fill", kind:"num", a:["25"], tier:2, e:"x = 16 + 9 = 25."},
+  {q:"Solve: 4x = 36. x = ?", t:"fill", kind:"num", a:["9"], tier:3, e:"36 ÷ 4 = 9."},
+  {q:"5 boxes hold 6 books each. 7 books get damaged. How many good books are left?", o:["23","30","37","11"], a:0, tier:3, e:"5×6 = 30, then 30 − 7 = 23. Two steps!"},
+  {q:"36 candies are shared equally among 4 kids. Then each kid eats 5. How many does EACH kid have left?", o:["4","9","31","16"], a:0, tier:3, e:"36÷4 = 9 each, then 9 − 5 = 4."},
+  {q:"Which expression matches: '3 bags of 8 apples, plus 2 more apples'?", o:["3 × 8 + 2","3 + 8 × 2","(3 + 8) × 2","3 × (8 + 2)"], a:0, tier:3, e:"3 bags of 8 = 3×8, then add 2."},
+  {q:"Which equations are TRUE? (select all)", t:"multi", o:["2 + 3 × 4 = 14","(2 + 3) × 4 = 20","10 − 4 ÷ 2 = 8","3² = 6"], a:[0,1,2], tier:3, e:"3² = 9, not 6 — exponents mean repeated multiplication."}
  ]},
 
-/* ========================= 科学 Science (English-first · 安省 G5) ========================= */
-{id:"SC9", subj:"sci", icon:"🪐", title:"The Solar System", en:"太阳系", tag:"new",
- lesson:{ media:[{type:"lightray", title:"The Sun's light", cap:"The Sun gives light and heat to the planets."}],
+/* ========================= 科学 Science (English · 两个新主题) ========================= */
+{id:"SC11", subj:"sci", icon:"🧊", title:"Matter & Its States", en:"物质与三态变化", tag:"new",
+ lesson:{ media:[{type:"statesmatter", title:"Solid · Liquid · Gas", cap:"Particles: packed tight → sliding → flying free."}],
   cards:[
-   {t:"The Sun and eight planets", b:"The Sun is a STAR at the centre. Eight planets ORBIT (travel around) it: Mercury, Venus, Earth, Mars (small and rocky), then Jupiter, Saturn, Uranus, Neptune (large gas giants). Jupiter is the largest planet."},
-   {t:"Spin and orbit", b:"Earth SPINS on its axis once a day — that gives us day and night. Earth ORBITS the Sun once a year. GRAVITY is the force that keeps planets moving around the Sun and the Moon around Earth."},
-   {t:"The Moon", b:"The Moon orbits Earth. It does not make its own light — it reflects sunlight. As it moves, we see different phases (new, crescent, full)."}],
-  example:{t:"Why day and night?", prob:"What causes day and night on Earth?", steps:[
-   "Step 1 — Day/night is NOT caused by the Sun moving.","Step 2 — Earth spins (rotates) on its axis.","Step 3 — The side facing the Sun has day; the other has night."]},
-  check:[{q:"The Sun is a —", o:["star","planet","moon","comet"], a:0, e:"The Sun is a star."}] },
+   {t:"Three states", b:"SOLID keeps its own shape (ice, rock).\nLIQUID takes the shape of its container but keeps its volume (water, juice).\nGAS spreads out to fill the whole container (air, steam)."},
+   {t:"Changing state (watch the names!)", b:"melting = solid → liquid.  freezing = liquid → solid.\nevaporation = liquid → gas.  condensation = gas → liquid drops.\nHeating usually speeds these changes up."}],
+  example:{t:"Name the change", prob:"A cold glass of juice gets wet on the OUTSIDE on a hot day. Why?", steps:[
+   "Water vapour in the air touches the cold glass.",
+   "The gas cools and turns into liquid drops.",
+   "Gas → liquid = CONDENSATION (not evaporation)."]},
+  check:[{q:"Ice turning into water is called —", o:["melting","freezing","condensation","evaporation"], a:0, e:"Solid → liquid = melting."}] },
  training:[
-  {q:"What is at the CENTRE of the solar system?", o:["the Sun","Earth","the Moon","Jupiter"], a:0, tier:1, e:"The Sun is at the centre."},
-  {q:"What causes day and night on Earth?", o:["Earth spinning on its axis","the Sun orbiting Earth","the Moon's light","clouds"], a:0, tier:2, e:"Earth's rotation."},
-  {q:"Which is the LARGEST planet?", o:["Jupiter","Earth","Mars","Mercury"], a:0, tier:2, e:"Jupiter is largest."},
-  {q:"The force that keeps planets orbiting the Sun is —", o:["gravity","magnetism","wind","light"], a:0, tier:2, e:"Gravity."},
-  {q:"Which planets are the small, ROCKY (inner) planets? (select all)", t:"multi", o:["Mercury","Venus","Earth","Jupiter"], a:[0,1,2], tier:3, e:"Jupiter is a gas giant."},
-  {q:"The Moon shines because it —", o:["reflects sunlight","burns like the Sun","is made of light","has lamps"], a:0, tier:2, e:"It reflects the Sun's light."},
-  {q:"Earth takes about ONE YEAR to —", o:["orbit the Sun once","spin once","reach the Moon","cross a country"], a:0, tier:2, e:"One revolution = one year."},
-  {q:"Which statements about the Sun are TRUE? (select all)", t:"multi", o:["It gives light and heat.","It is a star.","It is the centre of the solar system.","It orbits the Earth."], a:[0,1,2], tier:3, e:"Planets orbit the Sun, not the reverse."},
-  {q:"Which is the correct order STARTING from the Sun?", o:["Mercury, Venus, Earth, Mars","Earth, Mercury, Mars, Venus","Mars, Earth, Venus, Mercury","Venus, Earth, Mercury, Mars"], a:0, tier:3, e:"Mercury is closest."},
-  {q:"A 'gas giant' is a planet that is —", o:["very large and made mostly of gas","small and rocky","made of water only","a kind of star"], a:0, tier:2, e:"E.g. Jupiter, Saturn."},
-  {q:"Earth spinning once takes about —", o:["one day","one year","one month","one hour"], a:0, tier:1, e:"One rotation = one day."},
-  {q:"Which of these ORBIT something? (select all)", t:"multi", o:["Earth orbits the Sun","the Moon orbits Earth","planets orbit the Sun","the Sun orbits Earth"], a:[0,1,2], tier:3, e:"The Sun does not orbit Earth."},
-  {q:"Besides planets, the solar system also contains —", o:["asteroids and comets","oceans of air","other suns nearby","clouds of rain"], a:0, tier:2, e:"Asteroids, comets, moons."},
-  {q:"The Moon's changing shapes in the sky are called its —", o:["phases","seasons","orbits","stars"], a:0, tier:2, e:"Moon phases."},
-  {q:"Why is Mercury hotter on its Sun side than Neptune?", o:["it is much closer to the Sun","it is larger","it spins faster","it has more moons"], a:0, tier:3, e:"Closer to the Sun = more heat."},
-  {q:"Which sentence is TRUE?", o:["The Sun is much bigger than Earth.","Earth is bigger than the Sun.","The Moon is bigger than the Sun.","All planets are the same size."], a:0, tier:1, e:"The Sun is far bigger than Earth."}
+  {q:"Which state of matter keeps its OWN shape?", o:["solid","liquid","gas","all of them"], a:0, tier:1, e:"Solids keep their shape; liquids and gases don't."},
+  {q:"A liquid poured into a cup will —", o:["take the shape of the cup","keep its old shape","disappear","become a solid"], a:0, tier:1, e:"Liquids take the container's shape but keep their volume."},
+  {q:"A gas in a closed box will —", o:["spread out and fill the whole box","sink to the bottom only","keep a ball shape","turn solid"], a:0, tier:2, e:"Gas particles fly freely and fill all the space."},
+  {q:"In a SOLID, the particles are —", o:["packed tightly together","far apart and flying","all liquid","invisible only in water"], a:0, tier:2, e:"Tightly packed particles give solids a fixed shape."},
+  {q:"Water turning into water vapour is called —", o:["evaporation","condensation","freezing","melting"], a:0, tier:2, e:"Liquid → gas = evaporation. (You saw this in the water cycle!)"},
+  {q:"Water vapour turning into liquid drops is called —", o:["condensation","evaporation","melting","boiling"], a:0, tier:2, e:"Gas → liquid = condensation. The opposite of evaporation."},
+  {q:"Liquid water turning into ice is called —", o:["freezing","melting","condensation","evaporation"], a:0, tier:1, e:"Liquid → solid = freezing."},
+  {q:"At what temperature does water freeze?", o:["0°C","100°C","50°C","−100°C"], a:0, tier:2, e:"Water freezes at 0°C and boils at 100°C."},
+  {q:"At what temperature does water boil?", o:["100°C","0°C","37°C","1000°C"], a:0, tier:2, e:"100°C at sea level."},
+  {q:"Which change is IRREVERSIBLE (cannot be undone)?", o:["burning a piece of paper","melting an ice cube","freezing juice into a popsicle","water evaporating from a puddle"], a:0, tier:3, e:"Burning makes new materials — you can't un-burn paper. Melting/freezing/evaporating can be reversed."},
+  {q:"Heating a wet towel makes the water in it —", o:["evaporate faster","freeze","condense","turn solid"], a:0, tier:2, e:"Heat speeds up evaporation."},
+  {q:"Which of these are GASES? (select all)", t:"multi", o:["air","steam","ice","milk"], a:[0,1], tier:3, e:"Ice is solid, milk is liquid."},
+  {q:"Which changes are REVERSIBLE? (select all)", t:"multi", o:["melting chocolate","freezing water","burning wood","water evaporating"], a:[0,1,3], tier:3, e:"Burning cannot be undone; the others can go back."},
+  {q:"Which of these are SOLIDS at room temperature? (select all)", t:"multi", o:["a rock","a wooden spoon","orange juice","air"], a:[0,1], tier:2, e:"Juice is liquid; air is gas."},
+  {q:"Which statements about MATTER are TRUE? (select all)", t:"multi", o:["Melting and freezing are opposites.","Evaporation and condensation are opposites.","A gas keeps its own shape.","Heating usually speeds up melting."], a:[0,1,3], tier:3, e:"Gases never keep their own shape."},
+  {q:"Steam from a hot pot touching a cold window turns into water drops. This is —", o:["condensation","evaporation","freezing","melting"], a:0, tier:3, e:"Gas cooled on a cold surface → liquid = condensation."}
  ]},
 
-{id:"SC10", subj:"sci", icon:"🌧️", title:"Weather & the Water Cycle", en:"天气与水循环", tag:"new",
- lesson:{ cards:[
-   {t:"The water cycle", b:"Water moves in a never-ending cycle, powered by the SUN.\n1) EVAPORATION: the Sun heats water in oceans/lakes; it turns into invisible water vapour (gas) and rises.\n2) CONDENSATION: high up it cools and turns back into tiny droplets that form CLOUDS.\n3) PRECIPITATION: droplets join, get heavy, and fall as rain or snow.\n4) COLLECTION: water gathers in rivers, lakes, and oceans — and it starts again."},
-   {t:"Three states of water", b:"In the cycle water changes state: liquid (water), gas (vapour), and solid (ice/snow)."},
-   {t:"Weather vs climate", b:"WEATHER is what it's like today (sunny, rainy). CLIMATE is the usual weather of a place over many years."}],
-  example:{t:"Where do puddles go?", prob:"After rain, a puddle slowly disappears on a sunny day. Why?", steps:[
-   "Step 1 — The Sun heats the water.","Step 2 — The water evaporates into vapour.","Step 3 — So the puddle dries up."]},
-  check:[{q:"What POWERS the water cycle?", o:["the Sun","the Moon","wind only","ice"], a:0, e:"The Sun's heat drives it."}] },
- training:[
-  {q:"When the Sun heats water and it turns into vapour, this is —", o:["evaporation","condensation","precipitation","collection"], a:0, tier:1, e:"Evaporation."},
-  {q:"When water vapour cools and forms clouds, this is —", o:["condensation","evaporation","precipitation","freezing"], a:0, tier:2, e:"Condensation."},
-  {q:"Rain and snow falling from clouds is called —", o:["precipitation","evaporation","condensation","collection"], a:0, tier:2, e:"Precipitation."},
-  {q:"What powers the whole water cycle?", o:["the Sun","the Moon","electricity","gravity only"], a:0, tier:1, e:"The Sun."},
-  {q:"Put the water cycle in ORDER (which comes first)?", o:["evaporation → condensation → precipitation","precipitation → evaporation → condensation","condensation → precipitation → evaporation","collection → condensation → evaporation"], a:0, tier:3, e:"Evaporation first."},
-  {q:"Which are forms of PRECIPITATION? (select all)", t:"multi", o:["rain","snow","hail","clouds"], a:[0,1,2], tier:3, e:"Clouds form by condensation, not precipitation."},
-  {q:"Clouds are made of —", o:["tiny water droplets","smoke","cotton","dust only"], a:0, tier:2, e:"Condensed water droplets."},
-  {q:"Which describes WEATHER (not climate)?", o:["It is raining right now.","Egypt is usually hot and dry.","This region has cold winters every year.","The desert gets little rain over many years."], a:0, tier:3, e:"Weather = today; climate = long-term."},
-  {q:"In the water cycle, water can be in which states? (select all)", t:"multi", o:["liquid","gas (vapour)","solid (ice/snow)","plasma"], a:[0,1,2], tier:3, e:"Liquid, gas, solid."},
-  {q:"Why does a wet towel dry in the sun?", o:["water evaporates","water condenses","it rains","it freezes"], a:0, tier:2, e:"Evaporation."},
-  {q:"Water vapour is —", o:["water as a gas","water as ice","a kind of cloud you can hold","liquid rain"], a:0, tier:2, e:"Gas state of water."},
-  {q:"Which statements about the water cycle are TRUE? (select all)", t:"multi", o:["It has no real end — it repeats.","The Sun drives it.","Water changes state during it.","Water is destroyed at the end."], a:[0,1,2], tier:3, e:"Water is recycled, never destroyed."},
-  {q:"Most evaporation on Earth happens from the —", o:["oceans","deserts","mountains","caves"], a:0, tier:2, e:"Oceans hold most water."},
-  {q:"Climate is —", o:["the usual weather over many years","today's weather","a single storm","a type of cloud"], a:0, tier:2, e:"Long-term pattern."},
-  {q:"Dew forms on grass in the morning because water vapour —", o:["condenses as it cools","evaporates","freezes into hail","disappears"], a:0, tier:3, e:"Cooling → condensation."},
-  {q:"When it gets cold enough, precipitation may fall as —", o:["snow","steam","vapour","wind"], a:0, tier:1, e:"Snow (solid)."}
- ]},
-
-/* ========================= 英文 English (G5→早G6) ========================= */
-{id:"EN16", subj:"en", icon:"🗼", title:"Reading: Literary II", en:"文学阅读·灯塔", tag:"core",
- lesson:{ cards:[
-   {t:"Inference & character", b:"Work out what the author hints. A character's CHOICES show who they are — someone who helps others at once is brave and caring."},
-   {t:"Simile vs metaphor", b:"A SIMILE compares using 'like' or 'as' ('like a brave star').\nA METAPHOR says one thing IS another, with no 'like/as' ('a sea of darkness')."}],
-  example:{t:"Spot the simile", prob:"'Her lights were like a single brave star.' This is a —", steps:[
-   "Step 1 — It compares the lights to a star.","Step 2 — It uses the word 'like'.","Step 3 — So it is a simile."]},
-  check:[{q:"A comparison using 'like' or 'as' is a —", o:["simile","metaphor","verb","question"], a:0, e:"Simile uses like/as."}] },
- training:[
-  {q:"Why did Mara light the great lamp every evening?", passage:P_LIGHT, o:["so ships in the dark could find their way","to keep warm","to read books","to scare birds"], a:0, tier:1, e:"To guide ships home."},
-  {q:"What problem happened on the stormy night?", passage:P_LIGHT, o:["the power failed and the lamp went black","the lighthouse fell","Mara got lost","the ships sank"], a:0, tier:2, e:"Power failed; lamp went dark."},
-  {q:"What did Mara do about it?", passage:P_LIGHT, o:["she lit candles and lanterns at the window","she went to sleep","she called for help and waited","she left the lighthouse"], a:0, tier:2, e:"She lit every candle/lantern."},
-  {q:"'Without a moment's hesitation' shows that Mara was —", passage:P_LIGHT, o:["quick and brave","slow and unsure","scared and frozen","lazy"], a:0, tier:3, e:"She acted at once."},
-  {q:"Which words best describe Mara? (select all)", passage:P_LIGHT, t:"multi", o:["brave","caring","selfish","gives up easily"], a:[0,1], tier:3, e:"Brave and caring."},
-  {q:"'a sea of darkness' is an example of a —", passage:P_LIGHT, o:["metaphor","simile","question","list"], a:0, tier:3, e:"Says darkness IS a sea (no like/as) → metaphor."},
-  {q:"What was the EFFECT of Mara's small lights?", passage:P_LIGHT, o:["a fishing boat sailed safely into harbour","the storm stopped","the lamp came back on","nothing changed"], a:0, tier:2, e:"The boat got in safely."},
-  {q:"'Grateful' in the passage most nearly means —", passage:P_LIGHT, o:["thankful","angry","tired","afraid"], a:0, tier:2, e:"Grateful = thankful."},
-  {q:"Why does the writer say her lights were 'not as bright as the lamp, but enough'?", passage:P_LIGHT, o:["to show even a small effort can help a lot","to say she failed","to describe the weather","to end the story quickly"], a:0, tier:3, e:"Small effort, big difference."},
-  {q:"The lighthouse stands where 'the wind never seemed to rest.' This suggests the place is —", passage:P_LIGHT, o:["windy and harsh","calm and warm","crowded with people","silent"], a:0, tier:2, e:"Constant wind = harsh coast."},
-  {q:"Which phrase from the story is a SIMILE?", o:["like a single brave star","the spiral stairs","every evening","the rocky coast"], a:0, tier:2, e:"'like a...' = simile."},
-  {q:"The BEST theme (message) of this story is —", passage:P_LIGHT, o:["one caring person can make a big difference","lighthouses are tall","storms are scary","fishing is hard"], a:0, tier:3, e:"Theme: caring action matters."},
-  {q:"What is the mood at the END of the story?", passage:P_LIGHT, o:["hopeful and warm","frightening","sad","angry"], a:0, tier:3, e:"Safe arrival at dawn = hopeful."},
-  {q:"Which sentence is an INFERENCE (not stated directly)?", passage:P_LIGHT, o:["Mara cares deeply about the sailors' safety.","Mara lives in a lighthouse.","The lamp went black.","A boat reached the harbour."], a:0, tier:3, e:"Her caring is inferred from actions."}
- ]},
-
-{id:"EN17", subj:"en", icon:"🐠", title:"Reading: Informational II", en:"说明文·珊瑚礁", tag:"core",
- lesson:{ cards:[
-   {t:"Main idea & details", b:"The MAIN IDEA is the one big point of the whole text; details and facts support it. Ask: 'What is this mostly about?'"},
-   {t:"Cause & effect, vocabulary", b:"Look for what makes something happen ('warm water → bleaching'). Use nearby words to figure out hard words."}],
-  example:{t:"Main idea", prob:"A text explains what coral reefs are, how they form, and why they matter. The main idea is —", steps:[
-   "Step 1 — Every part is about coral reefs.","Step 2 — It explains what they are and why they're important.","Step 3 — Main idea: coral reefs and why they matter."]},
-  check:[{q:"The main idea is —", o:["the one big point of the whole text","a tiny detail","the title only","a hard word"], a:0, e:"The big overall point."}] },
- training:[
-  {q:"What is the MAIN idea of the passage?", passage:P_CORAL, o:["what coral reefs are, how they form, and why they matter","that fish are colourful","how to swim in the ocean","why the ocean is warm"], a:0, tier:2, e:"Whole text = about reefs."},
-  {q:"Coral reefs are built by —", passage:P_CORAL, o:["tiny animals called coral polyps","large fish","plants only","ocean waves"], a:0, tier:1, e:"Coral polyps."},
-  {q:"Each polyp builds a hard cup out of —", passage:P_CORAL, o:["limestone","wood","plastic","sand grains glued together"], a:0, tier:2, e:"Limestone cup."},
-  {q:"About how much ocean life do reefs shelter?", passage:P_CORAL, o:["about a quarter of all ocean species","none","all of it","two species"], a:0, tier:2, e:"~1/4 of ocean species."},
-  {q:"What CAUSES coral bleaching?", passage:P_CORAL, o:["the ocean getting too warm","too many fish","bright sunlight at night","cold rain"], a:0, tier:3, e:"Too-warm water."},
-  {q:"Which are TRUE about coral reefs? (select all)", passage:P_CORAL, t:"multi", o:["they are built by living animals","they shelter many species","they can bleach when water is too warm","they are made of plastic"], a:[0,1,2], tier:3, e:"Not plastic."},
-  {q:"In the passage, 'shelter' most nearly means —", passage:P_CORAL, o:["give protection / a safe place","destroy","colour","melt"], a:0, tier:2, e:"Shelter = protect."},
-  {q:"The author's main purpose is to —", passage:P_CORAL, o:["inform readers about coral reefs","tell a funny story","sell a fish tank","scare readers"], a:0, tier:2, e:"Informational."},
-  {q:"How does a reef get so BIG over time?", passage:P_CORAL, o:["stony cups pile up over hundreds of years","one polyp grows huge","waves push sand into a pile","fish build it"], a:0, tier:3, e:"Cups accumulate over centuries."},
-  {q:"'Bleaching' in the text refers to coral turning —", passage:P_CORAL, o:["white and weak","bright and strong","green","into rock"], a:0, tier:2, e:"White and weak."},
-  {q:"Why does the author say protecting reefs matters?", passage:P_CORAL, o:["so much ocean life depends on them","they are pretty","they are easy to build","they make the water warm"], a:0, tier:3, e:"Many species depend on reefs."},
-  {q:"The hard cup around a polyp is mainly for —", passage:P_CORAL, o:["protection","decoration","swimming","food"], a:0, tier:2, e:"Protection."},
-  {q:"The BEST one-sentence summary is —", passage:P_CORAL, o:["Reefs are built by tiny animals and shelter much ocean life, so they need protecting.","Coral is colourful.","Fish like to hide.","The ocean is large."], a:0, tier:3, e:"Captures the whole text."},
-  {q:"Which is a DETAIL, not the main idea?", passage:P_CORAL, o:["Each polyp builds a limestone cup.","Coral reefs are important and built by living animals.","The text is about coral reefs.","Reefs matter to ocean life."], a:0, tier:3, e:"The limestone cup is a supporting detail."}
- ]},
-
-{id:"EN18", subj:"en", icon:"✒️", title:"Grammar & Conventions III", en:"句型·术语·治流水句", tag:"fix",
- lesson:{ cards:[
-   {t:"Four sentence types", b:"DECLARATIVE states (.). INTERROGATIVE asks a question (?). IMPERATIVE gives a command (.). EXCLAMATORY shows strong feeling (!).\nTip: only an INTERROGATIVE asks something and ends with '?'."},
-   {t:"Know your terms", b:"A CONJUNCTION joins ideas: and, but, so, because.\nA SIMILE compares with like/as. A METAPHOR says one thing IS another.\nThese are different — don't mix them up!"},
-   {t:"Fix run-ons", b:"Run-on: 'It was dark we went home.' Fix with a period or a comma + conjunction: 'It was dark, so we went home.'"}],
-  example:{t:"Which type?", prob:"'Where are my shoes?' is which type of sentence?", steps:[
-   "Step 1 — It asks something.","Step 2 — It ends with a question mark.","Step 3 — So it is interrogative."]},
-  check:[{q:"A word like 'and', 'but', 'so' is a —", o:["conjunction","simile","noun","question"], a:0, e:"Conjunction joins ideas."}] },
- training:[
-  {q:"Which sentence is INTERROGATIVE (a question)?", o:["When does the bus arrive?","I am hungry.","What a goal!","Please sit down."], a:0, tier:1, e:"Only this one asks something."},
-  {q:"Which sentence is EXCLAMATORY (strong feeling)?", o:["What an amazing view!","Where is the dog?","Close the door.","The sky is grey."], a:0, tier:1, e:"Strong feeling + '!'."},
-  {q:"'Please pass the salt.' is which type?", o:["imperative (a command/request)","interrogative","exclamatory","a question"], a:0, tier:2, e:"It gives a request → imperative."},
-  {q:"A word like 'and', 'but', 'because' is called a —", o:["conjunction","simile","metaphor","adverb"], a:0, tier:2, e:"Conjunction (NOT a simile)."},
-  {q:"'as busy as a bee' is a —", o:["simile","metaphor","conjunction","question"], a:0, tier:2, e:"'as...as' = simile."},
-  {q:"'The classroom was a zoo' is a —", o:["metaphor","simile","conjunction","command"], a:0, tier:3, e:"Says it IS a zoo (no like/as) → metaphor."},
-  {q:"Choose the BEST fix for the run-on: 'The rain stopped we went outside.'", o:["The rain stopped, so we went outside.","The rain stopped we, went outside.","The rain, stopped we went outside.","The rain stopped went we outside."], a:0, tier:2, e:"Comma + 'so' joins the two ideas."},
-  {q:"Select ALL the COMPLETE sentences.", t:"multi", o:["The team practised hard.","Birds fly south in winter.","Running across the field quickly.","We scored a goal!"], a:[0,1,3], tier:3, e:"'Running across the field quickly.' is a fragment."},
-  {q:"Which words need a CAPITAL letter? (select all)", t:"multi", o:["paris","friday","table","mara"], a:[0,1,3], tier:3, e:"Place, day, name need capitals; 'table' is common."},
-  {q:"Which punctuation ends a QUESTION?", o:["?",".","!",","], a:0, tier:1, e:"Question mark."},
-  {q:"Which sentences are CORRECTLY punctuated? (select all)", t:"multi", o:["After dinner, we walked home.","Do you like apples?","i went to school monday","Wow, that was fast!"], a:[0,1,3], tier:3, e:"'i went to school monday' needs capitals."},
-  {q:"'She sang, and the crowd cheered.' The word 'and' is a —", o:["conjunction","simile","noun","verb"], a:0, tier:2, e:"It joins two ideas → conjunction."},
-  {q:"Which is a DECLARATIVE sentence?", o:["The library opens at nine.","Are you ready?","What a day!","Sit down, please."], a:0, tier:2, e:"It states a fact (.)."},
-  {q:"Best way to fix: 'I like tea I do not like coffee.'", o:["I like tea, but I do not like coffee.","I like tea but I do not, like coffee.","I like, tea I do not like coffee.","I like tea I do not like, coffee."], a:0, tier:3, e:"Comma + 'but' joins the two ideas."}
- ]},
-
-{id:"EN19", subj:"en", icon:"🖋️", title:"Writing Studio IV", en:"写作工坊·更强脚手架 (English only)", tag:"level",
- lesson:{ cards:[
-   {t:"Write in English only ✍️", b:"This unit is in ENGLISH ONLY. Plan first. Each sentence = ONE idea. Begin with a CAPITAL letter. End with '.', '?', or '!'. Re-read aloud: if you run out of breath, split it into two sentences."},
-   {t:"Use a simple plan", b:"Follow the frame given in each task (the words in quotes). Use linking words: First, Next, Then, Finally. Join two ideas with a comma + and / but / so."}],
-  example:{t:"Plan a sentence", prob:"How do you keep a sentence from becoming a run-on?", steps:[
-   "Step 1 — Put ONE idea in each sentence.","Step 2 — End it with '.', '?', or '!'.","Step 3 — Or join two ideas with a comma + and/but/so."]},
-  check:[{q:"In this unit you must write in —", o:["English only","Chinese","any language","numbers"], a:0, e:"English only."}] },
- training:[
-  {q:"✍️ Narrative (English only). Write 4 sentences. Use this frame:\n1) 'One morning, I found a ____.'\n2) 'It could ____.'\n3) 'So I ____.'\n4) 'In the end, ____.'\nEach sentence must start with a CAPITAL and end with a period.", t:"open", min:90, hint:"Fill each blank, one idea per sentence. End every sentence with '.'"},
-  {q:"✍️ Descriptive (English only). Describe the beach in 4 sentences. Sentence 1 = what you SEE. Sentence 2 = what you HEAR. Sentence 3 = what you SMELL. Sentence 4 = MUST include a simile using 'as ... as' or 'like'.", t:"open", min:90, hint:"Example simile: 'the sand was as warm as toast'. One idea per sentence."},
-  {q:"✍️ Opinion (English only). Should children have a pet? Use this frame:\n'I think children ____ have a pet.'\n'First, ____.'\n'Second, ____.'\n'That is why ____.'", t:"open", min:90, hint:"Give your opinion, then two reasons in their own sentences."},
-  {q:"✍️ How-to (English only). Explain how to plant a seed in 4 sentences. Start them with: 'First,' / 'Next,' / 'Then,' / 'Finally,'. One step per sentence.", t:"open", min:90, hint:"Use First / Next / Then / Finally. End each with a period."},
-  {q:"✍️ Compound sentences (English only). Write 3 sentences about a school trip. At least ONE sentence must join two ideas with a comma + 'and', 'but', or 'so'.", t:"open", min:80, hint:"Example: 'We saw the boats, and then we ate lunch.'"}
- ]},
-
-/* ========================= 法语 French (English-first 指令 · 进阶) ========================= */
-{id:"FR9", subj:"fr", icon:"🐚", title:"Être / Avoir Review · Pluriel", en:"是/有·复数·数字", tag:"fix",
- lesson:{ media:[{type:"frenchpics", title:"Écoute! Listen", items:[
-     {fr:"je suis",en:"I am",emoji:"🙋"},{fr:"j'ai",en:"I have",emoji:"✋"},{fr:"nous sommes",en:"we are",emoji:"👥"},{fr:"six",en:"six",emoji:"6️⃣"}]}],
+{id:"SC12", subj:"sci", icon:"⚙️", title:"Forces & Simple Machines", en:"力与简单机械", tag:"new",
+ lesson:{ media:[{type:"gears", title:"Machines at work", cap:"Simple machines change the force you need."}],
   cards:[
-   {t:"ÊTRE = to be · AVOIR = to have", b:"ÊTRE: je suis (I am), tu es (you are), il/elle est (he/she is), nous sommes (we are).\nAVOIR: j'ai (I have), tu as (you have), il/elle a (he/she has).\nUse AVOIR for what you HAVE: 'J'ai un chien' = I have a dog (NOT 'Je suis')."},
-   {t:"Plural & numbers", b:"Add -s for most plurals: un livre → deux livres.\nNumbers: six (6), sept (7), huit (8), neuf (9), dix (10)."}],
-  example:{t:"Être or Avoir?", prob:"How do you say 'I have two cats'?", steps:[
-   "Step 1 — 'have' = avoir → j'ai.","Step 2 — plural cats = chats (add -s).","Step 3 — 'J'ai deux chats.'"]},
-  check:[{q:"'j'ai' means —", o:["I have","I am","you are","he is"], a:0, e:"avoir: j'ai = I have."}] },
+   {t:"What is a force?", b:"A force is a PUSH or a PULL.\nGravity pulls everything toward Earth.\nFriction is a force that slows sliding things — rough surfaces make MORE friction."},
+   {t:"Six simple machines", b:"inclined plane (ramp) · lever (seesaw) · pulley (flag rope)\nwheel & axle (doorknob) · wedge (axe blade) · screw (jar lid)\nThey make work easier by changing the force you need."}],
+  example:{t:"Why use a ramp?", prob:"Lifting a heavy box straight up is hard. Pushing it up a ramp feels easier. Why?", steps:[
+   "A ramp is an inclined plane.",
+   "You push with LESS force, but over a LONGER distance.",
+   "Same job, easier push — that is what simple machines do."]},
+  check:[{q:"A force is —", o:["a push or a pull","only a pull","only gravity","a kind of energy drink"], a:0, e:"Push or pull — both are forces."}] },
  training:[
-  {q:"Which is correct for 'I have a dog'?", o:["J'ai un chien.","Je suis un chien.","J'ai un chein.","Je es un chien."], a:0, tier:2, e:"avoir + correct spelling 'chien'."},
-  {q:"'je suis' means —", o:["I am","I have","you are","we are"], a:0, tier:1, e:"être: je suis = I am."},
-  {q:"To say 'he is tall', you use —", o:["il est","il a","je suis","tu es"], a:0, tier:2, e:"être: il est."},
-  {q:"The plural of 'un livre' is —", o:["deux livres","deux livre","un livres","livre deux"], a:0, tier:2, e:"Add -s → livres."},
-  {q:"Which matches are CORRECT? (select all)", t:"multi", o:["je suis = I am","j'ai = I have","nous sommes = we are","il a = he is"], a:[0,1,2], tier:3, e:"'il a' = he HAS, not 'he is'."},
-  {q:"'elle est gentille' means —", o:["she is kind","she has a cat","you are kind","I am kind"], a:0, tier:2, e:"être: elle est = she is."},
-  {q:"Which sentences use ÊTRE/AVOIR correctly? (select all)", t:"multi", o:["J'ai deux chats.","Tu es mon ami.","Je suis trois livres.","Nous sommes contents."], a:[0,1,3], tier:3, e:"'Je suis trois livres' should be 'J'ai'."},
-  {q:"The French word for 'eight' is —", o:["huit","six","dix","sept"], a:0, tier:1, e:"huit = 8."},
-  {q:"'nous sommes' means —", o:["we are","we have","they are","you are"], a:0, tier:2, e:"être: nous sommes = we are."},
-  {q:"Which is the correct spelling for 'a dog'?", o:["un chien","un chein","un chian","un shien"], a:0, tier:2, e:"chien (target prior spelling slip)."}
+  {q:"Gravity pulls objects —", o:["toward the Earth","away from the Earth","only sideways","only in space"], a:0, tier:1, e:"That's why dropped things fall down."},
+  {q:"Friction is a force that —", o:["slows down sliding objects","makes things float","pulls things to the Moon","only works on ice"], a:0, tier:2, e:"Friction acts against sliding motion."},
+  {q:"Which surface makes MORE friction?", o:["rough sandpaper","smooth ice","wet glass","polished metal"], a:0, tier:2, e:"Rougher surface → more friction."},
+  {q:"A ramp is which simple machine?", o:["inclined plane","pulley","lever","screw"], a:0, tier:2, e:"An inclined plane is a slope for raising things."},
+  {q:"A seesaw is which simple machine?", o:["lever","wedge","pulley","wheel and axle"], a:0, tier:2, e:"A lever turns on a fixed point."},
+  {q:"The fixed point a lever turns on is called the —", o:["fulcrum","axle","ramp","handle"], a:0, tier:3, e:"Fulcrum — like the middle of a seesaw."},
+  {q:"The rope-and-wheel that raises a flag up a pole is a —", o:["pulley","wedge","screw","inclined plane"], a:0, tier:2, e:"A pulley changes the direction of your pull."},
+  {q:"A doorknob is an example of a —", o:["wheel and axle","pulley","wedge","lever only"], a:0, tier:3, e:"The knob (wheel) turns a rod (axle)."},
+  {q:"An axe blade that splits wood is a —", o:["wedge","screw","pulley","fulcrum"], a:0, tier:2, e:"A wedge pushes things apart."},
+  {q:"Pushing a box up a ramp instead of lifting it straight up needs —", o:["less force over a longer distance","more force over a shorter distance","no force at all","the same force and distance"], a:0, tier:3, e:"That's the trade of an inclined plane."},
+  {q:"Simple machines make work easier by —", o:["changing the force you need","doing the work with no force","removing gravity","making objects lighter forever"], a:0, tier:3, e:"They change how much force, or its direction — the work still happens."},
+  {q:"Which of these are simple machines? (select all)", t:"multi", o:["a ramp","scissors","a phone","a wheelbarrow"], a:[0,1,3], tier:3, e:"Scissors = levers + wedges; wheelbarrow = lever + wheel. A phone is a complex device."},
+  {q:"When is friction HELPFUL? (select all)", t:"multi", o:["bike brakes stopping the wheel","shoes gripping the floor","a rusty door hinge squeaking","machine parts wearing out"], a:[0,1], tier:3, e:"Brakes and grip need friction; squeaky hinges and worn parts are friction being a problem."},
+  {q:"Which are examples of a LEVER? (select all)", t:"multi", o:["a seesaw","a crowbar","a flag rope on a wheel","a jar lid"], a:[0,1], tier:3, e:"Flag rope = pulley; jar lid = screw."},
+  {q:"Which statements about FORCES are TRUE? (select all)", t:"multi", o:["Gravity pulls things toward Earth.","Friction can slow a sliding box.","A pulley can change the direction of a pull.","Smooth ice has more friction than sandpaper."], a:[0,1,2], tier:3, e:"Ice is smoother → LESS friction."},
+  {q:"Kicking a ball is an example of —", o:["a push","a pull","gravity","friction only"], a:0, tier:1, e:"Your foot pushes the ball away."}
  ]},
 
-{id:"FR10", subj:"fr", icon:"⛵", title:"Verbes · Lecture II", en:"动词·阅读", tag:"level",
- lesson:{ media:[{type:"frenchpics", title:"Écoute! Listen", items:[
-     {fr:"je nage",en:"I swim",emoji:"🏊"},{fr:"je vais",en:"I go",emoji:"🚶"},{fr:"la mer",en:"the sea",emoji:"🌊"},{fr:"le bateau",en:"the boat",emoji:"⛵"}]}],
-  cards:[
-   {t:"Useful verbs", b:"je nage = I swim; je vais = I go; je mange = I eat; je bois = I drink; j'aime = I like."},
-   {t:"Read about Luc", b:"Read the short passage, then answer. Key words: la plage (the beach), la mer (the sea), le bateau (the boat), le dimanche (on Sundays)."}],
-  example:{t:"Find the verb", prob:"'je nage dans la mer' means —", steps:[
-   "Step 1 — 'je nage' = I swim.","Step 2 — 'dans la mer' = in the sea.","Step 3 — 'I swim in the sea.'"]},
-  check:[{q:"'la mer' means —", o:["the sea","the beach","the boat","the morning"], a:0, e:"la mer = the sea."}] },
+/* ========================= 英文 English ========================= */
+{id:"EN20", subj:"en", icon:"🍾", title:"Reading: Literary III", en:"文学阅读·瓶中信", tag:"core",
+ lesson:{ cards:[
+   {t:"Reading a story", b:"Find: WHO (character), WHERE (setting), WHAT problem, HOW it ends.\nAn INFERENCE is something the story shows but does not say directly."},
+   {t:"Theme = the message", b:"Ask: what does the character learn?\nWhat does the story want US to remember?\nA theme is a lesson, not just an event."}],
+  example:{t:"Making an inference", prob:"'The paper was soft and yellow with age.' What can we infer?", steps:[
+   "The text does not say 'the note is old' directly.",
+   "But 'yellow with age' shows time has passed.",
+   "Inference: the note was written long ago."]},
+  check:[{q:"Where does Kai find the bottle?", o:["on the beach near the rocks","in the school","under the pine tree","in a shop"], a:0, e:"He was walking along the beach."}] },
  training:[
-  {q:"How old is Luc?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["eleven","ten","nine","twelve"], a:0, tier:1, e:"J'ai onze ans = I am eleven."},
-  {q:"Where does Luc go on Sundays?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["to the beach","to school","to the park","to the shop"], a:0, tier:2, e:"je vais à la plage."},
-  {q:"Who goes with Luc?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["his brother (mon frère)","his sister","his dog","his friend"], a:0, tier:2, e:"avec mon frère."},
-  {q:"What colour is Luc's boat?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["red (rouge)","blue","green","white"], a:0, tier:2, e:"un bateau rouge."},
-  {q:"'je nage' means —", o:["I swim","I eat","I go","I read"], a:0, tier:1, e:"nager = to swim."},
-  {q:"'je bois' means —", o:["I drink","I eat","I swim","I go"], a:0, tier:1, e:"boire = to drink."},
-  {q:"Which verb meanings are CORRECT? (select all)", t:"multi", o:["je vais = I go","je mange = I eat","j'aime = I like","je nage = I drink"], a:[0,1,2], tier:3, e:"'je nage' = I SWIM."},
-  {q:"What does Luc's brother drink?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["juice (du jus)","water","milk","tea"], a:0, tier:2, e:"mon frère boit du jus."},
-  {q:"'le bateau' means —", o:["the boat","the sea","the beach","the fish"], a:0, tier:1, e:"le bateau = the boat."},
-  {q:"What does Luc eat at the beach?", passage:"Salut! Je m'appelle Luc. J'ai onze ans. Le dimanche, je vais à la plage avec mon frère. Nous aimons nager dans la mer. J'ai un petit bateau rouge. Après, je mange une glace et mon frère boit du jus.", o:["an ice cream (une glace)","a sandwich","an apple","bread"], a:0, tier:2, e:"je mange une glace."}
+  {q:"What was Kai doing at the start of the story?", o:["looking for shells","fishing","swimming","flying a kite"], a:0, tier:1, e:"'Kai walked along the beach looking for shells.'", passage:P_BOTTLE},
+  {q:"What was inside the bottle?", o:["a rolled-up note","a tiny ship","sand and water","a map of the sea"], a:0, tier:1, e:"An old bottle with a note inside.", passage:P_BOTTLE},
+  {q:"'The paper was soft and yellow with age.' This tells us the note was —", o:["very old","brand new","painted yellow","wet from the sea"], a:0, tier:2, e:"Yellow with AGE = old. This is an inference.", passage:P_BOTTLE},
+  {q:"What did Lena's note ask the finder to do?", o:["make sure the birds in the nest are safe","find her lost dog","write back a letter","plant a new pine tree"], a:0, tier:2, e:"'Please make sure the birds are safe.'", passage:P_BOTTLE},
+  {q:"How old was the note?", o:["ten years old","ten days old","one hundred years old","brand new"], a:0, tier:1, e:"'The note was ten years old!'", passage:P_BOTTLE},
+  {q:"What did Kai find in the old pine tree?", o:["a new nest with three chicks","Lena's empty nest","a second bottle","nothing at all"], a:0, tier:2, e:"A NEW nest with three noisy chicks.", passage:P_BOTTLE},
+  {q:"Which sentence from the story is a SIMILE?", o:["The sea was as flat as glass.","Kai walked along the beach.","The note was ten years old.","He ran to the school."], a:0, tier:3, e:"'as flat as glass' compares using 'as ... as'.", passage:P_BOTTLE},
+  {q:"In this story, 'glinted' means —", o:["flashed or shone in the light","broke into pieces","made a loud sound","sank into the sand"], a:0, tier:2, e:"Something green GLINTED = caught the light.", passage:P_BOTTLE},
+  {q:"Why did Kai run to the school even though the note was ten years old?", o:["he still wanted to check on the birds","he was late for class","he wanted to return the bottle","Lena was waiting for him"], a:0, tier:3, e:"Inference: he cared about the promise, even an old one.", passage:P_BOTTLE},
+  {q:"The BEST theme (message) of this story is —", o:["kindness can be passed on, like the tide","bottles float very well","school trees grow slowly","never walk on the beach alone"], a:0, tier:3, e:"The last line says promises are 'passed on like the tide'.", passage:P_BOTTLE},
+  {q:"How did Kai most likely feel at the end?", o:["glad and peaceful","angry at Lena","scared of the birds","bored"], a:0, tier:2, e:"'Kai smiled' shows a warm, glad feeling.", passage:P_BOTTLE},
+  {q:"Which of these are INFERENCES (not stated directly)? (select all)", t:"multi", o:["Lena loved watching the birds.","Kai will probably visit the nest again.","The note was ten years old.","Kai found a bottle."], a:[0,1], tier:3, e:"The last two are stated directly in the text.", passage:P_BOTTLE},
+  {q:"Which statements about the STORY are TRUE? (select all)", t:"multi", o:["Kai found the bottle near the rocks.","The old pine tree was still there.","Lena still lived beside the school.","The chicks were noisy."], a:[0,1,3], tier:3, e:"Lena moved far away ten years ago.", passage:P_BOTTLE},
+  {q:"What will Kai MOST LIKELY do next?", o:["keep watching over the new nest","throw the bottle back into the sea","cut down the pine tree","forget about the birds"], a:0, tier:3, e:"'He could watch over these' — prediction from the text.", passage:P_BOTTLE}
+ ]},
+
+{id:"EN21", subj:"en", icon:"🐢", title:"Reading: Informational III", en:"说明文阅读·海龟", tag:"core",
+ lesson:{ cards:[
+   {t:"Main idea vs detail", b:"MAIN IDEA = what the WHOLE text is mostly about.\nDETAIL = one small fact that supports it.\n'She lays about 100 eggs' is a detail, not the main idea."},
+   {t:"Why did the author write it?", b:"To INFORM = teach facts.\nTo ENTERTAIN = tell a fun story.\nTo PERSUADE = change your mind.\nThis text teaches facts → to inform."}],
+  example:{t:"Spot the main idea", prob:"Which is the main idea: 'Sea turtles are amazing ocean travellers' or 'Turtles dig nests at night'?", steps:[
+   "Ask: which one covers the WHOLE text?",
+   "'Dig nests at night' is just one paragraph — a detail.",
+   "'Amazing ocean travellers' covers everything → main idea."]},
+  check:[{q:"This text was written mainly to —", o:["inform","entertain","persuade","sell turtles"], a:0, e:"It teaches facts about sea turtles."}] },
+ training:[
+  {q:"The MAIN IDEA of this text is —", o:["sea turtles are great ocean travellers and need protection","turtles lay about a hundred eggs","city lights are bright","crabs live on beaches"], a:0, tier:3, e:"The other choices are single details.", passage:P_TURTLE},
+  {q:"Which is a DETAIL, not the main idea?", o:["She lays about a hundred eggs.","Sea turtles are great travellers of the ocean.","Sea turtles matter and people protect them.","The text is about sea turtles' lives."], a:0, tier:3, e:"One small fact = a detail.", passage:P_TURTLE},
+  {q:"How do scientists think turtles find their way?", o:["by sensing Earth's magnetic field","by following boats","by asking other turtles","by watching the city lights"], a:0, tier:2, e:"'like a built-in compass'.", passage:P_TURTLE},
+  {q:"Where does a female turtle often return to lay eggs?", o:["the very beach where she was born","the deepest part of the sea","a new beach every year","a river far inland"], a:0, tier:2, e:"'often to the very same beach where she was born'.", passage:P_TURTLE},
+  {q:"When does the female dig her nest?", o:["at night","at noon","in winter only","while swimming"], a:0, tier:1, e:"'She digs a nest in the sand at night.'", passage:P_TURTLE},
+  {q:"About how many eggs does she lay?", o:["about a hundred","about ten","exactly three","about a thousand"], a:0, tier:1, e:"'lays about a hundred eggs'.", passage:P_TURTLE},
+  {q:"In this text, 'hatchlings' means —", o:["baby turtles just out of the egg","fishing boats","kinds of seaweed","old turtles"], a:0, tier:2, e:"The tiny ones that hatch from eggs.", passage:P_TURTLE},
+  {q:"Why are bright city lights a danger to hatchlings?", o:["the lights can lead them the wrong way","the lights burn the sand","the lights wake the crabs","the lights make eggs hatch late"], a:0, tier:3, e:"Cause → effect stated in the text.", passage:P_TURTLE},
+  {q:"How do people help sea turtles today?", o:["keeping nesting beaches dark and clean","building more hotels on beaches","catching the crabs","turning on more lights"], a:0, tier:2, e:"'keeping nesting beaches dark and clean'.", passage:P_TURTLE},
+  {q:"Sea turtles have been crossing the oceans since —", o:["the time of the dinosaurs","last summer","the year 2000","people built ships"], a:0, tier:2, e:"The last sentence says so.", passage:P_TURTLE},
+  {q:"The best HEADING for the part about laying eggs would be —", o:["A Nest in the Sand","Turtle Food","City Lights","Kinds of Crabs"], a:0, tier:3, e:"A heading should match that paragraph's topic.", passage:P_TURTLE},
+  {q:"Which dangers do hatchlings face? (select all)", t:"multi", o:["hungry birds","crabs","bright city lights","magnetic fields"], a:[0,1,2], tier:3, e:"The magnetic field HELPS turtles navigate.", passage:P_TURTLE},
+  {q:"Which statements about SEA TURTLES are TRUE? (select all)", t:"multi", o:["A green sea turtle may swim thousands of kilometres.","The mother covers the eggs with sand.","The mother stays to guard the nest.","People can help by keeping beaches clean."], a:[0,1,3], tier:3, e:"She crawls back to the sea — she does not stay.", passage:P_TURTLE},
+  {q:"'Like a built-in compass' — the author uses these words to —", o:["help us picture how turtles find their way","prove turtles carry real compasses","describe a ship's tools","explain how eggs hatch"], a:0, tier:3, e:"A comparison that makes the idea easy to picture.", passage:P_TURTLE}
+ ]},
+
+{id:"EN22", subj:"en", icon:"✏️", title:"Grammar & Conventions IV", en:"明喻vs暗喻·完整句·标点", tag:"level",
+ lesson:{ cards:[
+   {t:"Simile vs metaphor (the tricky pair!)", b:"SIMILE uses 'like' or 'as ... as': as busy as a bee.\nMETAPHOR says something IS another thing: the classroom was a zoo.\nSpot the words 'like/as' → simile. No 'like/as' → metaphor."},
+   {t:"Complete sentence check", b:"A complete sentence needs: WHO + DOES WHAT + end mark.\nFragment: 'Running across the field.' (who?)\nRun-on fix: add a period, or a comma + and/but/so."}],
+  example:{t:"Fix the run-on", prob:"'I like tea I do not like coffee.' What is the BEST fix?", steps:[
+   "Two complete ideas are stuck together.",
+   "Join with a comma + 'but': 'I like tea, but I do not like coffee.'",
+   "The comma goes BEFORE the joining word."]},
+  check:[{q:"'Her smile is sunshine.' This is a —", o:["metaphor","simile","fragment","question"], a:0, e:"No 'like' or 'as' — it says her smile IS sunshine."}] },
+ training:[
+  {q:"'The waves were as tall as houses.' This is a —", o:["simile","metaphor","fragment","command"], a:0, tier:2, e:"'as ... as' → simile."},
+  {q:"'The sea was a sleeping giant.' This is a —", o:["metaphor","simile","run-on","question"], a:0, tier:3, e:"It says the sea IS a giant — no like/as → metaphor."},
+  {q:"'He swims like a fish.' This is a —", o:["simile","metaphor","fragment","exclamation"], a:0, tier:2, e:"'like' → simile."},
+  {q:"Which one is a METAPHOR?", o:["The classroom was a zoo.","as quiet as a mouse","He runs like the wind.","as busy as a bee"], a:0, tier:3, e:"The others all use like/as (similes)."},
+  {q:"Which is a FRAGMENT (not a complete sentence)?", o:["Sailing across the bay in the morning.","The boat left the harbour.","We watched the waves.","Gulls flew overhead."], a:0, tier:3, e:"No WHO + main verb — it's only a piece."},
+  {q:"Best fix for: 'The wind blew hard the boat rocked.'", o:["The wind blew hard, and the boat rocked.","The wind blew, hard the boat rocked.","The wind blew hard and, the boat rocked.","The wind, blew hard the boat rocked."], a:0, tier:3, e:"Comma + 'and' between the two ideas."},
+  {q:"Which sentence uses the comma CORRECTLY?", o:["I wanted to swim, but the water was too cold.","I wanted to swim but, the water was too cold.","I wanted, to swim but the water was too cold.","I wanted to swim but the water, was too cold."], a:0, tier:3, e:"Comma goes before 'but'."},
+  {q:"Choose the joining word: 'It rained all day, ____ the match was cancelled.'", o:["so","but","or","because?"], a:0, tier:2, e:"Rain → result: 'so'."},
+  {q:"Which end mark fits: 'How deep is the ocean___'", o:["?",".","!",","], a:0, tier:1, e:"A question needs a question mark."},
+  {q:"The BEST way to combine: 'Kai found a bottle. The bottle held a note.'", o:["Kai found a bottle that held a note.","Kai found a bottle the bottle held a note.","Kai found, a bottle held a note.","Kai found a bottle held."], a:0, tier:3, e:"Use 'that' to join smoothly."},
+  {q:"Which are SIMILES? (select all)", t:"multi", o:["as brave as a lion","like a shooting star","Her voice is music.","as cold as ice"], a:[0,1,3], tier:3, e:"'Her voice is music' has no like/as → metaphor."},
+  {q:"Which are COMPLETE sentences? (select all)", t:"multi", o:["The lighthouse keeper lit the lamp.","Waves crashed on the rocks.","Under the old pine tree.","We sailed home before dark."], a:[0,1,3], tier:3, e:"'Under the old pine tree' has no who + verb."},
+  {q:"Which words need a CAPITAL letter? (select all)", t:"multi", o:["tuesday","london","kai","ocean"], a:[0,1,2], tier:3, e:"Days, places, names get capitals; 'ocean' is a common noun."},
+  {q:"Which sentences are punctuated CORRECTLY? (select all)", t:"multi", o:["After the storm, we cleaned the deck.","Do sea turtles sleep?","what a huge wave that was","We packed food, water, and maps."], a:[0,1,3], tier:3, e:"The third needs a capital W and an exclamation mark."}
+ ]},
+
+{id:"EN23", subj:"en", icon:"📝", title:"Writing Studio V", en:"写作工坊 V（词库+守题）", tag:"core",
+ lesson:{ cards:[
+   {t:"Stay on topic!", b:"Pick the topic → EVERY sentence must be about it.\nBefore you write a sentence, ask: is this about my topic?\nIf not — delete it and try again."},
+   {t:"Use the word bank", b:"Each task gives you a WORD BANK.\nUse at least 3 words from it — they keep you on topic.\nCapital letter to start, period (or ? or !) to end. English only."}],
+  example:{t:"On topic or off topic?", prob:"Topic: how to brush your teeth. Sentence: 'I like my new bike.' Keep it or delete it?", steps:[
+   "Ask: is this sentence about brushing teeth?",
+   "No — bikes have nothing to do with the topic.",
+   "Delete it. Every sentence must serve the topic."]},
+  check:[{q:"Your topic is 'the beach'. Which sentence stays ON topic?", o:["The warm sand felt soft under my feet.","My favourite game has ten levels.","Homework is due on Monday.","I got a new phone."], a:0, e:"Only the sand sentence is about the beach."}] },
+ training:[
+  {q:"✍️ Narrative (English only). Topic: a little boat. Write 4 sentences with this frame:\n1) 'One day, a little boat named ____ sailed out to sea.'\n2) 'Suddenly, ____.'\n3) 'So the little boat ____.'\n4) 'At last, ____.'\nWord bank: wave, storm, wind, island, safe, brave, home.\nRule: every sentence must be about the little boat.", t:"open", min:90, hint:"Use at least 3 word-bank words. Capital to start, period to end, one idea per sentence."},
+  {q:"✍️ Descriptive (English only). Topic: your favourite food. Write 4 sentences:\n1) What it LOOKS like.\n2) What it SMELLS like.\n3) What it TASTES like.\n4) A simile: 'It is as ____ as ____.' or 'It is like ____.'\nWord bank: sweet, warm, soft, crunchy, golden, delicious.\nRule: all 4 sentences must be about the SAME food.", t:"open", min:90, hint:"Name your food in sentence 1, then stay with it."},
+  {q:"✍️ Opinion (English only). Question: Should every child learn to swim?\nUse this frame:\n'I think every child ____ learn to swim.'\n'First, ____.'\n'Second, ____.'\n'That is why ____.'\nWord bank: safe, water, fun, healthy, danger, exercise.\nRule: both reasons must be about swimming.", t:"open", min:90, hint:"Two different reasons — one per sentence."},
+  {q:"✍️ How-to (English only). Topic: how to brush your teeth. Write 4 sentences starting with:\n'First,' / 'Next,' / 'Then,' / 'Finally,'.\nWord bank: toothbrush, toothpaste, water, gently, rinse, two minutes.\nRule: every sentence must be a real step of brushing teeth — no other topics!", t:"open", min:90, hint:"One step per sentence, in order."},
+  {q:"✍️ Compound sentences (English only). Topic: your best friend. Write 3 sentences about your best friend.\nAt least ONE must join two ideas with a comma + 'and', 'but', or 'so'.\nWord bank: kind, funny, play, help, together, school.\nRule: every sentence must be about your best friend.", t:"open", min:80, hint:"Example shape: '____, and ____.' Remember the comma."}
+ ]},
+
+/* ========================= 法语 Français (English instructions) ========================= */
+{id:"FR11", subj:"fr", icon:"🥐", title:"Être / Avoir · Pronoms", en:"是/有·代词大巩固", tag:"core",
+ lesson:{ media:[{type:"frenchpics", title:"Les pronoms", items:[["🙋","je = I"],["🫵","tu = you"],["👦","il = he"],["👧","elle = she"],["👨‍👩‍👧","nous = we"]]}],
+  cards:[
+   {t:"ÊTRE (to be) vs AVOIR (to have)", b:"je suis = I am · j'ai = I have\ntu es = you are · tu as = you have\nil/elle est = he/she is · il/elle a = he/she has\nnous sommes = we are · nous avons = we have"},
+   {t:"The golden test", b:"Talking about WHAT you ARE (tall, happy, a student) → être.\nTalking about WHAT you HAVE (a cat, two books) → avoir.\n'I have two cats' = J'ai deux chats. NEVER 'Je suis deux chats'!"}],
+  example:{t:"Choose être or avoir", prob:"How do you say 'She has a dog'?", steps:[
+   "HAVE → avoir, not être.",
+   "she = elle; elle + a = elle a.",
+   "Elle a un chien. ('Elle est un chien' would mean she IS a dog!)"]},
+  check:[{q:"'I have a boat' is —", o:["J'ai un bateau.","Je suis un bateau.","Tu as un bateau.","Il est un bateau."], a:0, e:"Have = avoir → j'ai."}] },
+ training:[
+  {q:"Which is correct for 'I have two cats'?", o:["J'ai deux chats.","Je suis deux chats.","J'ai deux chat.","Je suis chat."], a:0, tier:3, e:"HAVE = avoir → j'ai; plural chats takes -s."},
+  {q:"'je suis' means —", o:["I am","I have","we are","he is"], a:0, tier:1, e:"être: je suis = I am."},
+  {q:"'j'ai' means —", o:["I have","I am","you have","she is"], a:0, tier:1, e:"avoir: j'ai = I have."},
+  {q:"To say 'he is tall', you use —", o:["il est","il a","je suis","tu es"], a:0, tier:2, e:"He IS → il est."},
+  {q:"To say 'we have a boat', you use —", o:["nous avons","nous sommes","ils ont… no, nous!","je suis"], a:0, tier:3, e:"We HAVE → nous avons; nous sommes = we are."},
+  {q:"'elle est gentille' means —", o:["she is kind","she has a cat","you are kind","he is tall"], a:0, tier:2, e:"elle est = she is; gentille = kind."},
+  {q:"The plural of 'un chien' is —", o:["deux chiens","deux chien","chien deux","des chien"], a:0, tier:2, e:"Number first, then noun + s."},
+  {q:"Which is the correct spelling for 'a dog'?", o:["un chien","un chein","un shien","un chine"], a:0, tier:2, e:"c-h-i-e-n. Watch the i before e!"},
+  {q:"Which matches are CORRECT? (select all)", t:"multi", o:["je suis = I am","j'ai = I have","nous sommes = we are","il a = he is"], a:[0,1,2], tier:3, e:"il a = he HAS (il est = he is)."},
+  {q:"Which sentences are CORRECT? (select all)", t:"multi", o:["J'ai un livre.","Nous sommes contents.","Je suis deux livres.","Tu es mon ami."], a:[0,1,3], tier:3, e:"'Je suis deux livres' says 'I AM two books' — use j'ai."}
+ ]},
+
+{id:"FR12", subj:"fr", icon:"🧺", title:"Vocabulaire · Lecture III", en:"词汇·阅读：Chloé 逛市场", tag:"core",
+ lesson:{ media:[{type:"frenchpics", title:"Au marché", items:[["🍞","le pain = bread"],["🍎","la pomme = apple"],["🧀","le fromage = cheese"],["🥛","le lait = milk"],["💧","l'eau = water"]]}],
+  cards:[
+   {t:"Verbs you need", b:"je vais = I go · j'achète = I buy\nje mange = I eat · je bois = I drink\nil boit = he drinks · elle achète = she buys"},
+   {t:"Read like a detective", b:"Numbers: neuf = 9 · trois = 3.\nle marché = the market · samedi = Saturday.\nFind each answer IN the text — don't guess from memory."}],
+  example:{t:"Find it in the text", prob:"Qu'est-ce que Chloé achète ? (What does Chloé buy?)", steps:[
+   "Find 'j'achète' in the text.",
+   "'j'achète du pain et trois pommes rouges.'",
+   "She buys bread and three red apples."]},
+  check:[{q:"'je bois' means —", o:["I drink","I eat","I buy","I go"], a:0, e:"boire = to drink → je bois."}] },
+ training:[
+  {q:"What is the girl's name and age?", o:["Chloé, nine years old","Chloé, ten years old","Emma, nine years old","Luc, eleven years old"], a:0, tier:1, e:"'Je m'appelle Chloé. J'ai neuf ans.' neuf = 9.", passage:P_MARCHE},
+  {q:"Where does Chloé go on Saturday morning?", o:["to the market","to the beach","to school","to the library"], a:0, tier:1, e:"'je vais au marché' — le marché = the market.", passage:P_MARCHE},
+  {q:"What does Chloé buy?", o:["bread and three red apples","cheese and milk","a banana and juice","fish and rice"], a:0, tier:2, e:"'j'achète du pain et trois pommes rouges.'", passage:P_MARCHE},
+  {q:"How many apples does she buy?", o:["three","two","nine","five"], a:0, tier:2, e:"trois pommes = three apples.", passage:P_MARCHE},
+  {q:"What does her mother buy?", o:["cheese (du fromage)","bread","apples","water"], a:0, tier:2, e:"'Ma mère achète du fromage.'", passage:P_MARCHE},
+  {q:"What does her little brother DRINK?", o:["water (de l'eau)","juice","milk","tea"], a:0, tier:3, e:"'il boit de l'eau.' Read carefully — the banana is what he EATS.", passage:P_MARCHE},
+  {q:"What does Chloé drink?", o:["milk (du lait)","water","juice","nothing"], a:0, tier:2, e:"'Moi, je bois du lait.'", passage:P_MARCHE},
+  {q:"'j'achète' means —", o:["I buy","I eat","I drink","I sell"], a:0, tier:2, e:"acheter = to buy.", passage:P_MARCHE},
+  {q:"Which statements about CHLOÉ are TRUE? (select all)", t:"multi", o:["Chloé is nine years old.","Her brother eats a banana.","Her mother buys apples.","Chloé likes the market."], a:[0,1,3], tier:3, e:"Her MOTHER buys cheese; Chloé buys the apples.", passage:P_MARCHE},
+  {q:"Which pairs are CORRECT? (select all)", t:"multi", o:["le pain = bread","le lait = milk","le fromage = apple","je bois = I drink"], a:[0,1,3], tier:3, e:"le fromage = cheese, not apple.", passage:P_MARCHE}
  ]}
 ];
 
 
+
 /* ---- 状态与存储 ---- */
-const KEY="sailor_pack_v12", PASS=0.6;
-function fresh(){ return {xp:SEED.xp, v12Best:{}, v12Done:[], mistakes:[], box:[], writing:{}, traceDays:[], started:SEED.xp}; }
+const KEY="sailor_pack_v13", PASS=0.6;
+function fresh(){ return {xp:SEED.xp, v13Best:{}, v13Done:[], mistakes:[], box:[], writing:{}, traceDays:[], started:SEED.xp}; }
 let state=load()||fresh();
 if(!state.box) state.box=[];
 if(!state.writing) state.writing={};
 if(!state.traceDays) state.traceDays=[];
 function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } }
-function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} if(typeof SYNC!=="undefined"&&SYNC.schedule)SYNC.schedule(); }
 
 function beltFor(xp){ let b=BELTS[0]; for(const x of BELTS){ if(xp>=x.min) b=x; } return b; }
 function nextBelt(xp){ return BELTS.find(x=>x.min>xp)||null; }
@@ -761,7 +793,7 @@ function renderHome(){
   <div class="hero">
     <div class="hero-top"><div class="brand"><div class="logo"><img src="data:image/jpeg;base64,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" alt="Sailor 头像"></div>
       <div><h1>Sailor 航海学堂</h1><div class="sub">五科 · 预习课→训练→晋升</div></div></div>
-      <div class="ver">v12.1</div></div>
+      <div class="ver">v13.1</div></div>
     <div class="belt-row"><div class="belt-emblem"><div class="belt-bar" style="background:${belt.color}"></div><div class="belt-knot" style="background:${belt.color}"></div></div>
       <div class="belt-info"><div class="belt-name">${belt.cn} <span style="color:#aeb6e0;font-weight:600">${belt.en}</span><span class="next">${label}</span></div>
         <div class="xpbar"><div class="xpfill" id="xpfill"></div></div>
@@ -772,10 +804,10 @@ function renderHome(){
   </div>`;
   for(const key of ORDER){
     const units=UNITS.filter(u=>u.subj===key); if(!units.length) continue;
-    const done=units.filter(u=>state.v12Done.includes(u.id)).length;
+    const done=units.filter(u=>state.v13Done.includes(u.id)).length;
     html+=`<div class="sec"><div class="sec-h"><span class="dot" style="background:${SUBJ[key].color}"></span><h2>${SUBJ[key].name}</h2><span class="pct">${done}/${units.length} 完成</span></div><div class="grid">`;
     for(const u of units){
-      const best=state.v12Best[u.id], isDone=state.v12Done.includes(u.id);
+      const best=state.v13Best[u.id], isDone=state.v13Done.includes(u.id);
       html+=`<div class="card" onclick="startUnit('${u.id}')"><div class="stripe" style="background:${SUBJ[key].color}"></div>
         <div class="card-top"><div class="ic">${u.icon}</div><div><div class="t">${esc(u.title)}</div><div class="en">${esc(u.en)}</div></div></div>
         <div class="card-bot"><span class="tag ${u.tag}">${TAGS[u.tag]}</span><span class="best ${isDone?'done':''}">${isDone?'✓ '+best:'开始 Start ›'}</span></div></div>`;
@@ -785,10 +817,12 @@ function renderHome(){
   html+=`<div class="actions">
     <button class="abtn report" onclick="renderReport()">📊 家长报告</button>
     <button class="abtn export" onclick="renderExport()">📤 导出数据包</button>
+    <button class="abtn" onclick="renderSync()">⚙ 同步设置</button>
     <button class="reset" onclick="resetAll()">↺ 重置本机进度（XP 回到 ${SEED.xp.toLocaleString()}）</button>
   </div>
-  <div class="foot-note">20260630_Sailor学习包_v12.1 · 离线可用 · 进度保存在本设备 · 点 🔊 可朗读</div>`;
+  <div class="foot-note"><span id="syncBadge"></span><br>20260708_Sailor学习包_v13.1 · 离线可用 · 进度保存在本设备 · 点 🔊 可朗读</div>`;
   app.innerHTML=html;
+  if(typeof SYNC!=="undefined")SYNC.setBadge();
   requestAnimationFrame(()=>{ const f=document.getElementById("xpfill"); if(f) f.style.width=Math.max(4,Math.min(100,pct))+"%"; });
   window.scrollTo(0,0);
 }
@@ -845,7 +879,7 @@ function revealStep(){
 function qInner(item, qid, subj){
   const lg=lang(subj); let h="";
   if(item.t==="open"){
-    h+=`<div class="qrow"><div class="q-prompt" style="font-size:21px;line-height:1.5">${esc(item.q)}</div></div>`;
+    h+=`<div class="qrow"><div class="q-prompt" style="font-size:19px;line-height:1.55;white-space:pre-line">${esc(item.q)}</div></div>`;
     if(item.hint) h+=`<div style="font-size:14.5px;color:var(--muted);margin:-2px 0 8px">💡 ${esc(item.hint)}</div>`;
     h+=`<textarea class="open-ta" id="open_${qid}" placeholder="在这里写… write here…"></textarea>`;
     h+=`<div id="exp_${qid}"></div>`;
@@ -863,6 +897,11 @@ function qInner(item, qid, subj){
       h+=`<input class="fill-in numfield" id="fill_${qid}" readonly placeholder="0" inputmode="none">`;
       const keys=["1","2","3","4","5","6","7","8","9",".","0","/"];
       h+=`<div class="numpad">`+keys.map(c=>`<button type="button" class="npk" onclick="npKey('${qid}','${c}')">${c}</button>`).join("")+`<button type="button" class="npk npfn" onclick="npKey('${qid}','-')">−</button>`+`<button type="button" class="npk npfn" onclick="npKey('${qid}','back')">⌫</button>`+`<button type="button" class="npk npgo" onclick="submitFill('${qid}')">✓ 提交</button>`+`</div>`;
+    } else if(item.kind==="zi"){
+      h+=`<input class="fill-in numfield zifield" id="fill_${qid}" readonly placeholder="点选字块作答" inputmode="none">`;
+      const zt=[...(item.tiles||"")], zp=permFor((item.q||"")+"|zi", zt.length);
+      h+=`<div class="zipad">`+zp.map(i=>`<button type="button" class="npk zpk" onclick="npKey('${qid}','${zt[i]}')">${zt[i]}</button>`).join("")+`</div>`;
+      h+=`<div class="zipad zctl"><button type="button" class="npk npfn" onclick="npKey('${qid}','back')">⌫ 删除</button><button type="button" class="npk npgo zgo" onclick="submitFill('${qid}')">✓ 提交</button></div>`;
     } else {
       h+=`<div class="fillrow"><input class="fill-in" id="fill_${qid}" type="text" autocomplete="off" spellcheck="false" placeholder="输入答案 type answer" onkeydown="if(event.key==='Enter'){event.preventDefault();submitFill('${qid}');}"><button class="fill-go" onclick="submitFill('${qid}')">提交 ✓</button></div>`;
     }
@@ -924,12 +963,12 @@ function fillOk(input, ans){
   for(const a of accepts){ const na=normAns(a); if(ni===na) return true; const va=asNum(na); if(vi!==null && va!==null && Math.abs(vi-va)<1e-9) return true; }
   return false;
 }
-function npKey(qid,ch){ const inp=document.getElementById("fill_"+qid); if(!inp||inp.disabled)return; if(ch==="back"){ inp.value=inp.value.slice(0,-1); } else { if(inp.value.length<12) inp.value+=ch; } }
+function npKey(qid,ch){ const inp=document.getElementById("fill_"+qid); if(!inp||inp.disabled)return; if(ch==="back"){ inp.value=inp.value.slice(0,-1); } else { if(inp.value.length<12) inp.value+=ch; } inp.classList.remove("npin"); void inp.offsetWidth; inp.classList.add("npin"); }
 function submitFill(qid){
   const item = (qid==="bx") ? qByRef(bx.queue[bx.pos]).item : st.unit.training[st.order[st.pos]];
   if(qid==="bx"){ if(bx.answered) return; } else if(st.answered) return;
   const inp=document.getElementById("fill_"+qid); const val=inp?inp.value:"";
-  if(!val.trim()){ toast("请先输入答案 ✍️"); return; }
+  if(!val.trim()){ toast("请先输入答案 ✍️"); if(inp){ inp.classList.remove("shake"); void inp.offsetWidth; inp.classList.add("shake"); } return; }
   const ok = fillOk(val, item.a);
   if(inp){ inp.setAttribute("disabled",""); inp.classList.add(ok?"ok":"no"); }
   const go=inp&&inp.parentNode?inp.parentNode.querySelector(".fill-go"):null; if(go) go.style.display="none";
@@ -1014,9 +1053,9 @@ function advance(){ st.answered=false; st.pos++; if(st.pos>=st.order.length){ sh
 function showResult(){
   const u=st.unit; const correct=st.qstate.filter(s=>s==="c").length, total=st.qstate.length;
   const wrong=st.qstate.map((s,i)=>s==="w"?i:-1).filter(i=>i>=0); const scoreStr=correct+"/"+total;
-  const prev=state.v12Best[u.id], pc=prev?parseInt(prev.split("/")[0]):-1;
-  if(correct>=pc) state.v12Best[u.id]=scoreStr;
-  if(!state.v12Done.includes(u.id)) state.v12Done.push(u.id);
+  const prev=state.v13Best[u.id], pc=prev?parseInt(prev.split("/")[0]):-1;
+  if(correct>=pc) state.v13Best[u.id]=scoreStr;
+  if(!state.v13Done.includes(u.id)) state.v13Done.push(u.id);
   if(u.trace && u.traceDay && state.traceDays.indexOf(u.traceDay)<0){ state.traceDays.push(u.traceDay); }
   let bonus=0; if(!st.bonusGiven){ st.bonusGiven=true; bonus+=25; } if(wrong.length===0 && !st.clearBonus){ st.clearBonus=true; bonus+=25; }
   state.xp+=bonus; save();
@@ -1241,8 +1280,8 @@ function weakChars(){
   return Object.entries(cnt).sort((a,b)=>b[1]-a[1]);
 }
 function renderReport(){
-  const app=document.getElementById("app"); const belt=beltFor(state.xp), totalUnits=UNITS.length, doneUnits=state.v12Done.length; const weak=weakChars();
-  function rows(key){ let r=""; for(const u of UNITS.filter(x=>x.subj===key)){ const best=state.v12Best[u.id];
+  const app=document.getElementById("app"); const belt=beltFor(state.xp), totalUnits=UNITS.length, doneUnits=state.v13Done.length; const weak=weakChars();
+  function rows(key){ let r=""; for(const u of UNITS.filter(x=>x.subj===key)){ const best=state.v13Best[u.id];
       let pill='<span class="scorepill" style="background:#eef1ff;color:#7782b8">未做</span>';
       if(best){ const [c,t]=best.split("/").map(Number); const ra=t?c/t:1; const cls=ra>=0.8?"sp-hi":ra>=PASS?"sp-mid":"sp-lo"; pill=`<span class="scorepill ${cls}">${best}</span>`; }
       r+=`<div class="row"><span style="font-size:20px">${u.icon}</span><span class="name">${esc(u.title)} <span class="mini-en">${esc(u.en)}</span></span>${pill}</div>`; } return r; }
@@ -1255,51 +1294,49 @@ function renderReport(){
   if(wks.length){ for(const k of wks){ const w=state.writing[k]; wh+=`<div style="margin-top:10px"><div style="font-weight:800;font-size:13.5px;color:#2a3360">${esc(w.unit)} — ${esc(w.q)}</div><div style="white-space:pre-wrap;background:var(--paper2);border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:14.5px;line-height:1.6;color:#2a3360;margin-top:5px">${esc(w.text)}</div></div>`; } } else { wh=`<div style="color:var(--muted)">还没有写作作答。</div>`; }
   app.innerHTML=`<div class="panel">
     <div class="panel-h"><button class="st-back" onclick="renderHome()">‹</button><h2>家长报告</h2></div>
-    <span class="rep-ver">课件版本 v12.1</span>
-    <div class="rep-meta">学生：Sailor（9岁，升 Grade 4）· <b>航海主题</b> · <b>数学/科学/英文/法语＝英文优先</b>，中文保持中文 · 配比 中文/数学/科学/英文/法语 · 英文指令 · 结构：预习课(含多媒体)→训练★/★★/★★★→晋升 ；题型 单选·多选·填空(数字题用<b>屏内数字键盘</b>)·✍️写作 · 对标安省 G5→早G6/Northmount · 共 200 题 · 生成于 2026-06-30<br>错题本当前 ${state.box.length} 题待强化。</div>
+    <span class="rep-ver">课件版本 v13.1</span>
+    <div class="rep-meta">学生：Sailor（9岁，升 Grade 4）· <b>航海主题</b> · <b>数学/科学/英文/法语＝英文优先</b>，中文保持中文 · 结构：预习课(含多媒体)→训练★/★★/★★★→晋升 ；题型 单选·多选·填空(数字＝<b>屏内数字键盘</b>·汉字＝<b>屏内字块选择</b>)·✍️写作(词库+守题) · 对标安省 G5→早G6/Northmount · 共 203 题 · 生成于 2026-07-08<br>错题本当前 ${state.box.length} 题待强化。</div>
     <div class="stat-grid">
       <div class="stat"><div class="n" style="color:var(--xp-d)">${state.xp.toLocaleString()}</div><div class="l">总 XP</div></div>
       <div class="stat"><div class="n" style="color:var(--math)">${doneUnits}/${totalUnits}</div><div class="l">单元完成</div></div>
       <div class="stat"><div class="n" style="color:${belt.color==='#eef0f6'?'#9aa1c4':belt.color}">${belt.cn}</div><div class="l">当前军衔</div></div></div>
-    <div class="rep-sec"><h3><span class="dot" style="background:var(--cn)"></span>中文 · 成语新典故·复句进阶II·病句近义词·识字Day21-22</h3>${rows("cn")}</div>
-    <div class="rep-sec"><h3><span class="dot" style="background:var(--math)"></span>数学 · 英文授课 · 安省G5→早G6（分数加减与整体的几分之几·小数借位与折扣·三角形面积·运算顺序与简单方程·多步应用题）</h3>${rows("math")}</div>
-    <div class="rep-sec"><h3><span class="dot" style="background:var(--sci)"></span>科学 · 英文授课 · 安省G5（太阳系·天气与水循环）</h3>${rows("sci")}</div>
-    <div class="rep-sec"><h3><span class="dot" style="background:var(--en)"></span>英文 · 英文授课 · 文学+说明文阅读·语法治流水句·写作工坊</h3>${rows("en")}</div>
-    <div class="rep-sec"><h3><span class="dot" style="background:var(--fr)"></span>法语 · être/avoir·复数·阅读（补FR5）</h3>${rows("fr")}</div>
+    <div class="rep-sec"><h3><span class="dot" style="background:var(--cn)"></span>中文 · 成语典故III·复句III·阅读《掩耳盗铃》·病句II·识字Day23-24</h3>${rows("cn")}</div>
+    <div class="rep-sec"><h3><span class="dot" style="background:var(--math)"></span>数学 · 英文授课 · 巩固为主（几分之几·小数借位与折扣对比·周长/面积/体积分辨·乘方与运算顺序·多步应用题）</h3>${rows("math")}</div>
+    <div class="rep-sec"><h3><span class="dot" style="background:var(--sci)"></span>科学 · 英文授课 · 新主题（物质与三态变化·力与简单机械）</h3>${rows("sci")}</div>
+    <div class="rep-sec"><h3><span class="dot" style="background:var(--en)"></span>英文 · 英文授课 · 瓶中信+海龟阅读·明喻vs暗喻·完整句与标点·写作工坊V（词库+守题）</h3>${rows("en")}</div>
+    <div class="rep-sec"><h3><span class="dot" style="background:var(--fr)"></span>法语 · être/avoir·主语代词·Chloé逛市场阅读</h3>${rows("fr")}</div>
     <div class="rep-sec"><h3>⚠️ 本轮易错字</h3>${weak.length?`<div class="weak-chips">${weak.map(([c,n])=>`<span class="chip"><span class="c">${c}</span>×${n}</span>`).join("")}</div>`:`<div style="color:var(--muted)">暂无重复出错的汉字。</div>`}</div>
     <div class="rep-sec"><h3>📝 本轮错题清单（首次答错记录）</h3>${mh}</div>
-    <div class="rep-sec"><h3>💡 给家长的建议（基于 v11.0 回传数据）</h3><div class="rec">
-      <b>🧭 本版概览（v12）：</b>应 Sailor 要求，界面改为<b>航海主题</b>，进度体系由腰带改为<b>航海军衔</b>（实习水手→…→海军上将，沿用相同 XP 阈值；Sailor 当前 XP 20,190，已晋<b>船长</b>）。除中文外，<b>数学/科学/英文/法语全部改为英文为第一语言</b>。<br><br>
-<b>⌨️ 输入法发现（重要）：</b>v11 回传显示，许多数字/英文填空被记录成中文标点或乱码（如把 open 打成「平【平【」、把 1/2+1/3 打成「e」），这是<b>设备处于中文输入法</b>所致，制造了大量「假错误」，写作中也混入了中文。v12 已对症：<b>所有数字填空改用屏内数字键盘</b>（彻底绕开输入法），英文单词类填空改为选择题。<b>建议家长：让 Sailor 在做英文/写作时把系统键盘切换为英文</b>（数字题已无需切换）。<br><br>
-<b>🔢 数学是真实最弱项：</b>剔除乱码后，数学仍有稳定的概念性错误——异分母分数相加（把 1/2+1/3 算成 2/5，即分子分母分别相加）、分数比较未通分、小数借位减（3.2−1.75）、四舍五入舍到整数、百分数与折扣混淆、运算顺序（3+4×2 从左算到右）、周长/面积/体积混淆。v12 用全新题对这些点逐一强化，并适当上推难度（★★★ 占 53%）。<br><br>
-<b>✍️ 写作进步与新问题：</b>流水句明显改善（句号、句首大写到位、句子变短）；但出现<b>中英混写、连贯性偏弱、拼写</b>问题。v12 写作工坊全程 English only，并提供<b>更强的句子脚手架</b>（每题给出可直接套用的句框）。<br><br>
-<b>📈 难度校准：</b>v11 是修复后首份「干净」读数，错题集中、重做回升，落在有效困难区，证实难度方向正确。<br><br><b>⚙️ 本版关键修正：</b>v10 单选题正确答案有 97.6% 落在选项 A（孩子可能靠「一律选 A」刷高分，掌握度被高估）。v11 已根治：所有选项按题面做<b>确定性洗牌</b>（每题位置不同、训练与错题本一致），各位置占比已压到 ≤35%。因此 v11 是首份「干净」的难度读数。<br><br>
-      <b>中文（最高优先）：</b>v10 回传错题集中在「理解语义/语境」的抽象层——成语运用、关联词复句、病句辨析。v11 全部为新题：成语<b>历史典故</b>（守株待兔／井底之蛙／亡羊补牢／对牛弹琴／掩耳盗铃／举一反三，含褒贬辨析）、<b>复句进阶</b>（不但…反而／与其…宁可／既然…就／之所以…是因为）、《愚公移山》<b>推断阅读</b>、<b>病句·多音字·标点</b>综合；续识字 Day 19（却竟居般确实）＋ Day 20（越够始终由各），累计 112→124 字。新增多选与填空，强迫主动产出而非识别。<br><br>
-      <b>数学（重点 · 难度上推安省 G5）：</b>对标 Northmount「数学领先一级」。本版主攻<b>异分母分数</b>加减/约分通分/带分数、<b>小数与百分数</b>（数位对齐·×÷10·折扣税）、<b>几何与体积</b>（面积/周长/长方体体积/角/坐标）与<b>四则混合·多步应用题</b>（先括号后乘除·真实情境）。大量改为<b>填空与应用题</b>，要求孩子真正动笔计算；建议每天清错题本 3–5 题。<br><br>
-      <b>英文（写作结构为靶心）：</b>v10 写作样本显示创意与投入度好，但句子边界仍几乎失控（通篇流水句、句末缺标点、句首不大写），且疑似语音转文字。v11 以 <b>Grammar &amp; Conventions Pro</b>（四类句型·标点·大写·<b>治流水句</b>：合并/拆分）＋ <b>Writing Studio III</b>（5 道写作工坊，每题给「一句一意·句末标点·一处合并句」脚手架）双管齐下；另配两篇全新阅读（文学《图书馆》推断＋说明文《火山》主旨/因果/词汇）。建议家长重点看下方写作作答的句号与大写。<br><br>
-      <b>科学（强项 · 保持挑战）：</b>进阶到两个安省 G5 新主题——<b>人体与器官系统</b>（消化/呼吸/循环及其协作）与<b>电与能量</b>（完整电路·导体绝缘体·能量转换·可再生能源）；以多选与因果题维持难度。<br><br>
-      <b>法语（补 v10 未完成的 FR5）：</b>v10 中 Sailor 跳过了一个法语单元，本版 FR7 专门补上：<b>être / avoir</b>、名词复数、高频词与数字；FR8 以动词（manger／boire／lire／aller／habiter）与一篇全新阅读（Emma 的一天）巩固，非照搬旧题。
+    <div class="rep-sec"><h3>💡 给家长的建议（基于 v12.1 回传数据）</h3><div class="rec">
+      <b>🧭 本版概览（v13）：</b>沿用航海军衔、头像与英文优先。Sailor 当前 XP 24,413（<b>船长</b>），距<b>船队长（25,000）仅差 587 XP</b>——本版开局即可晋升；完成全部单元预计 28,000+ XP，海军上将（32,000）留待 v14 冲刺。识字进入 Day 23–24（家居用品 12 字：房间门窗床桌·椅灯纸笔画字），累计 136→148。<br><br>
+<b>⌨️ 输入改造第二轮（本版核心）：</b>v12.1 回传给出决定性证据——<b>屏内数字键盘已根治数学输入</b>（四个数学单元最好成绩 13/13、12/13、12/12、12/12）；但<b>中文填字仍被系统键盘卡死</b>：三个含填字的中文单元最好成绩被压到 7/13、9/13、10/13，错误答案全是「j、k、6、5」这类单个字母/数字，约 13 题纯因打不出汉字而判错，与概念无关。v13 起<b>所有中文填字改为屏内「字块选择」</b>：从候选汉字中点选作答（含形近字干扰，如 像/象、灯/等），全程无需系统键盘。数字键盘同步加入<b>按键回显动画</b>与<b>空值提交拦截（抖动提示）</b>。至此除英文写作外，整套课件不再依赖系统键盘。<br><br>
+<b>⚡ 关于「首次抢答」：</b>错题记录里大量首答是单个数字（「2」「1」「5」），而重做后近满分——判断为孩子知道可重做而抢答（置信度约 70%），并非不会。建议家长口头约定：<b>第一次就认真算</b>——首答即对的 XP 奖励远高于补答。<br><br>
+<b>🔢 数学真实弱点（本版逐一强化）：</b>运算顺序与乘方（3²+4 算错）、多步「还剩」应用题、小数进退位（6.2−3.45）、百分数「省多少 vs 现价」、某数的几分之几（3/4 of 20）、<b>周长/面积/体积三者混用</b>（8×5 场景反复错）、三角形面积、余角。v13 大量使用<b>成对对比题</b>专治混淆：同一矩形先问面积再问周长；同一本书先问省多少、再问售价；铺地砖/围栅栏/灌水池分别该算哪一个。<br><br>
+<b>🔬 科学两个全新主题：</b><b>物质与三态变化</b>（固/液/气·粒子·熔化凝固蒸发凝结——顺带根治水循环里「蒸发/凝结」命名混淆）＋<b>力与简单机械</b>（推拉·重力·摩擦·杠杆/滑轮/斜面/轮轴/楔/螺旋）。均配交互演示。<br><br>
+<b>✍️ 写作（词库＋守题）：</b>句框已见效（句号、大写到位），但<b>跑题严重</b>（曾把「种一颗种子」写成 Xbox）。v13 每题新增 <b>Word bank 词库</b>（至少用 3 个词）与「每句必须扣题」规则，预习课先练「留下还是删掉」的守题判断。写作是全课件唯一仍需系统键盘的环节，<b>请保持英文输入法</b>。<br><br>
+<b>🔁 持续弱点重测（成对对比）：</b>法语 être vs avoir（连续两版混淆）、主语代词、chien 拼写；英文 simile vs metaphor、完整句 vs 片段、逗号拼接；中文 千方百计 vs 全神贯注（全新句子重测）、像/象 形近字对比、复句关联词（一…就／不是…就是／只有…才／不管…都）。<br><br>
+<b>📦 数据连续性：</b>本版种子基线全部来自 v12.1 真实回传（XP 24,413 · 103 单元 · 识字 136 · 弱字 般始觉象像等题），无任何估算；完成后请照常导出数据包回传，用于生成 v14。
     </div></div>
     <div class="rep-sec"><h3>✍️ 写作练习（孩子的作答，供家长批阅）</h3>${wh}</div>
-    <div class="actions"><button class="abtn export" style="grid-column:1/-1" onclick="renderExport()">📤 导出数据包（回传生成 v13）</button></div>
+    <div class="actions"><button class="abtn export" style="grid-column:1/-1" onclick="renderExport()">📤 导出数据包（回传生成 v14）</button></div>
   </div>`;
   window.scrollTo(0,0);
 }
 
 /* =================== 导出数据包 =================== */
 function buildPacket(){
-  const lessonsDone=SEED.lessonsDone.concat(state.v12Done.filter(id=>SEED.lessonsDone.indexOf(id)<0));
-  const unitBest=Object.assign({}, SEED.unitBest, state.v12Best);
+  const lessonsDone=SEED.lessonsDone.concat(state.v13Done.filter(id=>SEED.lessonsDone.indexOf(id)<0));
+  const unitBest=Object.assign({}, SEED.unitBest, state.v13Best);
   let ziDaysDone=SEED.ziDaysDone.slice(), ziLearned=SEED.ziLearned, ziChars=SEED.ziChars;
   for(const u of UNITS){ if(u.trace && u.traceDay && state.traceDays.indexOf(u.traceDay)>=0){ if(ziDaysDone.indexOf(u.traceDay)<0) ziDaysDone.push(u.traceDay); ziLearned+=[...u.trace].length; ziChars+=u.trace.join(""); } }
   const w=weakChars(); const ziWeak=w.length?w.map(([c,n])=>c+":"+n):SEED.ziWeak;
-  return {ver:"12.1", date:"2026-06-30", xp:state.xp, diag:SEED.diag, lessonsDone, unitBest, ziDaysDone, ziLearned, ziChars, ziWeak, boxRemaining:state.box.length, writingCount:Object.keys(state.writing).length, writing:state.writing, mistakes:state.mistakes};
+  return {ver:"13.1", date:"2026-07-08", xp:state.xp, diag:SEED.diag, lessonsDone, unitBest, ziDaysDone, ziLearned, ziChars, ziWeak, boxRemaining:state.box.length, writingCount:Object.keys(state.writing).length, writing:state.writing, mistakes:state.mistakes};
 }
 function renderExport(){
   const json=JSON.stringify(buildPacket());
   document.getElementById("app").innerHTML=`<div class="panel">
     <div class="panel-h"><button class="st-back" onclick="renderHome()">‹</button><h2>导出学习数据包</h2></div>
-    <div class="exp-note">把下面整段文字<b>全部复制</b>，发给 Claude，就能生成下一版（v13）。<br>含：XP、各单元成绩、生字进度、错题（带难度档）、错题本剩余数。</div>
+    <div class="exp-note">把下面整段文字<b>全部复制</b>，发给 Claude，就能生成下一版（v14）。<br>含：XP、各单元成绩、生字进度、错题（带难度档）、错题本剩余数。</div>
     <textarea class="exp-ta" id="expTA" readonly onclick="this.select()">====== Sailor 学习数据包（整段复制，发给 Claude）======
 ${json}
 ====== 数据包结束 · 生成于 2026-06-25 ======</textarea>
@@ -1314,6 +1351,131 @@ function copyPacket(){
 }
 function resetAll(){ if(confirm("确定重置本机进度吗？\nXP 会回到 "+SEED.xp.toLocaleString()+"，本轮成绩、错题、错题本清空。")){ state=fresh(); save(); renderHome(); toast("已重置"); } }
 
+/* ============================================================
+   v13.1 云同步：把仓库当数据库（与 Simon 同款）
+   - 每次 save() 后 ~90s 自动把完整学习档案写回 data/progress.json
+   - 令牌只存本机 localStorage（绝不写入任何仓库文件）
+   - 合并写入：只更新 study 段，不覆盖 game 段；无变化不提交
+   ============================================================ */
+function b64(str){ return btoa(unescape(encodeURIComponent(str))); }
+function ub64(str){ try{ return decodeURIComponent(escape(atob(String(str).replace(/\s+/g,"")))); }catch(e){ return ""; } }
+function hashStr(s){ let h=0x811c9dc5>>>0; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,0x01000193)>>>0; } return (h>>>0).toString(36); }
+function hhmm(iso){ try{ var d=new Date(iso); return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); }catch(e){ return ""; } }
+
+function buildSyncPayload(){
+  var belt=beltFor(state.xp);
+  var units=UNITS.map(function(u){
+    var best=state.v13Best[u.id]||null, ratio=null, status="todo";
+    if(best){ var p=best.split("/").map(Number), c=p[0], t=p[1]; ratio=t?c/t:1;
+      status = ratio>=0.8 ? "mastered" : (ratio>=PASS ? "pass" : "review"); }
+    return {id:u.id, subj:u.subj, title:u.title, en:u.en, icon:u.icon, best:best, ratio:ratio, status:status, total:trainCount(u)};
+  });
+  var byUnit={}; for(var i=0;i<state.mistakes.length;i++){ var m=state.mistakes[i]; (byUnit[m.u]=byUnit[m.u]||[]).push({q:m.q,x:m.x,r:m.r,tier:m.tier||0}); }
+  return {
+    version:"13.1", student:"Sailor", syncedAt:new Date().toISOString(),
+    xp:state.xp,
+    rank:{cn:belt.cn, en:belt.en, min:belt.min, color:belt.color},
+    coverage:{done:state.v13Done.length, total:UNITS.length},
+    units:units,
+    mistakesByUnit:byUnit,
+    reviewQueue:weakChars().map(function(e){ return {c:e[0], n:e[1]}; }),
+    boxRemaining:state.box.length,
+    writing:state.writing,
+    packet:buildPacket()
+  };
+}
+
+var SYNC={
+  owner:"lilisun535", repo:"sailor-game", branch:"main", path:"data/progress.json", section:"study",
+  tKey:"sailor_sync_token", hKey:"sailor_sync_hash", tsKey:"sailor_sync_ts", stKey:"sailor_sync_state",
+  timer:null, busy:false,
+  token:function(){ try{ return (localStorage.getItem(this.tKey)||"").trim(); }catch(e){ return ""; } },
+  setToken:function(t){ try{ localStorage.setItem(this.tKey,(t||"").trim()); }catch(e){} },
+  lget:function(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+  lset:function(k,v){ try{ localStorage.setItem(k,v); }catch(e){} },
+  api:function(){ return "https://api.github.com/repos/"+this.owner+"/"+this.repo+"/contents/"+this.path; },
+  badgeText:function(){
+    if(!this.token()) return "🔌 未开启同步（点 ⚙ 同步设置）";
+    var ts=this.lget(this.tsKey), stt=this.lget(this.stKey);
+    if(stt==="fail") return "⚠️ 上次同步失败（下次自动重试）";
+    if(ts) return "☁️ 已同步 "+hhmm(ts)+" · 家长可在看板刷新查看";
+    return "☁️ 已开启，等待首次同步…";
+  },
+  setBadge:function(txt){ var el=document.getElementById("syncBadge"); if(el) el.textContent=(txt!==undefined?txt:this.badgeText()); },
+  schedule:function(){ if(this.timer||!this.token()) return; var self=this;
+    this.timer=setTimeout(function(){ self.timer=null; self.push(false); }, 90000); },
+  push:async function(manual){
+    var tok=this.token();
+    if(!tok){ if(manual) toast("请先在 ⚙ 里粘贴同步令牌"); return false; }
+    if(this.busy){ return false; }
+    var payload=buildSyncPayload(), body=JSON.stringify(payload);
+    var h=hashStr(body.replace(/"syncedAt":"[^"]*"/,'"syncedAt":""'));
+    if(!manual && this.lget(this.hKey)===h){ return false; } // 无变化，不刷屏
+    this.busy=true; this.setBadge("☁️ 同步中…");
+    var api=this.api(), sec=this.section, br=this.branch, self=this;
+    async function getFile(){
+      var r=await fetch(api+"?ref="+br,{headers:{Authorization:"Bearer "+tok,Accept:"application/vnd.github+json"}});
+      if(r.status===200){ var j=await r.json(); var full={}; try{ full=JSON.parse(ub64(j.content)); }catch(e){ full={}; }
+        if(typeof full!=="object"||!full) full={}; return {full:full, sha:j.sha}; }
+      if(r.status===404){ return {full:{}, sha:null}; }
+      throw new Error("GET "+r.status);
+    }
+    async function putFile(full,sha){
+      full[sec]=payload; full._meta={updatedAt:payload.syncedAt, updatedBy:sec};
+      var r=await fetch(api,{method:"PUT",headers:{Authorization:"Bearer "+tok,Accept:"application/vnd.github+json","Content-Type":"application/json"},
+        body:JSON.stringify({message:"sync "+sec+" "+payload.syncedAt, branch:br, sha:sha||undefined, content:b64(JSON.stringify(full,null,2))})});
+      return r;
+    }
+    try{
+      var g=await getFile();
+      var r=await putFile(g.full, g.sha);
+      if(r.status===409||r.status===422){ var g2=await getFile(); r=await putFile(g2.full, g2.sha); } // sha 竞争，重试一次
+      if(!r.ok) throw new Error("PUT "+r.status);
+      this.lset(this.hKey,h); this.lset(this.tsKey,payload.syncedAt); this.lset(this.stKey,"ok");
+      this.setBadge(); if(manual) toast("同步成功 ✓ 家长看板刷新即可见");
+      this.busy=false; return true;
+    }catch(e){
+      this.lset(this.stKey,"fail"); this.setBadge();
+      if(manual) toast("同步失败："+(e&&e.message||e));
+      this.busy=false; return false;
+    }
+  }
+};
+
+function syncTestSave(){
+  var v=(document.getElementById("syncTok")||{}).value||"";
+  if(!v.trim()){ toast("请先粘贴令牌"); return; }
+  SYNC.setToken(v); toast("正在测试同步…"); SYNC.push(true).then(function(){ setTimeout(renderSync,400); });
+}
+function syncNow(){ toast("正在同步…"); SYNC.push(true).then(function(){ setTimeout(renderSync,400); }); }
+function syncClear(){ if(confirm("清除本机的同步令牌？清除后本设备将停止自动同步。")){ SYNC.setToken(""); SYNC.lset(SYNC.stKey,""); toast("已清除令牌"); renderSync(); } }
+
+function renderSync(){
+  var has=!!SYNC.token(), ts=SYNC.lget(SYNC.tsKey), stt=SYNC.lget(SYNC.stKey);
+  var statusLine = !has ? '<b style="color:var(--no)">未开启</b>'
+    : (stt==="fail" ? '<b style="color:var(--no)">上次同步失败</b>'
+    : (ts ? '<b style="color:var(--ok)">已开启</b> · 上次同步 '+hhmm(ts) : '<b style="color:var(--ok)">已开启</b> · 等待首次同步'));
+  var dash="https://"+SYNC.owner+".github.io/"+SYNC.repo+"/report/";
+  document.getElementById("app").innerHTML=`<div class="panel">
+    <div class="panel-h"><button class="st-back" onclick="renderHome()">‹</button><h2>⚙ 同步设置</h2></div>
+    <div class="exp-note">开启后，Sailor 每次做完题约 <b>1 分半</b>会自动把进度写回云端；家长在<b>看板页</b>刷新即可看到最新学习情况，无需 Sailor 做任何操作。<br>
+      当前状态：${statusLine}</div>
+    <div class="exp-note" style="border-left-color:var(--xp)"><b>令牌（由家长在 GitHub 生成后，粘贴到这里一次即可）：</b><br>
+      从家长的 GitHub → Settings → Developer settings → Fine-grained tokens 生成，仅授权 <b>${SYNC.repo}</b> 仓库的 Contents 读写。<br>
+      <b style="color:var(--no)">令牌只保存在本机，切勿贴进任何仓库文件或公开发出去。</b></div>
+    <textarea class="exp-ta" id="syncTok" placeholder="在此粘贴 github_pat_ 开头的令牌…" spellcheck="false">${esc(SYNC.token())}</textarea>
+    <button class="copy-btn" onclick="syncTestSave()">✓ 测试并保存</button>
+    <div class="actions" style="margin-top:10px">
+      <button class="abtn" onclick="syncNow()">☁️ 立即同步一次</button>
+      <button class="abtn" onclick="syncClear()">🗑 清除令牌</button>
+    </div>
+    <div class="exp-note" style="margin-top:12px">家长看板网址（收藏它，随时刷新）：<br><b style="word-break:break-all">${dash}</b><br>
+      网络不好时，可在此页「导出数据包」，把 JSON 发给家长，用看板的「导入本地报告」照样看全量。</div>
+  </div>`;
+  window.scrollTo(0,0);
+}
+
+if(SYNC.token())SYNC.schedule();
 renderHome();
 </script>
 </body>
