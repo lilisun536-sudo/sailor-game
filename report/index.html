@@ -80,12 +80,12 @@
   </div>
   <div id="body"></div>
   <div class="note">数据源：<b id="srcUrl"></b><br>网络不稳时，让 Sailor 在学习页「导出数据包」，把文件发来点「导入本地报告」也能看全量。</div>
-  <div class="foot">Sailor 航海学堂 · 云同步看板 v1.0</div>
+  <div class="foot">Sailor 航海学堂 · 云同步看板 v1.1</div>
 </div>
 
 <script>
 "use strict";
-var OWNER="lilisun535", REPO="sailor-game", BRANCH="main", DPATH="data/progress.json";
+var OWNER="lilisun536-sudo", REPO="sailor-game", BRANCH="main", DPATH="data/progress.json";
 var SUBJ={ cn:{name:"中文",color:"#ff5d5d"}, math:{name:"数学 Math",color:"#23a7ff"},
   sci:{name:"科学 Science",color:"#a855f7"}, en:{name:"英文 English",color:"#22c55e"}, fr:{name:"法语 Français",color:"#14b8a6"} };
 var ORDER=["cn","math","sci","en","fr"];
@@ -101,7 +101,7 @@ async function fetchProgress(){
     "https://raw.githubusercontent.com/"+OWNER+"/"+REPO+"/"+BRANCH+"/"+DPATH+bust,
     "../"+DPATH+bust
   ];
-  document.getElementById("srcUrl").textContent = "…github.io/"+REPO+"/"+DPATH;
+  document.getElementById("srcUrl").textContent = "raw.githubusercontent.com/"+OWNER+"/"+REPO+"/"+BRANCH+"/"+DPATH;
   for(var i=0;i<urls.length;i++){
     try{ var r=await fetch(urls[i],{cache:"no-store"}); if(r.ok){ return await r.json(); } }catch(e){}
   }
