@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-09T01:27:38.454Z",
-    "xp": 25092,
+    "syncedAt": "2026-07-09T01:29:10.057Z",
+    "xp": 25332,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 2,
+      "done": 3,
       "total": 16
     },
     "units": [
@@ -120,9 +120,9 @@
         "title": "Forces & Simple Machines",
         "en": "力与简单机械",
         "icon": "⚙️",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "16/16",
+        "ratio": 1,
+        "status": "mastered",
         "total": 16
       },
       {
@@ -228,6 +228,32 @@
           "r": "condensation",
           "tier": 3
         }
+      ],
+      "Forces & Simple Machines": [
+        {
+          "q": "Which of these are simple machines? (select all)",
+          "x": "a ramp、scissors",
+          "r": "a ramp、scissors、a wheelbarrow",
+          "tier": 3
+        },
+        {
+          "q": "When is friction HELPFUL? (select all)",
+          "x": "bike brakes stopping the wheel、machine parts wearing out、shoes gripping the floor",
+          "r": "bike brakes stopping the wheel、shoes gripping the floor",
+          "tier": 3
+        },
+        {
+          "q": "Which are examples of a LEVER? (select all)",
+          "x": "a seesaw、a jar lid、a crowbar",
+          "r": "a seesaw、a crowbar",
+          "tier": 3
+        },
+        {
+          "q": "Which statements about FORCES are TRUE? (select all)",
+          "x": "Gravity pulls things toward Earth.、Smooth ice has more friction than sandpaper.、Friction can slow a sliding box.",
+          "r": "Gravity pulls things toward Earth.、Friction can slow a sliding box.、A pulley can change the direction of a pull.",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [],
@@ -236,7 +262,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 25092,
+      "xp": 25332,
       "diag": {
         "chinese": {
           "score": 14,
@@ -359,7 +385,8 @@
         "ZH20",
         "SC10",
         "ZH23",
-        "SC11"
+        "SC11",
+        "SC12"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -438,7 +465,8 @@
         "ZH20": "7/13",
         "SC10": "16/16",
         "ZH23": "13/13",
-        "SC11": "16/16"
+        "SC11": "16/16",
+        "SC12": "16/16"
       },
       "ziDaysDone": [
         1,
@@ -513,12 +541,40 @@
           "x": "melting",
           "r": "condensation",
           "tier": 3
+        },
+        {
+          "u": "Forces & Simple Machines",
+          "q": "Which of these are simple machines? (select all)",
+          "x": "a ramp、scissors",
+          "r": "a ramp、scissors、a wheelbarrow",
+          "tier": 3
+        },
+        {
+          "u": "Forces & Simple Machines",
+          "q": "When is friction HELPFUL? (select all)",
+          "x": "bike brakes stopping the wheel、machine parts wearing out、shoes gripping the floor",
+          "r": "bike brakes stopping the wheel、shoes gripping the floor",
+          "tier": 3
+        },
+        {
+          "u": "Forces & Simple Machines",
+          "q": "Which are examples of a LEVER? (select all)",
+          "x": "a seesaw、a jar lid、a crowbar",
+          "r": "a seesaw、a crowbar",
+          "tier": 3
+        },
+        {
+          "u": "Forces & Simple Machines",
+          "q": "Which statements about FORCES are TRUE? (select all)",
+          "x": "Gravity pulls things toward Earth.、Smooth ice has more friction than sandpaper.、Friction can slow a sliding box.",
+          "r": "Gravity pulls things toward Earth.、Friction can slow a sliding box.、A pulley can change the direction of a pull.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-09T01:27:38.454Z",
+    "updatedAt": "2026-07-09T01:29:10.057Z",
     "updatedBy": "study"
   }
 }
