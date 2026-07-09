@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-09T01:21:09.531Z",
-    "xp": 24568,
+    "syncedAt": "2026-07-09T01:22:53.589Z",
+    "xp": 24684,
     "rank": {
       "cn": "船长",
       "en": "Captain",
@@ -11,7 +11,7 @@
       "color": "#f59e0b"
     },
     "coverage": {
-      "done": 0,
+      "done": 1,
       "total": 16
     },
     "units": [
@@ -43,9 +43,9 @@
         "title": "阅读理解·掩耳盗铃",
         "en": "Reading: Fable",
         "icon": "🔔",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "13/13",
+        "ratio": 1,
+        "status": "mastered",
         "total": 13
       },
       {
@@ -203,12 +203,12 @@
       ]
     },
     "reviewQueue": [],
-    "boxRemaining": 1,
+    "boxRemaining": 0,
     "writing": {},
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 24568,
+      "xp": 24684,
       "diag": {
         "chinese": {
           "score": 14,
@@ -329,7 +329,8 @@
         "MA19",
         "FR10",
         "ZH20",
-        "SC10"
+        "SC10",
+        "ZH23"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -406,7 +407,8 @@
         "MA19": "12/12",
         "FR10": "10/10",
         "ZH20": "7/13",
-        "SC10": "16/16"
+        "SC10": "16/16",
+        "ZH23": "13/13"
       },
       "ziDaysDone": [
         1,
@@ -443,7 +445,7 @@
         "等:1",
         "题:1"
       ],
-      "boxRemaining": 1,
+      "boxRemaining": 0,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -458,7 +460,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-09T01:21:09.531Z",
+    "updatedAt": "2026-07-09T01:22:53.589Z",
     "updatedBy": "study"
   }
 }
