@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-09T01:16:14.969Z",
-    "xp": 24413,
+    "syncedAt": "2026-07-09T01:21:09.531Z",
+    "xp": 24568,
     "rank": {
       "cn": "船长",
       "en": "Captain",
@@ -192,14 +192,23 @@
         "total": 10
       }
     ],
-    "mistakesByUnit": {},
+    "mistakesByUnit": {
+      "阅读理解·掩耳盗铃": [
+        {
+          "q": "下面哪些说法与故事相符？（多选）",
+          "x": "他嫌钟太重才想敲碎、捂住耳朵后别人真的听不见了、钟声传遍了整条街",
+          "r": "他嫌钟太重才想敲碎、钟声传遍了整条街、他最后被人们抓住了",
+          "tier": 3
+        }
+      ]
+    },
     "reviewQueue": [],
-    "boxRemaining": 0,
+    "boxRemaining": 1,
     "writing": {},
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 24413,
+      "xp": 24568,
       "diag": {
         "chinese": {
           "score": 14,
@@ -434,14 +443,22 @@
         "等:1",
         "题:1"
       ],
-      "boxRemaining": 0,
+      "boxRemaining": 1,
       "writingCount": 0,
       "writing": {},
-      "mistakes": []
+      "mistakes": [
+        {
+          "u": "阅读理解·掩耳盗铃",
+          "q": "下面哪些说法与故事相符？（多选）",
+          "x": "他嫌钟太重才想敲碎、捂住耳朵后别人真的听不见了、钟声传遍了整条街",
+          "r": "他嫌钟太重才想敲碎、钟声传遍了整条街、他最后被人们抓住了",
+          "tier": 3
+        }
+      ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-09T01:16:14.969Z",
+    "updatedAt": "2026-07-09T01:21:09.531Z",
     "updatedBy": "study"
   }
 }
