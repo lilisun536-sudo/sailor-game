@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-09T01:24:32.006Z",
-    "xp": 24699,
+    "syncedAt": "2026-07-09T01:26:04.485Z",
+    "xp": 24907,
     "rank": {
       "cn": "船长",
       "en": "Captain",
@@ -208,6 +208,20 @@
           "r": "8",
           "tier": 3
         }
+      ],
+      "Matter & Its States": [
+        {
+          "q": "Which of these are GASES? (select all)",
+          "x": "air、ice、steam",
+          "r": "air、steam",
+          "tier": 3
+        },
+        {
+          "q": "Which changes are REVERSIBLE? (select all)",
+          "x": "water evaporating、freezing water",
+          "r": "melting chocolate、freezing water、water evaporating",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [],
@@ -216,7 +230,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 24699,
+      "xp": 24907,
       "diag": {
         "chinese": {
           "score": 14,
@@ -470,12 +484,26 @@
           "x": "2/3",
           "r": "8",
           "tier": 3
+        },
+        {
+          "u": "Matter & Its States",
+          "q": "Which of these are GASES? (select all)",
+          "x": "air、ice、steam",
+          "r": "air、steam",
+          "tier": 3
+        },
+        {
+          "u": "Matter & Its States",
+          "q": "Which changes are REVERSIBLE? (select all)",
+          "x": "water evaporating、freezing water",
+          "r": "melting chocolate、freezing water、water evaporating",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-09T01:24:32.006Z",
+    "updatedAt": "2026-07-09T01:26:04.485Z",
     "updatedBy": "study"
   }
 }
