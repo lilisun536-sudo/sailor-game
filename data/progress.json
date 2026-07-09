@@ -2,16 +2,16 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-09T01:26:04.485Z",
-    "xp": 24907,
+    "syncedAt": "2026-07-09T01:27:38.454Z",
+    "xp": 25092,
     "rank": {
-      "cn": "船长",
-      "en": "Captain",
-      "min": 19000,
-      "color": "#f59e0b"
+      "cn": "船队长",
+      "en": "Commodore",
+      "min": 25000,
+      "color": "#ef4444"
     },
     "coverage": {
-      "done": 1,
+      "done": 2,
       "total": 16
     },
     "units": [
@@ -109,9 +109,9 @@
         "title": "Matter & Its States",
         "en": "物质与三态变化",
         "icon": "🧊",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "16/16",
+        "ratio": 1,
+        "status": "mastered",
         "total": 16
       },
       {
@@ -221,6 +221,12 @@
           "x": "water evaporating、freezing water",
           "r": "melting chocolate、freezing water、water evaporating",
           "tier": 3
+        },
+        {
+          "q": "Steam from a hot pot touching a cold window turns into water drops. This is —",
+          "x": "melting",
+          "r": "condensation",
+          "tier": 3
         }
       ]
     },
@@ -230,7 +236,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 24907,
+      "xp": 25092,
       "diag": {
         "chinese": {
           "score": 14,
@@ -352,7 +358,8 @@
         "FR10",
         "ZH20",
         "SC10",
-        "ZH23"
+        "ZH23",
+        "SC11"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -430,7 +437,8 @@
         "FR10": "10/10",
         "ZH20": "7/13",
         "SC10": "16/16",
-        "ZH23": "13/13"
+        "ZH23": "13/13",
+        "SC11": "16/16"
       },
       "ziDaysDone": [
         1,
@@ -498,12 +506,19 @@
           "x": "water evaporating、freezing water",
           "r": "melting chocolate、freezing water、water evaporating",
           "tier": 3
+        },
+        {
+          "u": "Matter & Its States",
+          "q": "Steam from a hot pot touching a cold window turns into water drops. This is —",
+          "x": "melting",
+          "r": "condensation",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-09T01:26:04.485Z",
+    "updatedAt": "2026-07-09T01:27:38.454Z",
     "updatedBy": "study"
   }
 }
