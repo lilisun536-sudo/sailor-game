@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-09T01:31:37.687Z",
-    "xp": 25348,
+    "syncedAt": "2026-07-09T01:33:19.503Z",
+    "xp": 25524,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -254,15 +254,29 @@
           "r": "Gravity pulls things toward Earth.、Friction can slow a sliding box.、A pulley can change the direction of a pull.",
           "tier": 3
         }
+      ],
+      "Reading: Literary III": [
+        {
+          "q": "Which of these are INFERENCES (not stated directly)? (select all)",
+          "x": "Lena loved watching the birds.、Kai found a bottle.、The note was ten years old.",
+          "r": "Lena loved watching the birds.、Kai will probably visit the nest again.",
+          "tier": 3
+        },
+        {
+          "q": "Which statements about the STORY are TRUE? (select all)",
+          "x": "Kai found the bottle near the rocks.、The old pine tree was still there.",
+          "r": "Kai found the bottle near the rocks.、The old pine tree was still there.、The chicks were noisy.",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [],
-    "boxRemaining": 1,
+    "boxRemaining": 2,
     "writing": {},
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 25348,
+      "xp": 25524,
       "diag": {
         "chinese": {
           "score": 14,
@@ -503,7 +517,7 @@
         "等:1",
         "题:1"
       ],
-      "boxRemaining": 1,
+      "boxRemaining": 2,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -569,12 +583,26 @@
           "x": "Gravity pulls things toward Earth.、Smooth ice has more friction than sandpaper.、Friction can slow a sliding box.",
           "r": "Gravity pulls things toward Earth.、Friction can slow a sliding box.、A pulley can change the direction of a pull.",
           "tier": 3
+        },
+        {
+          "u": "Reading: Literary III",
+          "q": "Which of these are INFERENCES (not stated directly)? (select all)",
+          "x": "Lena loved watching the birds.、Kai found a bottle.、The note was ten years old.",
+          "r": "Lena loved watching the birds.、Kai will probably visit the nest again.",
+          "tier": 3
+        },
+        {
+          "u": "Reading: Literary III",
+          "q": "Which statements about the STORY are TRUE? (select all)",
+          "x": "Kai found the bottle near the rocks.、The old pine tree was still there.",
+          "r": "Kai found the bottle near the rocks.、The old pine tree was still there.、The chicks were noisy.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-09T01:31:37.687Z",
+    "updatedAt": "2026-07-09T01:33:19.503Z",
     "updatedBy": "study"
   }
 }
