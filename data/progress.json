@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-09T01:33:19.503Z",
-    "xp": 25524,
+    "syncedAt": "2026-07-09T01:34:51.703Z",
+    "xp": 25835,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 3,
+      "done": 5,
       "total": 16
     },
     "units": [
@@ -131,9 +131,9 @@
         "title": "Reading: Literary III",
         "en": "文学阅读·瓶中信",
         "icon": "🍾",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "14/14",
+        "ratio": 1,
+        "status": "mastered",
         "total": 14
       },
       {
@@ -175,9 +175,9 @@
         "title": "Être / Avoir · Pronoms",
         "en": "是/有·代词大巩固",
         "icon": "🥐",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "10/10",
+        "ratio": 1,
+        "status": "mastered",
         "total": 10
       },
       {
@@ -267,16 +267,36 @@
           "x": "Kai found the bottle near the rocks.、The old pine tree was still there.",
           "r": "Kai found the bottle near the rocks.、The old pine tree was still there.、The chicks were noisy.",
           "tier": 3
+        },
+        {
+          "q": "What will Kai MOST LIKELY do next?",
+          "x": "cut down the pine tree",
+          "r": "keep watching over the new nest",
+          "tier": 3
+        }
+      ],
+      "Être / Avoir · Pronoms": [
+        {
+          "q": "Which matches are CORRECT? (select all)",
+          "x": "je suis = I am、j'ai = I have",
+          "r": "je suis = I am、j'ai = I have、nous sommes = we are",
+          "tier": 3
+        },
+        {
+          "q": "Which sentences are CORRECT? (select all)",
+          "x": "J'ai un livre.、Nous sommes contents.",
+          "r": "J'ai un livre.、Nous sommes contents.、Tu es mon ami.",
+          "tier": 3
         }
       ]
     },
     "reviewQueue": [],
-    "boxRemaining": 2,
+    "boxRemaining": 1,
     "writing": {},
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 25524,
+      "xp": 25835,
       "diag": {
         "chinese": {
           "score": 14,
@@ -400,7 +420,9 @@
         "SC10",
         "ZH23",
         "SC11",
-        "SC12"
+        "SC12",
+        "EN20",
+        "FR11"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -480,7 +502,9 @@
         "SC10": "16/16",
         "ZH23": "13/13",
         "SC11": "16/16",
-        "SC12": "16/16"
+        "SC12": "16/16",
+        "EN20": "14/14",
+        "FR11": "10/10"
       },
       "ziDaysDone": [
         1,
@@ -517,7 +541,7 @@
         "等:1",
         "题:1"
       ],
-      "boxRemaining": 2,
+      "boxRemaining": 1,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -597,12 +621,33 @@
           "x": "Kai found the bottle near the rocks.、The old pine tree was still there.",
           "r": "Kai found the bottle near the rocks.、The old pine tree was still there.、The chicks were noisy.",
           "tier": 3
+        },
+        {
+          "u": "Reading: Literary III",
+          "q": "What will Kai MOST LIKELY do next?",
+          "x": "cut down the pine tree",
+          "r": "keep watching over the new nest",
+          "tier": 3
+        },
+        {
+          "u": "Être / Avoir · Pronoms",
+          "q": "Which matches are CORRECT? (select all)",
+          "x": "je suis = I am、j'ai = I have",
+          "r": "je suis = I am、j'ai = I have、nous sommes = we are",
+          "tier": 3
+        },
+        {
+          "u": "Être / Avoir · Pronoms",
+          "q": "Which sentences are CORRECT? (select all)",
+          "x": "J'ai un livre.、Nous sommes contents.",
+          "r": "J'ai un livre.、Nous sommes contents.、Tu es mon ami.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-09T01:33:19.503Z",
+    "updatedAt": "2026-07-09T01:34:51.703Z",
     "updatedBy": "study"
   }
 }
