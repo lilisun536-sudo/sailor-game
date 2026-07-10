@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T03:22:20.408Z",
-    "xp": 26297,
+    "syncedAt": "2026-07-10T03:24:33.726Z",
+    "xp": 26484,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 6,
+      "done": 7,
       "total": 16
     },
     "units": [
@@ -76,9 +76,9 @@
         "title": "Decimals & Percent III",
         "en": "小数·百分数再巩固",
         "icon": "🪙",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "13/13",
+        "ratio": 1,
+        "status": "mastered",
         "total": 13
       },
       {
@@ -327,6 +327,12 @@
           "x": "6.300",
           "r": "6.28",
           "tier": 3
+        },
+        {
+          "q": "What is 30% of 90?",
+          "x": "40",
+          "r": "27",
+          "tier": 3
         }
       ]
     },
@@ -336,7 +342,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 26297,
+      "xp": 26484,
       "diag": {
         "chinese": {
           "score": 14,
@@ -463,7 +469,8 @@
         "SC12",
         "EN20",
         "FR11",
-        "MA21"
+        "MA21",
+        "MA22"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -546,7 +553,8 @@
         "SC12": "16/16",
         "EN20": "14/14",
         "FR11": "10/10",
-        "MA21": "13/13"
+        "MA21": "13/13",
+        "MA22": "13/13"
       },
       "ziDaysDone": [
         1,
@@ -726,12 +734,19 @@
           "x": "6.300",
           "r": "6.28",
           "tier": 3
+        },
+        {
+          "u": "Decimals & Percent III",
+          "q": "What is 30% of 90?",
+          "x": "40",
+          "r": "27",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T03:22:20.408Z",
+    "updatedAt": "2026-07-10T03:24:33.726Z",
     "updatedBy": "study"
   }
 }
