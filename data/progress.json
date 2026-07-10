@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T03:00:57.199Z",
-    "xp": 25841,
+    "syncedAt": "2026-07-10T03:05:46.301Z",
+    "xp": 25864,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -288,15 +288,23 @@
           "r": "J'ai un livre.、Nous sommes contents.、Tu es mon ami.",
           "tier": 3
         }
+      ],
+      "Fractions IV": [
+        {
+          "q": "3/4 − 1/8 = ? (simplest form)",
+          "x": "7/8",
+          "r": "5/8",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [],
-    "boxRemaining": 1,
+    "boxRemaining": 2,
     "writing": {},
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 25841,
+      "xp": 25864,
       "diag": {
         "chinese": {
           "score": 14,
@@ -541,7 +549,7 @@
         "等:1",
         "题:1"
       ],
-      "boxRemaining": 1,
+      "boxRemaining": 2,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -642,12 +650,19 @@
           "x": "J'ai un livre.、Nous sommes contents.",
           "r": "J'ai un livre.、Nous sommes contents.、Tu es mon ami.",
           "tier": 3
+        },
+        {
+          "u": "Fractions IV",
+          "q": "3/4 − 1/8 = ? (simplest form)",
+          "x": "7/8",
+          "r": "5/8",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T03:00:57.199Z",
+    "updatedAt": "2026-07-10T03:05:46.301Z",
     "updatedBy": "study"
   }
 }
