@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T04:02:25.506Z",
-    "xp": 27569,
+    "syncedAt": "2026-07-10T04:04:14.523Z",
+    "xp": 27593,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -413,12 +413,22 @@
         "unit": "Writing Studio V",
         "q": "✍️ Descriptive (English only). Topic: your favourite food. Write 4 sentences:\n1) What it LOOKS like.\n2) What it SMELLS like.\n3) What it TASTES like.\n4) A simile: 'It is as ____ as ____.' or 'It is like ____.'\nWord bank: sweet, warm, soft, crunchy, golden, delicious.\nRule: all 4 sentences must be about the SAME food.",
         "text": "嗯One miis something that looks like blit smells like melted stuff it tastthe licies and sugabut doesn't have sugaAnd goin swacountry goden and delicious."
+      },
+      "EN23#2": {
+        "unit": "Writing Studio V",
+        "q": "✍️ Opinion (English only). Question: Should every child learn to swim?\nUse this frame:\n'I think every child ____ learn to swim.'\n'First, ____.'\n'Second, ____.'\n'That is why ____.'\nWord bank: safe, water, fun, healthy, danger, exercise.\nRule: both reasons must be about swimming.",
+        "text": "I think every child should learn to sweat.First, it's because that if you don't swim, then you can't say yourself and fall in the face or a pool.Second，it is for fun and one activity that可嗯，有。"
+      },
+      "EN23#3": {
+        "unit": "Writing Studio V",
+        "q": "✍️ How-to (English only). Topic: how to brush your teeth. Write 4 sentences starting with:\n'First,' / 'Next,' / 'Then,' / 'Finally,'.\nWord bank: toothbrush, toothpaste, water, gently, rinse, two minutes.\nRule: every sentence must be a real step of brushing teeth — no other topics!",
+        "text": "What i when everyone，然后5分钟这个Side of your teeth，your jaon top and brush the teeth closing your mouth why i'm left and in the middle and also do it in the side，快点。你要是不喜欢听，你就不玩了啊。"
       }
     },
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 27569,
+      "xp": 27593,
       "diag": {
         "chinese": {
           "score": 14,
@@ -672,7 +682,7 @@
         "及:1"
       ],
       "boxRemaining": 1,
-      "writingCount": 2,
+      "writingCount": 4,
       "writing": {
         "EN23#0": {
           "unit": "Writing Studio V",
@@ -683,6 +693,16 @@
           "unit": "Writing Studio V",
           "q": "✍️ Descriptive (English only). Topic: your favourite food. Write 4 sentences:\n1) What it LOOKS like.\n2) What it SMELLS like.\n3) What it TASTES like.\n4) A simile: 'It is as ____ as ____.' or 'It is like ____.'\nWord bank: sweet, warm, soft, crunchy, golden, delicious.\nRule: all 4 sentences must be about the SAME food.",
           "text": "嗯One miis something that looks like blit smells like melted stuff it tastthe licies and sugabut doesn't have sugaAnd goin swacountry goden and delicious."
+        },
+        "EN23#2": {
+          "unit": "Writing Studio V",
+          "q": "✍️ Opinion (English only). Question: Should every child learn to swim?\nUse this frame:\n'I think every child ____ learn to swim.'\n'First, ____.'\n'Second, ____.'\n'That is why ____.'\nWord bank: safe, water, fun, healthy, danger, exercise.\nRule: both reasons must be about swimming.",
+          "text": "I think every child should learn to sweat.First, it's because that if you don't swim, then you can't say yourself and fall in the face or a pool.Second，it is for fun and one activity that可嗯，有。"
+        },
+        "EN23#3": {
+          "unit": "Writing Studio V",
+          "q": "✍️ How-to (English only). Topic: how to brush your teeth. Write 4 sentences starting with:\n'First,' / 'Next,' / 'Then,' / 'Finally,'.\nWord bank: toothbrush, toothpaste, water, gently, rinse, two minutes.\nRule: every sentence must be a real step of brushing teeth — no other topics!",
+          "text": "What i when everyone，然后5分钟这个Side of your teeth，your jaon top and brush the teeth closing your mouth why i'm left and in the middle and also do it in the side，快点。你要是不喜欢听，你就不玩了啊。"
         }
       },
       "mistakes": [
@@ -900,7 +920,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T04:02:25.506Z",
+    "updatedAt": "2026-07-10T04:04:14.523Z",
     "updatedBy": "study"
   }
 }
