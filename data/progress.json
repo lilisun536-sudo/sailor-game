@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T04:07:32.055Z",
-    "xp": 27763,
+    "syncedAt": "2026-07-10T04:09:03.141Z",
+    "xp": 27834,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -394,6 +394,14 @@
           "r": "今天星期几？、轮船、帆船和渔船都停在港口。、他说：「我们出发吧。」",
           "tier": 3
         }
+      ],
+      "Reading: Informational III": [
+        {
+          "q": "Which dangers do hatchlings face? (select all)",
+          "x": "hungry birds、magnetic fields、bright city lights",
+          "r": "hungry birds、crabs、bright city lights",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -402,7 +410,7 @@
         "n": 1
       }
     ],
-    "boxRemaining": 1,
+    "boxRemaining": 2,
     "writing": {
       "EN23#0": {
         "unit": "Writing Studio V",
@@ -433,7 +441,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 27763,
+      "xp": 27834,
       "diag": {
         "chinese": {
           "score": 14,
@@ -688,7 +696,7 @@
       "ziWeak": [
         "及:1"
       ],
-      "boxRemaining": 1,
+      "boxRemaining": 2,
       "writingCount": 5,
       "writing": {
         "EN23#0": {
@@ -927,12 +935,19 @@
           "x": "你去过大海吗。、轮船、帆船和渔船都停在港口。",
           "r": "今天星期几？、轮船、帆船和渔船都停在港口。、他说：「我们出发吧。」",
           "tier": 3
+        },
+        {
+          "u": "Reading: Informational III",
+          "q": "Which dangers do hatchlings face? (select all)",
+          "x": "hungry birds、magnetic fields、bright city lights",
+          "r": "hungry birds、crabs、bright city lights",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T04:07:32.055Z",
+    "updatedAt": "2026-07-10T04:09:03.141Z",
     "updatedBy": "study"
   }
 }
