@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T03:09:54.559Z",
-    "xp": 25924,
+    "syncedAt": "2026-07-10T03:11:37.901Z",
+    "xp": 26151,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 5,
+      "done": 6,
       "total": 16
     },
     "units": [
@@ -65,9 +65,9 @@
         "title": "Fractions IV",
         "en": "分数再巩固",
         "icon": "🧩",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "13/13",
+        "ratio": 1,
+        "status": "mastered",
         "total": 13
       },
       {
@@ -295,6 +295,24 @@
           "x": "7/8",
           "r": "5/8",
           "tier": 3
+        },
+        {
+          "q": "What is 3/5 of 35?",
+          "x": "25",
+          "r": "21",
+          "tier": 3
+        },
+        {
+          "q": "2/7 × 3 = ? (fraction)",
+          "x": "2",
+          "r": "6/7",
+          "tier": 3
+        },
+        {
+          "q": "Which fractions are EQUAL to 2/3? (select all)",
+          "x": "4/6、6/9",
+          "r": "4/6、6/9、8/12",
+          "tier": 3
         }
       ]
     },
@@ -304,7 +322,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 25924,
+      "xp": 26151,
       "diag": {
         "chinese": {
           "score": 14,
@@ -430,7 +448,8 @@
         "SC11",
         "SC12",
         "EN20",
-        "FR11"
+        "FR11",
+        "MA21"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -512,7 +531,8 @@
         "SC11": "16/16",
         "SC12": "16/16",
         "EN20": "14/14",
-        "FR11": "10/10"
+        "FR11": "10/10",
+        "MA21": "13/13"
       },
       "ziDaysDone": [
         1,
@@ -657,12 +677,33 @@
           "x": "7/8",
           "r": "5/8",
           "tier": 3
+        },
+        {
+          "u": "Fractions IV",
+          "q": "What is 3/5 of 35?",
+          "x": "25",
+          "r": "21",
+          "tier": 3
+        },
+        {
+          "u": "Fractions IV",
+          "q": "2/7 × 3 = ? (fraction)",
+          "x": "2",
+          "r": "6/7",
+          "tier": 3
+        },
+        {
+          "u": "Fractions IV",
+          "q": "Which fractions are EQUAL to 2/3? (select all)",
+          "x": "4/6、6/9",
+          "r": "4/6、6/9、8/12",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T03:09:54.559Z",
+    "updatedAt": "2026-07-10T03:11:37.901Z",
     "updatedBy": "study"
   }
 }
