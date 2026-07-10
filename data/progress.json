@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T03:05:46.301Z",
-    "xp": 25864,
+    "syncedAt": "2026-07-10T03:07:36.331Z",
+    "xp": 25884,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -299,12 +299,12 @@
       ]
     },
     "reviewQueue": [],
-    "boxRemaining": 2,
+    "boxRemaining": 1,
     "writing": {},
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 25864,
+      "xp": 25884,
       "diag": {
         "chinese": {
           "score": 14,
@@ -549,7 +549,7 @@
         "等:1",
         "题:1"
       ],
-      "boxRemaining": 2,
+      "boxRemaining": 1,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -662,7 +662,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T03:05:46.301Z",
+    "updatedAt": "2026-07-10T03:07:36.331Z",
     "updatedBy": "study"
   }
 }
