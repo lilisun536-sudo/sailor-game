@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T03:20:15.101Z",
-    "xp": 26254,
+    "syncedAt": "2026-07-10T03:22:20.408Z",
+    "xp": 26297,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -321,6 +321,12 @@
           "x": "0.9",
           "r": "0.18",
           "tier": 3
+        },
+        {
+          "q": "Round 6.278 to the nearest hundredth.",
+          "x": "6.300",
+          "r": "6.28",
+          "tier": 3
         }
       ]
     },
@@ -330,7 +336,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 26254,
+      "xp": 26297,
       "diag": {
         "chinese": {
           "score": 14,
@@ -713,12 +719,19 @@
           "x": "0.9",
           "r": "0.18",
           "tier": 3
+        },
+        {
+          "u": "Decimals & Percent III",
+          "q": "Round 6.278 to the nearest hundredth.",
+          "x": "6.300",
+          "r": "6.28",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T03:20:15.101Z",
+    "updatedAt": "2026-07-10T03:22:20.408Z",
     "updatedBy": "study"
   }
 }
