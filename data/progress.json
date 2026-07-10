@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T04:04:14.523Z",
-    "xp": 27593,
+    "syncedAt": "2026-07-10T04:05:58.660Z",
+    "xp": 27661,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 11,
+      "done": 12,
       "total": 16
     },
     "units": [
@@ -164,9 +164,9 @@
         "title": "Writing Studio V",
         "en": "写作工坊 V（词库+守题）",
         "icon": "📝",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "5/5",
+        "ratio": 1,
+        "status": "mastered",
         "total": 5
       },
       {
@@ -423,12 +423,17 @@
         "unit": "Writing Studio V",
         "q": "✍️ How-to (English only). Topic: how to brush your teeth. Write 4 sentences starting with:\n'First,' / 'Next,' / 'Then,' / 'Finally,'.\nWord bank: toothbrush, toothpaste, water, gently, rinse, two minutes.\nRule: every sentence must be a real step of brushing teeth — no other topics!",
         "text": "What i when everyone，然后5分钟这个Side of your teeth，your jaon top and brush the teeth closing your mouth why i'm left and in the middle and also do it in the side，快点。你要是不喜欢听，你就不玩了啊。"
+      },
+      "EN23#4": {
+        "unit": "Writing Studio V",
+        "q": "✍️ Compound sentences (English only). Topic: your best friend. Write 3 sentences about your best friend.\nAt least ONE must join two ideas with a comma + 'and', 'but', or 'so'.\nWord bank: kind, funny, play, help, together, school.\nRule: every sentence must be about your best friend.",
+        "text": "My best friend likes to play outside, mostly not very interested in indoor activities, i mean indoor and not interested, and they like eat ently they eat faster than i am so."
       }
     },
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 27593,
+      "xp": 27661,
       "diag": {
         "chinese": {
           "score": 14,
@@ -560,7 +565,8 @@
         "FR12",
         "ZH21",
         "ZH22",
-        "ZH24"
+        "ZH24",
+        "EN23"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -648,7 +654,8 @@
         "FR12": "10/10",
         "ZH21": "13/13",
         "ZH22": "14/14",
-        "ZH24": "13/13"
+        "ZH24": "13/13",
+        "EN23": "5/5"
       },
       "ziDaysDone": [
         1,
@@ -682,7 +689,7 @@
         "及:1"
       ],
       "boxRemaining": 1,
-      "writingCount": 4,
+      "writingCount": 5,
       "writing": {
         "EN23#0": {
           "unit": "Writing Studio V",
@@ -703,6 +710,11 @@
           "unit": "Writing Studio V",
           "q": "✍️ How-to (English only). Topic: how to brush your teeth. Write 4 sentences starting with:\n'First,' / 'Next,' / 'Then,' / 'Finally,'.\nWord bank: toothbrush, toothpaste, water, gently, rinse, two minutes.\nRule: every sentence must be a real step of brushing teeth — no other topics!",
           "text": "What i when everyone，然后5分钟这个Side of your teeth，your jaon top and brush the teeth closing your mouth why i'm left and in the middle and also do it in the side，快点。你要是不喜欢听，你就不玩了啊。"
+        },
+        "EN23#4": {
+          "unit": "Writing Studio V",
+          "q": "✍️ Compound sentences (English only). Topic: your best friend. Write 3 sentences about your best friend.\nAt least ONE must join two ideas with a comma + 'and', 'but', or 'so'.\nWord bank: kind, funny, play, help, together, school.\nRule: every sentence must be about your best friend.",
+          "text": "My best friend likes to play outside, mostly not very interested in indoor activities, i mean indoor and not interested, and they like eat ently they eat faster than i am so."
         }
       },
       "mistakes": [
@@ -920,7 +932,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T04:04:14.523Z",
+    "updatedAt": "2026-07-10T04:05:58.660Z",
     "updatedBy": "study"
   }
 }
