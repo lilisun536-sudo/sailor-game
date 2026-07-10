@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T03:07:36.331Z",
-    "xp": 25884,
+    "syncedAt": "2026-07-10T03:09:54.559Z",
+    "xp": 25924,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -304,7 +304,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 25884,
+      "xp": 25924,
       "diag": {
         "chinese": {
           "score": 14,
@@ -662,7 +662,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T03:07:36.331Z",
+    "updatedAt": "2026-07-10T03:09:54.559Z",
     "updatedBy": "study"
   }
 }
