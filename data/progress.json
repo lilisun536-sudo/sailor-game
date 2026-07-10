@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T03:28:32.863Z",
-    "xp": 26614,
+    "syncedAt": "2026-07-10T03:30:03.656Z",
+    "xp": 26664,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 7,
+      "done": 8,
       "total": 16
     },
     "units": [
@@ -186,9 +186,9 @@
         "title": "Vocabulaire · Lecture III",
         "en": "词汇·阅读：Chloé 逛市场",
         "icon": "🧺",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "10/10",
+        "ratio": 1,
+        "status": "mastered",
         "total": 10
       }
     ],
@@ -342,7 +342,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 26614,
+      "xp": 26664,
       "diag": {
         "chinese": {
           "score": 14,
@@ -470,7 +470,8 @@
         "EN20",
         "FR11",
         "MA21",
-        "MA22"
+        "MA22",
+        "FR12"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -554,7 +555,8 @@
         "EN20": "14/14",
         "FR11": "10/10",
         "MA21": "13/13",
-        "MA22": "13/13"
+        "MA22": "13/13",
+        "FR12": "10/10"
       },
       "ziDaysDone": [
         1,
@@ -746,7 +748,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T03:28:32.863Z",
+    "updatedAt": "2026-07-10T03:30:03.656Z",
     "updatedBy": "study"
   }
 }
