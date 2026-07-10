@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-10T04:09:03.141Z",
-    "xp": 27834,
+    "syncedAt": "2026-07-10T04:12:42.096Z",
+    "xp": 28151,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 12,
+      "done": 14,
       "total": 16
     },
     "units": [
@@ -142,9 +142,9 @@
         "title": "Reading: Informational III",
         "en": "说明文阅读·海龟",
         "icon": "🐢",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "13/14",
+        "ratio": 0.9285714285714286,
+        "status": "mastered",
         "total": 14
       },
       {
@@ -153,9 +153,9 @@
         "title": "Grammar & Conventions IV",
         "en": "明喻vs暗喻·完整句·标点",
         "icon": "✏️",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "12/14",
+        "ratio": 0.8571428571428571,
+        "status": "mastered",
         "total": 14
       },
       {
@@ -402,6 +402,26 @@
           "r": "hungry birds、crabs、bright city lights",
           "tier": 3
         }
+      ],
+      "Grammar & Conventions IV": [
+        {
+          "q": "Which are COMPLETE sentences? (select all)",
+          "x": "The lighthouse keeper lit the lamp.、Under the old pine tree.、Waves crashed on the rocks.",
+          "r": "The lighthouse keeper lit the lamp.、Waves crashed on the rocks.、We sailed home before dark.",
+          "tier": 3
+        },
+        {
+          "q": "Which words need a CAPITAL letter? (select all)",
+          "x": "tuesday、ocean、london",
+          "r": "tuesday、london、kai",
+          "tier": 3
+        },
+        {
+          "q": "Which sentences are punctuated CORRECTLY? (select all)",
+          "x": "what a huge wave that was",
+          "r": "After the storm, we cleaned the deck.、Do sea turtles sleep?、We packed food, water, and maps.",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -410,7 +430,7 @@
         "n": 1
       }
     ],
-    "boxRemaining": 2,
+    "boxRemaining": 4,
     "writing": {
       "EN23#0": {
         "unit": "Writing Studio V",
@@ -441,7 +461,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 27834,
+      "xp": 28151,
       "diag": {
         "chinese": {
           "score": 14,
@@ -574,7 +594,9 @@
         "ZH21",
         "ZH22",
         "ZH24",
-        "EN23"
+        "EN23",
+        "EN21",
+        "EN22"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -663,7 +685,9 @@
         "ZH21": "13/13",
         "ZH22": "14/14",
         "ZH24": "13/13",
-        "EN23": "5/5"
+        "EN23": "5/5",
+        "EN21": "13/14",
+        "EN22": "12/14"
       },
       "ziDaysDone": [
         1,
@@ -696,7 +720,7 @@
       "ziWeak": [
         "及:1"
       ],
-      "boxRemaining": 2,
+      "boxRemaining": 4,
       "writingCount": 5,
       "writing": {
         "EN23#0": {
@@ -942,12 +966,33 @@
           "x": "hungry birds、magnetic fields、bright city lights",
           "r": "hungry birds、crabs、bright city lights",
           "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions IV",
+          "q": "Which are COMPLETE sentences? (select all)",
+          "x": "The lighthouse keeper lit the lamp.、Under the old pine tree.、Waves crashed on the rocks.",
+          "r": "The lighthouse keeper lit the lamp.、Waves crashed on the rocks.、We sailed home before dark.",
+          "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions IV",
+          "q": "Which words need a CAPITAL letter? (select all)",
+          "x": "tuesday、ocean、london",
+          "r": "tuesday、london、kai",
+          "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions IV",
+          "q": "Which sentences are punctuated CORRECTLY? (select all)",
+          "x": "what a huge wave that was",
+          "r": "After the storm, we cleaned the deck.、Do sea turtles sleep?、We packed food, water, and maps.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-10T04:09:03.141Z",
+    "updatedAt": "2026-07-10T04:12:42.096Z",
     "updatedBy": "study"
   }
 }
