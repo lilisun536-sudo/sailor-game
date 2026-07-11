@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-11T02:04:29.949Z",
-    "xp": 28772,
+    "syncedAt": "2026-07-11T02:06:09.098Z",
+    "xp": 28787,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -522,7 +522,7 @@
         "n": 1
       }
     ],
-    "boxRemaining": 3,
+    "boxRemaining": 0,
     "writing": {
       "EN23#0": {
         "unit": "Writing Studio V",
@@ -553,7 +553,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 28772,
+      "xp": 28787,
       "diag": {
         "chinese": {
           "score": 14,
@@ -816,7 +816,7 @@
       "ziWeak": [
         "及:1"
       ],
-      "boxRemaining": 3,
+      "boxRemaining": 0,
       "writingCount": 5,
       "writing": {
         "EN23#0": {
@@ -1193,7 +1193,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-11T02:04:29.949Z",
+    "updatedAt": "2026-07-11T02:06:09.098Z",
     "updatedBy": "study"
   }
 }
