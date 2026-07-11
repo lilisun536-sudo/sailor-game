@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-11T01:58:24.592Z",
-    "xp": 28508,
+    "syncedAt": "2026-07-11T02:02:19.653Z",
+    "xp": 28582,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -218,6 +218,18 @@
           "q": "4² − 6 = ?",
           "x": "2",
           "r": "10",
+          "tier": 3
+        },
+        {
+          "q": "5 + 3 × 4 = ?",
+          "x": "14",
+          "r": "17",
+          "tier": 2
+        },
+        {
+          "q": "Solve: 2x + 3 = 11. x = ?",
+          "x": "1",
+          "r": "4",
           "tier": 3
         }
       ],
@@ -529,7 +541,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 28508,
+      "xp": 28582,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1134,12 +1146,26 @@
           "x": "2",
           "r": "10",
           "tier": 3
+        },
+        {
+          "u": "Order of Ops II · Equations II",
+          "q": "5 + 3 × 4 = ?",
+          "x": "14",
+          "r": "17",
+          "tier": 2
+        },
+        {
+          "u": "Order of Ops II · Equations II",
+          "q": "Solve: 2x + 3 = 11. x = ?",
+          "x": "1",
+          "r": "4",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-11T01:58:24.592Z",
+    "updatedAt": "2026-07-11T02:02:19.653Z",
     "updatedBy": "study"
   }
 }
