@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-11T01:56:43.197Z",
-    "xp": 28482,
+    "syncedAt": "2026-07-11T01:58:24.592Z",
+    "xp": 28508,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -206,6 +206,18 @@
           "q": "2³ = ?",
           "x": "2/3",
           "r": "8",
+          "tier": 3
+        },
+        {
+          "q": "2³ = ?",
+          "x": "6",
+          "r": "8",
+          "tier": 3
+        },
+        {
+          "q": "4² − 6 = ?",
+          "x": "2",
+          "r": "10",
           "tier": 3
         }
       ],
@@ -517,7 +529,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 28482,
+      "xp": 28508,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1108,12 +1120,26 @@
           "x": "cm³、km、m³",
           "r": "cm³、m³",
           "tier": 3
+        },
+        {
+          "u": "Order of Ops II · Equations II",
+          "q": "2³ = ?",
+          "x": "6",
+          "r": "8",
+          "tier": 3
+        },
+        {
+          "u": "Order of Ops II · Equations II",
+          "q": "4² − 6 = ?",
+          "x": "2",
+          "r": "10",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-11T01:56:43.197Z",
+    "updatedAt": "2026-07-11T01:58:24.592Z",
     "updatedBy": "study"
   }
 }
