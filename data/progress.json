@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-11T01:55:12.530Z",
-    "xp": 28383,
+    "syncedAt": "2026-07-11T01:56:43.197Z",
+    "xp": 28482,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 14,
+      "done": 15,
       "total": 16
     },
     "units": [
@@ -87,9 +87,9 @@
         "title": "Geometry & Measurement III",
         "en": "周长·面积·体积分清楚",
         "icon": "📏",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "13/13",
+        "ratio": 1,
+        "status": "mastered",
         "total": 13
       },
       {
@@ -471,6 +471,12 @@
           "x": "covering a floor with tiles、filling a pool with water、building a fence around a yard",
           "r": "covering a floor with tiles、painting a wall",
           "tier": 3
+        },
+        {
+          "q": "Which units measure VOLUME? (select all)",
+          "x": "cm³、km、m³",
+          "r": "cm³、m³",
+          "tier": 3
         }
       ]
     },
@@ -480,7 +486,7 @@
         "n": 1
       }
     ],
-    "boxRemaining": 5,
+    "boxRemaining": 4,
     "writing": {
       "EN23#0": {
         "unit": "Writing Studio V",
@@ -511,7 +517,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 28383,
+      "xp": 28482,
       "diag": {
         "chinese": {
           "score": 14,
@@ -646,7 +652,8 @@
         "ZH24",
         "EN23",
         "EN21",
-        "EN22"
+        "EN22",
+        "MA23"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -737,7 +744,8 @@
         "ZH24": "13/13",
         "EN23": "5/5",
         "EN21": "13/14",
-        "EN22": "12/14"
+        "EN22": "12/14",
+        "MA23": "13/13"
       },
       "ziDaysDone": [
         1,
@@ -770,7 +778,7 @@
       "ziWeak": [
         "及:1"
       ],
-      "boxRemaining": 5,
+      "boxRemaining": 4,
       "writingCount": 5,
       "writing": {
         "EN23#0": {
@@ -1105,7 +1113,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-11T01:55:12.530Z",
+    "updatedAt": "2026-07-11T01:56:43.197Z",
     "updatedBy": "study"
   }
 }
