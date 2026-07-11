@@ -1,8 +1,8 @@
 {
   "study": {
-    "version": "13.1",
+    "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-11T02:06:09.098Z",
+    "syncedAt": "2026-07-11T09:20:21.004Z",
     "xp": 28787,
     "rank": {
       "cn": "船队长",
@@ -11,548 +11,205 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 16,
-      "total": 16
+      "done": 0,
+      "total": 17
     },
     "units": [
       {
-        "id": "ZH21",
+        "id": "ZH25",
         "subj": "cn",
-        "title": "成语·新典故 III",
-        "en": "Idioms III",
-        "icon": "🏮",
-        "best": "13/13",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 13
+        "title": "成语精细辨析 IV",
+        "en": "Idioms IV",
+        "icon": "🎓",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       },
       {
-        "id": "ZH22",
+        "id": "ZH26",
         "subj": "cn",
-        "title": "复句进阶 III + 识字 Day 23",
-        "en": "Complex Sentences III",
-        "icon": "🪢",
-        "best": "14/14",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 14
+        "title": "递进与转折专项 + 识字 Day 25",
+        "en": "Progression vs Contrast",
+        "icon": "⚖️",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       },
       {
-        "id": "ZH23",
+        "id": "ZH27",
         "subj": "cn",
-        "title": "阅读理解·掩耳盗铃",
-        "en": "Reading: Fable",
-        "icon": "🔔",
-        "best": "13/13",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 13
+        "title": "长文阅读·蚂蚁的城市",
+        "en": "Reading: Ant City",
+        "icon": "🐜",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       },
       {
-        "id": "ZH24",
+        "id": "ZH28",
         "subj": "cn",
-        "title": "病句·近义词 II + 识字 Day 24",
-        "en": "Sentence Clinic II",
-        "icon": "🖌️",
-        "best": "13/13",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 13
+        "title": "病句门诊 III + 识字 Day 26",
+        "en": "Sentence Clinic III",
+        "icon": "🩺",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       },
       {
-        "id": "MA21",
+        "id": "MA25",
         "subj": "math",
-        "title": "Fractions IV",
-        "en": "分数再巩固",
-        "icon": "🧩",
-        "best": "13/13",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 13
+        "title": "Exponents & Order of Ops III",
+        "en": "乘方专项·混合运算",
+        "icon": "🚀",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       },
       {
-        "id": "MA22",
+        "id": "MA26",
         "subj": "math",
-        "title": "Decimals & Percent III",
-        "en": "小数·百分数再巩固",
-        "icon": "🪙",
-        "best": "13/13",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 13
+        "title": "Integers & the Number Line",
+        "en": "负数初步（G6 新内容）",
+        "icon": "🌡️",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       },
       {
-        "id": "MA23",
+        "id": "MA27",
         "subj": "math",
-        "title": "Geometry & Measurement III",
-        "en": "周长·面积·体积分清楚",
-        "icon": "📏",
-        "best": "13/13",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 13
+        "title": "Ratios, Rates & Working Backwards",
+        "en": "比与比率·逆向求整体",
+        "icon": "🧮",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       },
       {
-        "id": "MA24",
+        "id": "MA28",
         "subj": "math",
-        "title": "Order of Ops II · Equations II",
-        "en": "运算顺序·方程·应用题 II",
-        "icon": "🎯",
-        "best": "12/12",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 12
+        "title": "Geometry IV & Multi-step Problems",
+        "en": "复合图形·三步应用题",
+        "icon": "🏗️",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       },
       {
-        "id": "SC11",
+        "id": "SC13",
         "subj": "sci",
-        "title": "Matter & Its States",
-        "en": "物质与三态变化",
+        "title": "Ecosystems & Food Chains",
+        "en": "生态系统与食物链",
+        "icon": "🦊",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 16
+      },
+      {
+        "id": "SC14",
+        "subj": "sci",
+        "title": "Light & Sound",
+        "en": "光与声",
+        "icon": "🔦",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 16
+      },
+      {
+        "id": "SC15",
+        "subj": "sci",
+        "title": "Electricity & Circuits",
+        "en": "电与电路",
+        "icon": "🔋",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 16
+      },
+      {
+        "id": "EN24",
+        "subj": "en",
+        "title": "Reading Poetry: The Harbour at Night",
+        "en": "诗歌阅读（新体裁）",
+        "icon": "🌙",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 16
+      },
+      {
+        "id": "EN25",
+        "subj": "en",
+        "title": "Reading: Icebergs",
+        "en": "说明文阅读·冰山",
         "icon": "🧊",
-        "best": "16/16",
-        "ratio": 1,
-        "status": "mastered",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
         "total": 16
       },
       {
-        "id": "SC12",
-        "subj": "sci",
-        "title": "Forces & Simple Machines",
-        "en": "力与简单机械",
-        "icon": "⚙️",
-        "best": "16/16",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 16
+        "id": "EN26",
+        "subj": "en",
+        "title": "Grammar & Conventions V",
+        "en": "撇号·引号·段落改错",
+        "icon": "🖊️",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       },
       {
-        "id": "EN20",
+        "id": "EN27",
         "subj": "en",
-        "title": "Reading: Literary III",
-        "en": "文学阅读·瓶中信",
-        "icon": "🍾",
-        "best": "14/14",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 14
-      },
-      {
-        "id": "EN21",
-        "subj": "en",
-        "title": "Reading: Informational III",
-        "en": "说明文阅读·海龟",
-        "icon": "🐢",
-        "best": "13/14",
-        "ratio": 0.9285714285714286,
-        "status": "mastered",
-        "total": 14
-      },
-      {
-        "id": "EN22",
-        "subj": "en",
-        "title": "Grammar & Conventions IV",
-        "en": "明喻vs暗喻·完整句·标点",
-        "icon": "✏️",
-        "best": "12/14",
-        "ratio": 0.8571428571428571,
-        "status": "mastered",
-        "total": 14
-      },
-      {
-        "id": "EN23",
-        "subj": "en",
-        "title": "Writing Studio V",
-        "en": "写作工坊 V（词库+守题）",
-        "icon": "📝",
-        "best": "5/5",
-        "ratio": 1,
-        "status": "mastered",
+        "title": "Writing Studio VI: Paragraphs",
+        "en": "汉堡段落写作",
+        "icon": "🍔",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
         "total": 5
       },
       {
-        "id": "FR11",
+        "id": "FR13",
         "subj": "fr",
-        "title": "Être / Avoir · Pronoms",
-        "en": "是/有·代词大巩固",
-        "icon": "🥐",
-        "best": "10/10",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 10
+        "title": "Verbes en -er · La négation",
+        "en": "-er 动词变位·否定句",
+        "icon": "🗣️",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       },
       {
-        "id": "FR12",
+        "id": "FR14",
         "subj": "fr",
-        "title": "Vocabulaire · Lecture III",
-        "en": "词汇·阅读：Chloé 逛市场",
-        "icon": "🧺",
-        "best": "10/10",
-        "ratio": 1,
-        "status": "mastered",
-        "total": 10
+        "title": "Les nombres · Lecture IV",
+        "en": "数字11-20·阅读：Théo 的野餐",
+        "icon": "🥪",
+        "best": null,
+        "ratio": null,
+        "status": "todo",
+        "total": 15
       }
     ],
-    "mistakesByUnit": {
-      "阅读理解·掩耳盗铃": [
-        {
-          "q": "下面哪些说法与故事相符？（多选）",
-          "x": "他嫌钟太重才想敲碎、捂住耳朵后别人真的听不见了、钟声传遍了整条街",
-          "r": "他嫌钟太重才想敲碎、钟声传遍了整条街、他最后被人们抓住了",
-          "tier": 3
-        }
-      ],
-      "Order of Ops II · Equations II": [
-        {
-          "q": "2³ = ?",
-          "x": "2/3",
-          "r": "8",
-          "tier": 3
-        },
-        {
-          "q": "2³ = ?",
-          "x": "6",
-          "r": "8",
-          "tier": 3
-        },
-        {
-          "q": "4² − 6 = ?",
-          "x": "2",
-          "r": "10",
-          "tier": 3
-        },
-        {
-          "q": "5 + 3 × 4 = ?",
-          "x": "14",
-          "r": "17",
-          "tier": 2
-        },
-        {
-          "q": "Solve: 2x + 3 = 11. x = ?",
-          "x": "1",
-          "r": "4",
-          "tier": 3
-        },
-        {
-          "q": "Solve: x − 9 = 16. x = ?",
-          "x": "1400",
-          "r": "25",
-          "tier": 2
-        },
-        {
-          "q": "Solve: 4x = 36. x = ?",
-          "x": "7",
-          "r": "9",
-          "tier": 3
-        }
-      ],
-      "Matter & Its States": [
-        {
-          "q": "Which of these are GASES? (select all)",
-          "x": "air、ice、steam",
-          "r": "air、steam",
-          "tier": 3
-        },
-        {
-          "q": "Which changes are REVERSIBLE? (select all)",
-          "x": "water evaporating、freezing water",
-          "r": "melting chocolate、freezing water、water evaporating",
-          "tier": 3
-        },
-        {
-          "q": "Steam from a hot pot touching a cold window turns into water drops. This is —",
-          "x": "melting",
-          "r": "condensation",
-          "tier": 3
-        }
-      ],
-      "Forces & Simple Machines": [
-        {
-          "q": "Which of these are simple machines? (select all)",
-          "x": "a ramp、scissors",
-          "r": "a ramp、scissors、a wheelbarrow",
-          "tier": 3
-        },
-        {
-          "q": "When is friction HELPFUL? (select all)",
-          "x": "bike brakes stopping the wheel、machine parts wearing out、shoes gripping the floor",
-          "r": "bike brakes stopping the wheel、shoes gripping the floor",
-          "tier": 3
-        },
-        {
-          "q": "Which are examples of a LEVER? (select all)",
-          "x": "a seesaw、a jar lid、a crowbar",
-          "r": "a seesaw、a crowbar",
-          "tier": 3
-        },
-        {
-          "q": "Which statements about FORCES are TRUE? (select all)",
-          "x": "Gravity pulls things toward Earth.、Smooth ice has more friction than sandpaper.、Friction can slow a sliding box.",
-          "r": "Gravity pulls things toward Earth.、Friction can slow a sliding box.、A pulley can change the direction of a pull.",
-          "tier": 3
-        }
-      ],
-      "Reading: Literary III": [
-        {
-          "q": "Which of these are INFERENCES (not stated directly)? (select all)",
-          "x": "Lena loved watching the birds.、Kai found a bottle.、The note was ten years old.",
-          "r": "Lena loved watching the birds.、Kai will probably visit the nest again.",
-          "tier": 3
-        },
-        {
-          "q": "Which statements about the STORY are TRUE? (select all)",
-          "x": "Kai found the bottle near the rocks.、The old pine tree was still there.",
-          "r": "Kai found the bottle near the rocks.、The old pine tree was still there.、The chicks were noisy.",
-          "tier": 3
-        },
-        {
-          "q": "What will Kai MOST LIKELY do next?",
-          "x": "cut down the pine tree",
-          "r": "keep watching over the new nest",
-          "tier": 3
-        }
-      ],
-      "Être / Avoir · Pronoms": [
-        {
-          "q": "Which matches are CORRECT? (select all)",
-          "x": "je suis = I am、j'ai = I have",
-          "r": "je suis = I am、j'ai = I have、nous sommes = we are",
-          "tier": 3
-        },
-        {
-          "q": "Which sentences are CORRECT? (select all)",
-          "x": "J'ai un livre.、Nous sommes contents.",
-          "r": "J'ai un livre.、Nous sommes contents.、Tu es mon ami.",
-          "tier": 3
-        }
-      ],
-      "Fractions IV": [
-        {
-          "q": "3/4 − 1/8 = ? (simplest form)",
-          "x": "7/8",
-          "r": "5/8",
-          "tier": 3
-        },
-        {
-          "q": "What is 3/5 of 35?",
-          "x": "25",
-          "r": "21",
-          "tier": 3
-        },
-        {
-          "q": "2/7 × 3 = ? (fraction)",
-          "x": "2",
-          "r": "6/7",
-          "tier": 3
-        },
-        {
-          "q": "Which fractions are EQUAL to 2/3? (select all)",
-          "x": "4/6、6/9",
-          "r": "4/6、6/9、8/12",
-          "tier": 3
-        }
-      ],
-      "Decimals & Percent III": [
-        {
-          "q": "0.6 × 0.3 = ?",
-          "x": "0.9",
-          "r": "0.18",
-          "tier": 3
-        },
-        {
-          "q": "Round 6.278 to the nearest hundredth.",
-          "x": "6.300",
-          "r": "6.28",
-          "tier": 3
-        },
-        {
-          "q": "What is 30% of 90?",
-          "x": "40",
-          "r": "27",
-          "tier": 3
-        }
-      ],
-      "成语·新典故 III": [
-        {
-          "q": "下面哪句成语用错了？",
-          "x": "他恍然大悟，原来钥匙一直在口袋里。",
-          "r": "他半途而废，坚持跑完了全程。",
-          "tier": 3
-        },
-        {
-          "q": "哪些成语可以形容「注意力集中」？（多选）",
-          "x": "聚精会神、全神贯注",
-          "r": "聚精会神、全神贯注、目不转睛",
-          "tier": 3
-        },
-        {
-          "q": "哪些搭配是正确的？（多选）",
-          "x": "成绩名列前茅、说话川流不息、做事半途而废",
-          "r": "成绩名列前茅、做事半途而废、房间收拾得井井有条",
-          "tier": 3
-        },
-        {
-          "q": "「都等不及了」——「迫不________待」。点选正确的字。",
-          "x": "极",
-          "r": "及",
-          "tier": 3
-        }
-      ],
-      "复句进阶 III + 识字 Day 23": [
-        {
-          "q": "下面哪些关联词表示「递进」关系？（多选）",
-          "x": "不但…而且…、尽管…还是…、不仅…还…",
-          "r": "不但…而且…、不仅…还…",
-          "tier": 3
-        },
-        {
-          "q": "「我的________里有一张床和一张桌子。」点选两个字。",
-          "x": "房",
-          "r": "房间",
-          "tier": 2
-        }
-      ],
-      "病句·近义词 II + 识字 Day 24": [
-        {
-          "q": "选出所有的病句。（多选）",
-          "x": "他大约估计有五十人。、轮船慢慢驶出了港口。、这道题的难度水平很高又很难。",
-          "r": "他大约估计有五十人。、这道题的难度水平很高又很难。、我的家乡是广东人。",
-          "tier": 3
-        },
-        {
-          "q": "「银行门口的自行车排成了一行。」两个「行」读——",
-          "x": "háng、xíng… 不对，是 háng、háng",
-          "r": "háng、xíng",
-          "tier": 3
-        },
-        {
-          "q": "下面哪些句子的标点使用正确？（多选）",
-          "x": "你去过大海吗。、轮船、帆船和渔船都停在港口。",
-          "r": "今天星期几？、轮船、帆船和渔船都停在港口。、他说：「我们出发吧。」",
-          "tier": 3
-        }
-      ],
-      "Reading: Informational III": [
-        {
-          "q": "Which dangers do hatchlings face? (select all)",
-          "x": "hungry birds、magnetic fields、bright city lights",
-          "r": "hungry birds、crabs、bright city lights",
-          "tier": 3
-        }
-      ],
-      "Grammar & Conventions IV": [
-        {
-          "q": "Which are COMPLETE sentences? (select all)",
-          "x": "The lighthouse keeper lit the lamp.、Under the old pine tree.、Waves crashed on the rocks.",
-          "r": "The lighthouse keeper lit the lamp.、Waves crashed on the rocks.、We sailed home before dark.",
-          "tier": 3
-        },
-        {
-          "q": "Which words need a CAPITAL letter? (select all)",
-          "x": "tuesday、ocean、london",
-          "r": "tuesday、london、kai",
-          "tier": 3
-        },
-        {
-          "q": "Which sentences are punctuated CORRECTLY? (select all)",
-          "x": "what a huge wave that was",
-          "r": "After the storm, we cleaned the deck.、Do sea turtles sleep?、We packed food, water, and maps.",
-          "tier": 3
-        }
-      ],
-      "Geometry & Measurement III": [
-        {
-          "q": "A square has AREA 64. What is its side length?",
-          "x": "2",
-          "r": "8",
-          "tier": 3
-        },
-        {
-          "q": "A triangle has base 10 and height 6. What is its AREA?",
-          "x": "60",
-          "r": "30",
-          "tier": 3
-        },
-        {
-          "q": "A cube has side 5. What is its VOLUME?",
-          "x": "0",
-          "r": "125",
-          "tier": 3
-        },
-        {
-          "q": "A box is 2 by 5 by 6. What is its VOLUME?",
-          "x": "0",
-          "r": "60",
-          "tier": 3
-        },
-        {
-          "q": "Two angles of a triangle are 45° and 65°. The third angle is — (number only)",
-          "x": "65",
-          "r": "70",
-          "tier": 3
-        },
-        {
-          "q": "What angle is COMPLEMENTARY to 35°? (number only)",
-          "x": "8",
-          "r": "55",
-          "tier": 3
-        },
-        {
-          "q": "What angle is SUPPLEMENTARY to 120°?",
-          "x": "30°",
-          "r": "60°",
-          "tier": 3
-        },
-        {
-          "q": "Which jobs need AREA? (select all)",
-          "x": "covering a floor with tiles、filling a pool with water、building a fence around a yard",
-          "r": "covering a floor with tiles、painting a wall",
-          "tier": 3
-        },
-        {
-          "q": "Which units measure VOLUME? (select all)",
-          "x": "cm³、km、m³",
-          "r": "cm³、m³",
-          "tier": 3
-        }
-      ]
-    },
-    "reviewQueue": [
-      {
-        "c": "及",
-        "n": 1
-      }
-    ],
+    "mistakesByUnit": {},
+    "reviewQueue": [],
     "boxRemaining": 0,
-    "writing": {
-      "EN23#0": {
-        "unit": "Writing Studio V",
-        "q": "✍️ Narrative (English only). Topic: a little boat. Write 4 sentences with this frame:\n1) 'One day, a little boat named ____ sailed out to sea.'\n2) 'Suddenly, ____.'\n3) 'So the little boat ____.'\n4) 'At last, ____.'\nWord bank: wave, storm, wind, island, safe, brave, home.\nRule: every sentence must be about the little boat.",
-        "text": "One day there a low boat nlar.Say to see sudda semon.And then semonster almost boat so the little boat."
-      },
-      "EN23#1": {
-        "unit": "Writing Studio V",
-        "q": "✍️ Descriptive (English only). Topic: your favourite food. Write 4 sentences:\n1) What it LOOKS like.\n2) What it SMELLS like.\n3) What it TASTES like.\n4) A simile: 'It is as ____ as ____.' or 'It is like ____.'\nWord bank: sweet, warm, soft, crunchy, golden, delicious.\nRule: all 4 sentences must be about the SAME food.",
-        "text": "嗯One miis something that looks like blit smells like melted stuff it tastthe licies and sugabut doesn't have sugaAnd goin swacountry goden and delicious."
-      },
-      "EN23#2": {
-        "unit": "Writing Studio V",
-        "q": "✍️ Opinion (English only). Question: Should every child learn to swim?\nUse this frame:\n'I think every child ____ learn to swim.'\n'First, ____.'\n'Second, ____.'\n'That is why ____.'\nWord bank: safe, water, fun, healthy, danger, exercise.\nRule: both reasons must be about swimming.",
-        "text": "I think every child should learn to sweat.First, it's because that if you don't swim, then you can't say yourself and fall in the face or a pool.Second，it is for fun and one activity that可嗯，有。"
-      },
-      "EN23#3": {
-        "unit": "Writing Studio V",
-        "q": "✍️ How-to (English only). Topic: how to brush your teeth. Write 4 sentences starting with:\n'First,' / 'Next,' / 'Then,' / 'Finally,'.\nWord bank: toothbrush, toothpaste, water, gently, rinse, two minutes.\nRule: every sentence must be a real step of brushing teeth — no other topics!",
-        "text": "What i when everyone，然后5分钟这个Side of your teeth，your jaon top and brush the teeth closing your mouth why i'm left and in the middle and also do it in the side，快点。你要是不喜欢听，你就不玩了啊。"
-      },
-      "EN23#4": {
-        "unit": "Writing Studio V",
-        "q": "✍️ Compound sentences (English only). Topic: your best friend. Write 3 sentences about your best friend.\nAt least ONE must join two ideas with a comma + 'and', 'but', or 'so'.\nWord bank: kind, funny, play, help, together, school.\nRule: every sentence must be about your best friend.",
-        "text": "My best friend likes to play outside, mostly not very interested in indoor activities, i mean indoor and not interested, and they like eat ently they eat faster than i am so."
-      }
-    },
+    "writing": {},
     "packet": {
-      "ver": "13.2",
-      "date": "2026-07-08",
+      "ver": "14.0",
+      "date": "2026-07-11",
       "xp": 28787,
       "diag": {
         "chinese": {
@@ -817,383 +474,13 @@
         "及:1"
       ],
       "boxRemaining": 0,
-      "writingCount": 5,
-      "writing": {
-        "EN23#0": {
-          "unit": "Writing Studio V",
-          "q": "✍️ Narrative (English only). Topic: a little boat. Write 4 sentences with this frame:\n1) 'One day, a little boat named ____ sailed out to sea.'\n2) 'Suddenly, ____.'\n3) 'So the little boat ____.'\n4) 'At last, ____.'\nWord bank: wave, storm, wind, island, safe, brave, home.\nRule: every sentence must be about the little boat.",
-          "text": "One day there a low boat nlar.Say to see sudda semon.And then semonster almost boat so the little boat."
-        },
-        "EN23#1": {
-          "unit": "Writing Studio V",
-          "q": "✍️ Descriptive (English only). Topic: your favourite food. Write 4 sentences:\n1) What it LOOKS like.\n2) What it SMELLS like.\n3) What it TASTES like.\n4) A simile: 'It is as ____ as ____.' or 'It is like ____.'\nWord bank: sweet, warm, soft, crunchy, golden, delicious.\nRule: all 4 sentences must be about the SAME food.",
-          "text": "嗯One miis something that looks like blit smells like melted stuff it tastthe licies and sugabut doesn't have sugaAnd goin swacountry goden and delicious."
-        },
-        "EN23#2": {
-          "unit": "Writing Studio V",
-          "q": "✍️ Opinion (English only). Question: Should every child learn to swim?\nUse this frame:\n'I think every child ____ learn to swim.'\n'First, ____.'\n'Second, ____.'\n'That is why ____.'\nWord bank: safe, water, fun, healthy, danger, exercise.\nRule: both reasons must be about swimming.",
-          "text": "I think every child should learn to sweat.First, it's because that if you don't swim, then you can't say yourself and fall in the face or a pool.Second，it is for fun and one activity that可嗯，有。"
-        },
-        "EN23#3": {
-          "unit": "Writing Studio V",
-          "q": "✍️ How-to (English only). Topic: how to brush your teeth. Write 4 sentences starting with:\n'First,' / 'Next,' / 'Then,' / 'Finally,'.\nWord bank: toothbrush, toothpaste, water, gently, rinse, two minutes.\nRule: every sentence must be a real step of brushing teeth — no other topics!",
-          "text": "What i when everyone，然后5分钟这个Side of your teeth，your jaon top and brush the teeth closing your mouth why i'm left and in the middle and also do it in the side，快点。你要是不喜欢听，你就不玩了啊。"
-        },
-        "EN23#4": {
-          "unit": "Writing Studio V",
-          "q": "✍️ Compound sentences (English only). Topic: your best friend. Write 3 sentences about your best friend.\nAt least ONE must join two ideas with a comma + 'and', 'but', or 'so'.\nWord bank: kind, funny, play, help, together, school.\nRule: every sentence must be about your best friend.",
-          "text": "My best friend likes to play outside, mostly not very interested in indoor activities, i mean indoor and not interested, and they like eat ently they eat faster than i am so."
-        }
-      },
-      "mistakes": [
-        {
-          "u": "阅读理解·掩耳盗铃",
-          "q": "下面哪些说法与故事相符？（多选）",
-          "x": "他嫌钟太重才想敲碎、捂住耳朵后别人真的听不见了、钟声传遍了整条街",
-          "r": "他嫌钟太重才想敲碎、钟声传遍了整条街、他最后被人们抓住了",
-          "tier": 3
-        },
-        {
-          "u": "Order of Ops II · Equations II",
-          "q": "2³ = ?",
-          "x": "2/3",
-          "r": "8",
-          "tier": 3
-        },
-        {
-          "u": "Matter & Its States",
-          "q": "Which of these are GASES? (select all)",
-          "x": "air、ice、steam",
-          "r": "air、steam",
-          "tier": 3
-        },
-        {
-          "u": "Matter & Its States",
-          "q": "Which changes are REVERSIBLE? (select all)",
-          "x": "water evaporating、freezing water",
-          "r": "melting chocolate、freezing water、water evaporating",
-          "tier": 3
-        },
-        {
-          "u": "Matter & Its States",
-          "q": "Steam from a hot pot touching a cold window turns into water drops. This is —",
-          "x": "melting",
-          "r": "condensation",
-          "tier": 3
-        },
-        {
-          "u": "Forces & Simple Machines",
-          "q": "Which of these are simple machines? (select all)",
-          "x": "a ramp、scissors",
-          "r": "a ramp、scissors、a wheelbarrow",
-          "tier": 3
-        },
-        {
-          "u": "Forces & Simple Machines",
-          "q": "When is friction HELPFUL? (select all)",
-          "x": "bike brakes stopping the wheel、machine parts wearing out、shoes gripping the floor",
-          "r": "bike brakes stopping the wheel、shoes gripping the floor",
-          "tier": 3
-        },
-        {
-          "u": "Forces & Simple Machines",
-          "q": "Which are examples of a LEVER? (select all)",
-          "x": "a seesaw、a jar lid、a crowbar",
-          "r": "a seesaw、a crowbar",
-          "tier": 3
-        },
-        {
-          "u": "Forces & Simple Machines",
-          "q": "Which statements about FORCES are TRUE? (select all)",
-          "x": "Gravity pulls things toward Earth.、Smooth ice has more friction than sandpaper.、Friction can slow a sliding box.",
-          "r": "Gravity pulls things toward Earth.、Friction can slow a sliding box.、A pulley can change the direction of a pull.",
-          "tier": 3
-        },
-        {
-          "u": "Reading: Literary III",
-          "q": "Which of these are INFERENCES (not stated directly)? (select all)",
-          "x": "Lena loved watching the birds.、Kai found a bottle.、The note was ten years old.",
-          "r": "Lena loved watching the birds.、Kai will probably visit the nest again.",
-          "tier": 3
-        },
-        {
-          "u": "Reading: Literary III",
-          "q": "Which statements about the STORY are TRUE? (select all)",
-          "x": "Kai found the bottle near the rocks.、The old pine tree was still there.",
-          "r": "Kai found the bottle near the rocks.、The old pine tree was still there.、The chicks were noisy.",
-          "tier": 3
-        },
-        {
-          "u": "Reading: Literary III",
-          "q": "What will Kai MOST LIKELY do next?",
-          "x": "cut down the pine tree",
-          "r": "keep watching over the new nest",
-          "tier": 3
-        },
-        {
-          "u": "Être / Avoir · Pronoms",
-          "q": "Which matches are CORRECT? (select all)",
-          "x": "je suis = I am、j'ai = I have",
-          "r": "je suis = I am、j'ai = I have、nous sommes = we are",
-          "tier": 3
-        },
-        {
-          "u": "Être / Avoir · Pronoms",
-          "q": "Which sentences are CORRECT? (select all)",
-          "x": "J'ai un livre.、Nous sommes contents.",
-          "r": "J'ai un livre.、Nous sommes contents.、Tu es mon ami.",
-          "tier": 3
-        },
-        {
-          "u": "Fractions IV",
-          "q": "3/4 − 1/8 = ? (simplest form)",
-          "x": "7/8",
-          "r": "5/8",
-          "tier": 3
-        },
-        {
-          "u": "Fractions IV",
-          "q": "What is 3/5 of 35?",
-          "x": "25",
-          "r": "21",
-          "tier": 3
-        },
-        {
-          "u": "Fractions IV",
-          "q": "2/7 × 3 = ? (fraction)",
-          "x": "2",
-          "r": "6/7",
-          "tier": 3
-        },
-        {
-          "u": "Fractions IV",
-          "q": "Which fractions are EQUAL to 2/3? (select all)",
-          "x": "4/6、6/9",
-          "r": "4/6、6/9、8/12",
-          "tier": 3
-        },
-        {
-          "u": "Decimals & Percent III",
-          "q": "0.6 × 0.3 = ?",
-          "x": "0.9",
-          "r": "0.18",
-          "tier": 3
-        },
-        {
-          "u": "Decimals & Percent III",
-          "q": "Round 6.278 to the nearest hundredth.",
-          "x": "6.300",
-          "r": "6.28",
-          "tier": 3
-        },
-        {
-          "u": "Decimals & Percent III",
-          "q": "What is 30% of 90?",
-          "x": "40",
-          "r": "27",
-          "tier": 3
-        },
-        {
-          "u": "成语·新典故 III",
-          "q": "下面哪句成语用错了？",
-          "x": "他恍然大悟，原来钥匙一直在口袋里。",
-          "r": "他半途而废，坚持跑完了全程。",
-          "tier": 3
-        },
-        {
-          "u": "成语·新典故 III",
-          "q": "哪些成语可以形容「注意力集中」？（多选）",
-          "x": "聚精会神、全神贯注",
-          "r": "聚精会神、全神贯注、目不转睛",
-          "tier": 3
-        },
-        {
-          "u": "成语·新典故 III",
-          "q": "哪些搭配是正确的？（多选）",
-          "x": "成绩名列前茅、说话川流不息、做事半途而废",
-          "r": "成绩名列前茅、做事半途而废、房间收拾得井井有条",
-          "tier": 3
-        },
-        {
-          "u": "成语·新典故 III",
-          "q": "「都等不及了」——「迫不________待」。点选正确的字。",
-          "x": "极",
-          "r": "及",
-          "tier": 3
-        },
-        {
-          "u": "复句进阶 III + 识字 Day 23",
-          "q": "下面哪些关联词表示「递进」关系？（多选）",
-          "x": "不但…而且…、尽管…还是…、不仅…还…",
-          "r": "不但…而且…、不仅…还…",
-          "tier": 3
-        },
-        {
-          "u": "复句进阶 III + 识字 Day 23",
-          "q": "「我的________里有一张床和一张桌子。」点选两个字。",
-          "x": "房",
-          "r": "房间",
-          "tier": 2
-        },
-        {
-          "u": "病句·近义词 II + 识字 Day 24",
-          "q": "选出所有的病句。（多选）",
-          "x": "他大约估计有五十人。、轮船慢慢驶出了港口。、这道题的难度水平很高又很难。",
-          "r": "他大约估计有五十人。、这道题的难度水平很高又很难。、我的家乡是广东人。",
-          "tier": 3
-        },
-        {
-          "u": "病句·近义词 II + 识字 Day 24",
-          "q": "「银行门口的自行车排成了一行。」两个「行」读——",
-          "x": "háng、xíng… 不对，是 háng、háng",
-          "r": "háng、xíng",
-          "tier": 3
-        },
-        {
-          "u": "病句·近义词 II + 识字 Day 24",
-          "q": "下面哪些句子的标点使用正确？（多选）",
-          "x": "你去过大海吗。、轮船、帆船和渔船都停在港口。",
-          "r": "今天星期几？、轮船、帆船和渔船都停在港口。、他说：「我们出发吧。」",
-          "tier": 3
-        },
-        {
-          "u": "Reading: Informational III",
-          "q": "Which dangers do hatchlings face? (select all)",
-          "x": "hungry birds、magnetic fields、bright city lights",
-          "r": "hungry birds、crabs、bright city lights",
-          "tier": 3
-        },
-        {
-          "u": "Grammar & Conventions IV",
-          "q": "Which are COMPLETE sentences? (select all)",
-          "x": "The lighthouse keeper lit the lamp.、Under the old pine tree.、Waves crashed on the rocks.",
-          "r": "The lighthouse keeper lit the lamp.、Waves crashed on the rocks.、We sailed home before dark.",
-          "tier": 3
-        },
-        {
-          "u": "Grammar & Conventions IV",
-          "q": "Which words need a CAPITAL letter? (select all)",
-          "x": "tuesday、ocean、london",
-          "r": "tuesday、london、kai",
-          "tier": 3
-        },
-        {
-          "u": "Grammar & Conventions IV",
-          "q": "Which sentences are punctuated CORRECTLY? (select all)",
-          "x": "what a huge wave that was",
-          "r": "After the storm, we cleaned the deck.、Do sea turtles sleep?、We packed food, water, and maps.",
-          "tier": 3
-        },
-        {
-          "u": "Geometry & Measurement III",
-          "q": "A square has AREA 64. What is its side length?",
-          "x": "2",
-          "r": "8",
-          "tier": 3
-        },
-        {
-          "u": "Geometry & Measurement III",
-          "q": "A triangle has base 10 and height 6. What is its AREA?",
-          "x": "60",
-          "r": "30",
-          "tier": 3
-        },
-        {
-          "u": "Geometry & Measurement III",
-          "q": "A cube has side 5. What is its VOLUME?",
-          "x": "0",
-          "r": "125",
-          "tier": 3
-        },
-        {
-          "u": "Geometry & Measurement III",
-          "q": "A box is 2 by 5 by 6. What is its VOLUME?",
-          "x": "0",
-          "r": "60",
-          "tier": 3
-        },
-        {
-          "u": "Geometry & Measurement III",
-          "q": "Two angles of a triangle are 45° and 65°. The third angle is — (number only)",
-          "x": "65",
-          "r": "70",
-          "tier": 3
-        },
-        {
-          "u": "Geometry & Measurement III",
-          "q": "What angle is COMPLEMENTARY to 35°? (number only)",
-          "x": "8",
-          "r": "55",
-          "tier": 3
-        },
-        {
-          "u": "Geometry & Measurement III",
-          "q": "What angle is SUPPLEMENTARY to 120°?",
-          "x": "30°",
-          "r": "60°",
-          "tier": 3
-        },
-        {
-          "u": "Geometry & Measurement III",
-          "q": "Which jobs need AREA? (select all)",
-          "x": "covering a floor with tiles、filling a pool with water、building a fence around a yard",
-          "r": "covering a floor with tiles、painting a wall",
-          "tier": 3
-        },
-        {
-          "u": "Geometry & Measurement III",
-          "q": "Which units measure VOLUME? (select all)",
-          "x": "cm³、km、m³",
-          "r": "cm³、m³",
-          "tier": 3
-        },
-        {
-          "u": "Order of Ops II · Equations II",
-          "q": "2³ = ?",
-          "x": "6",
-          "r": "8",
-          "tier": 3
-        },
-        {
-          "u": "Order of Ops II · Equations II",
-          "q": "4² − 6 = ?",
-          "x": "2",
-          "r": "10",
-          "tier": 3
-        },
-        {
-          "u": "Order of Ops II · Equations II",
-          "q": "5 + 3 × 4 = ?",
-          "x": "14",
-          "r": "17",
-          "tier": 2
-        },
-        {
-          "u": "Order of Ops II · Equations II",
-          "q": "Solve: 2x + 3 = 11. x = ?",
-          "x": "1",
-          "r": "4",
-          "tier": 3
-        },
-        {
-          "u": "Order of Ops II · Equations II",
-          "q": "Solve: x − 9 = 16. x = ?",
-          "x": "1400",
-          "r": "25",
-          "tier": 2
-        },
-        {
-          "u": "Order of Ops II · Equations II",
-          "q": "Solve: 4x = 36. x = ?",
-          "x": "7",
-          "r": "9",
-          "tier": 3
-        }
-      ]
+      "writingCount": 0,
+      "writing": {},
+      "mistakes": []
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-11T02:06:09.098Z",
+    "updatedAt": "2026-07-11T09:20:21.004Z",
     "updatedBy": "study"
   }
 }
