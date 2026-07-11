@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-11T01:50:18.044Z",
-    "xp": 28191,
+    "syncedAt": "2026-07-11T01:52:02.771Z",
+    "xp": 28231,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -422,6 +422,20 @@
           "r": "After the storm, we cleaned the deck.、Do sea turtles sleep?、We packed food, water, and maps.",
           "tier": 3
         }
+      ],
+      "Geometry & Measurement III": [
+        {
+          "q": "A square has AREA 64. What is its side length?",
+          "x": "2",
+          "r": "8",
+          "tier": 3
+        },
+        {
+          "q": "A triangle has base 10 and height 6. What is its AREA?",
+          "x": "60",
+          "r": "30",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -430,7 +444,7 @@
         "n": 1
       }
     ],
-    "boxRemaining": 4,
+    "boxRemaining": 5,
     "writing": {
       "EN23#0": {
         "unit": "Writing Studio V",
@@ -461,7 +475,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 28191,
+      "xp": 28231,
       "diag": {
         "chinese": {
           "score": 14,
@@ -720,7 +734,7 @@
       "ziWeak": [
         "及:1"
       ],
-      "boxRemaining": 4,
+      "boxRemaining": 5,
       "writingCount": 5,
       "writing": {
         "EN23#0": {
@@ -987,12 +1001,26 @@
           "x": "what a huge wave that was",
           "r": "After the storm, we cleaned the deck.、Do sea turtles sleep?、We packed food, water, and maps.",
           "tier": 3
+        },
+        {
+          "u": "Geometry & Measurement III",
+          "q": "A square has AREA 64. What is its side length?",
+          "x": "2",
+          "r": "8",
+          "tier": 3
+        },
+        {
+          "u": "Geometry & Measurement III",
+          "q": "A triangle has base 10 and height 6. What is its AREA?",
+          "x": "60",
+          "r": "30",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-11T01:50:18.044Z",
+    "updatedAt": "2026-07-11T01:52:02.771Z",
     "updatedBy": "study"
   }
 }
