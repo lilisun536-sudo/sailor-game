@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-11T01:52:02.771Z",
-    "xp": 28231,
+    "syncedAt": "2026-07-11T01:53:37.237Z",
+    "xp": 28300,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -435,6 +435,24 @@
           "x": "60",
           "r": "30",
           "tier": 3
+        },
+        {
+          "q": "A cube has side 5. What is its VOLUME?",
+          "x": "0",
+          "r": "125",
+          "tier": 3
+        },
+        {
+          "q": "A box is 2 by 5 by 6. What is its VOLUME?",
+          "x": "0",
+          "r": "60",
+          "tier": 3
+        },
+        {
+          "q": "Two angles of a triangle are 45° and 65°. The third angle is — (number only)",
+          "x": "65",
+          "r": "70",
+          "tier": 3
         }
       ]
     },
@@ -475,7 +493,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 28231,
+      "xp": 28300,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1015,12 +1033,33 @@
           "x": "60",
           "r": "30",
           "tier": 3
+        },
+        {
+          "u": "Geometry & Measurement III",
+          "q": "A cube has side 5. What is its VOLUME?",
+          "x": "0",
+          "r": "125",
+          "tier": 3
+        },
+        {
+          "u": "Geometry & Measurement III",
+          "q": "A box is 2 by 5 by 6. What is its VOLUME?",
+          "x": "0",
+          "r": "60",
+          "tier": 3
+        },
+        {
+          "u": "Geometry & Measurement III",
+          "q": "Two angles of a triangle are 45° and 65°. The third angle is — (number only)",
+          "x": "65",
+          "r": "70",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-11T01:52:02.771Z",
+    "updatedAt": "2026-07-11T01:53:37.237Z",
     "updatedBy": "study"
   }
 }
