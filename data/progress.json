@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-11T01:53:37.237Z",
-    "xp": 28300,
+    "syncedAt": "2026-07-11T01:55:12.530Z",
+    "xp": 28383,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -453,6 +453,24 @@
           "x": "65",
           "r": "70",
           "tier": 3
+        },
+        {
+          "q": "What angle is COMPLEMENTARY to 35°? (number only)",
+          "x": "8",
+          "r": "55",
+          "tier": 3
+        },
+        {
+          "q": "What angle is SUPPLEMENTARY to 120°?",
+          "x": "30°",
+          "r": "60°",
+          "tier": 3
+        },
+        {
+          "q": "Which jobs need AREA? (select all)",
+          "x": "covering a floor with tiles、filling a pool with water、building a fence around a yard",
+          "r": "covering a floor with tiles、painting a wall",
+          "tier": 3
         }
       ]
     },
@@ -493,7 +511,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 28300,
+      "xp": 28383,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1054,12 +1072,40 @@
           "x": "65",
           "r": "70",
           "tier": 3
+        },
+        {
+          "u": "Geometry & Measurement III",
+          "q": "What angle is COMPLEMENTARY to 35°? (number only)",
+          "x": "8",
+          "r": "55",
+          "tier": 3
+        },
+        {
+          "u": "Geometry & Measurement III",
+          "q": "What angle is SUPPLEMENTARY to 120°?",
+          "x": "30°",
+          "r": "60°",
+          "tier": 3
+        },
+        {
+          "u": "Geometry & Measurement III",
+          "q": "Which jobs need AREA? (select all)",
+          "x": "covering a floor with tiles、filling a pool with water、building a fence around a yard",
+          "r": "covering a floor with tiles、painting a wall",
+          "tier": 3
+        },
+        {
+          "u": "Geometry & Measurement III",
+          "q": "Which units measure VOLUME? (select all)",
+          "x": "cm³、km、m³",
+          "r": "cm³、m³",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-11T01:53:37.237Z",
+    "updatedAt": "2026-07-11T01:55:12.530Z",
     "updatedBy": "study"
   }
 }
