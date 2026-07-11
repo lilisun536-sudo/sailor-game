@@ -2,8 +2,8 @@
   "study": {
     "version": "13.1",
     "student": "Sailor",
-    "syncedAt": "2026-07-11T02:02:19.653Z",
-    "xp": 28582,
+    "syncedAt": "2026-07-11T02:04:29.949Z",
+    "xp": 28772,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 15,
+      "done": 16,
       "total": 16
     },
     "units": [
@@ -98,9 +98,9 @@
         "title": "Order of Ops II · Equations II",
         "en": "运算顺序·方程·应用题 II",
         "icon": "🎯",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "12/12",
+        "ratio": 1,
+        "status": "mastered",
         "total": 12
       },
       {
@@ -230,6 +230,18 @@
           "q": "Solve: 2x + 3 = 11. x = ?",
           "x": "1",
           "r": "4",
+          "tier": 3
+        },
+        {
+          "q": "Solve: x − 9 = 16. x = ?",
+          "x": "1400",
+          "r": "25",
+          "tier": 2
+        },
+        {
+          "q": "Solve: 4x = 36. x = ?",
+          "x": "7",
+          "r": "9",
           "tier": 3
         }
       ],
@@ -510,7 +522,7 @@
         "n": 1
       }
     ],
-    "boxRemaining": 4,
+    "boxRemaining": 3,
     "writing": {
       "EN23#0": {
         "unit": "Writing Studio V",
@@ -541,7 +553,7 @@
     "packet": {
       "ver": "13.2",
       "date": "2026-07-08",
-      "xp": 28582,
+      "xp": 28772,
       "diag": {
         "chinese": {
           "score": 14,
@@ -677,7 +689,8 @@
         "EN23",
         "EN21",
         "EN22",
-        "MA23"
+        "MA23",
+        "MA24"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -769,7 +782,8 @@
         "EN23": "5/5",
         "EN21": "13/14",
         "EN22": "12/14",
-        "MA23": "13/13"
+        "MA23": "13/13",
+        "MA24": "12/12"
       },
       "ziDaysDone": [
         1,
@@ -802,7 +816,7 @@
       "ziWeak": [
         "及:1"
       ],
-      "boxRemaining": 4,
+      "boxRemaining": 3,
       "writingCount": 5,
       "writing": {
         "EN23#0": {
@@ -1160,12 +1174,26 @@
           "x": "1",
           "r": "4",
           "tier": 3
+        },
+        {
+          "u": "Order of Ops II · Equations II",
+          "q": "Solve: x − 9 = 16. x = ?",
+          "x": "1400",
+          "r": "25",
+          "tier": 2
+        },
+        {
+          "u": "Order of Ops II · Equations II",
+          "q": "Solve: 4x = 36. x = ?",
+          "x": "7",
+          "r": "9",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-11T02:02:19.653Z",
+    "updatedAt": "2026-07-11T02:04:29.949Z",
     "updatedBy": "study"
   }
 }
