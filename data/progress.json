@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:46:08.057Z",
-    "xp": 33540,
+    "syncedAt": "2026-07-22T06:47:38.590Z",
+    "xp": 33739,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -11,7 +11,7 @@
       "color": "#d4a01a"
     },
     "coverage": {
-      "done": 14,
+      "done": 15,
       "total": 17
     },
     "units": [
@@ -120,9 +120,9 @@
         "title": "Light & Sound",
         "en": "光与声",
         "icon": "🔦",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "16/16",
+        "ratio": 1,
+        "status": "mastered",
         "total": 16
       },
       {
@@ -1016,6 +1016,36 @@
           "x": "their helmets are too thick",
           "r": "there is no air for sound to travel through",
           "tier": 3
+        },
+        {
+          "q": "Whales can 'talk' across long distances because sound —",
+          "x": "cannot travel in water",
+          "r": "travels well through water",
+          "tier": 3
+        },
+        {
+          "q": "Which of these are LIGHT SOURCES (they make their own light)? (select all)",
+          "x": "a firefly、a mirror",
+          "r": "the Sun、a candle flame、a firefly",
+          "tier": 3
+        },
+        {
+          "q": "Which materials are OPAQUE? (select all)",
+          "x": "frosted glass",
+          "r": "a wooden door、a brick wall、a metal sheet",
+          "tier": 3
+        },
+        {
+          "q": "Which statements about SOUND are TRUE? (select all)",
+          "x": "Sound travels faster than light.",
+          "r": "Sound is made by vibrations.、Sound cannot travel through empty space.、Fast vibrations make higher sounds.、Sound can travel through solids.",
+          "tier": 3
+        },
+        {
+          "q": "Which statements about LIGHT are TRUE? (select all)",
+          "x": "Light bends when entering water.",
+          "r": "Light travels in straight lines.、A mirror reflects light.、Light bends when entering water.、Shadows form behind opaque objects.",
+          "tier": 3
         }
       ]
     },
@@ -1096,7 +1126,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 33540,
+      "xp": 33739,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1247,7 +1277,8 @@
         "MA28",
         "EN25",
         "EN27",
-        "FR14"
+        "FR14",
+        "SC14"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -1354,7 +1385,8 @@
         "MA28": "15/15",
         "EN25": "16/16",
         "EN27": "5/5",
-        "FR14": "15/15"
+        "FR14": "15/15",
+        "SC14": "16/16"
       },
       "ziDaysDone": [
         1,
@@ -2345,12 +2377,47 @@
           "x": "their helmets are too thick",
           "r": "there is no air for sound to travel through",
           "tier": 3
+        },
+        {
+          "u": "Light & Sound",
+          "q": "Whales can 'talk' across long distances because sound —",
+          "x": "cannot travel in water",
+          "r": "travels well through water",
+          "tier": 3
+        },
+        {
+          "u": "Light & Sound",
+          "q": "Which of these are LIGHT SOURCES (they make their own light)? (select all)",
+          "x": "a firefly、a mirror",
+          "r": "the Sun、a candle flame、a firefly",
+          "tier": 3
+        },
+        {
+          "u": "Light & Sound",
+          "q": "Which materials are OPAQUE? (select all)",
+          "x": "frosted glass",
+          "r": "a wooden door、a brick wall、a metal sheet",
+          "tier": 3
+        },
+        {
+          "u": "Light & Sound",
+          "q": "Which statements about SOUND are TRUE? (select all)",
+          "x": "Sound travels faster than light.",
+          "r": "Sound is made by vibrations.、Sound cannot travel through empty space.、Fast vibrations make higher sounds.、Sound can travel through solids.",
+          "tier": 3
+        },
+        {
+          "u": "Light & Sound",
+          "q": "Which statements about LIGHT are TRUE? (select all)",
+          "x": "Light bends when entering water.",
+          "r": "Light travels in straight lines.、A mirror reflects light.、Light bends when entering water.、Shadows form behind opaque objects.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:46:08.057Z",
+    "updatedAt": "2026-07-22T06:47:38.590Z",
     "updatedBy": "study"
   }
 }
