@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T01:49:35.295Z",
-    "xp": 30721,
+    "syncedAt": "2026-07-22T01:51:08.421Z",
+    "xp": 30886,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 5,
+      "done": 6,
       "total": 17
     },
     "units": [
@@ -142,9 +142,9 @@
         "title": "Reading Poetry: The Harbour at Night",
         "en": "诗歌阅读（新体裁）",
         "icon": "🌙",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "16/16",
+        "ratio": 1,
+        "status": "mastered",
         "total": 16
       },
       {
@@ -514,6 +514,36 @@
           "x": "scary and stormy",
           "r": "calm and peaceful",
           "tier": 3
+        },
+        {
+          "q": "'Morning light unties the ribbons of the night' most likely means —",
+          "x": "someone forgot their ribbons",
+          "r": "dawn slowly ends the darkness",
+          "tier": 3
+        },
+        {
+          "q": "Which lines contain SIMILES? (select all)",
+          "x": "The lighthouse is a patient eye、Like soft knocks on a wooden door",
+          "r": "Like tired birds that seek their nest、Like soft knocks on a wooden door",
+          "tier": 3
+        },
+        {
+          "q": "Which poetic tools appear in this poem? (select all)",
+          "x": "metaphor、simile、personification",
+          "r": "simile、metaphor、personification、rhyme",
+          "tier": 3
+        },
+        {
+          "q": "Which statements about the poem are TRUE? (select all)",
+          "x": "The poem ends at sunrise — morning light appears.、The lighthouse beam moves left and right.、The poem describes a violent storm.、The boats are compared to tired birds.",
+          "r": "The poem is set at night.、The boats are compared to tired birds.、The lighthouse beam moves left and right.、The poem ends at sunrise — morning light appears.",
+          "tier": 3
+        },
+        {
+          "q": "Which pairs of words RHYME in this poem? (select all)",
+          "x": "light / night",
+          "r": "tune / moon、shore / door、light / night、eye / by",
+          "tier": 3
         }
       ]
     },
@@ -540,7 +570,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 30721,
+      "xp": 30886,
       "diag": {
         "chinese": {
           "score": 14,
@@ -682,7 +712,8 @@
         "MA26",
         "ZH27",
         "ZH25",
-        "SC13"
+        "SC13",
+        "EN24"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -780,7 +811,8 @@
         "MA26": "15/15",
         "ZH27": "15/15",
         "ZH25": "15/15",
-        "SC13": "16/16"
+        "SC13": "16/16",
+        "EN24": "16/16"
       },
       "ziDaysDone": [
         1,
@@ -1169,12 +1201,47 @@
           "x": "scary and stormy",
           "r": "calm and peaceful",
           "tier": 3
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "'Morning light unties the ribbons of the night' most likely means —",
+          "x": "someone forgot their ribbons",
+          "r": "dawn slowly ends the darkness",
+          "tier": 3
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "Which lines contain SIMILES? (select all)",
+          "x": "The lighthouse is a patient eye、Like soft knocks on a wooden door",
+          "r": "Like tired birds that seek their nest、Like soft knocks on a wooden door",
+          "tier": 3
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "Which poetic tools appear in this poem? (select all)",
+          "x": "metaphor、simile、personification",
+          "r": "simile、metaphor、personification、rhyme",
+          "tier": 3
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "Which statements about the poem are TRUE? (select all)",
+          "x": "The poem ends at sunrise — morning light appears.、The lighthouse beam moves left and right.、The poem describes a violent storm.、The boats are compared to tired birds.",
+          "r": "The poem is set at night.、The boats are compared to tired birds.、The lighthouse beam moves left and right.、The poem ends at sunrise — morning light appears.",
+          "tier": 3
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "Which pairs of words RHYME in this poem? (select all)",
+          "x": "light / night",
+          "r": "tune / moon、shore / door、light / night、eye / by",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T01:49:35.295Z",
+    "updatedAt": "2026-07-22T01:51:08.421Z",
     "updatedBy": "study"
   }
 }
