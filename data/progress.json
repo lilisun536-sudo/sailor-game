@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:19:04.918Z",
-    "xp": 32351,
+    "syncedAt": "2026-07-22T06:20:47.951Z",
+    "xp": 32423,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -836,6 +836,30 @@
           "x": "2",
           "r": "4",
           "tier": 3
+        },
+        {
+          "q": "A box is 4 by 4 by 7. What is its VOLUME?",
+          "x": "1",
+          "r": "112",
+          "tier": 3
+        },
+        {
+          "q": "Solve: 2(x + 3) = 14. x = ?",
+          "x": "7",
+          "r": "4",
+          "tier": 3
+        },
+        {
+          "q": "Solve: 3(x − 2) = 15. x = ?",
+          "x": "/",
+          "r": "7",
+          "tier": 3
+        },
+        {
+          "q": "Kai buys 3 T-shirts at $12 each and pays with $50. How much CHANGE does he get?",
+          "x": "7",
+          "r": "14",
+          "tier": 3
         }
       ]
     },
@@ -885,12 +909,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 0,
+    "boxRemaining": 1,
     "writing": {},
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 32351,
+      "xp": 32423,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1185,7 +1209,7 @@
         "放:1",
         "拿:1"
       ],
-      "boxRemaining": 0,
+      "boxRemaining": 1,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1902,12 +1926,40 @@
           "x": "2",
           "r": "4",
           "tier": 3
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "A box is 4 by 4 by 7. What is its VOLUME?",
+          "x": "1",
+          "r": "112",
+          "tier": 3
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "Solve: 2(x + 3) = 14. x = ?",
+          "x": "7",
+          "r": "4",
+          "tier": 3
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "Solve: 3(x − 2) = 15. x = ?",
+          "x": "/",
+          "r": "7",
+          "tier": 3
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "Kai buys 3 T-shirts at $12 each and pays with $50. How much CHANGE does he get?",
+          "x": "7",
+          "r": "14",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:19:04.918Z",
+    "updatedAt": "2026-07-22T06:20:47.951Z",
     "updatedBy": "study"
   }
 }
