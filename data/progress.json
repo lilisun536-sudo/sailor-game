@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:17:34.866Z",
-    "xp": 32152,
+    "syncedAt": "2026-07-22T06:19:04.918Z",
+    "xp": 32351,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -11,7 +11,7 @@
       "color": "#d4a01a"
     },
     "coverage": {
-      "done": 9,
+      "done": 10,
       "total": 17
     },
     "units": [
@@ -87,9 +87,9 @@
         "title": "Ratios, Rates & Working Backwards",
         "en": "比与比率·逆向求整体",
         "icon": "🧮",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "15/15",
+        "ratio": 1,
+        "status": "mastered",
         "total": 15
       },
       {
@@ -804,6 +804,38 @@
           "x": "0.75、9/12、6/8",
           "r": "75%、0.75、6/8、9/12",
           "tier": 3
+        },
+        {
+          "q": "A recipe uses flour and sugar in the ratio 4:1. Which statements are TRUE? (select all)",
+          "x": "12 cups flour needs 3 cups sugar",
+          "r": "8 cups flour needs 2 cups sugar、flour is 4 times the sugar、12 cups flour needs 3 cups sugar",
+          "tier": 3
+        }
+      ],
+      "Geometry IV & Multi-step Problems": [
+        {
+          "q": "A parallelogram has base 8 and height 5. What is its AREA?",
+          "x": "1",
+          "r": "40",
+          "tier": 2
+        },
+        {
+          "q": "An L-shaped deck is a 10 by 6 rectangle with a 4 by 2 corner cut out. What is its AREA?",
+          "x": "8",
+          "r": "52",
+          "tier": 3
+        },
+        {
+          "q": "A triangle has base 12 and height 5. What is its AREA?",
+          "x": "8",
+          "r": "30",
+          "tier": 3
+        },
+        {
+          "q": "A box has volume 60. Its length is 5 and width is 3. What is its HEIGHT?",
+          "x": "2",
+          "r": "4",
+          "tier": 3
         }
       ]
     },
@@ -853,12 +885,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 2,
+    "boxRemaining": 0,
     "writing": {},
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 32152,
+      "xp": 32351,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1004,7 +1036,8 @@
         "EN24",
         "FR13",
         "ZH26",
-        "ZH28"
+        "ZH28",
+        "MA27"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -1106,7 +1139,8 @@
         "EN24": "16/16",
         "FR13": "15/15",
         "ZH26": "15/15",
-        "ZH28": "15/15"
+        "ZH28": "15/15",
+        "MA27": "15/15"
       },
       "ziDaysDone": [
         1,
@@ -1151,7 +1185,7 @@
         "放:1",
         "拿:1"
       ],
-      "boxRemaining": 2,
+      "boxRemaining": 0,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1833,12 +1867,47 @@
           "x": "0.75、9/12、6/8",
           "r": "75%、0.75、6/8、9/12",
           "tier": 3
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "A recipe uses flour and sugar in the ratio 4:1. Which statements are TRUE? (select all)",
+          "x": "12 cups flour needs 3 cups sugar",
+          "r": "8 cups flour needs 2 cups sugar、flour is 4 times the sugar、12 cups flour needs 3 cups sugar",
+          "tier": 3
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "A parallelogram has base 8 and height 5. What is its AREA?",
+          "x": "1",
+          "r": "40",
+          "tier": 2
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "An L-shaped deck is a 10 by 6 rectangle with a 4 by 2 corner cut out. What is its AREA?",
+          "x": "8",
+          "r": "52",
+          "tier": 3
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "A triangle has base 12 and height 5. What is its AREA?",
+          "x": "8",
+          "r": "30",
+          "tier": 3
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "A box has volume 60. Its length is 5 and width is 3. What is its HEIGHT?",
+          "x": "2",
+          "r": "4",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:17:34.866Z",
+    "updatedAt": "2026-07-22T06:19:04.918Z",
     "updatedBy": "study"
   }
 }
