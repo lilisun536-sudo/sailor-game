@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:32:41.008Z",
-    "xp": 33005,
+    "syncedAt": "2026-07-22T06:34:40.297Z",
+    "xp": 33029,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -982,12 +982,22 @@
         "unit": "Writing Studio VI: Paragraphs",
         "q": "✍️ Opinion paragraph (English only). Topic: Why reading is important.\nBuild a hamburger:\n1) Topic sentence.\n2)–4) THREE reasons (one per sentence).\n5) Closing sentence.\nWord bank: learn, words, imagination, stories, brain, grow.\nRule: every sentence must be about reading.",
         "text": "I think reading because i things out.I hope you are also嗯嗯贷款开这个玩笑，你怎么And可好very粉快点做，让你做作业就是不会，会做的就做。啊，可以，对。How many formative why?"
+      },
+      "EN27#2": {
+        "unit": "Writing Studio VI: Paragraphs",
+        "q": "✍️ Narrative paragraph (English only). Topic: The night the lights went out.\nWrite 5 sentences in time order about one evening when the electricity stopped.\nStart with a topic sentence, then what happened FIRST, NEXT, THEN, and how it ENDED.\nWord bank: dark, candle, quiet, flashlight, suddenly, finally.\nRule: stay in the same evening — no jumping to other days.",
+        "text": "One day the electricity one out.嗯And then entually the people side that house got candles sh.是你Someone wearing a white blanket rooutIt looks like a co.It was creepy and scared everyone.So i quickly fixsurgeand so it's only caning they had their back on."
+      },
+      "EN27#3": {
+        "unit": "Writing Studio VI: Paragraphs",
+        "q": "✍️ Informational paragraph (English only). Topic: How an iceberg is born.\nExplain in your OWN words (do not copy the reading):\n1) Topic sentence.\n2)–4) Three steps or facts (glacier → breaking off → floating and hiding most of its size).\n5) Closing sentence.\nWord bank: glacier, breaks, floats, hidden, fresh, ocean.\nRule: every sentence must be about icebergs.",
+        "text": "First, the iceberg was snow floating on the ocean.And it think and it starting getting more by laer after weeks, it turns into a snow if it the snow high of frock.And eventually more snow will go on it and of form a mountain like.White icebergSometimes it have some stnot like other eberg some are like icy, and some are not icy.And even some of them are stony."
       }
     },
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 33005,
+      "xp": 33029,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1287,7 +1297,7 @@
         "拿:1"
       ],
       "boxRemaining": 0,
-      "writingCount": 2,
+      "writingCount": 4,
       "writing": {
         "EN27#0": {
           "unit": "Writing Studio VI: Paragraphs",
@@ -1298,6 +1308,16 @@
           "unit": "Writing Studio VI: Paragraphs",
           "q": "✍️ Opinion paragraph (English only). Topic: Why reading is important.\nBuild a hamburger:\n1) Topic sentence.\n2)–4) THREE reasons (one per sentence).\n5) Closing sentence.\nWord bank: learn, words, imagination, stories, brain, grow.\nRule: every sentence must be about reading.",
           "text": "I think reading because i things out.I hope you are also嗯嗯贷款开这个玩笑，你怎么And可好very粉快点做，让你做作业就是不会，会做的就做。啊，可以，对。How many formative why?"
+        },
+        "EN27#2": {
+          "unit": "Writing Studio VI: Paragraphs",
+          "q": "✍️ Narrative paragraph (English only). Topic: The night the lights went out.\nWrite 5 sentences in time order about one evening when the electricity stopped.\nStart with a topic sentence, then what happened FIRST, NEXT, THEN, and how it ENDED.\nWord bank: dark, candle, quiet, flashlight, suddenly, finally.\nRule: stay in the same evening — no jumping to other days.",
+          "text": "One day the electricity one out.嗯And then entually the people side that house got candles sh.是你Someone wearing a white blanket rooutIt looks like a co.It was creepy and scared everyone.So i quickly fixsurgeand so it's only caning they had their back on."
+        },
+        "EN27#3": {
+          "unit": "Writing Studio VI: Paragraphs",
+          "q": "✍️ Informational paragraph (English only). Topic: How an iceberg is born.\nExplain in your OWN words (do not copy the reading):\n1) Topic sentence.\n2)–4) Three steps or facts (glacier → breaking off → floating and hiding most of its size).\n5) Closing sentence.\nWord bank: glacier, breaks, floats, hidden, fresh, ocean.\nRule: every sentence must be about icebergs.",
+          "text": "First, the iceberg was snow floating on the ocean.And it think and it starting getting more by laer after weeks, it turns into a snow if it the snow high of frock.And eventually more snow will go on it and of form a mountain like.White icebergSometimes it have some stnot like other eberg some are like icy, and some are not icy.And even some of them are stony."
         }
       },
       "mistakes": [
@@ -2117,7 +2137,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:32:41.008Z",
+    "updatedAt": "2026-07-22T06:34:40.297Z",
     "updatedBy": "study"
   }
 }
