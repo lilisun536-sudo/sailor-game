@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T01:36:48.300Z",
-    "xp": 29175,
+    "syncedAt": "2026-07-22T01:38:32.155Z",
+    "xp": 29249,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -266,16 +266,28 @@
           "x": "6",
           "r": "-5",
           "tier": 3
+        },
+        {
+          "q": "−2 − 3 = ?",
+          "x": "1",
+          "r": "-5",
+          "tier": 3
+        },
+        {
+          "q": "0 − 7 = ?",
+          "x": "8",
+          "r": "-7",
+          "tier": 2
         }
       ]
     },
     "reviewQueue": [],
-    "boxRemaining": 1,
+    "boxRemaining": 0,
     "writing": {},
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 29175,
+      "xp": 29249,
       "diag": {
         "chinese": {
           "score": 14,
@@ -540,7 +552,7 @@
       "ziWeak": [
         "及:1"
       ],
-      "boxRemaining": 1,
+      "boxRemaining": 0,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -613,12 +625,26 @@
           "x": "6",
           "r": "-5",
           "tier": 3
+        },
+        {
+          "u": "Integers & the Number Line",
+          "q": "−2 − 3 = ?",
+          "x": "1",
+          "r": "-5",
+          "tier": 3
+        },
+        {
+          "u": "Integers & the Number Line",
+          "q": "0 − 7 = ?",
+          "x": "8",
+          "r": "-7",
+          "tier": 2
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T01:36:48.300Z",
+    "updatedAt": "2026-07-22T01:38:32.155Z",
     "updatedBy": "study"
   }
 }
