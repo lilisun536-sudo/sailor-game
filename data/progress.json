@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:37:08.395Z",
-    "xp": 33091,
+    "syncedAt": "2026-07-22T06:44:14.712Z",
+    "xp": 33393,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -11,7 +11,7 @@
       "color": "#d4a01a"
     },
     "coverage": {
-      "done": 13,
+      "done": 14,
       "total": 17
     },
     "units": [
@@ -197,9 +197,9 @@
         "title": "Les nombres · Lecture IV",
         "en": "数字11-20·阅读：Théo 的野餐",
         "icon": "🥪",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "15/15",
+        "ratio": 1,
+        "status": "mastered",
         "total": 15
       }
     ],
@@ -923,6 +923,56 @@
           "r": "most of their size is hidden below the water、they drift into shipping routes、they are hard to see at night",
           "tier": 3
         }
+      ],
+      "Les nombres · Lecture IV": [
+        {
+          "q": "Who is telling the story, and how old is he?",
+          "x": "Théo, fifteen years old",
+          "r": "Théo, ten years old",
+          "tier": 1
+        },
+        {
+          "q": "When does the picnic happen?",
+          "x": "on Saturday",
+          "r": "on Sunday",
+          "tier": 1
+        },
+        {
+          "q": "How many are they at the picnic (counting Max)?",
+          "x": "six",
+          "r": "five",
+          "tier": 2
+        },
+        {
+          "q": "'Max ne mange pas de sandwich.' means —",
+          "x": "Max eats a big sandwich.",
+          "r": "Max does not eat a sandwich.",
+          "tier": 3
+        },
+        {
+          "q": "What does Théo do AFTER the picnic?",
+          "x": "swims in a lake",
+          "r": "plays football with Léa",
+          "tier": 2
+        },
+        {
+          "q": "'avec' means —",
+          "x": "under",
+          "r": "with",
+          "tier": 1
+        },
+        {
+          "q": "Which statements about the story are TRUE? (select all)",
+          "x": "The picnic is at the park.",
+          "r": "The picnic is at the park.、Léa is fifteen.、They drink lemonade.、Théo plays football after the picnic.",
+          "tier": 3
+        },
+        {
+          "q": "Which number pairs are CORRECT? (select all)",
+          "x": "quatorze = 40",
+          "r": "treize = 13、seize = 16、dix-neuf = 19",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -1002,7 +1052,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 33091,
+      "xp": 33393,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1152,7 +1202,8 @@
         "MA27",
         "MA28",
         "EN25",
-        "EN27"
+        "EN27",
+        "FR14"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -1258,7 +1309,8 @@
         "MA27": "15/15",
         "MA28": "15/15",
         "EN25": "16/16",
-        "EN27": "5/5"
+        "EN27": "5/5",
+        "FR14": "15/15"
       },
       "ziDaysDone": [
         1,
@@ -2144,12 +2196,68 @@
           "x": "they drift into shipping routes、they attack ships on purpose、most of their size is hidden below the water",
           "r": "most of their size is hidden below the water、they drift into shipping routes、they are hard to see at night",
           "tier": 3
+        },
+        {
+          "u": "Les nombres · Lecture IV",
+          "q": "Who is telling the story, and how old is he?",
+          "x": "Théo, fifteen years old",
+          "r": "Théo, ten years old",
+          "tier": 1
+        },
+        {
+          "u": "Les nombres · Lecture IV",
+          "q": "When does the picnic happen?",
+          "x": "on Saturday",
+          "r": "on Sunday",
+          "tier": 1
+        },
+        {
+          "u": "Les nombres · Lecture IV",
+          "q": "How many are they at the picnic (counting Max)?",
+          "x": "six",
+          "r": "five",
+          "tier": 2
+        },
+        {
+          "u": "Les nombres · Lecture IV",
+          "q": "'Max ne mange pas de sandwich.' means —",
+          "x": "Max eats a big sandwich.",
+          "r": "Max does not eat a sandwich.",
+          "tier": 3
+        },
+        {
+          "u": "Les nombres · Lecture IV",
+          "q": "What does Théo do AFTER the picnic?",
+          "x": "swims in a lake",
+          "r": "plays football with Léa",
+          "tier": 2
+        },
+        {
+          "u": "Les nombres · Lecture IV",
+          "q": "'avec' means —",
+          "x": "under",
+          "r": "with",
+          "tier": 1
+        },
+        {
+          "u": "Les nombres · Lecture IV",
+          "q": "Which statements about the story are TRUE? (select all)",
+          "x": "The picnic is at the park.",
+          "r": "The picnic is at the park.、Léa is fifteen.、They drink lemonade.、Théo plays football after the picnic.",
+          "tier": 3
+        },
+        {
+          "u": "Les nombres · Lecture IV",
+          "q": "Which number pairs are CORRECT? (select all)",
+          "x": "quatorze = 40",
+          "r": "treize = 13、seize = 16、dix-neuf = 19",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:37:08.395Z",
+    "updatedAt": "2026-07-22T06:44:14.712Z",
     "updatedBy": "study"
   }
 }
