@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:34:40.297Z",
-    "xp": 33029,
+    "syncedAt": "2026-07-22T06:37:08.395Z",
+    "xp": 33091,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -11,7 +11,7 @@
       "color": "#d4a01a"
     },
     "coverage": {
-      "done": 12,
+      "done": 13,
       "total": 17
     },
     "units": [
@@ -175,9 +175,9 @@
         "title": "Writing Studio VI: Paragraphs",
         "en": "汉堡段落写作",
         "icon": "🍔",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "5/5",
+        "ratio": 1,
+        "status": "mastered",
         "total": 5
       },
       {
@@ -992,12 +992,17 @@
         "unit": "Writing Studio VI: Paragraphs",
         "q": "✍️ Informational paragraph (English only). Topic: How an iceberg is born.\nExplain in your OWN words (do not copy the reading):\n1) Topic sentence.\n2)–4) Three steps or facts (glacier → breaking off → floating and hiding most of its size).\n5) Closing sentence.\nWord bank: glacier, breaks, floats, hidden, fresh, ocean.\nRule: every sentence must be about icebergs.",
         "text": "First, the iceberg was snow floating on the ocean.And it think and it starting getting more by laer after weeks, it turns into a snow if it the snow high of frock.And eventually more snow will go on it and of form a mountain like.White icebergSometimes it have some stnot like other eberg some are like icy, and some are not icy.And even some of them are stony."
+      },
+      "EN27#4": {
+        "unit": "Writing Studio VI: Paragraphs",
+        "q": "✍️ Descriptive paragraph (English only). Topic: The harbour at night.\nWrite 5 sentences that paint the picture.\nInclude AT LEAST one simile (like / as ... as) and one personification (the harbour or waves doing a human action).\nWord bank: moon, waves, lighthouse, quiet, glow, whisper.\nRule: keep every sentence at the harbour, at night.",
+        "text": "嗯At the harbnight we can hear little water am.嗯上哇！It's kind of irtu.And there's also the bolike next going back to the deck.And the harb.Whtower cloclothe sground"
       }
     },
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 33029,
+      "xp": 33091,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1146,7 +1151,8 @@
         "ZH28",
         "MA27",
         "MA28",
-        "EN25"
+        "EN25",
+        "EN27"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -1251,7 +1257,8 @@
         "ZH28": "15/15",
         "MA27": "15/15",
         "MA28": "15/15",
-        "EN25": "16/16"
+        "EN25": "16/16",
+        "EN27": "5/5"
       },
       "ziDaysDone": [
         1,
@@ -1297,7 +1304,7 @@
         "拿:1"
       ],
       "boxRemaining": 0,
-      "writingCount": 4,
+      "writingCount": 5,
       "writing": {
         "EN27#0": {
           "unit": "Writing Studio VI: Paragraphs",
@@ -1318,6 +1325,11 @@
           "unit": "Writing Studio VI: Paragraphs",
           "q": "✍️ Informational paragraph (English only). Topic: How an iceberg is born.\nExplain in your OWN words (do not copy the reading):\n1) Topic sentence.\n2)–4) Three steps or facts (glacier → breaking off → floating and hiding most of its size).\n5) Closing sentence.\nWord bank: glacier, breaks, floats, hidden, fresh, ocean.\nRule: every sentence must be about icebergs.",
           "text": "First, the iceberg was snow floating on the ocean.And it think and it starting getting more by laer after weeks, it turns into a snow if it the snow high of frock.And eventually more snow will go on it and of form a mountain like.White icebergSometimes it have some stnot like other eberg some are like icy, and some are not icy.And even some of them are stony."
+        },
+        "EN27#4": {
+          "unit": "Writing Studio VI: Paragraphs",
+          "q": "✍️ Descriptive paragraph (English only). Topic: The harbour at night.\nWrite 5 sentences that paint the picture.\nInclude AT LEAST one simile (like / as ... as) and one personification (the harbour or waves doing a human action).\nWord bank: moon, waves, lighthouse, quiet, glow, whisper.\nRule: keep every sentence at the harbour, at night.",
+          "text": "嗯At the harbnight we can hear little water am.嗯上哇！It's kind of irtu.And there's also the bolike next going back to the deck.And the harb.Whtower cloclothe sground"
         }
       },
       "mistakes": [
@@ -2137,7 +2149,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:34:40.297Z",
+    "updatedAt": "2026-07-22T06:37:08.395Z",
     "updatedBy": "study"
   }
 }
