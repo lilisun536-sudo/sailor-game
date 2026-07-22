@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:27:15.582Z",
-    "xp": 32981,
+    "syncedAt": "2026-07-22T06:31:03.898Z",
+    "xp": 32993,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -972,11 +972,17 @@
       }
     ],
     "boxRemaining": 0,
-    "writing": {},
+    "writing": {
+      "EN27#0": {
+        "unit": "Writing Studio VI: Paragraphs",
+        "q": "✍️ Opinion paragraph (English only). Topic: My favourite season.\nBuild a hamburger:\n1) Topic sentence: 'My favourite season is ____.'\n2)–4) THREE detail sentences (reasons or examples).\n5) Closing sentence: wrap it up in new words.\nWord bank: weather, holiday, outside, family, favourite, because.\nRule: every sentence must be about that one season.",
+        "text": "My name is sa.My favorite season. Is a summer.I like becauseNow outside i'll be better inside and cold at same time a good temperature.叫什么？"
+      }
+    },
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 32981,
+      "xp": 32993,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1276,8 +1282,14 @@
         "拿:1"
       ],
       "boxRemaining": 0,
-      "writingCount": 0,
-      "writing": {},
+      "writingCount": 1,
+      "writing": {
+        "EN27#0": {
+          "unit": "Writing Studio VI: Paragraphs",
+          "q": "✍️ Opinion paragraph (English only). Topic: My favourite season.\nBuild a hamburger:\n1) Topic sentence: 'My favourite season is ____.'\n2)–4) THREE detail sentences (reasons or examples).\n5) Closing sentence: wrap it up in new words.\nWord bank: weather, holiday, outside, family, favourite, because.\nRule: every sentence must be about that one season.",
+          "text": "My name is sa.My favorite season. Is a summer.I like becauseNow outside i'll be better inside and cold at same time a good temperature.叫什么？"
+        }
+      },
       "mistakes": [
         {
           "u": "Exponents & Order of Ops III",
@@ -2095,7 +2107,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:27:15.582Z",
+    "updatedAt": "2026-07-22T06:31:03.898Z",
     "updatedBy": "study"
   }
 }
