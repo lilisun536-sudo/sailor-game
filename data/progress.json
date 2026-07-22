@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:25:40.426Z",
-    "xp": 32854,
+    "syncedAt": "2026-07-22T06:27:15.582Z",
+    "xp": 32981,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -11,7 +11,7 @@
       "color": "#d4a01a"
     },
     "coverage": {
-      "done": 11,
+      "done": 12,
       "total": 17
     },
     "units": [
@@ -153,9 +153,9 @@
         "title": "Reading: Icebergs",
         "en": "说明文阅读·冰山",
         "icon": "🧊",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "16/16",
+        "ratio": 1,
+        "status": "mastered",
         "total": 16
       },
       {
@@ -916,6 +916,12 @@
           "x": "Currents can carry them for years.",
           "r": "They are born when ice breaks off glaciers.、Most of an iceberg hides underwater.、Currents can carry them for years.、Scientists warn ships about them today.",
           "tier": 3
+        },
+        {
+          "q": "Which are reasons icebergs can be DANGEROUS to ships? (select all)",
+          "x": "they drift into shipping routes、they attack ships on purpose、most of their size is hidden below the water",
+          "r": "most of their size is hidden below the water、they drift into shipping routes、they are hard to see at night",
+          "tier": 3
         }
       ]
     },
@@ -965,12 +971,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 1,
+    "boxRemaining": 0,
     "writing": {},
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 32854,
+      "xp": 32981,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1118,7 +1124,8 @@
         "ZH26",
         "ZH28",
         "MA27",
-        "MA28"
+        "MA28",
+        "EN25"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -1222,7 +1229,8 @@
         "ZH26": "15/15",
         "ZH28": "15/15",
         "MA27": "15/15",
-        "MA28": "15/15"
+        "MA28": "15/15",
+        "EN25": "16/16"
       },
       "ziDaysDone": [
         1,
@@ -1267,7 +1275,7 @@
         "放:1",
         "拿:1"
       ],
-      "boxRemaining": 1,
+      "boxRemaining": 0,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -2075,12 +2083,19 @@
           "x": "Currents can carry them for years.",
           "r": "They are born when ice breaks off glaciers.、Most of an iceberg hides underwater.、Currents can carry them for years.、Scientists warn ships about them today.",
           "tier": 3
+        },
+        {
+          "u": "Reading: Icebergs",
+          "q": "Which are reasons icebergs can be DANGEROUS to ships? (select all)",
+          "x": "they drift into shipping routes、they attack ships on purpose、most of their size is hidden below the water",
+          "r": "most of their size is hidden below the water、they drift into shipping routes、they are hard to see at night",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:25:40.426Z",
+    "updatedAt": "2026-07-22T06:27:15.582Z",
     "updatedBy": "study"
   }
 }
