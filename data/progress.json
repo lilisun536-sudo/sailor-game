@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:44:14.712Z",
-    "xp": 33393,
+    "syncedAt": "2026-07-22T06:46:08.057Z",
+    "xp": 33540,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -973,6 +973,50 @@
           "r": "treize = 13、seize = 16、dix-neuf = 19",
           "tier": 3
         }
+      ],
+      "Light & Sound": [
+        {
+          "q": "Light travels in —",
+          "x": "zigzags",
+          "r": "straight lines",
+          "tier": 1
+        },
+        {
+          "q": "A shadow forms because —",
+          "x": "the object glows",
+          "r": "light is blocked by an opaque object",
+          "tier": 2
+        },
+        {
+          "q": "A straw in a glass of water looks bent because of —",
+          "x": "shadows",
+          "r": "refraction",
+          "tier": 3
+        },
+        {
+          "q": "Which material is TRANSPARENT?",
+          "x": "aluminium foil",
+          "r": "clear glass",
+          "tier": 1
+        },
+        {
+          "q": "Frosted glass lets SOME light through but you cannot see clearly. It is —",
+          "x": "opaque",
+          "r": "translucent",
+          "tier": 2
+        },
+        {
+          "q": "Sound is caused by —",
+          "x": "light rays",
+          "r": "vibrations",
+          "tier": 1
+        },
+        {
+          "q": "Astronauts outside a spaceship cannot hear each other shout because —",
+          "x": "their helmets are too thick",
+          "r": "there is no air for sound to travel through",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -1052,7 +1096,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 33393,
+      "xp": 33540,
       "diag": {
         "chinese": {
           "score": 14,
@@ -2252,12 +2296,61 @@
           "x": "quatorze = 40",
           "r": "treize = 13、seize = 16、dix-neuf = 19",
           "tier": 3
+        },
+        {
+          "u": "Light & Sound",
+          "q": "Light travels in —",
+          "x": "zigzags",
+          "r": "straight lines",
+          "tier": 1
+        },
+        {
+          "u": "Light & Sound",
+          "q": "A shadow forms because —",
+          "x": "the object glows",
+          "r": "light is blocked by an opaque object",
+          "tier": 2
+        },
+        {
+          "u": "Light & Sound",
+          "q": "A straw in a glass of water looks bent because of —",
+          "x": "shadows",
+          "r": "refraction",
+          "tier": 3
+        },
+        {
+          "u": "Light & Sound",
+          "q": "Which material is TRANSPARENT?",
+          "x": "aluminium foil",
+          "r": "clear glass",
+          "tier": 1
+        },
+        {
+          "u": "Light & Sound",
+          "q": "Frosted glass lets SOME light through but you cannot see clearly. It is —",
+          "x": "opaque",
+          "r": "translucent",
+          "tier": 2
+        },
+        {
+          "u": "Light & Sound",
+          "q": "Sound is caused by —",
+          "x": "light rays",
+          "r": "vibrations",
+          "tier": 1
+        },
+        {
+          "u": "Light & Sound",
+          "q": "Astronauts outside a spaceship cannot hear each other shout because —",
+          "x": "their helmets are too thick",
+          "r": "there is no air for sound to travel through",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:44:14.712Z",
+    "updatedAt": "2026-07-22T06:46:08.057Z",
     "updatedBy": "study"
   }
 }
