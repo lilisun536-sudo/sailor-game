@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T01:38:32.155Z",
-    "xp": 29249,
+    "syncedAt": "2026-07-22T01:40:19.676Z",
+    "xp": 29570,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 1,
+      "done": 2,
       "total": 17
     },
     "units": [
@@ -76,9 +76,9 @@
         "title": "Integers & the Number Line",
         "en": "负数初步（G6 新内容）",
         "icon": "🌡️",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "15/15",
+        "ratio": 1,
+        "status": "mastered",
         "total": 15
       },
       {
@@ -278,6 +278,74 @@
           "x": "8",
           "r": "-7",
           "tier": 2
+        },
+        {
+          "q": "The temperature is −8°C. It rises 5°C. What is it now? (number only)",
+          "x": "6",
+          "r": "-3",
+          "tier": 3
+        },
+        {
+          "q": "A diver is at −12 m and goes DOWN 6 m more. Where is she? (number only)",
+          "x": "3",
+          "r": "-18",
+          "tier": 3
+        },
+        {
+          "q": "Order from LEAST to GREATEST: 2, −5, 0, −1",
+          "x": "−1, −5, 0, 2",
+          "r": "−5, −1, 0, 2",
+          "tier": 3
+        },
+        {
+          "q": "The opposite of −3 is —",
+          "x": "0",
+          "r": "3",
+          "tier": 2
+        },
+        {
+          "q": "Basement floor B2 in an elevator is best written as —",
+          "x": "0.2",
+          "r": "−2",
+          "tier": 1
+        },
+        {
+          "q": "Which numbers are LESS than 0? (select all)",
+          "x": "−1",
+          "r": "−1、−15、−0.5",
+          "tier": 3
+        },
+        {
+          "q": "Which comparisons are TRUE? (select all)",
+          "x": "−5 < −2、−3 > 1",
+          "r": "−5 < −2、0 > −9、−10 < −1",
+          "tier": 3
+        },
+        {
+          "q": "Which situations describe a NEGATIVE number? (select all)",
+          "x": "you earn 10 dollars、parking level B3、the temperature falls to 5 degrees below zero",
+          "r": "6 m below sea level、the temperature falls to 5 degrees below zero、parking level B3",
+          "tier": 3
+        }
+      ],
+      "长文阅读·蚂蚁的城市": [
+        {
+          "q": "蚁后在王国里负责——",
+          "x": "挖通道",
+          "r": "产卵",
+          "tier": 1
+        },
+        {
+          "q": "最忙的是哪种蚂蚁？它们不做下面哪件事？",
+          "x": "兵蚁；产卵",
+          "r": "工蚁；守在入口",
+          "tier": 3
+        },
+        {
+          "q": "文中说兵蚁「像门口的卫兵」，这是——",
+          "x": "下定义",
+          "r": "打比方",
+          "tier": 2
         }
       ]
     },
@@ -287,7 +355,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 29249,
+      "xp": 29570,
       "diag": {
         "chinese": {
           "score": 14,
@@ -425,7 +493,8 @@
         "EN22",
         "MA23",
         "MA24",
-        "MA25"
+        "MA25",
+        "MA26"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -519,7 +588,8 @@
         "EN22": "12/14",
         "MA23": "13/13",
         "MA24": "12/12",
-        "MA25": "15/15"
+        "MA25": "15/15",
+        "MA26": "15/15"
       },
       "ziDaysDone": [
         1,
@@ -639,12 +709,89 @@
           "x": "8",
           "r": "-7",
           "tier": 2
+        },
+        {
+          "u": "Integers & the Number Line",
+          "q": "The temperature is −8°C. It rises 5°C. What is it now? (number only)",
+          "x": "6",
+          "r": "-3",
+          "tier": 3
+        },
+        {
+          "u": "Integers & the Number Line",
+          "q": "A diver is at −12 m and goes DOWN 6 m more. Where is she? (number only)",
+          "x": "3",
+          "r": "-18",
+          "tier": 3
+        },
+        {
+          "u": "Integers & the Number Line",
+          "q": "Order from LEAST to GREATEST: 2, −5, 0, −1",
+          "x": "−1, −5, 0, 2",
+          "r": "−5, −1, 0, 2",
+          "tier": 3
+        },
+        {
+          "u": "Integers & the Number Line",
+          "q": "The opposite of −3 is —",
+          "x": "0",
+          "r": "3",
+          "tier": 2
+        },
+        {
+          "u": "Integers & the Number Line",
+          "q": "Basement floor B2 in an elevator is best written as —",
+          "x": "0.2",
+          "r": "−2",
+          "tier": 1
+        },
+        {
+          "u": "Integers & the Number Line",
+          "q": "Which numbers are LESS than 0? (select all)",
+          "x": "−1",
+          "r": "−1、−15、−0.5",
+          "tier": 3
+        },
+        {
+          "u": "Integers & the Number Line",
+          "q": "Which comparisons are TRUE? (select all)",
+          "x": "−5 < −2、−3 > 1",
+          "r": "−5 < −2、0 > −9、−10 < −1",
+          "tier": 3
+        },
+        {
+          "u": "Integers & the Number Line",
+          "q": "Which situations describe a NEGATIVE number? (select all)",
+          "x": "you earn 10 dollars、parking level B3、the temperature falls to 5 degrees below zero",
+          "r": "6 m below sea level、the temperature falls to 5 degrees below zero、parking level B3",
+          "tier": 3
+        },
+        {
+          "u": "长文阅读·蚂蚁的城市",
+          "q": "蚁后在王国里负责——",
+          "x": "挖通道",
+          "r": "产卵",
+          "tier": 1
+        },
+        {
+          "u": "长文阅读·蚂蚁的城市",
+          "q": "最忙的是哪种蚂蚁？它们不做下面哪件事？",
+          "x": "兵蚁；产卵",
+          "r": "工蚁；守在入口",
+          "tier": 3
+        },
+        {
+          "u": "长文阅读·蚂蚁的城市",
+          "q": "文中说兵蚁「像门口的卫兵」，这是——",
+          "x": "下定义",
+          "r": "打比方",
+          "tier": 2
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T01:38:32.155Z",
+    "updatedAt": "2026-07-22T01:40:19.676Z",
     "updatedBy": "study"
   }
 }
