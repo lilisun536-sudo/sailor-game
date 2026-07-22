@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:23:53.580Z",
-    "xp": 32717,
+    "syncedAt": "2026-07-22T06:25:40.426Z",
+    "xp": 32854,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -898,6 +898,24 @@
           "x": "melting",
           "r": "calving",
           "tier": 2
+        },
+        {
+          "q": "Which words from the text SIGNAL cause and effect? (select all)",
+          "x": "cold、because、that is why",
+          "r": "because、that is why",
+          "tier": 3
+        },
+        {
+          "q": "According to the text, what do scientists USE to track icebergs today? (select all)",
+          "x": "underwater trains",
+          "r": "satellites、patrol planes",
+          "tier": 3
+        },
+        {
+          "q": "Which statements are TRUE about icebergs? (select all)",
+          "x": "Currents can carry them for years.",
+          "r": "They are born when ice breaks off glaciers.、Most of an iceberg hides underwater.、Currents can carry them for years.、Scientists warn ships about them today.",
+          "tier": 3
         }
       ]
     },
@@ -947,12 +965,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 0,
+    "boxRemaining": 1,
     "writing": {},
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 32717,
+      "xp": 32854,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1249,7 +1267,7 @@
         "放:1",
         "拿:1"
       ],
-      "boxRemaining": 0,
+      "boxRemaining": 1,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -2036,12 +2054,33 @@
           "x": "melting",
           "r": "calving",
           "tier": 2
+        },
+        {
+          "u": "Reading: Icebergs",
+          "q": "Which words from the text SIGNAL cause and effect? (select all)",
+          "x": "cold、because、that is why",
+          "r": "because、that is why",
+          "tier": 3
+        },
+        {
+          "u": "Reading: Icebergs",
+          "q": "According to the text, what do scientists USE to track icebergs today? (select all)",
+          "x": "underwater trains",
+          "r": "satellites、patrol planes",
+          "tier": 3
+        },
+        {
+          "u": "Reading: Icebergs",
+          "q": "Which statements are TRUE about icebergs? (select all)",
+          "x": "Currents can carry them for years.",
+          "r": "They are born when ice breaks off glaciers.、Most of an iceberg hides underwater.、Currents can carry them for years.、Scientists warn ships about them today.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:23:53.580Z",
+    "updatedAt": "2026-07-22T06:25:40.426Z",
     "updatedBy": "study"
   }
 }
