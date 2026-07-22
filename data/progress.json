@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T01:45:48.329Z",
-    "xp": 30295,
+    "syncedAt": "2026-07-22T01:47:23.079Z",
+    "xp": 30525,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 4,
+      "done": 5,
       "total": 17
     },
     "units": [
@@ -109,9 +109,9 @@
         "title": "Ecosystems & Food Chains",
         "en": "生态系统与食物链",
         "icon": "🦊",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "16/16",
+        "ratio": 1,
+        "status": "mastered",
         "total": 16
       },
       {
@@ -451,6 +451,32 @@
           "r": "致",
           "tier": 3
         }
+      ],
+      "Ecosystems & Food Chains": [
+        {
+          "q": "Which chain is in the CORRECT order?",
+          "x": "bird → hawk → grass → grasshopper",
+          "r": "grass → grasshopper → bird → hawk",
+          "tier": 3
+        },
+        {
+          "q": "Which of these are PRODUCERS? (select all)",
+          "x": "grass",
+          "r": "seaweed、grass、an oak tree",
+          "tier": 3
+        },
+        {
+          "q": "If the small fish in a lake all died, which effects are LIKELY? (select all)",
+          "x": "birds that eat small fish would leave or go hungry",
+          "r": "big fish would have less to eat、birds that eat small fish would leave or go hungry、the tiny water plants they ate might grow more",
+          "tier": 3
+        },
+        {
+          "q": "Which statements about ecosystems are TRUE? (select all)",
+          "x": "Arrows in a chain point at the food.",
+          "r": "Energy enters most ecosystems as sunlight.、Decomposers return nutrients to the soil.、A food web is many chains connected.",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -476,7 +502,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 30295,
+      "xp": 30525,
       "diag": {
         "chinese": {
           "score": 14,
@@ -617,7 +643,8 @@
         "MA25",
         "MA26",
         "ZH27",
-        "ZH25"
+        "ZH25",
+        "SC13"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -714,7 +741,8 @@
         "MA25": "15/15",
         "MA26": "15/15",
         "ZH27": "15/15",
-        "ZH25": "15/15"
+        "ZH25": "15/15",
+        "SC13": "16/16"
       },
       "ziDaysDone": [
         1,
@@ -1033,12 +1061,40 @@
           "x": "至",
           "r": "致",
           "tier": 3
+        },
+        {
+          "u": "Ecosystems & Food Chains",
+          "q": "Which chain is in the CORRECT order?",
+          "x": "bird → hawk → grass → grasshopper",
+          "r": "grass → grasshopper → bird → hawk",
+          "tier": 3
+        },
+        {
+          "u": "Ecosystems & Food Chains",
+          "q": "Which of these are PRODUCERS? (select all)",
+          "x": "grass",
+          "r": "seaweed、grass、an oak tree",
+          "tier": 3
+        },
+        {
+          "u": "Ecosystems & Food Chains",
+          "q": "If the small fish in a lake all died, which effects are LIKELY? (select all)",
+          "x": "birds that eat small fish would leave or go hungry",
+          "r": "big fish would have less to eat、birds that eat small fish would leave or go hungry、the tiny water plants they ate might grow more",
+          "tier": 3
+        },
+        {
+          "u": "Ecosystems & Food Chains",
+          "q": "Which statements about ecosystems are TRUE? (select all)",
+          "x": "Arrows in a chain point at the food.",
+          "r": "Energy enters most ecosystems as sunlight.、Decomposers return nutrients to the soil.、A food web is many chains connected.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T01:45:48.329Z",
+    "updatedAt": "2026-07-22T01:47:23.079Z",
     "updatedBy": "study"
   }
 }
