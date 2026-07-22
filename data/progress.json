@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:20:47.951Z",
-    "xp": 32423,
+    "syncedAt": "2026-07-22T06:22:22.964Z",
+    "xp": 32540,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -860,6 +860,24 @@
           "x": "7",
           "r": "14",
           "tier": 3
+        },
+        {
+          "q": "To find the area of an L-shape, the BEST first move is —",
+          "x": "multiply all the numbers you see",
+          "r": "split it into rectangles",
+          "tier": 2
+        },
+        {
+          "q": "Which situation needs VOLUME?",
+          "x": "how much rope goes around a field",
+          "r": "how much water fills an aquarium",
+          "tier": 2
+        },
+        {
+          "q": "Which units measure AREA? (select all)",
+          "x": "m²、cm²、cm³",
+          "r": "cm²、m²、km²",
+          "tier": 3
         }
       ]
     },
@@ -909,12 +927,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 1,
+    "boxRemaining": 0,
     "writing": {},
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 32423,
+      "xp": 32540,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1209,7 +1227,7 @@
         "放:1",
         "拿:1"
       ],
-      "boxRemaining": 1,
+      "boxRemaining": 0,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1954,12 +1972,40 @@
           "x": "7",
           "r": "14",
           "tier": 3
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "To find the area of an L-shape, the BEST first move is —",
+          "x": "multiply all the numbers you see",
+          "r": "split it into rectangles",
+          "tier": 2
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "Which situation needs VOLUME?",
+          "x": "how much rope goes around a field",
+          "r": "how much water fills an aquarium",
+          "tier": 2
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "Which units measure AREA? (select all)",
+          "x": "m²、cm²、cm³",
+          "r": "cm²、m²、km²",
+          "tier": 3
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "Which statements are TRUE? (select all)",
+          "x": "An L-shape's area can be found by subtracting the notch、Parallelogram area = base × height、Volume of a box = l × w × h",
+          "r": "Triangle area = base × height ÷ 2、Parallelogram area = base × height、Volume of a box = l × w × h、An L-shape's area can be found by subtracting the notch",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:20:47.951Z",
+    "updatedAt": "2026-07-22T06:22:22.964Z",
     "updatedBy": "study"
   }
 }
