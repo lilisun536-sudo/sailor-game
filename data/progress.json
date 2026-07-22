@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-11T09:20:21.004Z",
-    "xp": 28787,
+    "syncedAt": "2026-07-22T01:33:04.259Z",
+    "xp": 28873,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -203,14 +203,29 @@
         "total": 15
       }
     ],
-    "mistakesByUnit": {},
+    "mistakesByUnit": {
+      "Exponents & Order of Ops III": [
+        {
+          "q": "3² + 4² = ?",
+          "x": "17",
+          "r": "25",
+          "tier": 3
+        },
+        {
+          "q": "2 × 3² = ?",
+          "x": "12",
+          "r": "18",
+          "tier": 3
+        }
+      ]
+    },
     "reviewQueue": [],
     "boxRemaining": 0,
     "writing": {},
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 28787,
+      "xp": 28873,
       "diag": {
         "chinese": {
           "score": 14,
@@ -476,11 +491,26 @@
       "boxRemaining": 0,
       "writingCount": 0,
       "writing": {},
-      "mistakes": []
+      "mistakes": [
+        {
+          "u": "Exponents & Order of Ops III",
+          "q": "3² + 4² = ?",
+          "x": "17",
+          "r": "25",
+          "tier": 3
+        },
+        {
+          "u": "Exponents & Order of Ops III",
+          "q": "2 × 3² = ?",
+          "x": "12",
+          "r": "18",
+          "tier": 3
+        }
+      ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-11T09:20:21.004Z",
+    "updatedAt": "2026-07-22T01:33:04.259Z",
     "updatedBy": "study"
   }
 }
