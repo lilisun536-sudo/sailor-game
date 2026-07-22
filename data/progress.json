@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:49:13.580Z",
-    "xp": 34092,
+    "syncedAt": "2026-07-22T06:53:18.418Z",
+    "xp": 34453,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -11,7 +11,7 @@
       "color": "#d4a01a"
     },
     "coverage": {
-      "done": 16,
+      "done": 17,
       "total": 17
     },
     "units": [
@@ -164,9 +164,9 @@
         "title": "Grammar & Conventions V",
         "en": "撇号·引号·段落改错",
         "icon": "🖊️",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "15/15",
+        "ratio": 1,
+        "status": "mastered",
         "total": 15
       },
       {
@@ -1127,6 +1127,86 @@
           "r": "Never touch switches or plugs with wet hands.、Never poke metal objects into a power outlet.、Tell an adult if a wire looks broken or burnt.",
           "tier": 3
         }
+      ],
+      "Grammar & Conventions V": [
+        {
+          "q": "Which sentence uses the apostrophe CORRECTLY?",
+          "x": "The dog tail's wagged.",
+          "r": "The dog's tail wagged.",
+          "tier": 2
+        },
+        {
+          "q": "Which shows something belonging to MANY sailors?",
+          "x": "the sailor boats'",
+          "r": "the sailors' boat",
+          "tier": 3
+        },
+        {
+          "q": "'It's going to rain.' Here 'it's' means —",
+          "x": "belonging to it",
+          "r": "it is",
+          "tier": 2
+        },
+        {
+          "q": "Choose the correct sentence.",
+          "x": "The ship lost its' anchor.",
+          "r": "The ship lost its anchor.",
+          "tier": 3
+        },
+        {
+          "q": "Which sentence is punctuated CORRECTLY?",
+          "x": "\"Let's sail at dawn.\" said, the captain",
+          "r": "\"Let's sail at dawn,\" said the captain.",
+          "tier": 3
+        },
+        {
+          "q": "Which word is a CONTRACTION (a shortened form)?",
+          "x": "captains",
+          "r": "don't",
+          "tier": 1
+        },
+        {
+          "q": "'The childrens toys were everywhere.' The correct fix is —",
+          "x": "childrens",
+          "r": "children's",
+          "tier": 3
+        },
+        {
+          "q": "Which sentence has NO errors?",
+          "x": "After the storm the crew, checked the ships sails.",
+          "r": "After the storm, the crew checked the ship's sails.",
+          "tier": 3
+        },
+        {
+          "q": "Which is a FRAGMENT?",
+          "x": "We waited on the dock.",
+          "r": "Waiting for the tide to turn.",
+          "tier": 2
+        },
+        {
+          "q": "Choose the correct end for: Kai asked, ___",
+          "x": "Is the tide high?",
+          "r": "\"Is the tide high?\"",
+          "tier": 3
+        },
+        {
+          "q": "Which sentences use apostrophes CORRECTLY? (select all)",
+          "x": "Don't touch the wet paint.",
+          "r": "The captain's map is old.、Its sail is torn.、Don't touch the wet paint.、The birds' nest sat in the pine.",
+          "tier": 3
+        },
+        {
+          "q": "Which sentences are punctuated CORRECTLY? (select all)",
+          "x": "We packed rope, food, and water.",
+          "r": "\"Drop the anchor,\" said Mia.、We packed rope, food, and water.、The storm passed, and the sea calmed.",
+          "tier": 3
+        },
+        {
+          "q": "Which are COMPLETE sentences? (select all)",
+          "x": "Because the wind was strong.",
+          "r": "The lighthouse blinked twice.、We tied the ropes tightly.、Gulls circled the mast.",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -1206,7 +1286,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 34092,
+      "xp": 34453,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1359,7 +1439,8 @@
         "EN27",
         "FR14",
         "SC14",
-        "SC15"
+        "SC15",
+        "EN26"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -1468,7 +1549,8 @@
         "EN27": "5/5",
         "FR14": "15/15",
         "SC14": "16/16",
-        "SC15": "16/16"
+        "SC15": "16/16",
+        "EN26": "15/15"
       },
       "ziDaysDone": [
         1,
@@ -2585,12 +2667,103 @@
           "x": "Never touch switches or plugs with wet hands.",
           "r": "Never touch switches or plugs with wet hands.、Never poke metal objects into a power outlet.、Tell an adult if a wire looks broken or burnt.",
           "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Which sentence uses the apostrophe CORRECTLY?",
+          "x": "The dog tail's wagged.",
+          "r": "The dog's tail wagged.",
+          "tier": 2
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Which shows something belonging to MANY sailors?",
+          "x": "the sailor boats'",
+          "r": "the sailors' boat",
+          "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "'It's going to rain.' Here 'it's' means —",
+          "x": "belonging to it",
+          "r": "it is",
+          "tier": 2
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Choose the correct sentence.",
+          "x": "The ship lost its' anchor.",
+          "r": "The ship lost its anchor.",
+          "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Which sentence is punctuated CORRECTLY?",
+          "x": "\"Let's sail at dawn.\" said, the captain",
+          "r": "\"Let's sail at dawn,\" said the captain.",
+          "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Which word is a CONTRACTION (a shortened form)?",
+          "x": "captains",
+          "r": "don't",
+          "tier": 1
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "'The childrens toys were everywhere.' The correct fix is —",
+          "x": "childrens",
+          "r": "children's",
+          "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Which sentence has NO errors?",
+          "x": "After the storm the crew, checked the ships sails.",
+          "r": "After the storm, the crew checked the ship's sails.",
+          "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Which is a FRAGMENT?",
+          "x": "We waited on the dock.",
+          "r": "Waiting for the tide to turn.",
+          "tier": 2
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Choose the correct end for: Kai asked, ___",
+          "x": "Is the tide high?",
+          "r": "\"Is the tide high?\"",
+          "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Which sentences use apostrophes CORRECTLY? (select all)",
+          "x": "Don't touch the wet paint.",
+          "r": "The captain's map is old.、Its sail is torn.、Don't touch the wet paint.、The birds' nest sat in the pine.",
+          "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Which sentences are punctuated CORRECTLY? (select all)",
+          "x": "We packed rope, food, and water.",
+          "r": "\"Drop the anchor,\" said Mia.、We packed rope, food, and water.、The storm passed, and the sea calmed.",
+          "tier": 3
+        },
+        {
+          "u": "Grammar & Conventions V",
+          "q": "Which are COMPLETE sentences? (select all)",
+          "x": "Because the wind was strong.",
+          "r": "The lighthouse blinked twice.、We tied the ropes tightly.、Gulls circled the mast.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:49:13.580Z",
+    "updatedAt": "2026-07-22T06:53:18.418Z",
     "updatedBy": "study"
   }
 }
