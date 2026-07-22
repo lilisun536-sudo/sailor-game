@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T01:33:04.259Z",
-    "xp": 28873,
+    "syncedAt": "2026-07-22T01:34:53.767Z",
+    "xp": 29158,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 0,
+      "done": 1,
       "total": 17
     },
     "units": [
@@ -65,9 +65,9 @@
         "title": "Exponents & Order of Ops III",
         "en": "乘方专项·混合运算",
         "icon": "🚀",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "15/15",
+        "ratio": 1,
+        "status": "mastered",
         "total": 15
       },
       {
@@ -216,6 +216,48 @@
           "x": "12",
           "r": "18",
           "tier": 3
+        },
+        {
+          "q": "20 − 2³ = ?",
+          "x": "2",
+          "r": "12",
+          "tier": 3
+        },
+        {
+          "q": "(2 + 3)² = ?",
+          "x": "36",
+          "r": "25",
+          "tier": 3
+        },
+        {
+          "q": "4³ = ?",
+          "x": "2",
+          "r": "64",
+          "tier": 3
+        },
+        {
+          "q": "18 − 12 ÷ 3 + 2² = ?",
+          "x": "6",
+          "r": "18",
+          "tier": 3
+        },
+        {
+          "q": "Which expression matches: 'the square of the sum of 4 and 1'?",
+          "x": "4 + 1²",
+          "r": "(4 + 1)²",
+          "tier": 3
+        },
+        {
+          "q": "Which equations are TRUE? (select all)",
+          "x": "(1 + 2)² = 9、2³ = 6",
+          "r": "3² = 9、10 − 2² = 6、(1 + 2)² = 9",
+          "tier": 3
+        },
+        {
+          "q": "Which expressions equal 16? (select all)",
+          "x": "4 × 4、8 + 8、2⁴",
+          "r": "4²、2⁴、8 + 8、4 × 4",
+          "tier": 3
         }
       ]
     },
@@ -225,7 +267,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 28873,
+      "xp": 29158,
       "diag": {
         "chinese": {
           "score": 14,
@@ -362,7 +404,8 @@
         "EN21",
         "EN22",
         "MA23",
-        "MA24"
+        "MA24",
+        "MA25"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -455,7 +498,8 @@
         "EN21": "13/14",
         "EN22": "12/14",
         "MA23": "13/13",
-        "MA24": "12/12"
+        "MA24": "12/12",
+        "MA25": "15/15"
       },
       "ziDaysDone": [
         1,
@@ -505,12 +549,61 @@
           "x": "12",
           "r": "18",
           "tier": 3
+        },
+        {
+          "u": "Exponents & Order of Ops III",
+          "q": "20 − 2³ = ?",
+          "x": "2",
+          "r": "12",
+          "tier": 3
+        },
+        {
+          "u": "Exponents & Order of Ops III",
+          "q": "(2 + 3)² = ?",
+          "x": "36",
+          "r": "25",
+          "tier": 3
+        },
+        {
+          "u": "Exponents & Order of Ops III",
+          "q": "4³ = ?",
+          "x": "2",
+          "r": "64",
+          "tier": 3
+        },
+        {
+          "u": "Exponents & Order of Ops III",
+          "q": "18 − 12 ÷ 3 + 2² = ?",
+          "x": "6",
+          "r": "18",
+          "tier": 3
+        },
+        {
+          "u": "Exponents & Order of Ops III",
+          "q": "Which expression matches: 'the square of the sum of 4 and 1'?",
+          "x": "4 + 1²",
+          "r": "(4 + 1)²",
+          "tier": 3
+        },
+        {
+          "u": "Exponents & Order of Ops III",
+          "q": "Which equations are TRUE? (select all)",
+          "x": "(1 + 2)² = 9、2³ = 6",
+          "r": "3² = 9、10 − 2² = 6、(1 + 2)² = 9",
+          "tier": 3
+        },
+        {
+          "u": "Exponents & Order of Ops III",
+          "q": "Which expressions equal 16? (select all)",
+          "x": "4 × 4、8 + 8、2⁴",
+          "r": "4²、2⁴、8 + 8、4 × 4",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T01:33:04.259Z",
+    "updatedAt": "2026-07-22T01:34:53.767Z",
     "updatedBy": "study"
   }
 }
