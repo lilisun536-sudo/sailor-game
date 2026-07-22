@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T01:47:23.079Z",
-    "xp": 30525,
+    "syncedAt": "2026-07-22T01:49:35.295Z",
+    "xp": 30721,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -477,6 +477,44 @@
           "r": "Energy enters most ecosystems as sunlight.、Decomposers return nutrients to the soil.、A food web is many chains connected.",
           "tier": 3
         }
+      ],
+      "Reading Poetry: The Harbour at Night": [
+        {
+          "q": "How many STANZAS does this poem have?",
+          "x": "two",
+          "r": "three",
+          "tier": 1
+        },
+        {
+          "q": "How many LINES are in each stanza?",
+          "x": "twelve",
+          "r": "four",
+          "tier": 1
+        },
+        {
+          "q": "Which word rhymes with 'rest' in stanza 1?",
+          "x": "boats",
+          "r": "nest",
+          "tier": 1
+        },
+        {
+          "q": "The rhyme pattern of each stanza is —",
+          "x": "ABAB (alternating)",
+          "r": "AABB (pairs)",
+          "tier": 3
+        },
+        {
+          "q": "'Like tired birds that seek their nest' is a —",
+          "x": "personification",
+          "r": "simile",
+          "tier": 2
+        },
+        {
+          "q": "The MOOD of this poem is —",
+          "x": "scary and stormy",
+          "r": "calm and peaceful",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -502,7 +540,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 30525,
+      "xp": 30721,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1089,12 +1127,54 @@
           "x": "Arrows in a chain point at the food.",
           "r": "Energy enters most ecosystems as sunlight.、Decomposers return nutrients to the soil.、A food web is many chains connected.",
           "tier": 3
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "How many STANZAS does this poem have?",
+          "x": "two",
+          "r": "three",
+          "tier": 1
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "How many LINES are in each stanza?",
+          "x": "twelve",
+          "r": "four",
+          "tier": 1
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "Which word rhymes with 'rest' in stanza 1?",
+          "x": "boats",
+          "r": "nest",
+          "tier": 1
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "The rhyme pattern of each stanza is —",
+          "x": "ABAB (alternating)",
+          "r": "AABB (pairs)",
+          "tier": 3
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "'Like tired birds that seek their nest' is a —",
+          "x": "personification",
+          "r": "simile",
+          "tier": 2
+        },
+        {
+          "u": "Reading Poetry: The Harbour at Night",
+          "q": "The MOOD of this poem is —",
+          "x": "scary and stormy",
+          "r": "calm and peaceful",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T01:47:23.079Z",
+    "updatedAt": "2026-07-22T01:49:35.295Z",
     "updatedBy": "study"
   }
 }
