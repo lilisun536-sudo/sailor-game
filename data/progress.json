@@ -2,13 +2,13 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:15:38.553Z",
-    "xp": 31940,
+    "syncedAt": "2026-07-22T06:17:34.866Z",
+    "xp": 32152,
     "rank": {
-      "cn": "船队长",
-      "en": "Commodore",
-      "min": 25000,
-      "color": "#ef4444"
+      "cn": "海军上将",
+      "en": "Admiral",
+      "min": 32000,
+      "color": "#d4a01a"
     },
     "coverage": {
       "done": 9,
@@ -744,6 +744,66 @@
           "x": "3",
           "r": "15",
           "tier": 2
+        },
+        {
+          "q": "2/3 of a number is 12. What is the number?",
+          "x": "4",
+          "r": "18",
+          "tier": 3
+        },
+        {
+          "q": "3/4 of a number is 21. What is the number?",
+          "x": "6",
+          "r": "28",
+          "tier": 3
+        },
+        {
+          "q": "25% of a number is 8. What is the number?",
+          "x": "2",
+          "r": "32",
+          "tier": 3
+        },
+        {
+          "q": "15% of 80 = ?",
+          "x": "2",
+          "r": "12",
+          "tier": 3
+        },
+        {
+          "q": "The ratio of boys to girls is 2:3. There are 8 boys. How many girls?",
+          "x": "3",
+          "r": "12",
+          "tier": 3
+        },
+        {
+          "q": "5/8 − 1/4 = ? (simplest form)",
+          "x": "12",
+          "r": "3/8",
+          "tier": 3
+        },
+        {
+          "q": "Simplify the ratio 12:18.",
+          "x": "12:18 cannot simplify",
+          "r": "2:3",
+          "tier": 3
+        },
+        {
+          "q": "Which ratio is EQUIVALENT to 3:5?",
+          "x": "9:12",
+          "r": "6:10",
+          "tier": 2
+        },
+        {
+          "q": "Which ratios are equivalent to 2:5? (select all)",
+          "x": "5:2、8:20",
+          "r": "4:10、6:15、8:20",
+          "tier": 3
+        },
+        {
+          "q": "Which are equal to 3/4? (select all)",
+          "x": "0.75、9/12、6/8",
+          "r": "75%、0.75、6/8、9/12",
+          "tier": 3
         }
       ]
     },
@@ -793,12 +853,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 0,
+    "boxRemaining": 2,
     "writing": {},
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 31940,
+      "xp": 32152,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1091,7 +1151,7 @@
         "放:1",
         "拿:1"
       ],
-      "boxRemaining": 0,
+      "boxRemaining": 2,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1703,12 +1763,82 @@
           "x": "3",
           "r": "15",
           "tier": 2
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "2/3 of a number is 12. What is the number?",
+          "x": "4",
+          "r": "18",
+          "tier": 3
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "3/4 of a number is 21. What is the number?",
+          "x": "6",
+          "r": "28",
+          "tier": 3
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "25% of a number is 8. What is the number?",
+          "x": "2",
+          "r": "32",
+          "tier": 3
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "15% of 80 = ?",
+          "x": "2",
+          "r": "12",
+          "tier": 3
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "The ratio of boys to girls is 2:3. There are 8 boys. How many girls?",
+          "x": "3",
+          "r": "12",
+          "tier": 3
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "5/8 − 1/4 = ? (simplest form)",
+          "x": "12",
+          "r": "3/8",
+          "tier": 3
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "Simplify the ratio 12:18.",
+          "x": "12:18 cannot simplify",
+          "r": "2:3",
+          "tier": 3
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "Which ratio is EQUIVALENT to 3:5?",
+          "x": "9:12",
+          "r": "6:10",
+          "tier": 2
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "Which ratios are equivalent to 2:5? (select all)",
+          "x": "5:2、8:20",
+          "r": "4:10、6:15、8:20",
+          "tier": 3
+        },
+        {
+          "u": "Ratios, Rates & Working Backwards",
+          "q": "Which are equal to 3/4? (select all)",
+          "x": "0.75、9/12、6/8",
+          "r": "75%、0.75、6/8、9/12",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:15:38.553Z",
+    "updatedAt": "2026-07-22T06:17:34.866Z",
     "updatedBy": "study"
   }
 }
