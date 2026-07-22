@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:47:38.590Z",
-    "xp": 33739,
+    "syncedAt": "2026-07-22T06:49:13.580Z",
+    "xp": 34092,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -11,7 +11,7 @@
       "color": "#d4a01a"
     },
     "coverage": {
-      "done": 15,
+      "done": 16,
       "total": 17
     },
     "units": [
@@ -131,9 +131,9 @@
         "title": "Electricity & Circuits",
         "en": "电与电路",
         "icon": "🔋",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "16/16",
+        "ratio": 1,
+        "status": "mastered",
         "total": 16
       },
       {
@@ -1047,6 +1047,86 @@
           "r": "Light travels in straight lines.、A mirror reflects light.、Light bends when entering water.、Shadows form behind opaque objects.",
           "tier": 3
         }
+      ],
+      "Electricity & Circuits": [
+        {
+          "q": "Electricity that FLOWS through wires is called —",
+          "x": "static electricity",
+          "r": "current electricity",
+          "tier": 1
+        },
+        {
+          "q": "A balloon rubbed on your hair sticking to a wall shows —",
+          "x": "a closed circuit",
+          "r": "static electricity",
+          "tier": 2
+        },
+        {
+          "q": "Lightning is a giant spark of —",
+          "x": "moonlight",
+          "r": "static electricity",
+          "tier": 2
+        },
+        {
+          "q": "In a circuit, the battery's job is to —",
+          "x": "cool the wires",
+          "r": "be the energy source that pushes the current",
+          "tier": 2
+        },
+        {
+          "q": "Which material is an INSULATOR?",
+          "x": "a copper coin",
+          "r": "a plastic spoon",
+          "tier": 2
+        },
+        {
+          "q": "A circuit has a battery, two wires and a bulb, but the bulb is unscrewed a little. The bulb —",
+          "x": "glows brighter",
+          "r": "stays dark, because the loop is broken",
+          "tier": 3
+        },
+        {
+          "q": "In a SERIES circuit with two bulbs on one loop, if one bulb burns out —",
+          "x": "the switch closes",
+          "r": "both go dark, because the only path is broken",
+          "tier": 3
+        },
+        {
+          "q": "Why should you NEVER touch a switch with wet hands?",
+          "x": "wet hands are too cold",
+          "r": "water can help electricity flow into your body",
+          "tier": 2
+        },
+        {
+          "q": "Which of these needs CURRENT electricity to work?",
+          "x": "a sundial",
+          "r": "a table lamp",
+          "tier": 1
+        },
+        {
+          "q": "Which of these are CONDUCTORS? (select all)",
+          "x": "aluminium foil",
+          "r": "a copper wire、an iron nail、aluminium foil",
+          "tier": 3
+        },
+        {
+          "q": "Which of these are INSULATORS? (select all)",
+          "x": "a copper coin",
+          "r": "a plastic ruler、a glass rod、a rubber glove",
+          "tier": 3
+        },
+        {
+          "q": "In which cases will the bulb LIGHT? (select all)",
+          "x": "one wire from battery to bulb only",
+          "r": "battery + two wires + bulb in a complete loop、the same loop with a CLOSED switch、a complete loop using copper wires",
+          "tier": 3
+        },
+        {
+          "q": "Which safety rules about electricity are CORRECT? (select all)",
+          "x": "Never touch switches or plugs with wet hands.",
+          "r": "Never touch switches or plugs with wet hands.、Never poke metal objects into a power outlet.、Tell an adult if a wire looks broken or burnt.",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -1126,7 +1206,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 33739,
+      "xp": 34092,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1278,7 +1358,8 @@
         "EN25",
         "EN27",
         "FR14",
-        "SC14"
+        "SC14",
+        "SC15"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -1386,7 +1467,8 @@
         "EN25": "16/16",
         "EN27": "5/5",
         "FR14": "15/15",
-        "SC14": "16/16"
+        "SC14": "16/16",
+        "SC15": "16/16"
       },
       "ziDaysDone": [
         1,
@@ -2412,12 +2494,103 @@
           "x": "Light bends when entering water.",
           "r": "Light travels in straight lines.、A mirror reflects light.、Light bends when entering water.、Shadows form behind opaque objects.",
           "tier": 3
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "Electricity that FLOWS through wires is called —",
+          "x": "static electricity",
+          "r": "current electricity",
+          "tier": 1
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "A balloon rubbed on your hair sticking to a wall shows —",
+          "x": "a closed circuit",
+          "r": "static electricity",
+          "tier": 2
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "Lightning is a giant spark of —",
+          "x": "moonlight",
+          "r": "static electricity",
+          "tier": 2
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "In a circuit, the battery's job is to —",
+          "x": "cool the wires",
+          "r": "be the energy source that pushes the current",
+          "tier": 2
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "Which material is an INSULATOR?",
+          "x": "a copper coin",
+          "r": "a plastic spoon",
+          "tier": 2
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "A circuit has a battery, two wires and a bulb, but the bulb is unscrewed a little. The bulb —",
+          "x": "glows brighter",
+          "r": "stays dark, because the loop is broken",
+          "tier": 3
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "In a SERIES circuit with two bulbs on one loop, if one bulb burns out —",
+          "x": "the switch closes",
+          "r": "both go dark, because the only path is broken",
+          "tier": 3
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "Why should you NEVER touch a switch with wet hands?",
+          "x": "wet hands are too cold",
+          "r": "water can help electricity flow into your body",
+          "tier": 2
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "Which of these needs CURRENT electricity to work?",
+          "x": "a sundial",
+          "r": "a table lamp",
+          "tier": 1
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "Which of these are CONDUCTORS? (select all)",
+          "x": "aluminium foil",
+          "r": "a copper wire、an iron nail、aluminium foil",
+          "tier": 3
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "Which of these are INSULATORS? (select all)",
+          "x": "a copper coin",
+          "r": "a plastic ruler、a glass rod、a rubber glove",
+          "tier": 3
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "In which cases will the bulb LIGHT? (select all)",
+          "x": "one wire from battery to bulb only",
+          "r": "battery + two wires + bulb in a complete loop、the same loop with a CLOSED switch、a complete loop using copper wires",
+          "tier": 3
+        },
+        {
+          "u": "Electricity & Circuits",
+          "q": "Which safety rules about electricity are CORRECT? (select all)",
+          "x": "Never touch switches or plugs with wet hands.",
+          "r": "Never touch switches or plugs with wet hands.、Never poke metal objects into a power outlet.、Tell an adult if a wire looks broken or burnt.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:47:38.590Z",
+    "updatedAt": "2026-07-22T06:49:13.580Z",
     "updatedBy": "study"
   }
 }
