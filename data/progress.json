@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T01:51:08.421Z",
-    "xp": 30886,
+    "syncedAt": "2026-07-22T01:53:00.452Z",
+    "xp": 31224,
     "rank": {
       "cn": "船队长",
       "en": "Commodore",
@@ -11,7 +11,7 @@
       "color": "#ef4444"
     },
     "coverage": {
-      "done": 6,
+      "done": 7,
       "total": 17
     },
     "units": [
@@ -186,9 +186,9 @@
         "title": "Verbes en -er · La négation",
         "en": "-er 动词变位·否定句",
         "icon": "🗣️",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "15/15",
+        "ratio": 1,
+        "status": "mastered",
         "total": 15
       },
       {
@@ -545,6 +545,68 @@
           "r": "tune / moon、shore / door、light / night、eye / by",
           "tier": 3
         }
+      ],
+      "Verbes en -er · La négation": [
+        {
+          "q": "Complete: 'Je ____ français.' (to speak)",
+          "x": "parles",
+          "r": "parle",
+          "tier": 2
+        },
+        {
+          "q": "Complete: 'Elle ____ à Toronto.' (to live)",
+          "x": "habitons",
+          "r": "habite",
+          "tier": 2
+        },
+        {
+          "q": "'Je ne parle pas anglais.' means —",
+          "x": "You do not speak English.",
+          "r": "I do not speak English.",
+          "tier": 2
+        },
+        {
+          "q": "Which is the correct NEGATIVE of 'Il joue.'?",
+          "x": "Ne il joue pas.",
+          "r": "Il ne joue pas.",
+          "tier": 3
+        },
+        {
+          "q": "Which is correct before a vowel?",
+          "x": "Je ne aime pas les épinards.",
+          "r": "Je n'aime pas les épinards.",
+          "tier": 3
+        },
+        {
+          "q": "'Nous ne mangeons pas de poisson.' means —",
+          "x": "They do not eat fish.",
+          "r": "We do not eat fish.",
+          "tier": 3
+        },
+        {
+          "q": "How do you say 'She does not play'?",
+          "x": "Nous ne jouons pas.",
+          "r": "Elle ne joue pas.",
+          "tier": 3
+        },
+        {
+          "q": "Complete: 'Est-ce que nous ____ ensemble ?' (to play)",
+          "x": "joue",
+          "r": "jouons",
+          "tier": 3
+        },
+        {
+          "q": "Which sentences are CORRECT? (select all)",
+          "x": "Elle habitons à Paris.、Je parles très vite.、Nous aimons la mer.",
+          "r": "Je parle français.、Tu joues au parc.、Nous aimons la mer.",
+          "tier": 3
+        },
+        {
+          "q": "Which are CORRECT negative sentences? (select all)",
+          "x": "Il n'aime pas le café.",
+          "r": "Je ne joue pas.、Il n'aime pas le café.、Nous ne parlons pas fort.",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -570,7 +632,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 30886,
+      "xp": 31224,
       "diag": {
         "chinese": {
           "score": 14,
@@ -713,7 +775,8 @@
         "ZH27",
         "ZH25",
         "SC13",
-        "EN24"
+        "EN24",
+        "FR13"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -812,7 +875,8 @@
         "ZH27": "15/15",
         "ZH25": "15/15",
         "SC13": "16/16",
-        "EN24": "16/16"
+        "EN24": "16/16",
+        "FR13": "15/15"
       },
       "ziDaysDone": [
         1,
@@ -1236,12 +1300,82 @@
           "x": "light / night",
           "r": "tune / moon、shore / door、light / night、eye / by",
           "tier": 3
+        },
+        {
+          "u": "Verbes en -er · La négation",
+          "q": "Complete: 'Je ____ français.' (to speak)",
+          "x": "parles",
+          "r": "parle",
+          "tier": 2
+        },
+        {
+          "u": "Verbes en -er · La négation",
+          "q": "Complete: 'Elle ____ à Toronto.' (to live)",
+          "x": "habitons",
+          "r": "habite",
+          "tier": 2
+        },
+        {
+          "u": "Verbes en -er · La négation",
+          "q": "'Je ne parle pas anglais.' means —",
+          "x": "You do not speak English.",
+          "r": "I do not speak English.",
+          "tier": 2
+        },
+        {
+          "u": "Verbes en -er · La négation",
+          "q": "Which is the correct NEGATIVE of 'Il joue.'?",
+          "x": "Ne il joue pas.",
+          "r": "Il ne joue pas.",
+          "tier": 3
+        },
+        {
+          "u": "Verbes en -er · La négation",
+          "q": "Which is correct before a vowel?",
+          "x": "Je ne aime pas les épinards.",
+          "r": "Je n'aime pas les épinards.",
+          "tier": 3
+        },
+        {
+          "u": "Verbes en -er · La négation",
+          "q": "'Nous ne mangeons pas de poisson.' means —",
+          "x": "They do not eat fish.",
+          "r": "We do not eat fish.",
+          "tier": 3
+        },
+        {
+          "u": "Verbes en -er · La négation",
+          "q": "How do you say 'She does not play'?",
+          "x": "Nous ne jouons pas.",
+          "r": "Elle ne joue pas.",
+          "tier": 3
+        },
+        {
+          "u": "Verbes en -er · La négation",
+          "q": "Complete: 'Est-ce que nous ____ ensemble ?' (to play)",
+          "x": "joue",
+          "r": "jouons",
+          "tier": 3
+        },
+        {
+          "u": "Verbes en -er · La négation",
+          "q": "Which sentences are CORRECT? (select all)",
+          "x": "Elle habitons à Paris.、Je parles très vite.、Nous aimons la mer.",
+          "r": "Je parle français.、Tu joues au parc.、Nous aimons la mer.",
+          "tier": 3
+        },
+        {
+          "u": "Verbes en -er · La négation",
+          "q": "Which are CORRECT negative sentences? (select all)",
+          "x": "Il n'aime pas le café.",
+          "r": "Je ne joue pas.、Il n'aime pas le café.、Nous ne parlons pas fort.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T01:51:08.421Z",
+    "updatedAt": "2026-07-22T01:53:00.452Z",
     "updatedBy": "study"
   }
 }
