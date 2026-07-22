@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:31:03.898Z",
-    "xp": 32993,
+    "syncedAt": "2026-07-22T06:32:41.008Z",
+    "xp": 33005,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -977,12 +977,17 @@
         "unit": "Writing Studio VI: Paragraphs",
         "q": "✍️ Opinion paragraph (English only). Topic: My favourite season.\nBuild a hamburger:\n1) Topic sentence: 'My favourite season is ____.'\n2)–4) THREE detail sentences (reasons or examples).\n5) Closing sentence: wrap it up in new words.\nWord bank: weather, holiday, outside, family, favourite, because.\nRule: every sentence must be about that one season.",
         "text": "My name is sa.My favorite season. Is a summer.I like becauseNow outside i'll be better inside and cold at same time a good temperature.叫什么？"
+      },
+      "EN27#1": {
+        "unit": "Writing Studio VI: Paragraphs",
+        "q": "✍️ Opinion paragraph (English only). Topic: Why reading is important.\nBuild a hamburger:\n1) Topic sentence.\n2)–4) THREE reasons (one per sentence).\n5) Closing sentence.\nWord bank: learn, words, imagination, stories, brain, grow.\nRule: every sentence must be about reading.",
+        "text": "I think reading because i things out.I hope you are also嗯嗯贷款开这个玩笑，你怎么And可好very粉快点做，让你做作业就是不会，会做的就做。啊，可以，对。How many formative why?"
       }
     },
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 32993,
+      "xp": 33005,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1282,12 +1287,17 @@
         "拿:1"
       ],
       "boxRemaining": 0,
-      "writingCount": 1,
+      "writingCount": 2,
       "writing": {
         "EN27#0": {
           "unit": "Writing Studio VI: Paragraphs",
           "q": "✍️ Opinion paragraph (English only). Topic: My favourite season.\nBuild a hamburger:\n1) Topic sentence: 'My favourite season is ____.'\n2)–4) THREE detail sentences (reasons or examples).\n5) Closing sentence: wrap it up in new words.\nWord bank: weather, holiday, outside, family, favourite, because.\nRule: every sentence must be about that one season.",
           "text": "My name is sa.My favorite season. Is a summer.I like becauseNow outside i'll be better inside and cold at same time a good temperature.叫什么？"
+        },
+        "EN27#1": {
+          "unit": "Writing Studio VI: Paragraphs",
+          "q": "✍️ Opinion paragraph (English only). Topic: Why reading is important.\nBuild a hamburger:\n1) Topic sentence.\n2)–4) THREE reasons (one per sentence).\n5) Closing sentence.\nWord bank: learn, words, imagination, stories, brain, grow.\nRule: every sentence must be about reading.",
+          "text": "I think reading because i things out.I hope you are also嗯嗯贷款开这个玩笑，你怎么And可好very粉快点做，让你做作业就是不会，会做的就做。啊，可以，对。How many formative why?"
         }
       },
       "mistakes": [
@@ -2107,7 +2117,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:31:03.898Z",
+    "updatedAt": "2026-07-22T06:32:41.008Z",
     "updatedBy": "study"
   }
 }
