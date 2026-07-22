@@ -2,8 +2,8 @@
   "study": {
     "version": "14.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-22T06:22:22.964Z",
-    "xp": 32540,
+    "syncedAt": "2026-07-22T06:23:53.580Z",
+    "xp": 32717,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -11,7 +11,7 @@
       "color": "#d4a01a"
     },
     "coverage": {
-      "done": 10,
+      "done": 11,
       "total": 17
     },
     "units": [
@@ -98,9 +98,9 @@
         "title": "Geometry IV & Multi-step Problems",
         "en": "复合图形·三步应用题",
         "icon": "🏗️",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "15/15",
+        "ratio": 1,
+        "status": "mastered",
         "total": 15
       },
       {
@@ -878,6 +878,26 @@
           "x": "m²、cm²、cm³",
           "r": "cm²、m²、km²",
           "tier": 3
+        },
+        {
+          "q": "Which statements are TRUE? (select all)",
+          "x": "An L-shape's area can be found by subtracting the notch、Parallelogram area = base × height、Volume of a box = l × w × h",
+          "r": "Triangle area = base × height ÷ 2、Parallelogram area = base × height、Volume of a box = l × w × h、An L-shape's area can be found by subtracting the notch",
+          "tier": 3
+        },
+        {
+          "q": "A captain buys 5 boxes of flags. Each box holds 8 flags. She gives away 12. Which steps find how many are LEFT? (select all)",
+          "x": "multiply 5 × 8、start from 40、add 5 + 8",
+          "r": "multiply 5 × 8、subtract 12 from the total、start from 40",
+          "tier": 3
+        }
+      ],
+      "Reading: Icebergs": [
+        {
+          "q": "When a huge chunk of ice breaks off a glacier, scientists call it —",
+          "x": "melting",
+          "r": "calving",
+          "tier": 2
         }
       ]
     },
@@ -932,7 +952,7 @@
     "packet": {
       "ver": "14.0",
       "date": "2026-07-11",
-      "xp": 32540,
+      "xp": 32717,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1079,7 +1099,8 @@
         "FR13",
         "ZH26",
         "ZH28",
-        "MA27"
+        "MA27",
+        "MA28"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -1182,7 +1203,8 @@
         "FR13": "15/15",
         "ZH26": "15/15",
         "ZH28": "15/15",
-        "MA27": "15/15"
+        "MA27": "15/15",
+        "MA28": "15/15"
       },
       "ziDaysDone": [
         1,
@@ -2000,12 +2022,26 @@
           "x": "An L-shape's area can be found by subtracting the notch、Parallelogram area = base × height、Volume of a box = l × w × h",
           "r": "Triangle area = base × height ÷ 2、Parallelogram area = base × height、Volume of a box = l × w × h、An L-shape's area can be found by subtracting the notch",
           "tier": 3
+        },
+        {
+          "u": "Geometry IV & Multi-step Problems",
+          "q": "A captain buys 5 boxes of flags. Each box holds 8 flags. She gives away 12. Which steps find how many are LEFT? (select all)",
+          "x": "multiply 5 × 8、start from 40、add 5 + 8",
+          "r": "multiply 5 × 8、subtract 12 from the total、start from 40",
+          "tier": 3
+        },
+        {
+          "u": "Reading: Icebergs",
+          "q": "When a huge chunk of ice breaks off a glacier, scientists call it —",
+          "x": "melting",
+          "r": "calving",
+          "tier": 2
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-22T06:22:22.964Z",
+    "updatedAt": "2026-07-22T06:23:53.580Z",
     "updatedBy": "study"
   }
 }
