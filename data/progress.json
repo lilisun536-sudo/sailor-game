@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-24T01:55:01.859Z",
-    "xp": 34865,
+    "syncedAt": "2026-07-24T01:56:41.604Z",
+    "xp": 34997,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -278,6 +278,30 @@
           "x": "8",
           "r": "16",
           "tier": 3
+        },
+        {
+          "q": "2 × 5² means —",
+          "x": "2 × 2 × 5 × 5",
+          "r": "2 × 5 × 5",
+          "tier": 3
+        },
+        {
+          "q": "2 × 5² = ?",
+          "x": "20",
+          "r": "50",
+          "tier": 3
+        },
+        {
+          "q": "(4 + 1)² means —",
+          "x": "4² + 1²",
+          "r": "(4 + 1) × (4 + 1)",
+          "tier": 3
+        },
+        {
+          "q": "(4 + 1)² = ?",
+          "x": "10",
+          "r": "25",
+          "tier": 3
         }
       ]
     },
@@ -304,7 +328,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 34865,
+      "xp": 34997,
       "diag": {
         "chinese": {
           "score": 14,
@@ -696,12 +720,40 @@
           "x": "8",
           "r": "16",
           "tier": 3
+        },
+        {
+          "u": "Exponent Clinic IV: Expand First",
+          "q": "2 × 5² means —",
+          "x": "2 × 2 × 5 × 5",
+          "r": "2 × 5 × 5",
+          "tier": 3
+        },
+        {
+          "u": "Exponent Clinic IV: Expand First",
+          "q": "2 × 5² = ?",
+          "x": "20",
+          "r": "50",
+          "tier": 3
+        },
+        {
+          "u": "Exponent Clinic IV: Expand First",
+          "q": "(4 + 1)² means —",
+          "x": "4² + 1²",
+          "r": "(4 + 1) × (4 + 1)",
+          "tier": 3
+        },
+        {
+          "u": "Exponent Clinic IV: Expand First",
+          "q": "(4 + 1)² = ?",
+          "x": "10",
+          "r": "25",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-24T01:55:01.859Z",
+    "updatedAt": "2026-07-24T01:56:41.604Z",
     "updatedBy": "study"
   }
 }
