@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-24T01:56:41.604Z",
-    "xp": 34997,
+    "syncedAt": "2026-07-24T01:58:18.717Z",
+    "xp": 35057,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -302,6 +302,18 @@
           "x": "10",
           "r": "25",
           "tier": 3
+        },
+        {
+          "q": "2³ + 2² = ?",
+          "x": "2",
+          "r": "12",
+          "tier": 2
+        },
+        {
+          "q": "Which equations are TRUE? (select all)",
+          "x": "(1 + 3)² = 16、3³ = 27、2⁴ = 8",
+          "r": "3³ = 27、10 − 3² = 1、(1 + 3)² = 16",
+          "tier": 3
         }
       ]
     },
@@ -328,7 +340,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 34997,
+      "xp": 35057,
       "diag": {
         "chinese": {
           "score": 14,
@@ -748,12 +760,26 @@
           "x": "10",
           "r": "25",
           "tier": 3
+        },
+        {
+          "u": "Exponent Clinic IV: Expand First",
+          "q": "2³ + 2² = ?",
+          "x": "2",
+          "r": "12",
+          "tier": 2
+        },
+        {
+          "u": "Exponent Clinic IV: Expand First",
+          "q": "Which equations are TRUE? (select all)",
+          "x": "(1 + 3)² = 16、3³ = 27、2⁴ = 8",
+          "r": "3³ = 27、10 − 3² = 1、(1 + 3)² = 16",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-24T01:56:41.604Z",
+    "updatedAt": "2026-07-24T01:58:18.717Z",
     "updatedBy": "study"
   }
 }
