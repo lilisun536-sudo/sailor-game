@@ -834,7 +834,7 @@ function beltFor(xp){ let b=BELTS[0]; for(const x of BELTS){ if(xp>=x.min) b=x; 
 function nextBelt(xp){ return BELTS.find(x=>x.min>xp)||null; }
 function trainCount(u){ return (u.training||[]).length; }
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-function jsq(s){ return String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\r?\n/g," "); }
+function jsq(s){ return String(s).replace(/\\/g,"\\\\").replace(/&/g,"&amp;").replace(/'/g,"\\'").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\r?\n/g," "); }
 function lang(s){ return s==="cn"?"zh-CN":s==="fr"?"fr-FR":"en-US"; }
 function qByRef(ref){ const p=ref.split("#"); const u=UNITS.find(x=>x.id===p[0]); return u?{unit:u,item:u.training[+p[1]]}:null; }
 function boxAdd(ref){ if(state.box.indexOf(ref)<0) state.box.push(ref); }
@@ -853,7 +853,7 @@ function spk(text, lg){
     u.lang=lg; u.rate=lg.indexOf("zh")===0?0.82:lg.indexOf("fr")===0?0.85:0.9; u.pitch=1.04;
     const re=lg.indexOf("zh")===0?/zh|chinese|中文|普通话|mandarin/i:lg.indexOf("fr")===0?/fr|french|français/i:/en|english/i;
     const v=VOICES.find(x=>re.test((x.lang||"")+(x.name||""))); if(v) u.voice=v;
-    window.speechSynthesis.speak(u);
+    setTimeout(function(){ try{ window.speechSynthesis.speak(u); }catch(e){} }, 60);
   }catch(e){ toast("看文字也可以哦"); }
 }
 function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2300); }
