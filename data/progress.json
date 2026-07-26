@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-26T10:06:26.925Z",
-    "xp": 35656,
+    "syncedAt": "2026-07-26T10:08:02.012Z",
+    "xp": 35789,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -11,7 +11,7 @@
       "color": "#d4a01a"
     },
     "coverage": {
-      "done": 3,
+      "done": 4,
       "total": 17
     },
     "units": [
@@ -76,9 +76,9 @@
         "title": "Integers II: The Number Line",
         "en": "负数巩固·数轴",
         "icon": "🧭",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "15/15",
+        "ratio": 1,
+        "status": "mastered",
         "total": 15
       },
       {
@@ -371,6 +371,14 @@
           "r": "东",
           "tier": 2
         }
+      ],
+      "Integers II: The Number Line": [
+        {
+          "q": "Which situations describe a NEGATIVE number? (select all)",
+          "x": "7 m below the surface",
+          "r": "7 m below the surface、losing 5 points in a game、3 floors underground",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -400,7 +408,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 35656,
+      "xp": 35789,
       "diag": {
         "chinese": {
           "score": 14,
@@ -557,7 +565,8 @@
         "EN26",
         "ZH32",
         "MA29",
-        "ZH31"
+        "ZH31",
+        "MA30"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -670,7 +679,8 @@
         "EN26": "15/15",
         "ZH32": "15/15",
         "MA29": "15/15",
-        "ZH31": "15/15"
+        "ZH31": "15/15",
+        "MA30": "15/15"
       },
       "ziDaysDone": [
         1,
@@ -903,12 +913,19 @@
           "x": "冻",
           "r": "东",
           "tier": 2
+        },
+        {
+          "u": "Integers II: The Number Line",
+          "q": "Which situations describe a NEGATIVE number? (select all)",
+          "x": "7 m below the surface",
+          "r": "7 m below the surface、losing 5 points in a game、3 floors underground",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-26T10:06:26.925Z",
+    "updatedAt": "2026-07-26T10:08:02.012Z",
     "updatedBy": "study"
   }
 }
