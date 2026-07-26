@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-24T01:59:57.117Z",
-    "xp": 35153,
+    "syncedAt": "2026-07-26T09:56:27.727Z",
+    "xp": 35204,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -327,6 +327,26 @@
           "r": "add 2 + 3 inside the brackets、square the bracket result、get 25 from the squaring",
           "tier": 3
         }
+      ],
+      "关联词综合 + 识字 Day 27": [
+        {
+          "q": "「这艘船________样子普通，________特别结实。」填——",
+          "x": "只要…就…",
+          "r": "虽然…但是…",
+          "tier": 2
+        },
+        {
+          "q": "「他________会游泳，________会潜水。」填——",
+          "x": "尽管…还是…",
+          "r": "不但…而且…",
+          "tier": 2
+        },
+        {
+          "q": "「________风浪很大，船长________决定按时出发。」填——",
+          "x": "因为…所以…",
+          "r": "尽管…还是…",
+          "tier": 2
+        }
       ]
     },
     "reviewQueue": [
@@ -352,7 +372,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 35153,
+      "xp": 35204,
       "diag": {
         "chinese": {
           "score": 14,
@@ -802,12 +822,33 @@
           "x": "get 25 from the squaring、subtract from 50 right away、add 2 + 3 inside the brackets",
           "r": "add 2 + 3 inside the brackets、square the bracket result、get 25 from the squaring",
           "tier": 3
+        },
+        {
+          "u": "关联词综合 + 识字 Day 27",
+          "q": "「这艘船________样子普通，________特别结实。」填——",
+          "x": "只要…就…",
+          "r": "虽然…但是…",
+          "tier": 2
+        },
+        {
+          "u": "关联词综合 + 识字 Day 27",
+          "q": "「他________会游泳，________会潜水。」填——",
+          "x": "尽管…还是…",
+          "r": "不但…而且…",
+          "tier": 2
+        },
+        {
+          "u": "关联词综合 + 识字 Day 27",
+          "q": "「________风浪很大，船长________决定按时出发。」填——",
+          "x": "因为…所以…",
+          "r": "尽管…还是…",
+          "tier": 2
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-24T01:59:57.117Z",
+    "updatedAt": "2026-07-26T09:56:27.727Z",
     "updatedBy": "study"
   }
 }
