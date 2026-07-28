@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T07:01:27.311Z",
-    "xp": 36502,
+    "syncedAt": "2026-07-28T07:03:08.659Z",
+    "xp": 36590,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -459,6 +459,20 @@
           "r": "J'ai faim、Elle a soif、Il a peur、J'ai dix ans",
           "tier": 3
         }
+      ],
+      "星期月份·Théo的一周": [
+        {
+          "q": "Jeudi, Théo a —",
+          "x": "un match de football",
+          "r": "un cours de musique",
+          "tier": 2
+        },
+        {
+          "q": "'Dimanche, je ne travaille pas' means —",
+          "x": "Sunday is a school day",
+          "r": "on Sunday I do not work",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -488,7 +502,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 36502,
+      "xp": 36590,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1093,12 +1107,26 @@
           "x": "「开船啦！」大家欢呼起来。、妈妈轻声说：「路上小心。」",
           "r": "船上有帆、桨和罗盘。、「开船啦！」大家欢呼起来。、妈妈轻声说：「路上小心。」",
           "tier": 3
+        },
+        {
+          "u": "星期月份·Théo的一周",
+          "q": "Jeudi, Théo a —",
+          "x": "un match de football",
+          "r": "un cours de musique",
+          "tier": 2
+        },
+        {
+          "u": "星期月份·Théo的一周",
+          "q": "'Dimanche, je ne travaille pas' means —",
+          "x": "Sunday is a school day",
+          "r": "on Sunday I do not work",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T07:01:27.311Z",
+    "updatedAt": "2026-07-28T07:03:08.659Z",
     "updatedBy": "study"
   }
 }
