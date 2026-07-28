@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T07:09:42.685Z",
-    "xp": 37160,
+    "syncedAt": "2026-07-28T07:11:16.503Z",
+    "xp": 37382,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -548,6 +548,54 @@
           "x": "refraction",
           "r": "reflection",
           "tier": 1
+        },
+        {
+          "q": "Kai tightens a guitar string. The sound becomes —",
+          "x": "louder",
+          "r": "higher",
+          "tier": 2
+        },
+        {
+          "q": "Mia plucks the same string much harder. The sound becomes —",
+          "x": "higher",
+          "r": "louder",
+          "tier": 1
+        },
+        {
+          "q": "Is the Moon a light source?",
+          "x": "Yes — but only in winter",
+          "r": "No — it only reflects sunlight",
+          "tier": 3
+        },
+        {
+          "q": "Mia presses her ear on the wooden dock and hears footsteps clearly. Why?",
+          "x": "wood makes every sound louder",
+          "r": "solids carry sound very well",
+          "tier": 3
+        },
+        {
+          "q": "Kai shouts at a cliff and hears his own voice come back. The echo is sound —",
+          "x": "speeding up inside the rock",
+          "r": "bouncing off the rock",
+          "tier": 3
+        },
+        {
+          "q": "Mia cuts her straw whistle shorter. The new note is —",
+          "x": "louder",
+          "r": "higher",
+          "tier": 3
+        },
+        {
+          "q": "Which of these are REFRACTION? (select all)",
+          "x": "a straw looks bent in a glass of water",
+          "r": "a straw looks bent in a glass of water、the pool floor looks closer than it is、a magnifying glass bends sunlight to a bright spot",
+          "tier": 3
+        },
+        {
+          "q": "Which statements about sound are TRUE? (select all)",
+          "x": "hitting a drum harder raises its pitch",
+          "r": "sound cannot travel through empty space、sound travels well through solids、hitting a drum harder makes it louder",
+          "tier": 3
         }
       ]
     },
@@ -573,12 +621,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 0,
+    "boxRemaining": 1,
     "writing": {},
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 37160,
+      "xp": 37382,
       "diag": {
         "chinese": {
           "score": 14,
@@ -897,7 +945,7 @@
         "足:1",
         "东:1"
       ],
-      "boxRemaining": 0,
+      "boxRemaining": 1,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1285,12 +1333,68 @@
           "x": "refraction",
           "r": "reflection",
           "tier": 1
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "Kai tightens a guitar string. The sound becomes —",
+          "x": "louder",
+          "r": "higher",
+          "tier": 2
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "Mia plucks the same string much harder. The sound becomes —",
+          "x": "higher",
+          "r": "louder",
+          "tier": 1
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "Is the Moon a light source?",
+          "x": "Yes — but only in winter",
+          "r": "No — it only reflects sunlight",
+          "tier": 3
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "Mia presses her ear on the wooden dock and hears footsteps clearly. Why?",
+          "x": "wood makes every sound louder",
+          "r": "solids carry sound very well",
+          "tier": 3
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "Kai shouts at a cliff and hears his own voice come back. The echo is sound —",
+          "x": "speeding up inside the rock",
+          "r": "bouncing off the rock",
+          "tier": 3
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "Mia cuts her straw whistle shorter. The new note is —",
+          "x": "louder",
+          "r": "higher",
+          "tier": 3
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "Which of these are REFRACTION? (select all)",
+          "x": "a straw looks bent in a glass of water",
+          "r": "a straw looks bent in a glass of water、the pool floor looks closer than it is、a magnifying glass bends sunlight to a bright spot",
+          "tier": 3
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "Which statements about sound are TRUE? (select all)",
+          "x": "hitting a drum harder raises its pitch",
+          "r": "sound cannot travel through empty space、sound travels well through solids、hitting a drum harder makes it louder",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T07:09:42.685Z",
+    "updatedAt": "2026-07-28T07:11:16.503Z",
     "updatedBy": "study"
   }
 }
