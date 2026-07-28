@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T07:08:07.398Z",
-    "xp": 37011,
+    "syncedAt": "2026-07-28T07:09:42.685Z",
+    "xp": 37160,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -11,7 +11,7 @@
       "color": "#e11d48"
     },
     "coverage": {
-      "done": 6,
+      "done": 7,
       "total": 17
     },
     "units": [
@@ -164,9 +164,9 @@
         "title": "诗歌II·灯塔守夜人",
         "en": "Poetry II: ABAB",
         "icon": "🗼",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "16/16",
+        "ratio": 1,
+        "status": "mastered",
         "total": 16
       },
       {
@@ -528,6 +528,26 @@
           "x": "His lantern swinging slow",
           "r": "It hums a steady song of hope、The wind may pound the door、Keeping its promise to the shore",
           "tier": 3
+        },
+        {
+          "q": "Which statements about the poem's craft are TRUE? (select all)",
+          "x": "'a golden rope' is a metaphor",
+          "r": "'a golden rope' is a metaphor、'like some great bear' is a simile、the rhyme scheme is ABAB",
+          "tier": 3
+        },
+        {
+          "q": "Which statements about the lighthouse keeper are TRUE? (select all)",
+          "x": "the storm is compared to a bear",
+          "r": "the keeper works through the night、the light guides sailors home、the storm is compared to a bear",
+          "tier": 3
+        }
+      ],
+      "光与声II·反射与折射": [
+        {
+          "q": "You see yourself in the ship's polished mirror. This is —",
+          "x": "refraction",
+          "r": "reflection",
+          "tier": 1
         }
       ]
     },
@@ -553,12 +573,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 1,
+    "boxRemaining": 0,
     "writing": {},
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 37011,
+      "xp": 37160,
       "diag": {
         "chinese": {
           "score": 14,
@@ -718,7 +738,8 @@
         "ZH31",
         "MA30",
         "FR15",
-        "FR16"
+        "FR16",
+        "EN30"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -834,7 +855,8 @@
         "ZH31": "15/15",
         "MA30": "15/15",
         "FR15": "15/15",
-        "FR16": "15/15"
+        "FR16": "15/15",
+        "EN30": "16/16"
       },
       "ziDaysDone": [
         1,
@@ -875,7 +897,7 @@
         "足:1",
         "东:1"
       ],
-      "boxRemaining": 1,
+      "boxRemaining": 0,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1242,12 +1264,33 @@
           "x": "His lantern swinging slow",
           "r": "It hums a steady song of hope、The wind may pound the door、Keeping its promise to the shore",
           "tier": 3
+        },
+        {
+          "u": "诗歌II·灯塔守夜人",
+          "q": "Which statements about the poem's craft are TRUE? (select all)",
+          "x": "'a golden rope' is a metaphor",
+          "r": "'a golden rope' is a metaphor、'like some great bear' is a simile、the rhyme scheme is ABAB",
+          "tier": 3
+        },
+        {
+          "u": "诗歌II·灯塔守夜人",
+          "q": "Which statements about the lighthouse keeper are TRUE? (select all)",
+          "x": "the storm is compared to a bear",
+          "r": "the keeper works through the night、the light guides sailors home、the storm is compared to a bear",
+          "tier": 3
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "You see yourself in the ship's polished mirror. This is —",
+          "x": "refraction",
+          "r": "reflection",
+          "tier": 1
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T07:08:07.398Z",
+    "updatedAt": "2026-07-28T07:09:42.685Z",
     "updatedBy": "study"
   }
 }
