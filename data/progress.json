@@ -2,13 +2,13 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T02:33:16.497Z",
-    "xp": 35933,
+    "syncedAt": "2026-07-28T02:37:06.455Z",
+    "xp": 36075,
     "rank": {
-      "cn": "海军上将",
-      "en": "Admiral",
-      "min": 32000,
-      "color": "#d4a01a"
+      "cn": "海军元帅",
+      "en": "Fleet Admiral",
+      "min": 36000,
+      "color": "#e11d48"
     },
     "coverage": {
       "done": 4,
@@ -404,6 +404,42 @@
           "x": "French drops every e",
           "r": "aime starts with a vowel",
           "tier": 3
+        },
+        {
+          "q": "'Elle a soif' means —",
+          "x": "she has soap",
+          "r": "she is thirsty",
+          "tier": 1
+        },
+        {
+          "q": "'Tu as onze ans' means —",
+          "x": "you were eleven last year",
+          "r": "you are eleven years old",
+          "tier": 3
+        },
+        {
+          "q": "Il ___ peur du noir.",
+          "x": "avons",
+          "r": "a",
+          "tier": 3
+        },
+        {
+          "q": "'Ils ont' means —",
+          "x": "they are",
+          "r": "they have",
+          "tier": 2
+        },
+        {
+          "q": "Which sentences are CORRECT French? (select all)",
+          "x": "Je ne aime pas le froid.、Je n'aime pas le froid.",
+          "r": "Je n'aime pas le froid.、Nous avons un bateau.、Elle a onze ans.",
+          "tier": 3
+        },
+        {
+          "q": "In which phrases does French use AVOIR where English says 'to BE'? (select all)",
+          "x": "Nous avons un chien",
+          "r": "J'ai faim、Elle a soif、Il a peur、J'ai dix ans",
+          "tier": 3
         }
       ]
     },
@@ -434,7 +470,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 35933,
+      "xp": 36075,
       "diag": {
         "chinese": {
           "score": 14,
@@ -974,12 +1010,54 @@
           "x": "French drops every e",
           "r": "aime starts with a vowel",
           "tier": 3
+        },
+        {
+          "u": "变位否定复赛·avoir",
+          "q": "'Elle a soif' means —",
+          "x": "she has soap",
+          "r": "she is thirsty",
+          "tier": 1
+        },
+        {
+          "u": "变位否定复赛·avoir",
+          "q": "'Tu as onze ans' means —",
+          "x": "you were eleven last year",
+          "r": "you are eleven years old",
+          "tier": 3
+        },
+        {
+          "u": "变位否定复赛·avoir",
+          "q": "Il ___ peur du noir.",
+          "x": "avons",
+          "r": "a",
+          "tier": 3
+        },
+        {
+          "u": "变位否定复赛·avoir",
+          "q": "'Ils ont' means —",
+          "x": "they are",
+          "r": "they have",
+          "tier": 2
+        },
+        {
+          "u": "变位否定复赛·avoir",
+          "q": "Which sentences are CORRECT French? (select all)",
+          "x": "Je ne aime pas le froid.、Je n'aime pas le froid.",
+          "r": "Je n'aime pas le froid.、Nous avons un bateau.、Elle a onze ans.",
+          "tier": 3
+        },
+        {
+          "u": "变位否定复赛·avoir",
+          "q": "In which phrases does French use AVOIR where English says 'to BE'? (select all)",
+          "x": "Nous avons un chien",
+          "r": "J'ai faim、Elle a soif、Il a peur、J'ai dix ans",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T02:33:16.497Z",
+    "updatedAt": "2026-07-28T02:37:06.455Z",
     "updatedBy": "study"
   }
 }
