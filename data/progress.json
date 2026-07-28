@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T02:31:10.436Z",
-    "xp": 35813,
+    "syncedAt": "2026-07-28T02:33:16.497Z",
+    "xp": 35933,
     "rank": {
       "cn": "海军上将",
       "en": "Admiral",
@@ -379,6 +379,32 @@
           "r": "7 m below the surface、losing 5 points in a game、3 floors underground",
           "tier": 3
         }
+      ],
+      "变位否定复赛·avoir": [
+        {
+          "q": "Elle ___ à Osaka.",
+          "x": "habitons",
+          "r": "habite",
+          "tier": 2
+        },
+        {
+          "q": "Nous ___ un film le vendredi soir.",
+          "x": "regarde",
+          "r": "regardons",
+          "tier": 3
+        },
+        {
+          "q": "Elle ___ pas les tempêtes.",
+          "x": "ne aime",
+          "r": "n'aime",
+          "tier": 3
+        },
+        {
+          "q": "Why does 'ne' become n' in 'Je n'aime pas' ?",
+          "x": "French drops every e",
+          "r": "aime starts with a vowel",
+          "tier": 3
+        }
       ]
     },
     "reviewQueue": [
@@ -408,7 +434,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 35813,
+      "xp": 35933,
       "diag": {
         "chinese": {
           "score": 14,
@@ -920,12 +946,40 @@
           "x": "7 m below the surface",
           "r": "7 m below the surface、losing 5 points in a game、3 floors underground",
           "tier": 3
+        },
+        {
+          "u": "变位否定复赛·avoir",
+          "q": "Elle ___ à Osaka.",
+          "x": "habitons",
+          "r": "habite",
+          "tier": 2
+        },
+        {
+          "u": "变位否定复赛·avoir",
+          "q": "Nous ___ un film le vendredi soir.",
+          "x": "regarde",
+          "r": "regardons",
+          "tier": 3
+        },
+        {
+          "u": "变位否定复赛·avoir",
+          "q": "Elle ___ pas les tempêtes.",
+          "x": "ne aime",
+          "r": "n'aime",
+          "tier": 3
+        },
+        {
+          "u": "变位否定复赛·avoir",
+          "q": "Why does 'ne' become n' in 'Je n'aime pas' ?",
+          "x": "French drops every e",
+          "r": "aime starts with a vowel",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T02:31:10.436Z",
+    "updatedAt": "2026-07-28T02:33:16.497Z",
     "updatedBy": "study"
   }
 }
