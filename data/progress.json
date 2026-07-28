@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T07:03:08.659Z",
-    "xp": 36590,
+    "syncedAt": "2026-07-28T07:04:52.023Z",
+    "xp": 36774,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -11,7 +11,7 @@
       "color": "#e11d48"
     },
     "coverage": {
-      "done": 5,
+      "done": 6,
       "total": 17
     },
     "units": [
@@ -197,9 +197,9 @@
         "title": "星期月份·Théo的一周",
         "en": "Days, Months & Reading",
         "icon": "📅",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "15/15",
+        "ratio": 1,
+        "status": "mastered",
         "total": 15
       }
     ],
@@ -472,6 +472,30 @@
           "x": "Sunday is a school day",
           "r": "on Sunday I do not work",
           "tier": 3
+        },
+        {
+          "q": "Which day comes right AFTER mardi?",
+          "x": "samedi",
+          "r": "mercredi",
+          "tier": 3
+        },
+        {
+          "q": "Which month is 'janvier'?",
+          "x": "April",
+          "r": "January",
+          "tier": 2
+        },
+        {
+          "q": "Which of these are DAYS of the week? (select all)",
+          "x": "janvier",
+          "r": "lundi、jeudi、samedi",
+          "tier": 3
+        },
+        {
+          "q": "Which sentences about Théo are TRUE? (select all)",
+          "x": "Il travaille le dimanche.",
+          "r": "Il joue au football avec Léa.、Il adore le mercredi.、Il nage le samedi matin.",
+          "tier": 3
         }
       ]
     },
@@ -502,7 +526,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 36590,
+      "xp": 36774,
       "diag": {
         "chinese": {
           "score": 14,
@@ -661,7 +685,8 @@
         "MA29",
         "ZH31",
         "MA30",
-        "FR15"
+        "FR15",
+        "FR16"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -776,7 +801,8 @@
         "MA29": "15/15",
         "ZH31": "15/15",
         "MA30": "15/15",
-        "FR15": "15/15"
+        "FR15": "15/15",
+        "FR16": "15/15"
       },
       "ziDaysDone": [
         1,
@@ -1121,12 +1147,40 @@
           "x": "Sunday is a school day",
           "r": "on Sunday I do not work",
           "tier": 3
+        },
+        {
+          "u": "星期月份·Théo的一周",
+          "q": "Which day comes right AFTER mardi?",
+          "x": "samedi",
+          "r": "mercredi",
+          "tier": 3
+        },
+        {
+          "u": "星期月份·Théo的一周",
+          "q": "Which month is 'janvier'?",
+          "x": "April",
+          "r": "January",
+          "tier": 2
+        },
+        {
+          "u": "星期月份·Théo的一周",
+          "q": "Which of these are DAYS of the week? (select all)",
+          "x": "janvier",
+          "r": "lundi、jeudi、samedi",
+          "tier": 3
+        },
+        {
+          "u": "星期月份·Théo的一周",
+          "q": "Which sentences about Théo are TRUE? (select all)",
+          "x": "Il travaille le dimanche.",
+          "r": "Il joue au football avec Léa.、Il adore le mercredi.、Il nage le samedi matin.",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T07:03:08.659Z",
+    "updatedAt": "2026-07-28T07:04:52.023Z",
     "updatedBy": "study"
   }
 }
