@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T02:37:06.455Z",
-    "xp": 36075,
+    "syncedAt": "2026-07-28T02:38:36.710Z",
+    "xp": 36145,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -11,7 +11,7 @@
       "color": "#e11d48"
     },
     "coverage": {
-      "done": 4,
+      "done": 5,
       "total": 17
     },
     "units": [
@@ -186,9 +186,9 @@
         "title": "变位否定复赛·avoir",
         "en": "Verbs, Negation & AVOIR",
         "icon": "🥖",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "15/15",
+        "ratio": 1,
+        "status": "mastered",
         "total": 15
       },
       {
@@ -470,7 +470,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 36075,
+      "xp": 36145,
       "diag": {
         "chinese": {
           "score": 14,
@@ -628,7 +628,8 @@
         "ZH32",
         "MA29",
         "ZH31",
-        "MA30"
+        "MA30",
+        "FR15"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -742,7 +743,8 @@
         "ZH32": "15/15",
         "MA29": "15/15",
         "ZH31": "15/15",
-        "MA30": "15/15"
+        "MA30": "15/15",
+        "FR15": "15/15"
       },
       "ziDaysDone": [
         1,
@@ -1057,7 +1059,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T02:37:06.455Z",
+    "updatedAt": "2026-07-28T02:38:36.710Z",
     "updatedBy": "study"
   }
 }
