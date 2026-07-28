@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T07:04:52.023Z",
-    "xp": 36774,
+    "syncedAt": "2026-07-28T07:06:29.133Z",
+    "xp": 36880,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -497,6 +497,20 @@
           "r": "Il joue au football avec Léa.、Il adore le mercredi.、Il nage le samedi matin.",
           "tier": 3
         }
+      ],
+      "诗歌II·灯塔守夜人": [
+        {
+          "q": "The rhyme pattern of this poem is —",
+          "x": "AABB",
+          "r": "ABAB",
+          "tier": 3
+        },
+        {
+          "q": "'The storm may growl like some great bear' is —",
+          "x": "an ending rhyme",
+          "r": "a simile",
+          "tier": 2
+        }
       ]
     },
     "reviewQueue": [
@@ -526,7 +540,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 36774,
+      "xp": 36880,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1175,12 +1189,26 @@
           "x": "Il travaille le dimanche.",
           "r": "Il joue au football avec Léa.、Il adore le mercredi.、Il nage le samedi matin.",
           "tier": 3
+        },
+        {
+          "u": "诗歌II·灯塔守夜人",
+          "q": "The rhyme pattern of this poem is —",
+          "x": "AABB",
+          "r": "ABAB",
+          "tier": 3
+        },
+        {
+          "u": "诗歌II·灯塔守夜人",
+          "q": "'The storm may growl like some great bear' is —",
+          "x": "an ending rhyme",
+          "r": "a simile",
+          "tier": 2
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T07:04:52.023Z",
+    "updatedAt": "2026-07-28T07:06:29.133Z",
     "updatedBy": "study"
   }
 }
