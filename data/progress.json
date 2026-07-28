@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T07:06:29.133Z",
-    "xp": 36880,
+    "syncedAt": "2026-07-28T07:08:07.398Z",
+    "xp": 37011,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -510,6 +510,24 @@
           "x": "an ending rhyme",
           "r": "a simile",
           "tier": 2
+        },
+        {
+          "q": "What message does the light's 'song of hope' carry?",
+          "x": "\"Good night, little boats.\"",
+          "r": "\"This way, sailors, home.\"",
+          "tier": 2
+        },
+        {
+          "q": "Which pairs of words RHYME in this poem? (select all)",
+          "x": "rope — hope、stair — air、slow — know",
+          "r": "stair — air、slow — know、rope — hope、foam — home",
+          "tier": 3
+        },
+        {
+          "q": "Which lines use PERSONIFICATION? (select all)",
+          "x": "His lantern swinging slow",
+          "r": "It hums a steady song of hope、The wind may pound the door、Keeping its promise to the shore",
+          "tier": 3
         }
       ]
     },
@@ -535,12 +553,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 0,
+    "boxRemaining": 1,
     "writing": {},
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 36880,
+      "xp": 37011,
       "diag": {
         "chinese": {
           "score": 14,
@@ -857,7 +875,7 @@
         "足:1",
         "东:1"
       ],
-      "boxRemaining": 0,
+      "boxRemaining": 1,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1203,12 +1221,33 @@
           "x": "an ending rhyme",
           "r": "a simile",
           "tier": 2
+        },
+        {
+          "u": "诗歌II·灯塔守夜人",
+          "q": "What message does the light's 'song of hope' carry?",
+          "x": "\"Good night, little boats.\"",
+          "r": "\"This way, sailors, home.\"",
+          "tier": 2
+        },
+        {
+          "u": "诗歌II·灯塔守夜人",
+          "q": "Which pairs of words RHYME in this poem? (select all)",
+          "x": "rope — hope、stair — air、slow — know",
+          "r": "stair — air、slow — know、rope — hope、foam — home",
+          "tier": 3
+        },
+        {
+          "u": "诗歌II·灯塔守夜人",
+          "q": "Which lines use PERSONIFICATION? (select all)",
+          "x": "His lantern swinging slow",
+          "r": "It hums a steady song of hope、The wind may pound the door、Keeping its promise to the shore",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T07:06:29.133Z",
+    "updatedAt": "2026-07-28T07:08:07.398Z",
     "updatedBy": "study"
   }
 }
