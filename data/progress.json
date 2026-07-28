@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T07:11:16.503Z",
-    "xp": 37382,
+    "syncedAt": "2026-07-28T07:12:53.685Z",
+    "xp": 37498,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -11,7 +11,7 @@
       "color": "#e11d48"
     },
     "coverage": {
-      "done": 7,
+      "done": 8,
       "total": 17
     },
     "units": [
@@ -109,9 +109,9 @@
         "title": "光与声II·反射与折射",
         "en": "Light & Sound II",
         "icon": "🔦",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "16/16",
+        "ratio": 1,
+        "status": "mastered",
         "total": 16
       },
       {
@@ -596,6 +596,18 @@
           "x": "hitting a drum harder raises its pitch",
           "r": "sound cannot travel through empty space、sound travels well through solids、hitting a drum harder makes it louder",
           "tier": 3
+        },
+        {
+          "q": "Which of these make their OWN light? (select all)",
+          "x": "a firefly、the full Moon、a flash of lightning、the Sun",
+          "r": "the Sun、a lit candle、a firefly、a flash of lightning",
+          "tier": 3
+        },
+        {
+          "q": "Which changes give a HIGHER pitch? (select all)",
+          "x": "tightening the string",
+          "r": "tightening the string、making the tube shorter、using a thinner string",
+          "tier": 3
         }
       ]
     },
@@ -621,12 +633,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 1,
+    "boxRemaining": 0,
     "writing": {},
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 37382,
+      "xp": 37498,
       "diag": {
         "chinese": {
           "score": 14,
@@ -787,7 +799,8 @@
         "MA30",
         "FR15",
         "FR16",
-        "EN30"
+        "EN30",
+        "SC16"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -904,7 +917,8 @@
         "MA30": "15/15",
         "FR15": "15/15",
         "FR16": "15/15",
-        "EN30": "16/16"
+        "EN30": "16/16",
+        "SC16": "16/16"
       },
       "ziDaysDone": [
         1,
@@ -945,7 +959,7 @@
         "足:1",
         "东:1"
       ],
-      "boxRemaining": 1,
+      "boxRemaining": 0,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1389,12 +1403,26 @@
           "x": "hitting a drum harder raises its pitch",
           "r": "sound cannot travel through empty space、sound travels well through solids、hitting a drum harder makes it louder",
           "tier": 3
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "Which of these make their OWN light? (select all)",
+          "x": "a firefly、the full Moon、a flash of lightning、the Sun",
+          "r": "the Sun、a lit candle、a firefly、a flash of lightning",
+          "tier": 3
+        },
+        {
+          "u": "光与声II·反射与折射",
+          "q": "Which changes give a HIGHER pitch? (select all)",
+          "x": "tightening the string",
+          "r": "tightening the string、making the tube shorter、using a thinner string",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T07:11:16.503Z",
+    "updatedAt": "2026-07-28T07:12:53.685Z",
     "updatedBy": "study"
   }
 }
