@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T02:42:06.450Z",
-    "xp": 36179,
+    "syncedAt": "2026-07-28T02:43:48.513Z",
+    "xp": 36276,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -270,6 +270,12 @@
           "x": "跑",
           "r": "足",
           "tier": 3
+        },
+        {
+          "q": "「他的写作水平有了很大的改正。」应把「改正」改为——",
+          "x": "增加",
+          "r": "提高",
+          "tier": 3
         }
       ],
       "Exponent Clinic IV: Expand First": [
@@ -470,7 +476,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 36179,
+      "xp": 36276,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1054,12 +1060,19 @@
           "x": "Nous avons un chien",
           "r": "J'ai faim、Elle a soif、Il a peur、J'ai dix ans",
           "tier": 3
+        },
+        {
+          "u": "数字成语·病句IV + 识字 Day 28",
+          "q": "「他的写作水平有了很大的改正。」应把「改正」改为——",
+          "x": "增加",
+          "r": "提高",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T02:42:06.450Z",
+    "updatedAt": "2026-07-28T02:43:48.513Z",
     "updatedBy": "study"
   }
 }
