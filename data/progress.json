@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-28T07:12:53.685Z",
-    "xp": 37498,
+    "syncedAt": "2026-07-29T09:45:47.973Z",
+    "xp": 37532,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -638,7 +638,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 37498,
+      "xp": 37532,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1422,7 +1422,7 @@
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-28T07:12:53.685Z",
+    "updatedAt": "2026-07-29T09:45:47.973Z",
     "updatedBy": "study"
   }
 }
