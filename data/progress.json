@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-31T02:03:08.361Z",
-    "xp": 37808,
+    "syncedAt": "2026-07-31T02:05:05.070Z",
+    "xp": 37834,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -672,6 +672,18 @@
           "x": "1/3",
           "r": "1/4",
           "tier": 2
+        },
+        {
+          "q": "25% of a number is 9. The whole number = ?",
+          "x": "1",
+          "r": "36",
+          "tier": 3
+        },
+        {
+          "q": "Red to blue flags are in the ratio 2:7. There are 8 red flags. STEP 1: one part = ?",
+          "x": "0",
+          "r": "4",
+          "tier": 2
         }
       ]
     },
@@ -721,12 +733,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 0,
+    "boxRemaining": 1,
     "writing": {},
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 37808,
+      "xp": 37834,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1053,7 +1065,7 @@
         "分:1",
         "给:1"
       ],
-      "boxRemaining": 0,
+      "boxRemaining": 1,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1581,12 +1593,26 @@
           "x": "1/3",
           "r": "1/4",
           "tier": 2
+        },
+        {
+          "u": "Working Backwards: One Part First",
+          "q": "25% of a number is 9. The whole number = ?",
+          "x": "1",
+          "r": "36",
+          "tier": 3
+        },
+        {
+          "u": "Working Backwards: One Part First",
+          "q": "Red to blue flags are in the ratio 2:7. There are 8 red flags. STEP 1: one part = ?",
+          "x": "0",
+          "r": "4",
+          "tier": 2
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-31T02:03:08.361Z",
+    "updatedAt": "2026-07-31T02:05:05.070Z",
     "updatedBy": "study"
   }
 }
