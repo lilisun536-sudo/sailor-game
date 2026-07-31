@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-31T02:20:12.664Z",
-    "xp": 37995,
+    "syncedAt": "2026-07-31T02:21:50.298Z",
+    "xp": 38072,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -709,6 +709,26 @@
           "r": "divide 12 by 3 to get one eighth、multiply that part by 8、the answer is 32",
           "tier": 3
         }
+      ],
+      "电与电路II·静电与安全": [
+        {
+          "q": "Kai pulls off his wool sweater in the dark and hears tiny crackles. This is —",
+          "x": "refraction",
+          "r": "static electricity",
+          "tier": 2
+        },
+        {
+          "q": "In a one-loop circuit, a wire breaks BEHIND the battery. What happens to the bulbs in FRONT?",
+          "x": "only the nearest one dies",
+          "r": "they all go out too",
+          "tier": 3
+        },
+        {
+          "q": "Which of these would let electricity flow through it?",
+          "x": "a rubber band",
+          "r": "an iron nail",
+          "tier": 2
+        }
       ]
     },
     "reviewQueue": [
@@ -757,12 +777,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 2,
+    "boxRemaining": 3,
     "writing": {},
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 37995,
+      "xp": 38072,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1091,7 +1111,7 @@
         "分:1",
         "给:1"
       ],
-      "boxRemaining": 2,
+      "boxRemaining": 3,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1661,12 +1681,33 @@
           "x": "divide 12 by 3 to get one eighth",
           "r": "divide 12 by 3 to get one eighth、multiply that part by 8、the answer is 32",
           "tier": 3
+        },
+        {
+          "u": "电与电路II·静电与安全",
+          "q": "Kai pulls off his wool sweater in the dark and hears tiny crackles. This is —",
+          "x": "refraction",
+          "r": "static electricity",
+          "tier": 2
+        },
+        {
+          "u": "电与电路II·静电与安全",
+          "q": "In a one-loop circuit, a wire breaks BEHIND the battery. What happens to the bulbs in FRONT?",
+          "x": "only the nearest one dies",
+          "r": "they all go out too",
+          "tier": 3
+        },
+        {
+          "u": "电与电路II·静电与安全",
+          "q": "Which of these would let electricity flow through it?",
+          "x": "a rubber band",
+          "r": "an iron nail",
+          "tier": 2
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-31T02:20:12.664Z",
+    "updatedAt": "2026-07-31T02:21:50.298Z",
     "updatedBy": "study"
   }
 }
