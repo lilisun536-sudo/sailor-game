@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-31T01:59:26.220Z",
-    "xp": 37717,
+    "syncedAt": "2026-07-31T02:01:11.554Z",
+    "xp": 37754,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -653,6 +653,14 @@
           "r": "给",
           "tier": 2
         }
+      ],
+      "Working Backwards: One Part First": [
+        {
+          "q": "2/5 of a number is 10. STEP 1: one fifth of the number = ?",
+          "x": "25",
+          "r": "5",
+          "tier": 2
+        }
       ]
     },
     "reviewQueue": [
@@ -706,7 +714,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 37717,
+      "xp": 37754,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1540,12 +1548,19 @@
           "x": "拾",
           "r": "给",
           "tier": 2
+        },
+        {
+          "u": "Working Backwards: One Part First",
+          "q": "2/5 of a number is 10. STEP 1: one fifth of the number = ?",
+          "x": "25",
+          "r": "5",
+          "tier": 2
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-31T01:59:26.220Z",
+    "updatedAt": "2026-07-31T02:01:11.554Z",
     "updatedBy": "study"
   }
 }
