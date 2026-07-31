@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-31T02:08:53.801Z",
-    "xp": 37901,
+    "syncedAt": "2026-07-31T02:15:33.186Z",
+    "xp": 37924,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -690,6 +690,12 @@
           "x": "7",
           "r": "21",
           "tier": 3
+        },
+        {
+          "q": "20% of 45 = ? (forward this time!)",
+          "x": "225",
+          "r": "9",
+          "tier": 3
         }
       ]
     },
@@ -744,7 +750,7 @@
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 37901,
+      "xp": 37924,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1620,12 +1626,19 @@
           "x": "7",
           "r": "21",
           "tier": 3
+        },
+        {
+          "u": "Working Backwards: One Part First",
+          "q": "20% of 45 = ? (forward this time!)",
+          "x": "225",
+          "r": "9",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-31T02:08:53.801Z",
+    "updatedAt": "2026-07-31T02:15:33.186Z",
     "updatedBy": "study"
   }
 }
