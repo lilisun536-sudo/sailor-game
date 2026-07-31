@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-31T02:17:54.236Z",
-    "xp": 37964,
+    "syncedAt": "2026-07-31T02:20:12.664Z",
+    "xp": 37995,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -11,7 +11,7 @@
       "color": "#e11d48"
     },
     "coverage": {
-      "done": 8,
+      "done": 9,
       "total": 17
     },
     "units": [
@@ -87,9 +87,9 @@
         "title": "Working Backwards: One Part First",
         "en": "逆向配对训练",
         "icon": "🔁",
-        "best": null,
-        "ratio": null,
-        "status": "todo",
+        "best": "13/15",
+        "ratio": 0.8666666666666667,
+        "status": "mastered",
         "total": 15
       },
       {
@@ -696,6 +696,18 @@
           "x": "225",
           "r": "9",
           "tier": 3
+        },
+        {
+          "q": "Which are equal to 2/5? (select all)",
+          "x": "0.25、4/10、40%",
+          "r": "40%、0.4、4/10",
+          "tier": 3
+        },
+        {
+          "q": "'3/8 of a number is 12.' Which steps solve it? (select all)",
+          "x": "divide 12 by 3 to get one eighth",
+          "r": "divide 12 by 3 to get one eighth、multiply that part by 8、the answer is 32",
+          "tier": 3
         }
       ]
     },
@@ -745,12 +757,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 0,
+    "boxRemaining": 2,
     "writing": {},
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 37964,
+      "xp": 37995,
       "diag": {
         "chinese": {
           "score": 14,
@@ -912,7 +924,8 @@
         "FR15",
         "FR16",
         "EN30",
-        "SC16"
+        "SC16",
+        "MA31"
       ],
       "unitBest": {
         "C1": "8/10",
@@ -1030,7 +1043,8 @@
         "FR15": "15/15",
         "FR16": "15/15",
         "EN30": "16/16",
-        "SC16": "16/16"
+        "SC16": "16/16",
+        "MA31": "13/15"
       },
       "ziDaysDone": [
         1,
@@ -1077,7 +1091,7 @@
         "分:1",
         "给:1"
       ],
-      "boxRemaining": 0,
+      "boxRemaining": 2,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1633,12 +1647,26 @@
           "x": "225",
           "r": "9",
           "tier": 3
+        },
+        {
+          "u": "Working Backwards: One Part First",
+          "q": "Which are equal to 2/5? (select all)",
+          "x": "0.25、4/10、40%",
+          "r": "40%、0.4、4/10",
+          "tier": 3
+        },
+        {
+          "u": "Working Backwards: One Part First",
+          "q": "'3/8 of a number is 12.' Which steps solve it? (select all)",
+          "x": "divide 12 by 3 to get one eighth",
+          "r": "divide 12 by 3 to get one eighth、multiply that part by 8、the answer is 32",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-31T02:17:54.236Z",
+    "updatedAt": "2026-07-31T02:20:12.664Z",
     "updatedBy": "study"
   }
 }
