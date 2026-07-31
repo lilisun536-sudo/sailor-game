@@ -2,8 +2,8 @@
   "study": {
     "version": "15.0",
     "student": "Sailor",
-    "syncedAt": "2026-07-31T02:21:50.298Z",
-    "xp": 38072,
+    "syncedAt": "2026-07-31T02:23:22.343Z",
+    "xp": 38109,
     "rank": {
       "cn": "海军元帅",
       "en": "Fleet Admiral",
@@ -728,6 +728,12 @@
           "x": "a rubber band",
           "r": "an iron nail",
           "tier": 2
+        },
+        {
+          "q": "A GLASS cup is clear, almost like water. Does electricity pass through it?",
+          "x": "yes — glass is a kind of metal",
+          "r": "no — glass is an insulator",
+          "tier": 3
         }
       ]
     },
@@ -777,12 +783,12 @@
         "n": 1
       }
     ],
-    "boxRemaining": 3,
+    "boxRemaining": 2,
     "writing": {},
     "packet": {
       "ver": "15.0",
       "date": "2026-07-22",
-      "xp": 38072,
+      "xp": 38109,
       "diag": {
         "chinese": {
           "score": 14,
@@ -1111,7 +1117,7 @@
         "分:1",
         "给:1"
       ],
-      "boxRemaining": 3,
+      "boxRemaining": 2,
       "writingCount": 0,
       "writing": {},
       "mistakes": [
@@ -1702,12 +1708,19 @@
           "x": "a rubber band",
           "r": "an iron nail",
           "tier": 2
+        },
+        {
+          "u": "电与电路II·静电与安全",
+          "q": "A GLASS cup is clear, almost like water. Does electricity pass through it?",
+          "x": "yes — glass is a kind of metal",
+          "r": "no — glass is an insulator",
+          "tier": 3
         }
       ]
     }
   },
   "_meta": {
-    "updatedAt": "2026-07-31T02:21:50.298Z",
+    "updatedAt": "2026-07-31T02:23:22.343Z",
     "updatedBy": "study"
   }
 }
